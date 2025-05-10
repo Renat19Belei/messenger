@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainPageView.as_view(), name='main'),
     # path('main/', include("main_app.urls")),
-    path('user/', include("user_app.urls"))
+    path('user/', include("user_app.urls")),
+    path('main/', include("main_app.urls")),
+    
 ]

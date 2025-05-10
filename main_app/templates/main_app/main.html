@@ -1,3 +1,19 @@
 {% extends 'base.html' %}
 {% if request.user.is_authenticated %}
 {% endif %}
+
+
+{% block content %}
+    <h1>Ласкаво просимо на головну сторінку!</h1>
+    <p>Це ваша стартова сторінка сайту.</p>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'main' %}">Головна</a></li>
+            <li><a href="{% url 'personal' %}">Особиста</a></li>
+            <li><a href="{% url 'posts' %}">Пости</a></li>
+            <li><a href="{% url 'friends' %}">Друзі</a></li>
+            <li><a href="{% url 'chats' %}">Чати</a></li>
+        </ul>
+    </nav>
+{% endblock %}
