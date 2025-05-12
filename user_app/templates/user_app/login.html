@@ -1,15 +1,27 @@
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h1>Логін</h1>
+    
+    <header><img src="{% static 'images/Group2.png' %}"></header>
+    <hr>
+    
     <form action="" method="post">
+        <h1>Раді тебе знову бачити!</h1>
+
         {% csrf_token %}
+        
         {{ form.as_p }}
+      
+        
         <button>Логін</button>
+        <img src="{% static 'images/Group 1.png' %}" alt="" class="comp">
     </form>
+
 </body>
 </html>
