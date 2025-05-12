@@ -1,4 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block link %}
+    <script src="{% static 'user_app/email.js' %}" defer></script>
+{% endblock %}
 {% block content %}
 <h1>hello</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="code1" maxlength="1" class="code">
+    <input type="text" name="code2" maxlength="1" class="code">
+    <input type="text" name="code3" maxlength="1" class="code">
+    <input type="text" name="code4" maxlength="1" class="code">
+    <input type="text" name="code5" maxlength="1" class="code">
+    <input type="text" name="code6" maxlength="1" class="code">
+    <button class="save">save</button>
+</form>
 {% endblock %}

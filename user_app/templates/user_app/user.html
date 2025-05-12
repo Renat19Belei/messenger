@@ -1,10 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'user_app/style.css' %}">
+{% endblock %}
 {% block content %}
 
-<form method="post">
+<!-- <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button>Save</button>
-</form>
+</form> -->
+<header><img src="{% static 'user_app/images/Group2.png' %}"></header>
+    <hr>
+    <main>
+       <form action="" method="post">
+        <h1>Приєднуйся до World IT</h1>
 
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+      
+        
+        <button class="login">Створити акаунт</button>
+        </form>
+        <img src="{% static 'user_app/images/Group 1.png' %}" alt="" class="comp"> 
+    </main>
 {% endblock %}

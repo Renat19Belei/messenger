@@ -1,14 +1,18 @@
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import UserForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
 from .models import Code
+from .tasks import delete_old_code
+from django.utils import timezone
+from datetime import timedelta
 # from django.template.loader import render_to_string
 # from django.core.mail import send_mail
 import random
+import threading
 # from django.urls import 
 # Create your views here.
 
@@ -19,8 +23,16 @@ class UserPageView(FormView):
     def form_valid(self, form):
         
         # First, render the plain text content.
+        user=form.save()
+        user.is_active = False
         text_content = random.randint(100000, 999999)
-        Code(code=text_content)
+        code= Code.objects.create(code=text_content,user_id = user)
+        self.success_url = f'/user/email/{code.id}'
+        # delete_old_code.apply_async(
+            # args=[code.id],
+            # eta=timezone.now() + timedelta(hours=1)
+        # )
+        threading.Thread(target=delete_old_code, args= [code.id]).start()
         # Secondly, render the HTML content.
         # html_content = render_to_string(
         #     "user_templates/user_app/my_email.html",
@@ -44,18 +56,28 @@ class UserPageView(FormView):
         #     email = UserForm(form).email
         # )
         # print(self.cleaned_data)
-        form.save()
+        
         return super().form_valid(form)
 
 class LoginView(LoginView):
     template_name = "user_app/login.html"
     # def form_valid(self, form):
+        
     #     print(self.request.current_user.email)
 
 
 def render_email(request:WSGIRequest, code):
     # print(type(request))
-    # if request.method == 'POST':
-    #     if code == request.POST.get('code'):
+    code= Code.objects.get(id = code)
+    if request.method == 'POST':
+        # print('eeeeee', type(code.code),type(request.POST.get('code')))
+        written = ''
+        for count in range(6):
+            written += request.POST.get(f'code{count+1}')
+        if str(code.code) == written:
+            print('wrerwewer')
+            code.user_id.is_active = True
+            return redirect("/user/login/")
+
 
     return render(request,'user_app/my_email.html')
