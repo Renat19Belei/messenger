@@ -2,17 +2,27 @@
 {% load static %}
 {% block link %}
     <script src="{% static 'user_app/email.js' %}" defer></script>
+    <!-- <link rel="stylesheet" href="{% static 'user_app/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'user_app/email.css' %}">
 {% endblock %}
 {% block content %}
-<h1>hello</h1>
+<!-- <main></main> -->
+<h1>Підтвердження пошти</h1>
+<h2>Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</h2>
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="code1" maxlength="1" class="code">
-    <input type="text" name="code2" maxlength="1" class="code">
-    <input type="text" name="code3" maxlength="1" class="code">
-    <input type="text" name="code4" maxlength="1" class="code">
-    <input type="text" name="code5" maxlength="1" class="code">
-    <input type="text" name="code6" maxlength="1" class="code">
-    <button class="save">save</button>
+    <div class="in">
+    <h3>Код підтвердження</h3>
+    <div class="inputs">
+        <input type="text" name="code1" maxlength="1" class="code" placeholder="_">
+        <input type="text" name="code2" maxlength="1" class="code" placeholder="_">
+        <input type="text" name="code3" maxlength="1" class="code" placeholder="_">
+        <input type="text" name="code4" maxlength="1" class="code" placeholder="_">
+        <input type="text" name="code5" maxlength="1" class="code" placeholder="_">
+        <input type="text" name="code6" maxlength="1" class="code" placeholder="_">
+    </div></div>
+    <button class="save">Підтвердити</button>
+    <a href="{% url 'user' %}">Назад</a>
 </form>
+<!-- <img src="{% static 'user_app/images/Group 1.png' %}" alt="" class="comp">  -->
 {% endblock %}

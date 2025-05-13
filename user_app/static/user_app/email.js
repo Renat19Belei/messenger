@@ -2,6 +2,7 @@
 const inputs = document.querySelectorAll('.code');
 const button = document.querySelector('.save');
 const form = document.querySelector('form');
+inputs[0].focus()
 // inputs.forEach((input, index) => {
 //     input.addEventListener('input', function() {
         
