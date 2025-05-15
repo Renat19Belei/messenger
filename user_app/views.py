@@ -1,4 +1,6 @@
 from django.views.generic.edit import FormView
+from django.views.generic import View
+
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from .forms import UserForm
@@ -9,10 +11,13 @@ from .models import Code
 from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta
+from django.http import HttpResponse
 # from django.template.loader import render_to_string
 # from django.core.mail import send_mail
 import random
 import threading
+import qrcode, io 
+from PIL import Image
 # from django.urls import 
 # Create your views here.
 
@@ -58,6 +63,22 @@ class UserPageView(FormView):
         # print(self.cleaned_data)
         
         return super().form_valid(form)
+    # def get_context_data(self, **kwargs):
+    #     return super().get_context_data(**kwargs)
+
+
+
+class Get_Random_Qr_Code(View):
+
+    def get(self,request:WSGIRequest):
+        
+        buffer = io.BytesIO()
+        qrcode.make(
+            data=random.Random()
+        ).save(buffer, format='PNG') 
+        return HttpResponse(buffer.getvalue())
+    
+
 
 class LoginView(LoginView):
     template_name = "user_app/login.html"

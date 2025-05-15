@@ -3,6 +3,7 @@
 
 {% block link %}
     <link rel="stylesheet" href="{% static 'user_app/style.css' %}">
+    <link rel="stylesheet" href="{% static 'user_app/user.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -14,8 +15,13 @@
 <header><img src="{% static 'user_app/images/Group2.png' %}"></header>
     <hr>
     <main>
+        
        <form action="" method="post">
-        <h1>Приєднуйся до World IT</h1>
+        <h1>
+            <a class="reg" href="{% url 'user' %}">Реєстрація</a>
+            <a class="auth" href="{% url 'login' %}">Авторизація</a>
+        </h1>
+        <h2>Приєднуйся до World IT</h2>
 
         {% csrf_token %}
         

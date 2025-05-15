@@ -105,3 +105,28 @@ input{
     border-width: 1px;
 
 }
+#qr{
+    width: 107.51868438720703px;
+    height: 116.962890625px;
+}.inline-hr-div{
+    display: inline-block;
+    width: 55px;
+    height: 1px;
+    background-color: #81818D;
+    margin: 0 5px;
+    vertical-align: middle;
+}
+.reg{
+    color: #81818D;
+    text-decoration:none ;
+}
+.auth{
+   cursor: pointer; 
+}
+.header_div{
+    height: 56px;
+    width: 400px;
+}
+a{
+    color: black;
+}

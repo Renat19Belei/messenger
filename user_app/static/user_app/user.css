@@ -1,3 +1,12 @@
-*{
+/* *{
     background-color: aqua;
+} */
+.reg{
+    cursor: pointer; 
+    color: black;
+    text-decoration:underline ;
+}
+.auth{
+   color: #81818D;
+    text-decoration:none ;
 }
