@@ -142,7 +142,7 @@ html, body {
 }
 
 .container {
-  height: calc(100vh - 60px); /* минус высота header */
+  height: calc(100vh - 60px); 
   overflow: hidden;
 }
 
