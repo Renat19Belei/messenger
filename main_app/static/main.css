@@ -1,0 +1,305 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  color: #1c1e21;
+}
+
+header {
+  background: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #1c1e21;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  max-width: 1100px;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 270px;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  text-align: center;
+}
+
+.profile img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile h2 {
+  font-size: 16px;
+  margin: 8px 0 4px;
+}
+
+.profile p {
+  font-size: 13px;
+  color: #606770;
+}
+
+.sidebar h3 {
+  font-size: 14px;
+  margin: 20px 0 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 6px 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.content {
+  flex: 1;
+}
+
+.post {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.post .user {
+  font-weight: bold;
+  font-size: 14px;
+  color: #050505;
+  margin-bottom: 8px;
+}
+
+.post .text {
+  font-size: 14px;
+  color: #1c1e21;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.reaction {
+  font-size: 13px;
+  color: #65676b;
+  display: flex;
+  gap: 15px;
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+  margin-top: 10px;
+}
+
+.comments {
+  margin-top: 10px;
+}
+
+.comment {
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+}
+
+.comment .user {
+  font-weight: bold;
+  font-size: 13px;
+  color: #050505;
+}
+
+.comment .text {
+  font-size: 13px;
+  color: #4b4f56;
+  margin-top: 4px;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  height: calc(100vh - 60px); /* минус высота header */
+  overflow: hidden;
+}
+
+.sidebar {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.content {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.post {
+  margin-bottom: 20px;
+}
+
+.comments {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.comments::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 8px;
+}
+
+.sidebar {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-dot {
+  width: 12px;
+  height: 12px;
+  background: #27ae60;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+.profile-card h2 {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.profile-card p {
+  font-size: 13px;
+  color: #888;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.stats div {
+  text-align: center;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.section-header a {
+  font-size: 12px;
+  color: #999;
+  text-decoration: none;
+}
+
+.user-row, .message-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.user-row img, .message-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: bold;
+  color: #111;
+}
+
+.meta {
+  font-size: 12px;
+  color: #777;
+}
+
+.message-row {
+  justify-content: space-between;
+}
+
+.msg-content {
+  flex: 1;
+}
+.time {
+  font-size: 11px;
+  color: #aaa;
+}

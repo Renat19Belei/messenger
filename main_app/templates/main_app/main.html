@@ -1,19 +1,125 @@
 {% extends 'base.html' %}
+{% load static %}
 {% if request.user.is_authenticated %}
 {% endif %}
-
+{% block link %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>Ласкаво просимо на головну сторінку!</h1>
-    <p>Це ваша стартова сторінка сайту.</p>
+    <header>
+  <h1>WORLD IT</h1>
+  <nav>
+    <a href="{% url 'main' %}">Головна</a>
+    <a href="{% url 'personal' %}">Мої публікації</a>
+    <a href="{% url 'friends' %}">Друзі</a>
+    <a href="{% url 'chats' %}">Чат</a>
+    <a href="#">Налаштування</a>
+  </nav>
+</header>
+<div class="container">
 
-    <nav>
-        <ul>
-            <li><a href="{% url 'main' %}">Головна</a></li>
-            <li><a href="{% url 'personal' %}">Особиста</a></li>
-            <li><a href="{% url 'posts' %}">Пости</a></li>
-            <li><a href="{% url 'friends' %}">Друзі</a></li>
-            <li><a href="{% url 'chats' %}">Чати</a></li>
-        </ul>
-    </nav>
+<aside class="sidebar">
+  <div class="profile-card">
+    <img class="avatar" src="{% static 'images/image.png' %}" alt="Lina Li">
+    <div class="online-dot"></div>
+    <h2>Lina Li</h2>
+    <p>@thellii</p>
+    <div class="stats">
+      <div><strong>566</strong><br>Дописи</div>
+      <div><strong>12.1K</strong><br>Читачі</div>
+      <div><strong>222</strong><br>Друзі</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-header">
+      <span>Запити</span>
+      <a href="#">Дивитись всі</a>
+    </div>
+    <div class="request">
+      <img src="">
+      <div>
+        <div class="name">Yehor Aung</div>
+        <div class="meta">4.3k підписників</div>
+      </div>
+    </div>
+    <div class="request">
+      <img src="">
+      <div>
+        <div class="name">Ann Ann</div>
+        <div class="meta">1.6k підписників</div>
+      </div>
+    </div>
+    <div class="request">
+      <img src="">
+      <div>
+        <div class="name">Yeugen Jenua</div>
+        <div class="meta">10.3k підписників</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-header">
+      <span>Повідомлення</span>
+      <a href="#">Дивитись всі</a>
+    </div>
+    <div class="message">
+      <img src="">
+      <div class="msg-text">
+        <div class="name">Mona Lisa</div>
+        <div class="meta">Привіт! Як справи ?</div>
+      </div>
+      <div class="time">09:41</div>
+    </div>
+    <div class="message">
+      <img src="">
+      <div class="msg-text">
+        <div class="name">Ann Ti</div>
+        <div class="meta">Привіт!</div>
+      </div>
+      <div class="time">25.04.2025</div>
+    </div>
+    <div class="message">
+      <img src="">
+      <div class="msg-text">
+        <div class="name">Ness Ty</div>
+        <div class="meta">Привіт!</div>
+      </div>
+      <div class="time">25.04.2025</div>
+    </div>
+  </div>
+</aside>
+  </aside>
+  <main class="content">
+    <div class="post">
+      <div class="user">X_AE_A18</div>
+      <div class="text">
+        Іноді найкращі ідеї народжуються з тиші 🌿<br>
+        Природа, книга, і спокій - усе що потрібно, аби перезавантажитись<br>
+        #відпочинок #натхнення #життя #природа #читання #спокій #гармонія
+      </div>
+      <div class="reaction">
+        <span>120 вподобань</span>
+        <span>890 коментарів</span>
+      </div>
+      <div class="comments">
+        <div class="comment">
+          <div class="user">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб
+          </div>
+        </div>
+        <div class="comment">
+          <div class="user">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 {% endblock %}
