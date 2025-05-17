@@ -17,11 +17,19 @@
     <main>
         
        <form action="" method="post">
+<!-- <<<<<<< HEAD -->
         <h1>
             <a class="reg" href="{% url 'user' %}">Реєстрація</a>
             <a class="auth" href="{% url 'login' %}">Авторизація</a>
         </h1>
         <h2>Приєднуйся до World IT</h2>
+<!-- =======
+        <div class="tabs">
+            <button type="button" class="tab active">Реєстрація</button>
+            <button type="button" class="tab">Авторизація</button>
+        </div>
+        <h1>Приєднуйся до World IT</h1>
+>>>>>>> origin/Renat -->
 
         {% csrf_token %}
         

@@ -2,6 +2,7 @@ from django.views.generic.edit import FormView
 from django.views.generic import View
 
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.shortcuts import render,redirect
 from .forms import UserForm
 from django.contrib.auth.views import LoginView, LogoutView
@@ -20,6 +21,9 @@ import qrcode, io
 from PIL import Image
 # from django.urls import 
 # Create your views here.
+class customLogoutView(LogoutView):
+    # success_url = '/user/login/'
+    next_page = "login"
 
 class UserPageView(FormView):
     template_name = "user_app/user.html"

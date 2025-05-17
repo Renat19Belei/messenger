@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 # Create your models here.
 class Code(models.Model):
-    code = models.IntegerField(max_length=6)
+    code = models.IntegerField()
     date_of_creation = models.DateTimeField(auto_now=True)
     user_id = models.OneToOneField(to=User,on_delete=models.CASCADE)
     # email = models.EmailField(max_length=255)
@@ -20,10 +20,10 @@ class User_Post(models.Model):
     user  = models.OneToOneField(to=User, on_delete= models.CASCADE)
     name = models.CharField(max_length=255)
     theme = models.CharField(max_length=255,null=True)
-    tags  = models.ManyToManyField(to=Tags,null=True)
+    tags  = models.ManyToManyField(to=Tags)
     text = models.TextField()
-    link  = models.CharField(max_length=255)
-    images = models.ManyToManyField(to=Images,null=True)
+    link  = models.CharField(max_length=255, null=True)
+    images = models.ManyToManyField(to=Images)
     reviewers = models.IntegerField()
     likes = models.IntegerField()
     def clean(self):
