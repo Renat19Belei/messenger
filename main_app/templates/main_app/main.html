@@ -11,33 +11,37 @@
 
 {% block content %}
     <header>
-  <h1><img src="{% static 'user_app/images/Group2.png' %}"></h1>
+  <h1><img src="{% static 'user_app/images/Group2.png' %}" class="World IT"></h1>
   <nav>
-    <a href="{% url 'main' %}"><img src="{% static 'images/House.png' %}" alt=""><span class="center">Головна</span></a>
-    <a href="{% url 'personal' %}"><img src="{% static 'images/public.png' %}" alt=""><span class="center">Мої публікації</span></a>
+    <a href="{% url 'main' %}" class="current-page"><img src="{% static 'images/House.png' %}" alt=""><span class="center">Головна</span></a>
+    <a href="{% url 'posts' %}"><img src="{% static 'images/public.png' %}" alt=""><span class="center">Мої публікації</span></a>
     <a href="{% url 'friends' %}"><img src="{% static 'images/people.png' %}" alt=""><span class="center">Друзі</span></a>
     <a href="{% url 'chats' %}"><img src="{% static 'images/chat.png' %}" alt=""><span class="center">Чат</span></a>
-    <a href="#"><img src="{% static 'images/Component 5.png' %}" alt=""><span class="center">Налаштування</span></a>
+    <a href="{% url 'personal' %}"><img src="{% static 'images/Component 5.png' %}" alt=""><span class="center">Налаштування</span></a>
     <form action="{% url 'logout' %}" method="post" id="reviewForm">{% csrf_token %}<button class="logout"><img src="{% static 'images/Component 5 (1).png' %}" alt="" class="ok">Вихід</button></form>
     
   </nav>
 </header>
-<div class="container2">
+{% csrf_token %}
+<input type="hidden" id="request" value="{% url 'list' %}">
 <div class="container">
 
 <aside class="sidebar">
   <div class="profile-card">
-    <img class="avatar" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
-    <div class="online-dot"></div>
-    <h2>Lina Li</h2>
-    <p>@thellii</p>
+    <div class="profile-1">
+      <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
+      <div class="online-dot"></div>
+      <h2>Lina Li</h2>
+      <p>@thellii</p>
+    </div>
     <div class="stats">
-      <div><strong>566</strong><br>Дописи</div>
-      <div><strong>12.1K</strong><br>Читачі</div>
-      <div><strong>222</strong><br>Друзі</div>
+      <div><strong>566</strong><br><span class="grey">Дописи</span></div>
+      <div class="vertical-line"></div>
+      <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
+      <div class="vertical-line"></div>
+      <div><strong>222</strong><br><span class="grey">Друзі</span></div>
     </div>
   </div>
-
   <div class="card">
     <div class="section-header">
       <span><img src="{% static 'images/people (1).png' %}" alt=""><span class="center">Запити</span></span>
@@ -72,13 +76,18 @@
       <span><img src="{% static 'images/chat (1).png' %}" alt=""><span class="center">Повідомлення</span></span>
       <a href="#">Дивитись всі</a>
     </div>
+
     <div class="message">
       <img class="avatar" src="{% static 'images/mona.png' %}">
       <div class="msg-text" >
-        <div class="name">Mona Lisa</div>
+        <div class="msg-just">
+          <div class="name">Mona Lisa</div>
+          <div class="time">09:41</div>
+        </div>
+        
         <div class="meta">Привіт! Як справи ?</div>
       </div>
-      <div class="time">09:41</div>
+      
     </div>
     <div class="message">
       <img class="avatar" src="{% static 'images/ann (1).png' %}">
@@ -96,6 +105,7 @@
       </div>
       <div class="time">25.04.2025</div>
     </div>
+  
   </div>
 </aside>
   </aside>
@@ -111,7 +121,8 @@
         <!-- </div> -->
       </div>
     </form>
-    <div class="post">
+    <div class="poster">
+            <div class="post">
       <div class="user"><img class="avatar" src="{% static 'images/x.png' %}" alt="">X_AE_A18</div>
       <div class="text">
         Іноді найкращі ідеї народжуються з тиші 🌿<br>
@@ -173,10 +184,10 @@
           <span>120 вподобань</span>
           <span>890 коментарів</span>
         </div>
-        <div class="post"></div><div class="post"></div>
         <!-- </div> -->
-      </div>
+      </div></div>
     
   </main>
-</div></div>
+</div>
+
 {% endblock %}

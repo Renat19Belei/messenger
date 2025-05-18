@@ -1,5 +1,136 @@
 {% extends 'base.html' %}
-{% block title %}Мої публікації{% endblock %}
+{% load static %}
+{% if request.user.is_authenticated %}
+{% endif %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+<link rel="stylesheet" href="{% static 'posts.css' %}">
+<script src="{% static 'jquery.js' %}" defer></script>
+<script src="{% static 'script.js' %}" defer></script>
+
+{% endblock %}
+
 {% block content %}
-<h1>Мої публікації</h1>
+    <header>
+  <h1><img src="{% static 'user_app/images/Group2.png' %}" class="World IT"></h1>
+  <nav>
+    <a href="{% url 'main' %}"><img src="{% static 'images/House.png' %}" alt=""><span class="center">Головна</span></a>
+    <a href="{% url 'personal' %}" class="current-page"><img src="{% static 'images/public.png' %}" alt=""><span class="center">Мої публікації</span></a>
+    <a href="{% url 'friends' %}"><img src="{% static 'images/people.png' %}" alt=""><span class="center">Друзі</span></a>
+    <a href="{% url 'chats' %}"><img src="{% static 'images/chat.png' %}" alt=""><span class="center">Чат</span></a>
+    <a href="#"><img src="{% static 'images/Component 5.png' %}" alt=""><span class="center">Налаштування</span></a>
+    <form action="{% url 'logout' %}" method="post" id="reviewForm">{% csrf_token %}<button class="logout"><img src="{% static 'images/Component 5 (1).png' %}" alt="" class="ok">Вихід</button></form>
+    
+  </nav>
+</header>
+{% csrf_token %}
+<input type="hidden" id="request" value="{% url 'list' %}">
+<div class="container">
+
+<aside class="sidebar">
+    <div class="profile-card">
+    <div class="profile-1">
+      <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
+      <div class="online-dot"></div>
+      <h2>Lina Li</h2>
+      <p>@thellii</p>
+    </div>
+    <div class="stats">
+      <div><strong>566</strong><br><span class="grey">Дописи</span></div>
+      <div class="vertical-line"></div>
+      <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
+      <div class="vertical-line"></div>
+      <div><strong>222</strong><br><span class="grey">Друзі</span></div>
+    </div>
+  </div>
+  
+
+ 
+
+    
+  
+  
+</aside>
+  </aside>
+  <main class="content" style="width: 923px;">
+    <form class="publiaction" method="post">
+      {% csrf_token %}
+      <input placeholder="Текст публікації" class="input">
+      {{ form.as_p }}
+      <div class="right">
+        <!-- <div class="centers"> -->
+          <img src="{% static 'images/em.png' %}" alt="" class="move">
+          <button class="send">Перейти до оформлення</button>
+        <!-- </div> -->
+      </div>
+    </form>
+    <div class="poster">
+            <div class="post">
+      <div class="user"><img class="avatar" src="{% static 'images/x.png' %}" alt="">X_AE_A18</div>
+      <div class="text">
+        Іноді найкращі ідеї народжуються з тиші 🌿<br>
+        Природа, книга, і спокій - усе що потрібно, аби перезавантажитись<br>
+        #відпочинок #натхнення #життя #природа #читання #спокій #гармонія
+      </div>
+      <div class="images">
+        <img src="{% static 'images/Frame.png' %}" alt="">
+        <img src="{% static 'images/Frame (1).png' %}" alt="">
+        <img src="{% static 'images/Frame (2).png' %}" alt="">
+        <img src="{% static 'images/Frame (3).png' %}" alt="">
+      </div>
+      <div class="reaction">
+        <span>120 вподобань</span>
+        <span>890 коментарів</span>
+      </div>
+    </div>
+    <!-- <div class="post"> -->
+      <!-- <div class="comments"> -->
+        <div class="post">
+          <div class="user"><img class="avatar" src="{% static 'images/a.png' %}" alt="">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб
+          </div>
+          <div class="reaction">
+          <span>120 вподобань</span>
+          <span>890 коментарів</span>
+        </div>
+        </div>
+
+        <div class="post">
+          <div class="user"><img class="avatar" src="{% static 'images/2.png' %}" alt="">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб</div>
+          <div class="reaction">
+          <span>120 вподобань</span>
+          <span>890 коментарів</span>
+        </div>
+        </div>
+        
+        <div class="post">
+          <div class="user"><img class="avatar" src="{% static 'images/3.png' %}" alt="">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб</div>
+            <div class="reaction">
+          <span>120 вподобань</span>
+          <span>890 коментарів</span>
+        </div>
+        </div>
+        <div class="post">
+          <div class="user"><img class="avatar" src="{% static 'images/4.png' %}" alt="">Alex_03</div>
+          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
+            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
+            #вайб</div>
+            <div class="reaction">
+          <span>120 вподобань</span>
+          <span>890 коментарів</span>
+        </div>
+        <!-- </div> -->
+      </div></div>
+    
+  </main>
+</div>
+</div>
 {% endblock %}

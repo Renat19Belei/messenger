@@ -15,24 +15,29 @@ header {
   padding: 10px 20px;
   /* border-bottom: 1px solid #ccc; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-weight: 500;
-  padding: 24px 80px;
+  padding: 2.634467618vw 80px;
+  /* height: 100vw; */
+  height: 4.39077936334vw;
 }
 header nav form{
   display: inline-block;
   margin-right: 10px;
 }
 header nav a {
+  padding: 5px 5px 5px 5px;
   margin-left: 20px;
   text-decoration: none;
+
   color: #1c1e21;
   font-size: 14px;
   display: inline-block;
   margin-right: 10px;
   /* vertical-align: center; */
-  
+  justify-self: center;
+  align-items: center;
   height: 28px;
   text-align: center;
 }
@@ -59,6 +64,10 @@ header nav a {
   /* display: inline-block;
   margin-right: 10px;
 } */
+.current-page{
+  background-color: #E9E5EE;
+  
+}
 .center{
   display: inline-block;
   /* width: 55px; */
@@ -91,9 +100,22 @@ header nav img {
 .sidebar {
   /* width: 270px; */
   background: white;
+  height: 271px;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+}
+.sidebar .card,.sidebar .profile-card{
+  border: #CDCED2 solid 1px;
+  
+}
+.vertical-line{
+  height: 48px;width: 1px;
+  background-color: #CDCED2;
+}
+.grey{
+  color: #81818D;
 }
 
 .profile {
@@ -213,12 +235,14 @@ html, body {
 
 .sidebar {
   height: 100%;
-  overflow-y: auto;
-  width: 350.870361328125px;
+  overflow-y:visible;
+  overflow-x:visible;
+  width:  382.870361328125px;
 }
 
 .content {
-  height: 100vh;
+  height: 85vh;
+  
   /* flex-grow: 1; */
   /* flex-grow: ; */
   padding-right: 8px;
@@ -263,7 +287,7 @@ label{
 }
 
 .sidebar {
-  width: 270px;
+  /* width: 270px; */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -273,11 +297,19 @@ label{
 .profile-card {
   background: white;
   padding: 16px;
+  height: 271px;
   border-radius: 12px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
-
+.profile-1{
+  align-items: center;
+  border: 0px;
+}
 .avatar-wrapper {
   position: relative;
   display: inline-block;
@@ -289,7 +321,10 @@ label{
   border-radius: 50%;
   object-fit: cover;
 }
-
+.avatar-big {
+  height: 96px;
+  width: 96px;
+}
 .online-dot {
   width: 12px;
   height: 12px;
@@ -309,6 +344,7 @@ label{
 .profile-card p {
   font-size: 13px;
   color: #888;
+  
 }
 
 .stats {
@@ -316,6 +352,7 @@ label{
   justify-content: space-between;
   margin-top: 12px;
   font-size: 13px;
+  
 }
 
 .stats div {
@@ -327,6 +364,7 @@ label{
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  width: 350.870361328125px;
 }
 
 .section-header {
@@ -440,6 +478,9 @@ label{
 .message, .request{
   height: 46px;
   width: 318.870361328125px;
+  /* position: relative; */
+  /* left: -12px; */
+  /* margin-right: 10px; */
   display: flex;
   gap: 16px;
   height: 62px;
@@ -460,4 +501,11 @@ aside{
 .time {
   font-size: 11px;
   color: #aaa;
+  text-align: right;
+  font-size: 10px;
+  max-width: 60px;
+}
+.msg-just{
+  justify-content: space-between;
+  display: flex;
 }
