@@ -99,7 +99,7 @@ header nav img {
 }
 .sidebar {
   /* width: 270px; */
-  background: white;
+  /* background: white; */
   height: 271px;
   border-radius: 8px;
   padding: 16px;
@@ -116,6 +116,7 @@ header nav img {
 }
 .grey{
   color: #81818D;
+  font-size: 16px;
 }
 
 .profile {
@@ -178,19 +179,55 @@ body{
 }
 .post .user {
   font-weight: bold;
+  height: 89px;
   display: flex;
   align-items: center;
   font-size: 14px;
   color: #050505;
   gap: 10px;
-  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
 }
-
+button{
+  background-color: transparent;
+}.removeImg{
+  border: 0px;
+  width: 40;
+height: 40;
+top: 10px;
+right: 10px;
+padding: 10px;
+display: block;
+position: absolute; /* Position relative to the nearest positioned ancestor (.image-item-with-overlay) */
+  top: 10px;        /* Distance from the top edge of the container */
+  right: 10px;      /* Distance from the right edge of the container */
+}
+.formName{
+  position: relative;
+}
+.ellipsis{
+    display: none;
+}
+.close{
+  border: none;
+  margin-left: auto;
+  right: 15px;
+  position:absolute;
+}
 .post .text {
   font-size: 14px;
   color: #1c1e21;
   line-height: 1.4;
   margin-bottom: 12px;
+  width: 923;
+  min-width: 533;
+  padding-top: 16px;
+  padding-right: 20px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .reaction {
@@ -198,7 +235,7 @@ body{
   color: #65676b;
   display: flex;
   gap: 15px;
-  border-top: 1px solid #ddd;
+  
   padding-top: 8px;
   margin-top: 10px;
 }
@@ -351,8 +388,8 @@ label{
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
-  font-size: 13px;
-  
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .stats div {
@@ -365,6 +402,11 @@ label{
   padding: 12px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   width: 350.870361328125px;
+}
+.change-img{
+  border-radius: 16px;
+  max-height: 500px;
+  max-width: 433.5px;
 }
 
 .section-header {

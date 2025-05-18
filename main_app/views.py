@@ -4,6 +4,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.views import  LogoutView
 from .forms import messageForm
 from .models import *
+from django.http import JsonResponse
 from django.core.handlers.wsgi import WSGIRequest
 import json
 from django.urls import reverse_lazy
@@ -24,26 +25,50 @@ class MainPageView(FormView):
         # print('1233212332132')
         print()
         return super().form_valid(form)
+def remove(request:WSGIRequest,pk:int):
+    User_Post.delete(User_Post.objects.get(pk = pk))
+    return render(request, "main_app/new_posts.html")
+def gets(request:WSGIRequest,pk:int):
+    # if request.method == 'POST':
+    print('heehheeeh',pk)
+    user_post= User_Post.objects.get(pk = pk)
+    text = user_post.text
+    list_of_imgs = []
+    list_of_imgs_pk = []
+
+    for image in user_post.images.all():
+        # Images().image.url
+        list_of_imgs += [image.image.url]
+        list_of_imgs_pk += [image.pk]
+
+    for tag in user_post.tags.all():
+        text+= '#' + tag.name  + ' '
+    data = JsonResponse({'text':text,'name':user_post.name,"theme":user_post.theme,"link":user_post.link,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk})
+    return data
+#     return render(request, "main_app/new_posts.html")
 def new_posts(request:WSGIRequest):
     if request.method == "POST":
-        try:
             list_posts =  [] 
             print(request.POST)
+            all_posts = User_Post.objects.all()
             for post in json.loads(request.POST.get('posts')):
-                print(int(post))
-                list_posts.append(User_Post.objects.get(pk=int(post))) 
+                try:
+                    print(int(post))
+                    list_posts.append(all_posts[int(post)]) 
+                except Exception as error:
+                    print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
             print(list_posts)
             return render(request, "main_app/new_posts.html", context={'list_posts':list_posts})
-        except Exception as error:
+        
 
-            print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
-            return render(request, "main_app/new_posts.html")
+            
+            # return render(request, "main_app/new_posts.html")
     return 'onlyPost'
 class CustomLogoutView(LogoutView):
     next_page = "login"
 
 # def get(request):
-    # return render(request, 'main_app/main.html')
+#     return render(request, 'main_app/main.html')
 
 def personal(request):
     return render(request, 'main_app/personal.html')
@@ -59,7 +84,8 @@ class Posts(FormView):
         # instance = form.send(commit=False)
         # instance.user = self.request.user
         # instance.send()
-        form.send(self.request.user)
+        # imgs
+        form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
         # print('1233212332132')
         print()
         return super().form_valid(form)

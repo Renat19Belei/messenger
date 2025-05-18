@@ -3,10 +3,11 @@
 {% if request.user.is_authenticated %}
 {% endif %}
 {% block link %}
+<link rel="stylesheet" href="{% static 'posts.css' %}">
 <link rel="stylesheet" href="{% static 'main.css' %}">
 <script src="{% static 'jquery.js' %}" defer></script>
 <script src="{% static 'script.js' %}" defer></script>
-
+<script src="{% static 'post.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -24,8 +25,27 @@
 </header>
 {% csrf_token %}
 <input type="hidden" id="request" value="{% url 'list' %}">
-<div class="container">
+<div id="bg" class="hidden"></div>
+<form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
+  <input type="hidden" value="save" name="type" id="type">
+  <input type="hidden" value="" name="imgs" id="imgs">
+  <h1 id="formName">Створення публікації</h1>
+  <div id="form">
+    {% csrf_token %}
+  {{ form.as_p }}
+  <div id="imagesDiv">
 
+  </div>
+  </div>
+  <div id="sendPart">
+    <img src="{% static 'images/em.png' %}" alt="" class="move">
+    <label for="imageInput"><img src="{% static 'images/img.png' %}" alt="" class="move"></label>
+    <input type="file" id="imageInput" name="images" accept="image/*" multiple>
+    <button class="send"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
+  </div>
+</form>
+<div class="container">
+<input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
@@ -112,8 +132,8 @@
   <main class="content" style="width: 923px;">
     <form class="publiaction" method="post">
       {% csrf_token %}
-      <!-- <input placeholder="Текст публікації" class="input"> -->
-      {{ form.as_p }}
+      <input placeholder="Текст публікації" class="input">
+      
       <div class="right">
         <!-- <div class="centers"> -->
           <img src="{% static 'images/em.png' %}" alt="" class="move">
@@ -121,71 +141,9 @@
         <!-- </div> -->
       </div>
     </form>
+    
     <div class="poster">
-            <div class="post">
-      <div class="user"><img class="avatar" src="{% static 'images/x.png' %}" alt="">X_AE_A18</div>
-      <div class="text">
-        Іноді найкращі ідеї народжуються з тиші 🌿<br>
-        Природа, книга, і спокій - усе що потрібно, аби перезавантажитись<br>
-        #відпочинок #натхнення #життя #природа #читання #спокій #гармонія
-      </div>
-      <div class="images">
-        <img src="{% static 'images/Frame.png' %}" alt="">
-        <img src="{% static 'images/Frame (1).png' %}" alt="">
-        <img src="{% static 'images/Frame (2).png' %}" alt="">
-        <img src="{% static 'images/Frame (3).png' %}" alt="">
-      </div>
-      <div class="reaction">
-        <span>120 вподобань</span>
-        <span>890 коментарів</span>
-      </div>
     </div>
-    <!-- <div class="post"> -->
-      <!-- <div class="comments"> -->
-        <div class="post">
-          <div class="user"><img class="avatar" src="{% static 'images/a.png' %}" alt="">Alex_03</div>
-          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
-            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
-            #вайб
-          </div>
-          <div class="reaction">
-          <span>120 вподобань</span>
-          <span>890 коментарів</span>
-        </div>
-        </div>
-
-        <div class="post">
-          <div class="user"><img class="avatar" src="{% static 'images/2.png' %}" alt="">Alex_03</div>
-          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
-            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
-            #вайб</div>
-          <div class="reaction">
-          <span>120 вподобань</span>
-          <span>890 коментарів</span>
-        </div>
-        </div>
-        
-        <div class="post">
-          <div class="user"><img class="avatar" src="{% static 'images/3.png' %}" alt="">Alex_03</div>
-          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
-            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
-            #вайб</div>
-            <div class="reaction">
-          <span>120 вподобань</span>
-          <span>890 коментарів</span>
-        </div>
-        </div>
-        <div class="post">
-          <div class="user"><img class="avatar" src="{% static 'images/4.png' %}" alt="">Alex_03</div>
-          <div class="text">Буває такий настрій: просто лежиш і існуєш 😅<br>
-            чай в одній руці, телефон в іншій, думки десь у космосі 🌌 і знаєте шо? норм<br>
-            #вайб</div>
-            <div class="reaction">
-          <span>120 вподобань</span>
-          <span>890 коментарів</span>
-        </div>
-        <!-- </div> -->
-      </div></div>
     
   </main>
 </div>

@@ -15,6 +15,7 @@ form{
     margin: 0 auto;
     background-color: white;
     z-index: 11;
+    margin-left: 450px;
 }
 
 h1{
@@ -89,9 +90,12 @@ body{
 
     width: 679.300537109375;
     height: 527.106689453125;
-    top: 248.45px;
-    left: 657.68px;
-
+    /* top: 248.45px; */
+    /* left: 657.68px; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0,-50%);
 }
 input{
     width: 400;

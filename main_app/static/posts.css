@@ -1,0 +1,132 @@
+
+#bg{
+    height: 100%;
+    width: 100%;
+    opacity: 0.277;
+    background-color: black;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+#modalForm{
+    position: fixed;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: 868px;
+    width: 773px;
+    padding: 24px 44px 44px 44px;
+    border-radius: 20px;
+}
+#imageInput{
+    display: none;
+    /* opacity: 1; */
+}
+.image {
+    width: 217.66665649414062px;
+    min-width: 217.66665649414062px;
+height: 265;
+border-radius: 16px;
+position:static;
+
+}
+label{
+    display: block;
+}
+.formInput{
+  width: 343;
+height: 42;
+border-radius: 10px;
+padding-top: 10px;
+padding-right: 16px;
+padding-bottom: 10px;
+padding-left: 16px;
+gap: 10px;
+border-width: 1px;
+
+}
+.BigFormInput {
+    width: 685;
+height: 126;
+border-radius: 10px;
+gap: 10px;
+border-width: 1px;
+padding: 16px;
+
+}
+
+#form {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    padding: 24px 0px;
+}
+#sendPart {
+    width: 685;
+gap: 10px;
+display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  height: 40px;
+
+}
+#imagesDiv {
+    width: 685;
+height: 265;
+gap: 16px;
+overflow-y: auto;
+display: flex;
+flex-wrap: wrap;
+
+}
+.imagesDiv{
+position: relative;
+width: 217.66665649414062px;
+height: 265px;
+}
+.dialog{
+    display: block;
+    position: relative;
+    width: 343;
+    height: 140;
+    top: 55px;
+    right: -50px;
+    border-radius: 10px;
+    gap: 16px;
+    padding: 0 0 16px 16px;
+    border: 0px;
+    background-color: #E9E5EE;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+.ellipsis{
+    display: block;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  right: 0px;
+  top: 0px;
+  
+}
+.ellipsis:hover{
+  background-color: rgba(200, 200, 200, 150);
+  border-radius: 30px;
+}
+.hidden{
+    display: none;
+}.config{
+    width: 185;
+height: 20;
+gap: 10px;
+text-align: left;
+display: flex;
+justify-content: left;
+background-color: transparent;
+  border: none;
+}
