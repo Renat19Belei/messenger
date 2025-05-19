@@ -4,9 +4,10 @@
 {% block link %}
     <link rel="stylesheet" href="{% static 'user_app/style.css' %}">
     <link rel="stylesheet" href="{% static 'user_app/user.css' %}">
+    <script src="{% static 'user_app/script.js' %}" defer></script>
 {% endblock %}
 {% block content %}
-
+    <input type="hidden" id="eyeUrl" value="{% static 'user_app/images/eye.png' %}">
 <!-- <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

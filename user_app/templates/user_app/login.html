@@ -2,8 +2,10 @@
 {% load static %}
 {% block link %}
     <link rel="stylesheet" href="{% static 'user_app/style.css' %}">
+    <script src="{% static 'user_app/script.js' %}" defer></script>
 {% endblock %}
 {% block content %}
+    <input type="hidden" id="eyeUrl" value="{% static 'user_app/images/eye.png' %}">
     
     <header><img src="{% static 'user_app/images/Group2.png' %}"></header>
     <hr id="main-hr">

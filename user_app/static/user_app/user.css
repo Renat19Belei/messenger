@@ -4,9 +4,20 @@
 .reg{
     cursor: pointer; 
     color: black;
-    text-decoration:underline ;
+    width: 186;
+    border-width: 2px;
+    text-decoration: none;
+    border-bottom: #543C52 2px solid;
+    width: 186;
+    height: 47;
+    gap: 8px;
+
 }
 .auth{
    color: #81818D;
-    text-decoration:none ;
+    width: 186;
+    border-width: 2px;
+    text-decoration: none;
+    border-bottom: unset;
+    
 }

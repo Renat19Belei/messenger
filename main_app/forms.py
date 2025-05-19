@@ -22,11 +22,15 @@ class messageForm(forms.Form):
             print(imgs.split(','))
             try:
                 for img in json.loads(imgs):
-                    images_list+= [Images.objects.get(pk=int(img))]
-                for image in images:
-                    images_list+= [Images.objects.create(image=image)]
+                    images_list += [Images.objects.get(pk=int(img))]
+                
             except Exception as error:
                 print(error)
+            try:
+                for image in images:
+                    images_list += [Images.objects.create(image=image)]
+            except:
+                pass
             text = self.cleaned_data.get('text')
             tags = re.findall("#(\w+)", text)
             
