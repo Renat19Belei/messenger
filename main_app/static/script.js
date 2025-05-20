@@ -8,6 +8,7 @@ $(document).ready(function(){
         // s.pop()
         // s.pop()
         // window.location.replace(s.join('/')+'/user/login');
+        
         function load(count){
             let error= NaN
             try {
@@ -23,15 +24,25 @@ $(document).ready(function(){
             // if (error){
                 
             // }
+
             let csrf = $('input')[0].value
             let list = []
             for (let i=0;i!=count;i++){
                 list.push(current+i)
             }
+            
+            let postsList = []
+            for (let post of document.querySelectorAll(".post")){
+                console.log(post)
+                postsList.push(post.id.split("post").join(''))
+            }
+            console.log(postsList)
+            
+            // postsList
             $.ajax({
                 type: 'post',
                 url: link,
-                data: {csrfmiddlewaretoken:csrf,posts:JSON.stringify(list)}, 
+                data: {csrfmiddlewaretoken:csrf,posts:JSON.stringify(list),postsList:JSON.stringify(postsList)}, 
                 success: function(request){
                     
                     $('.poster').append(request)
@@ -113,7 +124,6 @@ $(document).ready(function(){
                                         div.append(img_tag)
                                         div.append(button)
                                         button.addEventListener('click',() => {
-                                            console.log('HHHWOR{HJPHFK":LSLckl,m')
                                             div.remove()
                                         })
                                         // imagesDiv

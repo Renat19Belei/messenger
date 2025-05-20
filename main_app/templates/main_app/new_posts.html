@@ -30,8 +30,9 @@
             {%  endfor %}
         {% endif %}
         </span></p>
+        {% if post.link %}
         <a href="{{ post.link }}">{{ post.link }}</a>
-            
+        {% endif %}
         
         {% if post.images.all %}
             <div class="images">

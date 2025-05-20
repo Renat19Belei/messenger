@@ -8,9 +8,9 @@ import re,json
 User = get_user_model()
 class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
-    theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255)
+    theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
     text = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255)
+    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
     def send(self, user, images,type = 'save',imgs=[]):
@@ -29,8 +29,8 @@ class messageForm(forms.Form):
             try:
                 for image in images:
                     images_list += [Images.objects.create(image=image)]
-            except:
-                pass
+            except Exception as error:
+                print(error)
             text = self.cleaned_data.get('text')
             tags = re.findall("#(\w+)", text)
             
@@ -51,8 +51,8 @@ class messageForm(forms.Form):
                 user_post.images.set(images_list)
                 user_post.tags.set(tags_list)
                 user_post.save()
-                for count in range(132):
-                    print(user_post.name)
+                # for count in range(132):
+                #     print(user_post.name)
             else:
                 
                 user_post = User_Post.objects.get(

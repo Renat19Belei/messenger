@@ -20,8 +20,10 @@ for (let p of ps){
                 
                 if (passw.type == 'password') {
                     passw.type = "text"
+                    img.src = img.src.split('eye').join('eye_on')
                 } else {
                     passw.type = 'password';
+                    img.src = img.src.split('eye_on').join('eye')
                 }
             })
             but.append(img)

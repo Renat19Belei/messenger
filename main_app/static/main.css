@@ -290,9 +290,9 @@ html, body {
   scrollbar-width: none;
   
 }
-label{
+/* label{
   display: none;
-}
+} */
 .content::-webkit-scrollbar {
   display: none;
 }

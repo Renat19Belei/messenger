@@ -32,6 +32,7 @@
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
+  <input type="hidden" name="images1" id="images1" value="">
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}

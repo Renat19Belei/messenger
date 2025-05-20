@@ -32,6 +32,17 @@ for (let i of new Array(9)){
         div.id = `div${number}`
         let img = document.createElement("img")
         img.src = loadEvent.target.result
+        let input = document.createElement("img")
+        input = document.querySelector('#images1')
+
+        try {
+            
+            input.value = JSON.stringify(JSON.parse(input.value) + [loadEvent.target.result])
+        } catch (error) {
+            
+            input.value = JSON.stringify([loadEvent.target.result])
+        }
+        // console.log(loadEvent.target.result) images1
         img.classList.add('image')
         let trashImg = document.createElement("img")
         trashImg.src = trashUrl
@@ -43,6 +54,7 @@ for (let i of new Array(9)){
         div.classList.add('imagesDiv')
         div.append(img)
         div.append(button)
+        // div.append(input)
         cont.append(div)
         button.addEventListener('click',() => {
             div.remove()

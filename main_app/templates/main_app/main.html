@@ -29,7 +29,8 @@
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
-  <h1 id="formName">Створення публікації</h1>
+  <input type="hidden" name="images1" id="images1" value="">
+  <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
   {{ form.as_p }}
@@ -46,6 +47,7 @@
 </form>
 <div class="container">
 <input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
+
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">

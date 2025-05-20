@@ -17,13 +17,9 @@ class MainPageView(FormView):
     #     kwargs = super().get_form_kwargs()
     #     kwargs['user'] = self.request.user
     #     return kwargs
+    
     def form_valid(self, form):
-        # instance = form.send(commit=False)
-        # instance.user = self.request.user
-        # instance.send()
-        form.send(self.request.user)
-        # print('1233212332132')
-        print()
+        form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
         return super().form_valid(form)
 def remove(request:WSGIRequest,pk:int):
     User_Post.delete(User_Post.objects.get(pk = pk))
@@ -50,6 +46,7 @@ def new_posts(request:WSGIRequest):
     if request.method == "POST":
             list_posts =  [] 
             print(request.POST)
+            print(json.loads(request.POST.get('postsList')))
             all_posts = User_Post.objects.all()
             for post in json.loads(request.POST.get('posts')):
                 try:
@@ -59,7 +56,7 @@ def new_posts(request:WSGIRequest):
                     print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
             print(list_posts)
             return render(request, "main_app/new_posts.html", context={'list_posts':list_posts})
-        
+        # list_posts
 
             
             # return render(request, "main_app/new_posts.html")
@@ -76,18 +73,8 @@ class Posts(FormView):
     template_name = "main_app/posts.html"
     form_class = messageForm
     success_url = reverse_lazy('posts')
-    # def get_form_kwargs(self):
-    #     kwargs = super().get_form_kwargs()
-    #     kwargs['user'] = self.request.user
-    #     return kwargs
     def form_valid(self, form):
-        # instance = form.send(commit=False)
-        # instance.user = self.request.user
-        # instance.send()
-        # imgs
         form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
-        # print('1233212332132')
-        print()
         return super().form_valid(form)
 def posts(request):
     return render(request, 'main_app/posts.html')
