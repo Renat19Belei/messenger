@@ -201,6 +201,10 @@ header nav a {
     border: 1px solid #ddd !important;
 }
 
+.btn-delete:hover {
+    color: gray;
+}
+
 .btn:hover {
     opacity: 0.9;
 }
