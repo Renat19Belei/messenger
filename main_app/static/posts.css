@@ -130,3 +130,14 @@ justify-content: left;
 background-color: transparent;
   border: none;
 }
+
+.textInput {
+    width: 685px;
+    height: 126px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 16px;
+    resize: vertical;   
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
