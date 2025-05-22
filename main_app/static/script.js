@@ -21,9 +21,6 @@ $(document).ready(function(){
             }
                 
             let link = $('#request')[0].value;
-            // if (error){
-                
-            // }
 
             let csrf = $('input')[0].value
             let list = []
@@ -33,16 +30,30 @@ $(document).ready(function(){
             
             let postsList = []
             for (let post of document.querySelectorAll(".post")){
-                console.log(post)
                 postsList.push(post.id.split("post").join(''))
             }
-            console.log(postsList)
-            
-            // postsList
+            window.location.href
+            let type = {}
+            type[window.location.href] = window.location.href
+            console.log("posts" in type,'eqwqewewqw',type,window.location.href)
+
+            type = {}
+            type["http://127.0.0.1:8000/main/posts/"] = "posts"
+            console.log(window.location.href in type,'eqwqewewqw',type,window.location.href)
+            if (window.location.href in type){
+                console.log("posts yey")
+                type = 'posts'
+            }else{
+                type = 'main'
+            }
             $.ajax({
                 type: 'post',
                 url: link,
-                data: {csrfmiddlewaretoken:csrf,posts:JSON.stringify(list),postsList:JSON.stringify(postsList)}, 
+                data: {csrfmiddlewaretoken:csrf,
+                    posts: JSON.stringify(list), 
+                    postsList: JSON.stringify(postsList), 
+                    type: type
+                },  
                 success: function(request){
                     
                     $('.poster').append(request)
@@ -52,7 +63,6 @@ $(document).ready(function(){
                     for (let ellipsis of ellipsises){
                         ellipsis.addEventListener('click', () => {
                             for (let object of document.querySelectorAll(`#${ellipsis.id}`)){
-                                console.log(object)
                                 object.classList.toggle("hidden")
                             }
                         })

@@ -45,7 +45,7 @@
     <img src="{% static 'images/em.png' %}" alt="" class="move">
     <label for="imageInput"><img src="{% static 'images/img.png' %}" alt="" class="move"></label>
     <input type="file" id="imageInput" name="images" accept="image/*" multiple>
-    <button class="send"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
+    <button class="send sendCreate"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
   </div>
 </form>
 <input type="hidden" name="" id="removeLink" value="{% url 'remove' 1 %}">

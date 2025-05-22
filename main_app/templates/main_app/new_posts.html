@@ -6,6 +6,7 @@
     <div class="user"><img class="avatar" src="{% static 'images/Indicator.png' %}" alt="">
         {{ post.user.username}} 
         <!-- <form method="dialog"> -->
+            {% if type == "posts" %}
             <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'images/ellipsis.png' %}" alt="error" ></button>
             <dialog class="dialog hidden" id="heh{{post.pk}}">
                 <button class="ellipsis hidden"  id="heh{{post.pk}}" type="submit" ><img src="{% static 'images/ellipsis.png' %}" alt="error"></button>
@@ -13,7 +14,7 @@
                 <hr>
                 <button class="config remove" id="{{post.pk}}"><img src="{% static 'images/remove.png' %}" alt="">Видалити публікацію</button>
             </dialog>
-            
+            {% endif %}
     <!-- </form> -->
     </div>
     <div class="text">

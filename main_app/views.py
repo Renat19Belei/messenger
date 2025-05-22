@@ -44,23 +44,21 @@ def gets(request:WSGIRequest,pk:int):
 #     return render(request, "main_app/new_posts.html")
 def new_posts(request:WSGIRequest):
     if request.method == "POST":
-            list_posts =  [] 
-            print(request.POST)
-            print(json.loads(request.POST.get('postsList')))
+        list_posts =  [] 
+        type = request.POST.get('type')
+        if type == 'posts':
+            all_posts = User_Post.objects.filter(user = request.user)
+        else:
             all_posts = User_Post.objects.all()
-            for post in json.loads(request.POST.get('posts')):
-                try:
-                    print(int(post))
-                    list_posts.append(all_posts[int(post)]) 
-                except Exception as error:
-                    print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
-            print(list_posts)
-            return render(request, "main_app/new_posts.html", context={'list_posts':list_posts})
-        # list_posts
-
-            
-            # return render(request, "main_app/new_posts.html")
+        for post in json.loads(request.POST.get('posts')):
+            try:
+                list_posts.append(all_posts[int(post)]) 
+            except Exception as error:
+                print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
+        return render(request, "main_app/new_posts.html", context={'list_posts':list_posts, "type":type})
     return 'onlyPost'
+
+
 class CustomLogoutView(LogoutView):
     next_page = "login"
 
@@ -76,8 +74,6 @@ class Posts(FormView):
     def form_valid(self, form):
         form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
         return super().form_valid(form)
-def posts(request):
-    return render(request, 'main_app/posts.html')
 
 def friends(request):
     return render(request, 'main_app/friends.html')

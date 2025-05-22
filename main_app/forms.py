@@ -10,7 +10,7 @@ class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
     text = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
     def send(self, user, images,type = 'save',imgs=[]):
@@ -32,11 +32,26 @@ class messageForm(forms.Form):
             except Exception as error:
                 print(error)
             text = self.cleaned_data.get('text')
-            tags = re.findall("#(\w+)", text)
+            # print('3212213213'.startswith('2'))
+            # tags = re.findall("#(\w+)", text)
+            # text = '#hhhh hello #hi '
+            text_list = []
+            tags = []
+            tags2 = text.split(' ')
+            # tags_list = []
+            for tag in tags2:
+                if tag.startswith('#'):
+                    t = tag[1::]
+                    tags.append(t)
+                else:
+                    text_list.append(tag)
             
+            text = ' '.join(text_list)
+            # print(tags_list)
+            # tags
             for tag in tags:
                 tags_list.append(Tags.objects.create(name= tag))
-                text = "".join(text.split('#'+tag))
+                # text = "".join(text.split('#'+tag))
             if type == 'save':
                 
                 user_post = User_Post.objects.create(
