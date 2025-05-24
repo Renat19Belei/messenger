@@ -5,8 +5,8 @@
     opacity: 0.277;
     background-color: black;
     position: fixed;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
 }
 #modalForm{
     position: fixed;
@@ -14,20 +14,20 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    height: 868px;
-    width: 773px;
-    padding: 24px 44px 44px 44px;
-    border-radius: 20px;
+    height: 45.5643044619vw;
+    width: 40.5774278215vw;
+    padding: 1.25984251968vw 2.30971128609vw 2.30971128609vw 2.30971128609vw;
+    border-radius: 1.0498687664vw;
 }
 #imageInput{
     display: none;
     /* opacity: 1; */
 }
 .image {
-    width: 217.66665649414062px;
-    min-width: 217.66665649414062px;
+    width: 11.426071207vw;
+    min-width: 11.426071207vw;
 height: 265;
-border-radius: 16px;
+border-radius: 0.83989501312vw;
 position:static;
 
 }
@@ -37,44 +37,44 @@ label{
 .formInput{
   width: 343;
 height: 42;
-border-radius: 10px;
-padding-top: 10px;
-padding-right: 16px;
-padding-bottom: 10px;
-padding-left: 16px;
-gap: 10px;
-border-width: 1px;
+border-radius: 0.5249343832vw;
+padding-top: 0.5249343832vw;
+padding-right: 0.83989501312vw;
+padding-bottom: 0.5249343832vw;
+padding-left: 0.83989501312vw;
+gap: 0.5249343832vw;
+border-width: 0.05249343832vw;
 
 }
 .BigFormInput {
     width: 685;
 height: 126;
-border-radius: 10px;
-gap: 10px;
-border-width: 1px;
-padding: 16px;
+border-radius: 0.5249343832vw;
+gap: 0.5249343832vw;
+border-width: 0.05249343832vw;
+padding: 0.83989501312vw;
 
 }
 
 #form {
     display: flex;
-    gap: 16px;
+    gap: 0.83989501312vw;
     flex-direction: column;
-    padding: 24px 0px;
+    padding: 1.25984251968vw 0;
 }
 #sendPart {
     width: 685;
-gap: 10px;
+gap: 0.5249343832vw;
 display: flex;
   flex-direction: row;
   margin-left: auto;
-  height: 40px;
+  height: 2.09973753281vw;
 
 }
 #imagesDiv {
     width: 685;
 height: 265;
-gap: 16px;
+gap: 0.83989501312vw;
 overflow-y: auto;
 display: flex;
 flex-wrap: wrap;
@@ -82,20 +82,20 @@ flex-wrap: wrap;
 }
 .imagesDiv{
 position: relative;
-width: 217.66665649414062px;
-height: 265px;
+width: 11.426071207vw;
+height: 13.9107611548vw;
 }
 .dialog{
     display: block;
     position: relative;
     width: 343;
     height: 140;
-    top: 55px;
-    right: -50px;
-    border-radius: 10px;
-    gap: 16px;
-    padding: 0 0 16px 16px;
-    border: 0px;
+    top: 2.88713910761vw;
+    right: -2.62467191601vw;
+    border-radius: 0.5249343832;
+    gap: 0.83989501312vw;
+    padding: 0 0 0.83989501312vw 0.83989501312vw;
+    border: 0;
     background-color: #E9E5EE;
     margin-left: auto;
     display: flex;
@@ -107,23 +107,23 @@ height: 265px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 1.5748031496vw;
+  height: 1.5748031496vw;
   position: relative;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
   
 }
 .ellipsis:hover{
   background-color: rgba(200, 200, 200, 150);
-  border-radius: 30px;
+  border-radius: 1.5748031496vw;
 }
 .hidden{
     display: none;
 }.config{
-    width: 185;
-height: 20;
-gap: 10px;
+    width: 9.71128608923vw;
+height: 1.0498687664vw;
+gap: 0.5249343832vw;
 text-align: left;
 display: flex;
 justify-content: left;
@@ -132,11 +132,11 @@ background-color: transparent;
 }
 
 .textInput {
-    width: 685px;
-    height: 126px;
-    border-radius: 10px;
-    border-width: 1px;
-    padding: 16px;
+    width: 35.9580052493vw;
+    height: 6.61417322834vw;
+    border-radius: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+    padding: 0.83989501312vw;
     resize: vertical;   
     overflow-y: scroll;
     scrollbar-width: thin;

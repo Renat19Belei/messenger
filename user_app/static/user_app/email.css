@@ -67,15 +67,14 @@ img{
 h2{
     width: 400px;
 }
-.comp{
+/* .comp{
 
     width: 679.300537109375;
     height: 527.106689453125;
     top: 248.45px;
     left: 657.68px;
-
-}
-input{
+} */
+.code{
     width: 400;
     height: 42;
     border-radius: 10px;

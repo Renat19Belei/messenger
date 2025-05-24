@@ -50,9 +50,11 @@ def new_posts(request:WSGIRequest):
             all_posts = User_Post.objects.filter(user = request.user)
         else:
             all_posts = User_Post.objects.all()
+        all_posts.reverse()
+        all_posts.reverse()
         for post in json.loads(request.POST.get('posts')):
             try:
-                list_posts.append(all_posts[int(post)]) 
+                list_posts.append(all_posts[int(post)-1]) 
             except Exception as error:
                 print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
         return render(request, "main_app/new_posts.html", context={'list_posts':list_posts, "type":type})

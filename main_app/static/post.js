@@ -81,3 +81,14 @@ document.querySelector("#imageInput").addEventListener('change', (event) => {
     }
 }
 )
+// let buttonTags  = document.querySelector("#addTags")
+// buttonTags.addEventListener("click", (event)=>{
+//     console.log("jnpjn")
+//     let span =document.createElement("span")
+//     span.textContent = "#"
+
+//     let input = document.createElement("input")
+//     input.className = "tag"
+//     document.querySelector(".tags-div").append(input)
+//     input.focus()
+// })

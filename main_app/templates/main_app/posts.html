@@ -35,9 +35,15 @@
   <input type="hidden" name="images1" id="images1" value="">
   <input type="hidden" name="images2" id="images2" value="">
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
-  <div id="form">
+  <!-- <div id="form">
+    <div id="tags">
+      <div class="tags-div">
+
+      </div>
+      <button id="addTags" type="button"><img src="{% static 'images/Tag.png' %}" alt=""></button>
+    </div> -->
     {% csrf_token %}
-  {{ form.as_p }}
+    {{ form.as_p }}
   <div id="imagesDiv">
 
   </div>
@@ -75,7 +81,7 @@
   
 </aside>
   </aside>
-  <main class="content" style="width: 923px;">
+  <main class="content">
     <form class="publiaction">
       <input placeholder="Текст публікації" class="input">
       <div class="right">
