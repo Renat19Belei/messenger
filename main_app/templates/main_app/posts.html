@@ -13,13 +13,13 @@
 {% block content %}
 
     <header>
-  <h1><img src="{% static 'user_app/images/Group2.png' %}" class="World IT"></h1>
+  <img src="{% static 'user_app/images/Group2.png' %}" class="World-IT">
   <nav>
-    <a href="{% url 'main' %}"><img src="{% static 'images/House.png' %}" alt=""><span class="center">Головна</span></a>
-    <a href="{% url 'personal' %}" class="current-page"><img src="{% static 'images/public.png' %}" alt=""><span class="center">Мої публікації</span></a>
-    <a href="{% url 'friends' %}"><img src="{% static 'images/people.png' %}" alt=""><span class="center">Друзі</span></a>
-    <a href="{% url 'chats' %}"><img src="{% static 'images/chat.png' %}" alt=""><span class="center">Чат</span></a>
-    <a href="#"><img src="{% static 'images/Component 5.png' %}" alt=""><span class="center">Налаштування</span></a>
+    <a href="{% url 'main' %}" class="home"><img src="{% static 'images/House.png' %}" alt="">Головна</a>
+    <a href="{% url 'posts' %}" class="current-page posts"><img src="{% static 'images/public.png' %}" alt="">Мої публікації</a>
+    <a href="{% url 'friends' %}" class="friends"><img src="{% static 'images/people.png' %}" alt="">Друзі</a>
+    <a href="{% url 'chats' %}" class="chats"><img src="{% static 'images/chat.png' %}" alt="">Чат</a>
+    <a href="{% url 'personal' %}" class="personal"><img src="{% static 'images/Component 5.png' %}" alt="">Налаштування</a>
     <form action="{% url 'logout' %}" method="post" id="reviewForm">{% csrf_token %}<button class="logout"><img src="{% static 'images/Component 5 (1).png' %}" alt="" class="ok">Вихід</button></form>
     
   </nav>
@@ -33,6 +33,7 @@
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
   <input type="hidden" name="images1" id="images1" value="">
+  <input type="hidden" name="images2" id="images2" value="">
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}

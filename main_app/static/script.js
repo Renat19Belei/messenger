@@ -117,6 +117,7 @@ $(document).ready(function(){
                                     document.querySelector('.linkInput').value = request.link
                                     document.querySelector('.themeInput').value = request.theme
                                     document.querySelector('.nameInput').value = request.name
+                                    let count = 0
                                     for (let img of request.imgs){
                                         console.log('heh')
                                         img_tag = document.createElement('img')
@@ -126,6 +127,8 @@ $(document).ready(function(){
                                         div.id = `div${img}`
                                         let trashImg = document.createElement("img")
                                         trashImg.src = trashUrl
+                                        trashImg.id = count
+                                        count++
                                         let button = document.createElement("button")
                                         button.type = 'button'
                                         button.className = 'removeImg'
@@ -133,8 +136,10 @@ $(document).ready(function(){
                                         div.classList.add('imagesDiv')
                                         div.append(img_tag)
                                         div.append(button)
+                                        let input = document.querySelector('#images2')
                                         button.addEventListener('click',() => {
                                             div.remove()
+                                            input.value += `${trashImg.id} `
                                         })
                                         // imagesDiv
                                         document.querySelector('#imagesDiv').append(div)

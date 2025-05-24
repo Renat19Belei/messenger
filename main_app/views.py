@@ -72,7 +72,15 @@ class Posts(FormView):
     form_class = messageForm
     success_url = reverse_lazy('posts')
     def form_valid(self, form):
-        form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
+        files = self.request.FILES.getlist("images")
+        print(self.request.POST.get("images1"),312,213,312,23,54,67,9,786,5,43,self.request.POST)
+        remove_List = self.request.POST.get("images1").split(" ")
+        del remove_List[-1]
+        # remove_dict = 
+        remove_List_2 = self.request.POST.get("images2").split(" ")
+        del remove_List_2[-1]
+        #removing imgs
+        form.send(self.request.user,files,self.request.POST.get('type'),self.request.POST.get('imgs'),[remove_List,remove_List_2])
         return super().form_valid(form)
 
 def friends(request):

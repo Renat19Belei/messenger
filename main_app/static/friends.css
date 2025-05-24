@@ -115,10 +115,9 @@ header nav a {
 }
 
 .friends-section {
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 .section-header {
@@ -134,45 +133,47 @@ header nav a {
     color: #050505;
 }
 
-.see-all {
-    color: #543C52;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.see-all:hover {
-    text-decoration: underline;
-}
-
 .friend-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #e4e6eb;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.friend-card:last-child {
-    border-bottom: none;
+.friend-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.friend-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f2f5;
 }
 
 .friend-info {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .friend-name {
-    display: block;
-    color: #050505;
     font-size: 16px;
-    margin-bottom: 3px;
     font-weight: 600;
+    color: #333;
+    margin-bottom: 2px;
 }
 
 .friend-username {
-    color: #65676b;
     font-size: 14px;
+    color: #65676b;
 }
-
 
 .friend-actions {
     display: flex;
@@ -181,36 +182,41 @@ header nav a {
 
 .btn {
     padding: 8px 16px;
-    border: none;
     border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
     font-weight: 600;
-    transition: background-color 0.2s;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
 }
 
-.btn-confirm {
-    background-color: #543C52;
+.btn-confirm, .btn-add, .btn-message {
+    background: #543C52;
     color: white;
 }
 
-.btn-confirm:hover {
-    background-color: #543C52;
+.btn-delete {
+    background: #f0f2f5;
+    color: #543C52;
+    border: 1px solid #ddd !important;
 }
 
-.btn-add {
-    background-color: #543C52;
-    color: white;
+.btn-delete:hover {
+    color: gray;
 }
 
-.btn-add:hover {
-    background-color: #543C52;
+.btn:hover {
+    opacity: 0.9;
 }
 
-.btn-message {
-    background-color: #543C52;
-    color: white;
+.section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
 }
 
-.btn-message:hover {
-    background-color: #543C52;
+.see-all {
+    color: #543C52;
+    text-decoration: none;
+    font-size: 14px;
+}

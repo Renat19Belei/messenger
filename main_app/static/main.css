@@ -18,7 +18,7 @@ header {
   justify-content: space-around;
   align-items: center;
   font-weight: 500;
-  padding: 2.634467618vw 80px;
+  padding: 2.634467618vw 5.55555555556vw;
   /* height: 100vw; */
   height: 4.39077936334vw;
 }
@@ -30,23 +30,26 @@ header nav{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1.66666666667vw;
 }
 header nav a {
   
   padding: 5px 5px 5px 5px;
-  margin-left: 20px;
+  margin-left: 1.38888888889vw;
   text-decoration: none;
 
   color: #1c1e21;
   font-size: 100%;
   /* 14px */
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 0.69444444444vw;
   /* vertical-align: center; */
+  display: flex;
   justify-self: center;
   align-items: center;
   height: 28px;
   text-align: center;
+
   
 }
 .logout{
@@ -54,12 +57,16 @@ header nav a {
   border-radius: 1234px;
   display: flex;
   justify-content: center;
+  align-items: center;
   border: #543C52 solid 1px;
-  height: 40px;
-  width: 95px;
+  height: 2.77777777778vw;
+  width: 6.59722222222vw;
   align-items: center;
   padding: 16px 10px;
-
+  font-size: 0.97222222222vw;
+}.logout img{
+  width: 1.38888888889vw;
+  height: 1.38888888889vw;
 }
 .ok{
   width: 20px;
@@ -80,6 +87,7 @@ header nav a {
   display: inline-block;
   /* width: 55px; */
   height: 28px;
+  
   /* margin-top: ; */
   /* height: 1px; */
   /* background-color: #81818D; */
@@ -88,6 +96,8 @@ header nav a {
 }
 header nav img {
   vertical-align: center;
+  width: 1.38888888889vw;
+  height: 1.38888888889vw;
 }
 .container {
   display: flex;
@@ -103,7 +113,8 @@ header nav img {
   gap: 20px;
 } */
 #reviewForm{
-  width: 95;
+  width: 6.59722222222vw;
+  height: 2.77777777778vw;
 }
 .sidebar {
   /* width: 270px; */
@@ -563,62 +574,72 @@ aside{
   display: flex;
 }
 .posts{
-  width: 147;
+  width: 10.2083333333vw;
   height: 28;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-bottom: 4px;
-  padding-left: 8px;
-  gap: 8px;
+  font-size: 1vw;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  gap: 0.55555555555vw;
   border-radius: 3px;
 
 }
 .friends{
-  width: 85;
-  height: 28;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-bottom: 4px;
-  padding-left: 8px;
-  gap: 8px;
+  width: 5.90277777778vw;
+  height: 1.94444444444vw;
+  font-size: 1vw;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  gap: 0.55555555555vw;
   border-radius: 3px;
 
 }
 .chats{
-  width: 79;
-  height: 28;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-bottom: 4px;
-  padding-left: 8px;
-  gap: 8px;
+  width: 5.48611111111vw;
+  height: 1.94444444444vw;
+  font-size: 1vw;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  gap: 0.55555555555vw;
   border-radius: 3px;
 
 }
 .personal{
-  width: 154;
-  height: 28;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-bottom: 4px;
-  padding-left: 8px;
-  gap: 8px;
+  width: 10.6944444444vw;
+  height: 1.94444444444vw;
+  font-size: 1vw;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  gap: 0.55555555555vw;
   border-radius: 3px;
 
 }
 .home{
   width: 103;
   width: 7.15277777778vw;
-  font-size: 100%;
+  height: 1.94444444444vw;
+  font-size: 1vw;
   height: 2.53853127833vh;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-bottom: 4px;
-  padding-left: 8px;
-  gap: 8px;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  gap: 0.55555555555vw;
   border-radius: 3px;
 }
 /* 5.57777777778 */
 .World-IT{
-  width: 10.0694444444%;
+  padding-top:0.27777777777vw;
+  padding-right: 0.55555555555vw;
+  padding-bottom: 0.27777777777vw;
+  padding-left: 0.55555555555vw;
+  height: 1.75vw;
+  width: 10.0694444444vw;
 }

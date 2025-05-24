@@ -9,26 +9,38 @@ User = get_user_model()
 class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
-    text = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+# <<<<<<< HEAD
+#     text = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
+#     link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+# =======
+    text = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
+    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+# >>>>>>> origin/Renat
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
-    def send(self, user, images,type = 'save',imgs=[]):
+    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]]):
         print(user)
         if user and user.is_authenticated:
                 
             images_list = []
             tags_list = []
-            print(imgs.split(','))
+            print(imgs.split(','),remove_List)
             try:
+                count = 0
                 for img in json.loads(imgs):
-                    images_list += [Images.objects.get(pk=int(img))]
+                    print(remove_List[1],str(count) in remove_List[1],str(count),remove_List[1])
+                    if not (str(count) in remove_List[1]):
+                        images_list += [Images.objects.get(pk=int(img))]
+                    count+= 1
                 
             except Exception as error:
                 print(error)
             try:
+                count =0
                 for image in images:
-                    images_list += [Images.objects.create(image=image)]
+                    if not (str(count) in remove_List[0]):
+                        images_list += [Images.objects.create(image=image)]
+                    count+=1
             except Exception as error:
                 print(error)
             text = self.cleaned_data.get('text')
