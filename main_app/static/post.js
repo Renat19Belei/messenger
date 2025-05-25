@@ -81,14 +81,27 @@ document.querySelector("#imageInput").addEventListener('change', (event) => {
     }
 }
 )
-// let buttonTags  = document.querySelector("#addTags")
-// buttonTags.addEventListener("click", (event)=>{
-//     console.log("jnpjn")
-//     let span =document.createElement("span")
-//     span.textContent = "#"
-
-//     let input = document.createElement("input")
-//     input.className = "tag"
-//     document.querySelector(".tags-div").append(input)
-//     input.focus()
-// })
+let buttonTags  = document.querySelector("#addTags")
+buttonTags.addEventListener("click", (event)=>{
+    let span =document.createElement("span")
+    span.style.zIndex = -999999999999999
+    let input = document.createElement("input")
+    input.className = "tag"
+    input.value = '#'
+    input.name = 'tags'
+    span.style.left = -13290808213787
+    document.body.append(span)
+    span.id = 'widthMeasurer'
+    span.textContent = input.value
+    input.style.width = `${span.scrollWidth}px`
+    input.addEventListener('input', () => {
+        span.textContent = input.value
+        input.style.width = `${span.scrollWidth}px`
+        
+        if (input.value.split('')[0] != '#'){
+            input.remove()
+        }
+    })
+    document.querySelector(".tags-div").append(input)
+    input.focus()
+})

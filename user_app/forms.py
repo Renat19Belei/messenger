@@ -1,14 +1,16 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.views.generic.edit import CreateView
 class UserForm(UserCreationForm):
     #  = forms.CharField(max_length=255)
     username = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "form-field"}), label="Електронна пошта")
     password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
     password2 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повтори пароль","class": "form-field password"}), label="Підтвердження пароля")
-    # 
-    # username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "ім'я","class": "form-field"}),label="Ім'я користувача ")
+class AuthenticationForm2(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "you@example.com","class": "form-field"}),label="Електронна пошта")
+    password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
+
     # def save(self):
     #     user = User.objects.create(
     #         username=self.cleaned_data["username"],

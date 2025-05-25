@@ -129,6 +129,17 @@ img{
 body{
     background-color: #E9E5EE;
 }
+
+.bg{
+    height: 100%;
+    width: 100%;
+    opacity: 0.277;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
 .comp{
 
     width: 35.6588208456vw;

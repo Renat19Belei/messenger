@@ -145,6 +145,30 @@ $(document).ready(function(){
                                         document.querySelector('#imagesDiv').append(div)
                                     }
                                     document.querySelector('#imgs').value += JSON.stringify(request.imgs_pk)
+                                    for (let tag of request.tags){
+                                        console.log(tag,'tegso')
+                                    let span =document.createElement("span")
+                                    span.style.zIndex = -999999999999999
+                                    let input = document.createElement("input")
+                                    input.className = "tag"
+                                    input.value = '#' + tag
+                                    input.name = 'tags'
+                                    span.style.left = -13290808213787
+                                    document.body.append(span)
+                                    span.id = 'widthMeasurer'
+                                    span.textContent = input.value
+                                    input.style.width = `${span.scrollWidth}px`
+                                    input.addEventListener('input', () => {
+                                        span.textContent = input.value
+                                        input.style.width = `${span.scrollWidth}px`
+                                        
+                                        if (input.value.split('')[0] != '#'){
+                                            input.remove()
+                                        }
+                                    })
+                                    document.querySelector(".tags-div").append(input)
+                                        // input.focus()
+                                }
                                 }})
                         // document.querySelector("#type").value = 
                     })}}

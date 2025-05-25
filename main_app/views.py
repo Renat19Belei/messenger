@@ -53,7 +53,8 @@ def MainPageView(request:WSGIRequest):
         if 'images1' in request.POST:
             form1 = messageForm(request.POST)
             if form1.is_valid():
-                form1.send()
+                print(request.POST.getlist('tags'),'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+                form1.send(request.user,request.FILES.getlist('images'),request.POST.get('type'),request.POST.get('imgs'),request.POST.getlist('tags'))
         else:
             form2 = UserSet(request.POST)
             if form2.is_valid():
@@ -85,10 +86,10 @@ def gets(request:WSGIRequest,pk:int):
             # Images().image.url
             list_of_imgs += [image.image.url]
             list_of_imgs_pk += [image.pk]
-
+        tags  = []
         for tag in user_post.tags.all():
-            text+= '#' + tag.name  + ' '
-        data = JsonResponse({'text':text,'name':user_post.name,"theme":user_post.theme,"link":user_post.link,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk})
+            tags +=[tag.name]
+        data = JsonResponse({'text':text,'name':user_post.name,"theme":user_post.theme,"link":user_post.link,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
         return data
     return 'who are you'
 #     return render(request, "main_app/new_posts.html")
@@ -134,7 +135,8 @@ class Posts(FormView):
         remove_List_2 = self.request.POST.get("images2").split(" ")
         del remove_List_2[-1]
         #removing imgs
-        form.send(self.request.user,files,self.request.POST.get('type'),self.request.POST.get('imgs'),[remove_List,remove_List_2])
+        self.request.POST.get('tags')
+        form.send(self.request.user,files,self.request.POST.get('type'),self.request.POST.get('imgs'),[remove_List,remove_List_2],self.request.POST.getlist('tags'))
         return super().form_valid(form)
 
 def friends(request):

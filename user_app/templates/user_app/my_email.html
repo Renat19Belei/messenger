@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block link %}
-    <!-- <link rel="stylesheet" href="{% static 'user_app/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'user_app/style.css' %}">
+    <link rel="stylesheet" href="{% static 'user_app/email.css' %}">
+    <script src="{% static 'user_app/email.js' %}" defer></script>
 {% endblock %}
 {% block content %}
 <!-- <main></main> -->
-<form method="post" class="hidden">
+<form method="post" class="email">
         <h1>Підтвердження пошти</h1>
-        <h2>Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</h2>
+        <h2>Ми надіслали 6-значний код на вашу пошту ({{email}}). Введіть його нижче, щоб підтвердити акаунт</h2>
         {% csrf_token %}
         <div class="in">
         <h3>Код підтвердження</h3>
@@ -19,8 +21,32 @@
             <input type="text" name="code5" maxlength="1" class="code" placeholder="_">
             <input type="text" name="code6" maxlength="1" class="code" placeholder="_">
         </div></div>
+        <div class="buttons">
         <button class="save">Підтвердити</button>
         <a href="{% url 'user' %}">Назад</a>
+        </div>
     </form>
+<input type="hidden" id="eyeUrl" value="{% static 'user_app/images/eye.png' %}">
+<div class="bg"></div>
+<header><img src="{% static 'user_app/images/Group2.png' %}" id="h1"></header>
+
+    <main>
+        
+       <form action="" method="post" id="create">
+            <h1>
+                <a class="reg" href="{% url 'user' %}">Реєстрація</a>
+                <a class="auth" href="{% url 'login' %}">Авторизація</a>
+            </h1>
+            <h2>Приєднуйся до World IT</h2>
+
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+        
+            
+            <button class="login">Створити акаунт</button>
+        </form>
+        <img src="{% static 'user_app/images/Group 1.png' %}" alt="" class="comp"> 
+    </main>
 <!-- <img src="{% static 'user_app/images/Group 1.png' %}" alt="" class="comp">  -->
 {% endblock %}

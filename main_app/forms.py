@@ -15,7 +15,7 @@ class messageForm(forms.Form):
 # >>>>>>> origin/Renat
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
-    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]]):
+    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]],tags=[]):
         print(user)
         if user and user.is_authenticated:
                 
@@ -44,21 +44,22 @@ class messageForm(forms.Form):
             # print('3212213213'.startswith('2'))
             # tags = re.findall("#(\w+)", text)
             # text = '#hhhh hello #hi '
-            text_list = []
-            tags = []
-            tags2 = text.split(' ')
-            # tags_list = []
-            for tag in tags2:
-                if tag.startswith('#'):
-                    t = tag[1::]
-                    tags.append(t)
-                else:
-                    text_list.append(tag)
+            # text_list = []
+            # tags = []
+            # tags2 = text.split(' ')
+            # # tags_list = []
+            # for tag in tags2:
+            #     if tag.startswith('#'):
+            #         t = tag[1::]
+            #         tags.append(t)
+            #     else:
+            #         text_list.append(tag)
             
-            text = ' '.join(text_list)
+            # text = ' '.join(text_list)
             # print(tags_list)
             # tags
             for tag in tags:
+                tag = tag[1::]
                 tags_list.append(Tags.objects.create(name= tag))
                 # text = "".join(text.split('#'+tag))
             if type == 'save':

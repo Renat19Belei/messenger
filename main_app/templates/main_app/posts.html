@@ -38,7 +38,19 @@
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
-  {{ form.as_p }}
+    {% for field in form %}
+        
+        <p>
+          {{field.label_tag }}
+          {{field}}
+        </p>
+        {% if field.label == 'Тема публікації' %}
+          <div id="tags">
+            <div class="tags-div"></div>
+            <button id="addTags" type="button"><img src="{% static 'images/Tag.png' %}" alt=""></button>
+          </div>
+        {% endif %}
+    {% endfor %}
   <div id="imagesDiv">
 
   </div>

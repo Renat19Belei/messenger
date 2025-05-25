@@ -33,10 +33,11 @@ position:static;
 }
 label{
     display: block;
+    font-size: 0.83989501312vw;
 }
 .formInput{
-  width: 343;
-height: 42;
+  width: 18.0052493438vw;
+height: 2.20472440945vw;
 border-radius: 0.5249343832vw;
 padding-top: 0.5249343832vw;
 padding-right: 0.83989501312vw;
@@ -44,6 +45,7 @@ padding-bottom: 0.5249343832vw;
 padding-left: 0.83989501312vw;
 gap: 0.5249343832vw;
 border-width: 0.05249343832vw;
+font-size: 0.83989501312vw;
 
 }
 .BigFormInput {

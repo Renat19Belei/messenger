@@ -76,7 +76,6 @@ header nav a {
 }
 .current-page{
   background-color: #E9E5EE;
-  
 }
 .center{
   display: inline-block;
@@ -180,13 +179,26 @@ header nav img {
   flex-wrap: wrap;
   gap: 0.5249343832vw;
 }
+#widthMeasurer {
+    position: absolute; 
+    visibility: hidden;
+    white-space: nowrap; 
+    font-size: 0.73490813648vw;
+    padding: 6px;
+    border: 0; 
+    box-sizing: border-box;
+}
 .tag{
   border: none;
   outline: none;
   background-color: #E9E5EE;
   border-radius: 0.31496062992vw;
   height: 1.46981627296vw;
-  width: 3.20209973753vw;
+  /* width: min-content; */
+  box-sizing: border-box;
+  /* width: 3.20209973753vw; */
+  font-size: 0.73490813648vw;
+  text-align: center;
 }
 .tags-div{
   display: flex;
@@ -694,7 +706,6 @@ aside{
   gap: 0.55555555555vw;
   border-radius: 0.15748031496vw;
 }
-/* 5.57777777778 */
 .World-IT{
   padding-top:0.27777777777vw;
   padding-right: 0.55555555555vw;
