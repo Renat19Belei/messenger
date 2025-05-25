@@ -34,6 +34,7 @@ class UserPageView(FormView):
         # First, render the plain text content.
         user=form.save()
         user.is_active = False
+        user.email = user.username
         text_content = random.randint(100000, 999999)
         code= Code.objects.create(code=text_content,user_id = user)
         self.success_url = f'/user/email/{code.id}'
@@ -49,12 +50,12 @@ class UserPageView(FormView):
         # )
 
         # Then, create a multipart email instance.
-        print(form.cleaned_data['email'])
+        # print(form.cleaned_data['email'])
         send_mail(
             "Subject here",
             str(text_content),
             "illyaepik@gmail.com",
-            [form.cleaned_data['email']]
+            [form.cleaned_data['username']]
         )
 
         # Lastly, attach the HTML content to the email instance and send.

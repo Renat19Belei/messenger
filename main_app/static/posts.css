@@ -88,14 +88,15 @@ height: 13.9107611548vw;
 .dialog{
     display: block;
     position: relative;
-    width: 343;
-    height: 140;
+    width: 18.0052493438vw;
+    height: 7.34908136482vw;
     top: 2.88713910761vw;
     right: -2.62467191601vw;
-    border-radius: 0.5249343832;
+    border-radius: 0.5249343832vw;
     gap: 0.83989501312vw;
     padding: 0 0 0.83989501312vw 0.83989501312vw;
     border: 0;
+    font-size: 0.83989501312vw;
     background-color: #E9E5EE;
     margin-left: auto;
     display: flex;
@@ -121,7 +122,9 @@ height: 13.9107611548vw;
 .hidden{
     display: none;
 }.config{
-    width: 9.71128608923vw;
+    
+    font-size: 0.83989501312vw;
+    width: 10vw;
 height: 1.0498687664vw;
 gap: 0.5249343832vw;
 text-align: left;

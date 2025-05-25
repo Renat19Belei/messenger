@@ -4,15 +4,19 @@
 {% for post in list_posts %}
 <div class="post" id="post{{post.pk}}">
     <div class="user"><img class="avatar" src="{% static 'images/Indicator.png' %}" alt="">
-        {{ post.user.username}} 
+        {% if post.user.first_name %}
+            {{ post.user.first_name}} 
+        {% else %}
+            @{{ post.user.username}} 
+        {% endif %}
         <!-- <form method="dialog"> -->
             {% if type == "posts" %}
-            <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'images/ellipsis.png' %}" alt="error" ></button>
+            <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'images/ellipsis.png' %}" alt="error" class="icon" ></button>
             <dialog class="dialog hidden" id="heh{{post.pk}}">
-                <button class="ellipsis hidden"  id="heh{{post.pk}}" type="submit" ><img src="{% static 'images/ellipsis.png' %}" alt="error"></button>
-                <button class="config edit" id="{{post.pk}}"><img src="{% static 'images/edit.png' %}" alt="">Редагувати допис</button>
+                <button class="ellipsis hidden"  id="heh{{post.pk}}" type="submit" ><img src="{% static 'images/ellipsis.png' %}" alt="error" class="icon"></button>
+                <button class="config edit" id="{{post.pk}}"><img src="{% static 'images/edit.png' %}" alt=""  class="icon">Редагувати допис</button>
                 <hr>
-                <button class="config remove" id="{{post.pk}}"><img src="{% static 'images/remove.png' %}" alt="">Видалити публікацію</button>
+                <button class="config remove" id="{{post.pk}}"><img src="{% static 'images/remove.png' %}" alt=""  class="icon">Видалити публікацію</button>
             </dialog>
             {% endif %}
     <!-- </form> -->

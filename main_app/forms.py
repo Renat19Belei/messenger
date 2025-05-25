@@ -9,10 +9,7 @@ User = get_user_model()
 class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
-# <<<<<<< HEAD
-#     text = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-#     link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
-# =======
+
     text = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
     link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
 # >>>>>>> origin/Renat
@@ -85,15 +82,14 @@ class messageForm(forms.Form):
                 user_post = User_Post.objects.get(
                     pk=type
                 )
-                # 32454tyth
-                print(user_post.text)
-                user_post.text = text
-                user_post.name = self.cleaned_data.get('name')
-                user_post.theme = self.cleaned_data.get('theme')
-                user_post.link = self.cleaned_data.get('link')
-                user_post.images.set(images_list)
-                user_post.tags.set(tags_list)
-                user_post.save()
+                if user_post.user == user:
+                    user_post.text = text
+                    user_post.name = self.cleaned_data.get('name')
+                    user_post.theme = self.cleaned_data.get('theme')
+                    user_post.link = self.cleaned_data.get('link')
+                    user_post.images.set(images_list)
+                    user_post.tags.set(tags_list)
+                    user_post.save()
                 
         print('heehehewqsxcvbnm')
         # return super().form_valid(form)
@@ -106,3 +102,13 @@ class messageForm(forms.Form):
         # images = models.ManyToManyField(to=Images)
         # reviewers = models.IntegerField()
         # likes
+class UserSet(forms.Form):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Введіть Ваше ім’я","class": "FormInput firstNameInput"}),label='Ім’я',max_length=255)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Введіть Ваше прізвище","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "@","class": "FormInput lastNameInput"}),label='Ім’я користувача',max_length=255)  
+    def save(self,user):
+        print('gwewgeg')
+        user.first_name = self.cleaned_data.get('first_name')
+        user.last_name = self.cleaned_data.get('last_name')
+        user.username = self.cleaned_data.get('username')
+        user.save()

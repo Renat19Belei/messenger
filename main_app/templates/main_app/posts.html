@@ -26,24 +26,19 @@
 </header>
 <input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
 <input type="hidden" id="request" value="{% url 'list' %}">
-<div class="container">
+<!-- <div class="container"> -->
 
 <div id="bg" class="hidden"></div>
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
+  <input type="hidden" name="formType" value="modalForm">
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
   <input type="hidden" name="images1" id="images1" value="">
   <input type="hidden" name="images2" id="images2" value="">
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
-  <!-- <div id="form">
-    <div id="tags">
-      <div class="tags-div">
-
-      </div>
-      <button id="addTags" type="button"><img src="{% static 'images/Tag.png' %}" alt=""></button>
-    </div> -->
+  <div id="form">
     {% csrf_token %}
-    {{ form.as_p }}
+  {{ form.as_p }}
   <div id="imagesDiv">
 
   </div>
@@ -56,13 +51,14 @@
   </div>
 </form>
 <input type="hidden" name="" id="removeLink" value="{% url 'remove' 1 %}">
+<div class="container">
 <aside class="sidebar">
     <div class="profile-card">
     <div class="profile-1">
       <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
       <div class="online-dot"></div>
-      <h2>Lina Li</h2>
-      <p>@thellii</p>
+      <h2>{{request.user.first_name}}</h2>
+      <p>@{{request.user.username}}</p>
     </div>
     <div class="stats">
       <div><strong>566</strong><br><span class="grey">Дописи</span></div>
@@ -92,10 +88,10 @@
       </div>
     </form>
     <div class="poster">
-          
     </div>
     
   </main>
+</div>
 </div>
 </div>
 {% endblock %}

@@ -29,6 +29,7 @@
 <input type="hidden" id="request" value="{% url 'list' %}">
 <div id="bg" class="hidden"></div>
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
+  <input type="hidden" name="formType" value="modalForm">
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
   <input type="hidden" name="images1" id="images1" value="">
@@ -36,7 +37,7 @@
   <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
-  {{ form.as_p }}
+  {{ form1.as_p }}
   <div id="imagesDiv">
 
   </div>
@@ -48,6 +49,22 @@
     <button class="send sendCreate"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
   </div>
 </form>
+{% if request.user.email == request.user.username %}
+
+<div id="bg"></div>
+<form action="" id="userSet" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="formType" value="userSet">
+  <div class="space"><button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></div>
+  <h1>Додай деталі про себе</h1>
+  <div class="inputos">
+    {{ form2 }}
+  </div>
+  <p class="small">Або оберіть: <span class="green">Запропоновані варіанти відповідно до Ім’я та Прізвища</span></p>
+  <div class="hoh"><button class="send" id="toRight">Продовжити</button></div>
+  
+</form>
+{% endif %}
 <div class="container">
 <input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
 
@@ -56,8 +73,8 @@
     <div class="profile-1">
       <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
       <div class="online-dot"></div>
-      <h2>Lina Li</h2>
-      <p>@thellii</p>
+      <h2>{{request.user.first_name}}</h2>
+      <p>@{{request.user.username}}</p>
     </div>
     <div class="stats">
       <div><strong>566</strong><br><span class="grey">Дописи</span></div>
