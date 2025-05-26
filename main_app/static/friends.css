@@ -150,20 +150,35 @@ header nav img {
 }
 
 .friend-card {
-    display: flex;
-    justify-content: space-between;
+    width: 289;
+    height: 263;
+    border-radius: 10px;
+    gap: 50px;
+    border-width: 1px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
     align-items: center;
-    padding: 15px;
-    margin-bottom: 15px;
+    font-size: 0.73490813648vw;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0.62992125984vw;
+    text-align: center;
+    box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
 }
 
 .friend-profile {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    font-family: GT Walsheim Pro;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+
 }
 
 .friend-avatar {
@@ -172,6 +187,9 @@ header nav img {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #f0f2f5;
+    width: 96;
+    height: 96;
+
 }
 
 .friend-info {
@@ -192,8 +210,18 @@ header nav img {
 }
 
 .friend-actions {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  width: 221;
+  gap: 16px;
+  width: 111;
+  height: 50;
+  border-radius: 1234px;
+  gap: 8px;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+
 }
 
 .btn {
@@ -332,3 +360,23 @@ header nav img {
 ::-webkit-scrollbar {
     display: none;
 }
+.friend-cards{
+  display: flex;
+    width: 289;
+    height: 263;
+    border-radius: 10px;
+    gap: 1000px;
+    border-width: 1px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.73490813648vw;
+    background: white;
+    border-radius: 0.62992125984vw;
+    text-align: center;
+    box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
+}
+
+
+
