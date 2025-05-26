@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f2f5;
+    background-color: #FAF8FF;
 }
 
 
@@ -78,25 +78,37 @@ header nav img {
 
 .app-container {
     display: flex;
+    
     flex: 1;
 }
 
 .sidebar {
-    width: 280px;
+    width: 400px;
     padding: 20px;
-    background-color: white;
-    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+    /* background-color: white; */
+    /* box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1); */
 }
-
+/* h3 {
+  padding: 0;
+  
+} */
+.menu-title.active{
+  color: #000000;
+}
 .menu-section {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+    position: fixed;
+    top: 130px;
+    left: 80px;
+    gap: 16px;
 }
 
 .menu-title {
     color: #65676b;
     font-size: 17px;
     margin-bottom: 15px;
-    padding-left: 10px;
+    margin-left: 10px;
+    /* padding-left: 10px; */
 }
 
 .menu-list {
@@ -115,9 +127,16 @@ header nav img {
 .menu-item.active {
     background-color: #e7f3ff;
     color: #1877f2;
-    font-weight: 600;
+    
 }
-
+.active{
+  font-weight: 700;
+  border-bottom: 2px solid #543C52;
+  width: 63px;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}
 .menu-item:hover:not(.active) {
     background-color: #f2f2f2;
 }
@@ -128,12 +147,19 @@ header nav img {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
+    height: 90vh;
 }
-
+body {
+  overflow-y: hidden;
+  background-color: #FAF8FF;
+}
 .friends-section {
     background-color: transparent;
     padding: 0;
     margin-bottom: 20px;
+    flex-wrap: wrap;display: flex;
+    gap: 8px;
 }
 
 .section-header {
@@ -153,7 +179,6 @@ header nav img {
     width: 289;
     height: 263;
     border-radius: 10px;
-    gap: 50px;
     border-width: 1px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -162,10 +187,23 @@ header nav img {
     font-size: 0.73490813648vw;
     background: white;
     border-radius: 0.62992125984vw;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: 1px solid #CDCED2;
     text-align: center;
     box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
-}
 
+}
+#friend-section{
+  background-color: white;
+  border: 1px solid #CDCED2;
+  border-radius: 10px;
+  /* width: 923px; */
+  /* height: 330px; */
+  padding: 20px;
+}
 .friend-profile {
     display: flex;
     align-items: center;
@@ -211,9 +249,9 @@ header nav img {
 
 .friend-actions {
   display: flex;
-  width: 221;
+  width: 100%;
   gap: 16px;
-  width: 111;
+  /* width: 221; */
   height: 50;
   border-radius: 1234px;
   gap: 8px;
@@ -221,7 +259,7 @@ header nav img {
   padding-right: 16px;
   padding-bottom: 10px;
   padding-left: 16px;
-
+  justify-content:space-evenly; 
 }
 
 .btn {
@@ -232,6 +270,11 @@ header nav img {
     cursor: pointer;
     transition: all 0.2s;
     border: none;
+    border-radius: 1024px;
+    padding: 10 16;
+    height: 40px;
+    width: 111px;
+    text-align: center;
 }
 
 .btn-confirm, .btn-add, .btn-message {
@@ -240,9 +283,10 @@ header nav img {
 }
 
 .btn-delete {
-    background: #f0f2f5;
+    /* background: #f0f2f5; */
+    background-color: white;
     color: #543C52;
-    border: 1px solid #ddd !important;
+    border: 1px solid #543C52 !important;
 }
 
 .btn-delete:hover {
@@ -335,6 +379,7 @@ header nav img {
 }
 .current-page{
   background-color: #E9E5EE;
+  border-radius: 3px;
 }
 #reviewForm{
   width: 6.59722222222vw;
