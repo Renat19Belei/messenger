@@ -1,0 +1,12 @@
+{% load static %}
+<header>
+    <img src="{% static 'user_app/images/Group2.png' %}" class="World-IT">
+    <nav>
+      <a href="{% url 'main' %}" class="{{ main }} home"><img src="{% static 'images/House.png' %}" alt="">Головна</a>
+      <a href="{% url 'posts' %}" class=" {{ posts }} posts"><img src="{% static 'images/public.png' %}" alt="">Мої публікації</a>
+      <a href="{% url 'friends' %}" class=" {{ friends }} friends"><img src="{% static 'images/people.png' %}" alt="">Друзі</a>
+      <a href="{% url 'chats' %}" class=" {{chats}} chats"><img src="{% static 'images/chat.png' %}" alt="">Чат</a>
+      <a href="{% url 'personal' %}" class=" {{ personal }} personal"><img src="{% static 'images/Component 5.png' %}" alt="">Налаштування</a>
+      <form action="{% url 'logout' %}" method="post" id="reviewForm">{% csrf_token %}<button class="logout"><img src="{% static 'images/Component 5 (1).png' %}" alt="" class="ok">Вихід</button></form>
+    </nav>
+</header>

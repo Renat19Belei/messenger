@@ -11,6 +11,7 @@ urlpatterns = [
     path('chats/', chats, name='chats'),
     path('remove/<int:pk>', remove, name='remove'),
     path('get/<int:pk>', gets, name='get'),
-    path('list_posts/', new_posts, name= 'list')
+    path('list_posts/', new_posts, name= 'list'),
+    path('friends_account/<int:pk>',friends_account,name="friends_account")
     # <str:posts>
 ]

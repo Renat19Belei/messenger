@@ -97,16 +97,22 @@ def new_posts(request:WSGIRequest):
     if request.method == "POST":
         list_posts =  [] 
         type = request.POST.get('type')
+        print(type, 'friends' in type)
         if type == 'posts':
             all_posts = User_Post.objects.filter(user = request.user)
             # all_posts = User_Post.objects.all()
+        if 'friends' in type:
+            print(int("".join(type.split('friends'))),'qweewq')
+            user = User.objects.get(pk= int("".join(type.split('friends'))))
+            all_posts = User_Post.objects.filter(user = user)
+            print(all_posts, user)
         else:
             all_posts = User_Post.objects.all()
         # all_posts=all_posts.reverse()
         # print(all_posts)
         for post in json.loads(request.POST.get('posts')):
             try:
-                print(len(all_posts)-(int(post)-1))
+                print(len(all_posts)-(int(post)),'423567890-9')
                 list_posts.append(all_posts[len(all_posts)-(int(post)-1)]) 
             except Exception as error:
                 print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
@@ -141,6 +147,8 @@ class Posts(FormView):
 
 def friends(request):
     return render(request, 'main_app/friends.html')
-
+def friends_account(request,pk):
+    user =User.objects.get(pk = pk)
+    return render(request, 'main_app/friends_account.html',context={'pk':pk,'user':user})
 def chats(request):
     return render(request, 'main_app/chat.html')

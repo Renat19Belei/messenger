@@ -43,8 +43,13 @@ $(document).ready(function(){
             if (window.location.href in type){
                 console.log("posts yey")
                 type = 'posts'
-            }else{
+            }else if (window.location.href.split('/')[window.location.href.split('/').length-2]=='friends_account'){
+                type = document.querySelector(".type").value
+                console.log(type)
+            }   
+            else{
                 type = 'main'
+                console.log('ok')
             }
             $.ajax({
                 type: 'post',
@@ -55,7 +60,7 @@ $(document).ready(function(){
                     type: type
                 },  
                 success: function(request){
-                    
+                    console.log
                     $('.poster').append(request)
                     current+=count
                     // console.log(request)
