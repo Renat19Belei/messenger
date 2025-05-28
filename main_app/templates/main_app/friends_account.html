@@ -2,14 +2,18 @@
 {% load static %}
 {% load tags %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'posts.css' %}">
-<link rel="stylesheet" href="{% static 'main.css' %}">
-<script src="{% static 'jquery.js' %}" defer></script>
-<script src="{% static 'script.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/main.css' %}">
+<script src="{% static 'main_app/jquery.js' %}" defer></script>
+<script src="{% static 'main_app/script.js' %}" defer></script>
+
 {% endblock %}
 {% block content %}
 {% render_header 0 0 1 %}
-
+<input type="hidden" id="link" value="{% url 'friends' %}">
+<script defer>
+document.querySelector('#reviewForm').action = document.querySelector('#link').value
+</script>
 <input type="hidden" id="request" value="{% url 'list' %}">
 <input type="hidden" class="type" name="type" value="friends{{ pk }}">
 <div class="container">
@@ -17,7 +21,7 @@
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
-      <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
+      <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li">
       <div class="online-dot"></div>
       <h2>{{user.first_name}}</h2>
       <p>@{{user.username}}</p>

@@ -4,11 +4,11 @@
 {% if request.user.is_authenticated %}
 {% endif %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'posts.css' %}">
-<link rel="stylesheet" href="{% static 'main.css' %}">
-<script src="{% static 'jquery.js' %}" defer></script>
-<script src="{% static 'script.js' %}" defer></script>
-<script src="{% static 'post.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/main.css' %}">
+<script src="{% static 'main_app/jquery.js' %}" defer></script>
+<script src="{% static 'main_app/script.js' %}" defer></script>
+<script src="{% static 'main_app/post.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
   <input type="hidden" value="" name="imgs" id="imgs">
   <input type="hidden" name="images1" id="images1" value="">
   <input type="hidden" name="images2" id="images2" value="">
-  <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
+  <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
   {{ form1.as_p }}
@@ -31,10 +31,10 @@
   </div>
   </div>
   <div id="sendPart">
-    <img src="{% static 'images/em.png' %}" alt="" class="move">
-    <label for="imageInput"><img src="{% static 'images/img.png' %}" alt="" class="move"></label>
+    <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
+    <label for="imageInput"><img src="{% static 'main_app/images/img.png' %}" alt="" class="move"></label>
     <input type="file" id="imageInput" name="images" accept="image/*" multiple>
-    <button class="send sendCreate"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
+    <button class="send sendCreate"><span class="center">Публікація</span><img src="{% static 'main_app/images/send.png' %}" alt=""></button>
   </div>
 </form>
 {% if request.user.email == request.user.username %}
@@ -43,7 +43,7 @@
 <form action="" id="userSet" method="post">
   {% csrf_token %}
   <input type="hidden" name="formType" value="userSet">
-  <div class="space"><button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></div>
+  <div class="space"><button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" alt=""></button></div>
   <h1>Додай деталі про себе</h1>
   <div class="inputos">
     {{ form2 }}
@@ -54,12 +54,12 @@
 </form>
 {% endif %}
 <div class="container">
-<input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
+<input type="hidden" id="trash" value="{% static 'main_app/images/remove_img.png' %}">
 
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
-      <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
+      <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li">
       <div class="online-dot"></div>
       <h2>{{request.user.first_name}}</h2>
       <p>@{{request.user.username}}</p>
@@ -74,25 +74,25 @@
   </div>
   <div class="card">
     <div class="section-header">
-      <span><img src="{% static 'images/people (1).png' %}" alt=""  class="icon"><span class="center">Запити</span></span>
+      <span><img src="{% static 'main_app/images/people (1).png' %}" alt=""  class="icon"><span class="center">Запити</span></span>
       <a href="#">Дивитись всі</a>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/yehor.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/yehor.png' %}">
       <div>
         <div class="name">Yehor Aung</div>
         <div class="meta">4.3k підписників</div>
       </div>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/ann.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/ann.png' %}">
       <div>
         <div class="name">Ann Ann</div>
         <div class="meta">1.6k підписників</div>
       </div>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/Yeugen.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/Yeugen.png' %}">
       <div>
         <div class="name">Yeugen Jenua</div>
         <div class="meta">10.3k підписників</div>
@@ -103,12 +103,12 @@
   <div class="card">
     <div class="section-header">
       <!-- <span>Повідомлення</span> -->
-      <span ><img src="{% static 'images/chat (1).png' %}" alt="" class="icon"><span class="center">Повідомлення</span></span>
+      <span ><img src="{% static 'main_app/images/chat (1).png' %}" alt="" class="icon"><span class="center">Повідомлення</span></span>
       <a href="#">Дивитись всі</a>
     </div>
 
     <div class="message">
-      <img class="avatar" src="{% static 'images/mona.png' %}">
+      <img class="avatar" src="{% static 'main_app/images/mona.png' %}">
       <div class="msg-text" >
         <div class="msg-just">
           <div class="name">Mona Lisa</div>
@@ -120,7 +120,7 @@
       
     </div>
     <div class="message">
-      <img class="avatar" src="{% static 'images/ann (1).png' %}">
+      <img class="avatar" src="{% static 'main_app/images/ann (1).png' %}">
       <div class="msg-text">
         <div class="msg-just">
         <div class="name">Ann Ti</div>
@@ -130,7 +130,7 @@
       </div>
     </div>
     <div class="message">
-      <img  class="avatar" src="{% static 'images/ness.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/ness.png' %}">
       <div class="msg-text">
         <div class="msg-just">
           <div class="name">Ness Ty</div>
@@ -150,7 +150,7 @@
       
       <div class="right">
         <!-- <div class="centers"> -->
-          <img src="{% static 'images/em.png' %}" alt="" class="move">
+          <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
           <button class="send">Перейти до оформлення</button>
         <!-- </div> -->
       </div>

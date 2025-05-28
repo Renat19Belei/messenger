@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  sans-serif;
 }
 
 .friends-app {
@@ -227,7 +226,7 @@ body {
     border: 2px solid #f0f2f5;
     width: 96;
     height: 96;
-
+    overflow: visible;
 }
 
 .friend-info {

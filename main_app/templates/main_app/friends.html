@@ -3,7 +3,8 @@
 {% load tags %}
 {% block title %}Друзі{% endblock %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'friends.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/friends.css' %}">
+<script src="{% static 'main_app/friends.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -32,8 +33,9 @@
 
     <!-- </div> -->
     <div class="friend-card">
+        <input type="hidden" value="{% url 'friends_account' 1 %}">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar1.png' %}" class="friend-avatar" >
+            <img src="{% static 'main_app/images/avatar1.png' %}" class="friend-avatar" >
             <div class="friend-info">
                 <strong class="friend-name">Уchor Aung</strong>
                 <span class="friend-username">@thelili</span>
@@ -47,7 +49,7 @@
     
     <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar2.png' %}" class="friend-avatar" alt="">
+            <img src="{% static 'main_app/images/avatar2.png' %}" class="friend-avatar" alt="">
             <div class="friend-info">
                 <strong class="friend-name">Ann Ann</strong>
                 <span class="friend-username">@thelili</span>
@@ -68,7 +70,7 @@
     
     <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar3.png' %}" class="friend-avatar" >
+            <img src="{% static 'main_app/images/avatar3.png' %}" class="friend-avatar" >
             <div class="friend-info">
                 <strong class="friend-name">Уchor Aung</strong>
                 <span class="friend-username">@thelili</span>
@@ -82,7 +84,7 @@
     
         <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar4.png' %}" class="friend-avatar" alt="Аватар">
+            <img src="{% static 'main_app/images/avatar4.png' %}" class="friend-avatar" alt="Аватар">
             <div class="friend-info">
                 <strong class="friend-name">Ann Ann</strong>
                 <span class="friend-username">@thelili</span>
@@ -103,7 +105,7 @@
     
     <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar5.png' %}" class="friend-avatar" alt="Аватар">
+            <img src="{% static 'main_app/images/avatar5.png' %}" class="friend-avatar" alt="Аватар">
             <div class="friend-info">
                 <strong class="friend-name">Уchor Aung</strong>
                 <span class="friend-username">@thelili</span>
@@ -117,7 +119,7 @@
 
             <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar6.png' %}" class="friend-avatar" alt="Аватар">
+            <img src="{% static 'main_app/images/avatar6.png' %}" class="friend-avatar" alt="Аватар">
             <div class="friend-info">
                 <strong class="friend-name">Ann Ann</strong>
                 <span class="friend-username">@thelili</span>
@@ -131,7 +133,7 @@
 
     <div class="friend-card">
         <div class="friend-profile">
-            <img src="{% static 'images/avatar7.png' %}" class="friend-avatar" alt="Аватар">
+            <img src="{% static 'main_app/images/avatar7.png' %}" class="friend-avatar" alt="Аватар">
             <div class="friend-info">
                 <strong class="friend-name">Уchor Aung</strong>
                 <span class="friend-username">@thelili</span>
