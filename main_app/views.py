@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import  LogoutView
-from .forms import messageForm,UserSet
+from .forms import messageForm,UserSet,ProfileForm
 from .models import *
 from django.http import JsonResponse
 from django.core.handlers.wsgi import WSGIRequest
@@ -127,7 +127,8 @@ class CustomLogoutView(LogoutView):
 #     return render(request, 'main_app/main.html')
 
 def personal(request):
-    return render(request, 'main_app/personal.html')
+    profile_form = ProfileForm()
+    return render(request, 'main_app/personal.html',context={"form":profile_form})
 class Posts(FormView):
     template_name = "main_app/posts.html"
     form_class = messageForm

@@ -1,5 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'main_app/personal.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+
+<script src="{% static 'main_app/personal.js' %}" defer></script>
+{% endblock %}
 {% block title %}Особиста інформація{% endblock %}
 {% block content %}
-<h1>Особиста інформація</h1>
+{% render_header 0 0 0 0 1 %}
+<div class="app-container">
+        <aside class="sidebar">
+            <div class="menu-section">
+                <ul class="menu-list">
+                    <h3 class="menu-title active">Особлива інформація</h3>
+                    <li class="menu-item">Альбоми</li>
+                </ul>
+            </div>
+        </aside>
+        <main class="content">
+            <div class="card">
+                <div class="header-card">
+                    <p>Картка профілю</p>
+                    <button class="save"><img src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати інформацію</button>
+                </div>
+                <div class="main-card">
+                    
+                    <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
+                    <div class="data-part">
+                        <h2>{{request.user.first_name}}</h2>
+                        <p>@{{request.user.username}}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="header-card">
+                    <p>Особиста інформація</p>
+                    <button class="save"><img src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати інформацію</button>
+                </div>
+                <div class="main-card">
+                    
+                    <div class="inputs-part">
+                        <!-- {{ form.as_p }} -->
+                        {% for field in form %}
+                            <p class="input-part">
+                                {{field.label_tag }}
+                                {{field}}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            
+        </main>
+</div>
 {% endblock %}
