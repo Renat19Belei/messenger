@@ -1,60 +1,68 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tags %}
 {% if request.user.is_authenticated %}
 {% endif %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'posts.css' %}">
-<link rel="stylesheet" href="{% static 'main.css' %}">
-<script src="{% static 'jquery.js' %}" defer></script>
-<script src="{% static 'script.js' %}" defer></script>
-<script src="{% static 'post.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/main.css' %}">
+<script src="{% static 'main_app/jquery.js' %}" defer></script>
+<script src="{% static 'main_app/script.js' %}" defer></script>
+<script src="{% static 'main_app/post.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
-    <header>
-  <h1><img src="{% static 'user_app/images/Group2.png' %}" class="World IT"></h1>
-  <nav>
-    <a href="{% url 'main' %}" class="current-page"><img src="{% static 'images/House.png' %}" alt=""><span class="center">Головна</span></a>
-    <a href="{% url 'posts' %}"><img src="{% static 'images/public.png' %}" alt=""><span class="center">Мої публікації</span></a>
-    <a href="{% url 'friends' %}"><img src="{% static 'images/people.png' %}" alt=""><span class="center">Друзі</span></a>
-    <a href="{% url 'chats' %}"><img src="{% static 'images/chat.png' %}" alt=""><span class="center">Чат</span></a>
-    <a href="{% url 'personal' %}"><img src="{% static 'images/Component 5.png' %}" alt=""><span class="center">Налаштування</span></a>
-    <form action="{% url 'logout' %}" method="post" id="reviewForm">{% csrf_token %}<button class="logout"><img src="{% static 'images/Component 5 (1).png' %}" alt="" class="ok">Вихід</button></form>
-    
-  </nav>
-</header>
+{% render_header 1 %}
 {% csrf_token %}
 <input type="hidden" id="request" value="{% url 'list' %}">
 <div id="bg" class="hidden"></div>
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
+  <input type="hidden" name="formType" value="modalForm">
   <input type="hidden" value="save" name="type" id="type">
   <input type="hidden" value="" name="imgs" id="imgs">
   <input type="hidden" name="images1" id="images1" value="">
-  <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'images/close.png' %}" alt=""></button></h1>
+  <input type="hidden" name="images2" id="images2" value="">
+  <h1 id="formName">Створення публікації <button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
-  {{ form.as_p }}
+  {{ form1.as_p }}
   <div id="imagesDiv">
 
   </div>
   </div>
   <div id="sendPart">
-    <img src="{% static 'images/em.png' %}" alt="" class="move">
-    <label for="imageInput"><img src="{% static 'images/img.png' %}" alt="" class="move"></label>
+    <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
+    <label for="imageInput"><img src="{% static 'main_app/images/img.png' %}" alt="" class="move"></label>
     <input type="file" id="imageInput" name="images" accept="image/*" multiple>
-    <button class="send"><span class="center">Публікація</span><img src="{% static 'images/send.png' %}" alt=""></button>
+    <button class="send sendCreate"><span class="center">Публікація</span><img src="{% static 'main_app/images/send.png' %}" alt=""></button>
   </div>
 </form>
+{% if request.user.email == request.user.username %}
+
+<div id="bg"></div>
+<form action="" id="userSet" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="formType" value="userSet">
+  <div class="space"><button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" alt=""></button></div>
+  <h1>Додай деталі про себе</h1>
+  <div class="inputos">
+    {{ form2 }}
+  </div>
+  <p class="small">Або оберіть: <span class="green">Запропоновані варіанти відповідно до Ім’я та Прізвища</span></p>
+  <div class="hoh"><button class="send" id="toRight">Продовжити</button></div>
+  
+</form>
+{% endif %}
 <div class="container">
-<input type="hidden" id="trash" value="{% static 'images/remove_img.png' %}">
+<input type="hidden" id="trash" value="{% static 'main_app/images/remove_img.png' %}">
 
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
-      <img class="avatar-big" src="{% static 'images/Indicator.png' %}" alt="Lina Li">
+      <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li">
       <div class="online-dot"></div>
-      <h2>Lina Li</h2>
-      <p>@thellii</p>
+      <h2>{{request.user.first_name}}</h2>
+      <p>@{{request.user.username}}</p>
     </div>
     <div class="stats">
       <div><strong>566</strong><br><span class="grey">Дописи</span></div>
@@ -66,25 +74,25 @@
   </div>
   <div class="card">
     <div class="section-header">
-      <span><img src="{% static 'images/people (1).png' %}" alt=""><span class="center">Запити</span></span>
+      <span><img src="{% static 'main_app/images/people (1).png' %}" alt=""  class="icon"><span class="center">Запити</span></span>
       <a href="#">Дивитись всі</a>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/yehor.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/yehor.png' %}">
       <div>
         <div class="name">Yehor Aung</div>
         <div class="meta">4.3k підписників</div>
       </div>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/ann.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/ann.png' %}">
       <div>
         <div class="name">Ann Ann</div>
         <div class="meta">1.6k підписників</div>
       </div>
     </div>
     <div class="request">
-      <img  class="avatar" src="{% static 'images/Yeugen.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/Yeugen.png' %}">
       <div>
         <div class="name">Yeugen Jenua</div>
         <div class="meta">10.3k підписників</div>
@@ -95,12 +103,12 @@
   <div class="card">
     <div class="section-header">
       <!-- <span>Повідомлення</span> -->
-      <span><img src="{% static 'images/chat (1).png' %}" alt=""><span class="center">Повідомлення</span></span>
+      <span ><img src="{% static 'main_app/images/chat (1).png' %}" alt="" class="icon"><span class="center">Повідомлення</span></span>
       <a href="#">Дивитись всі</a>
     </div>
 
     <div class="message">
-      <img class="avatar" src="{% static 'images/mona.png' %}">
+      <img class="avatar" src="{% static 'main_app/images/mona.png' %}">
       <div class="msg-text" >
         <div class="msg-just">
           <div class="name">Mona Lisa</div>
@@ -112,33 +120,37 @@
       
     </div>
     <div class="message">
-      <img class="avatar" src="{% static 'images/ann (1).png' %}">
+      <img class="avatar" src="{% static 'main_app/images/ann (1).png' %}">
       <div class="msg-text">
+        <div class="msg-just">
         <div class="name">Ann Ti</div>
+        <div class="time">25.04.2025</div>
+        </div>
         <div class="meta">Привіт!</div>
       </div>
-      <div class="time">25.04.2025</div>
     </div>
     <div class="message">
-      <img  class="avatar" src="{% static 'images/ness.png' %}">
+      <img  class="avatar" src="{% static 'main_app/images/ness.png' %}">
       <div class="msg-text">
-        <div class="name">Ness Ty</div>
+        <div class="msg-just">
+          <div class="name">Ness Ty</div>
+          <div class="time">25.04.2025</div>
+        </div>
         <div class="meta">Привіт!</div>
       </div>
-      <div class="time">25.04.2025</div>
     </div>
   
   </div>
 </aside>
   </aside>
-  <main class="content" style="width: 923px;">
+  <main class="content">
     <form class="publiaction" method="post">
       {% csrf_token %}
       <input placeholder="Текст публікації" class="input">
       
       <div class="right">
         <!-- <div class="centers"> -->
-          <img src="{% static 'images/em.png' %}" alt="" class="move">
+          <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
           <button class="send">Перейти до оформлення</button>
         <!-- </div> -->
       </div>

@@ -9,34 +9,59 @@ User = get_user_model()
 class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
+
     text = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
     link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+# >>>>>>> origin/Renat
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
-    def send(self, user, images,type = 'save',imgs=[]):
+    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]],tags=[]):
         print(user)
         if user and user.is_authenticated:
                 
             images_list = []
             tags_list = []
-            print(imgs.split(','))
+            print(imgs.split(','),remove_List)
             try:
+                count = 0
                 for img in json.loads(imgs):
-                    images_list += [Images.objects.get(pk=int(img))]
+                    print(remove_List[1],str(count) in remove_List[1],str(count),remove_List[1])
+                    if not (str(count) in remove_List[1]):
+                        images_list += [Images.objects.get(pk=int(img))]
+                    count+= 1
                 
             except Exception as error:
                 print(error)
             try:
+                count =0
                 for image in images:
-                    images_list += [Images.objects.create(image=image)]
+                    if not (str(count) in remove_List[0]):
+                        images_list += [Images.objects.create(image=image)]
+                    count+=1
             except Exception as error:
                 print(error)
             text = self.cleaned_data.get('text')
-            tags = re.findall("#(\w+)", text)
+            # print('3212213213'.startswith('2'))
+            # tags = re.findall("#(\w+)", text)
+            # text = '#hhhh hello #hi '
+            # text_list = []
+            # tags = []
+            # tags2 = text.split(' ')
+            # # tags_list = []
+            # for tag in tags2:
+            #     if tag.startswith('#'):
+            #         t = tag[1::]
+            #         tags.append(t)
+            #     else:
+            #         text_list.append(tag)
             
+            # text = ' '.join(text_list)
+            # print(tags_list)
+            # tags
             for tag in tags:
+                tag = tag[1::]
                 tags_list.append(Tags.objects.create(name= tag))
-                text = "".join(text.split('#'+tag))
+                # text = "".join(text.split('#'+tag))
             if type == 'save':
                 
                 user_post = User_Post.objects.create(
@@ -58,15 +83,14 @@ class messageForm(forms.Form):
                 user_post = User_Post.objects.get(
                     pk=type
                 )
-                # 32454tyth
-                print(user_post.text)
-                user_post.text = text
-                user_post.name = self.cleaned_data.get('name')
-                user_post.theme = self.cleaned_data.get('theme')
-                user_post.link = self.cleaned_data.get('link')
-                user_post.images.set(images_list)
-                user_post.tags.set(tags_list)
-                user_post.save()
+                if user_post.user == user:
+                    user_post.text = text
+                    user_post.name = self.cleaned_data.get('name')
+                    user_post.theme = self.cleaned_data.get('theme')
+                    user_post.link = self.cleaned_data.get('link')
+                    user_post.images.set(images_list)
+                    user_post.tags.set(tags_list)
+                    user_post.save()
                 
         print('heehehewqsxcvbnm')
         # return super().form_valid(form)
@@ -79,3 +103,13 @@ class messageForm(forms.Form):
         # images = models.ManyToManyField(to=Images)
         # reviewers = models.IntegerField()
         # likes
+class UserSet(forms.Form):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Введіть Ваше ім’я","class": "FormInput firstNameInput"}),label='Ім’я',max_length=255)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Введіть Ваше прізвище","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "@","class": "FormInput lastNameInput"}),label='Ім’я користувача',max_length=255)  
+    def save(self,user):
+        print('gwewgeg')
+        user.first_name = self.cleaned_data.get('first_name')
+        user.last_name = self.cleaned_data.get('last_name')
+        user.username = self.cleaned_data.get('username')
+        user.save()

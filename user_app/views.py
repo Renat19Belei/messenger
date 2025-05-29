@@ -1,10 +1,10 @@
 from django.views.generic.edit import FormView
 from django.views.generic import View
-
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.shortcuts import render,redirect
-from .forms import UserForm
+from .forms import UserForm,AuthenticationForm2
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
@@ -34,6 +34,8 @@ class UserPageView(FormView):
         # First, render the plain text content.
         user=form.save()
         user.is_active = False
+        user.email = user.username
+        user.save()
         text_content = random.randint(100000, 999999)
         code= Code.objects.create(code=text_content,user_id = user)
         self.success_url = f'/user/email/{code.id}'
@@ -49,12 +51,12 @@ class UserPageView(FormView):
         # )
 
         # Then, create a multipart email instance.
-        print(form.cleaned_data['email'])
+        # print(form.cleaned_data['email'])
         send_mail(
             "Subject here",
             str(text_content),
             "illyaepik@gmail.com",
-            [form.cleaned_data['email']]
+            [form.cleaned_data['username']]
         )
 
         # Lastly, attach the HTML content to the email instance and send.
@@ -86,13 +88,27 @@ class Get_Random_Qr_Code(View):
 
 class LoginView(LoginView):
     template_name = "user_app/login.html"
+    # form_class = AuthenticationForm2
     # def form_valid(self, form):
         
     #     print(self.request.current_user.email)
-
+def authorization(request:WSGIRequest):
+        error = ""
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username= username, password = password)
+            if user:
+                login(request, user)
+                return redirect('/')
+            else:
+                error = "Username or password is not correct"
+        
+        return render(request,template_name= "user/authorization.html", context={"error": error})
 
 def render_email(request:WSGIRequest, code):
     # print(type(request))
+    print()
     code= Code.objects.get(id = code)
     if request.method == 'POST':
         # print('eeeeee', type(code.code),type(request.POST.get('code')))
@@ -102,7 +118,9 @@ def render_email(request:WSGIRequest, code):
         if str(code.code) == written:
             print('wrerwewer')
             code.user_id.is_active = True
+            code.user_id.save()
+            Code.delete(code)
             return redirect("/user/login/")
 
 
-    return render(request,'user_app/my_email.html')
+    return render(request,'user_app/my_email.html',context={'email':code.user_id.email})

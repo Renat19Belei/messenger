@@ -1,30 +1,17 @@
 
-form{
-    display: flex;
-    width: 488;
-    height: 657;
-    top: 728.5px;
-    left: 49.99px;
-    border-radius: 20px;
-    padding: 44px;
-    flex-direction: column;
-    align-content: stretch;
-    justify-content: center;
-    flex-wrap:wrap;
-    align-items: center;
-    margin: 0 auto;
-    background-color: white;
-    z-index: 11;
-    margin-left: 450px;
-}
+/* form{
+    
+} */
 
 h1{
     display: flex;
-    width: 355;
-    height: 27;
+    /* width: 355;
+    height: 27; */
     color: #070A1C;
-    gap: 40px;
-
+    gap: 6vw;
+    text-align: center;
+    width: 20vw;
+    height: 1vw;
 
 }
 main{
@@ -33,6 +20,8 @@ main{
     align-items: center;
     justify-content: center;
     gap: 0px;
+    /* height: max-content; */
+    /* width: max-content; */
 }
 /* p{
     width: 400;
@@ -48,78 +37,140 @@ main{
     
 } */
 .login{
-    width: 400;
-    height: 52;
+    width: 20vw;
+    height: 2.5vw;
     border-radius: 1234px;
     gap: 8px;
-    padding-top: 16px;
+    padding-top: 1vw;
     padding-right: 24px;
-    padding-bottom: 16px;
+    padding-bottom: 1vw;
     padding-left: 24px;
     background-color: #543C52;
     font-family: GT;
     color: white;
-    font-size: 16px;
+    border: 0.05249343832vw solid black;
+    font-size: 1vw;
     
 }
 .password-p{
     position: relative;
 }
 .view-password-but{
+    padding: 0;
     position: absolute;
-    right: 5px;
+    /* right: -0vw; */
+    right: 0;
     top: 50%;
     bottom: 50%;
+    transform: translate(-50%,-50%);
     background-color: none;
     border: none;
     cursor: pointer;
-    
+    margin: 0;
 }
 label{
     display: flex;
 }
 header{
     display: flex;
-    width: 1440;
+    width: 100vw;
     justify-content: center;
-    padding-top: 24px;
-    padding-right: 80px;
-    padding-bottom: 24px;
-    padding-left: 80px;
-    height: 18;
-    margin: 0 auto;
+    /* padding: 1.25984251968vw 0; */
+    height: 4.61942257217vw;
+    
+    margin: 0;
+    align-items: center;
+    background-color: white;
 }
-
+body{
+    margin: 0px;
+}
+.view-password-img{
+    width: 1.0498687664vw;
+    height: 1.0498687664vw;
+}
+#create{
+    display: flex;
+    /* width: 488;
+    height: 657;
+    top: 728.5px;
+    left: 49.99px; */
+    left: 13.0419947506vw;
+    border-radius: 1.0498687664vw;
+    padding: 2.30971128609vw;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: center;
+    flex-wrap:wrap;
+    align-items: center;
+    background-color: white;
+    z-index: 11;
+    /* margin-left: 450px; */
+    margin: 0px;
+    margin-right: 16vw;
+    margin-top: 8vh;
+    /* height: 38.3333333333vw; */
+    height: 30vw;
+    width: 25.5643044619vw;
+    font-size: 0.75vw;
+}
 img{
     display: flex;
     z-index: 0;
 
 }
+.hidden{
+    display: none;
+}
+#h1{
+    width: 7.61154855642vw;
+    height: 0.94488188976vw;
+}
 body{
     background-color: #E9E5EE;
 }
+
+.bg{
+    height: 100%;
+    width: 100%;
+    opacity: 0.277;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
 .comp{
 
-    width: 679.300537109375;
-    height: 527.106689453125;
+    width: 35.6588208456vw;
+    height: 27.6696424909vw;
     /* top: 248.45px; */
     /* left: 657.68px; */
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(0,-50%);
+    /* left: 50vw;
+    top: 50vh;
+    transform: translate(0,-50%); */
+    left: 34.5238845144vw;
+    top: 13.0419947506vw;
+    transform: translate(50%,0); 
 }
 input{
-    width: 400;
-    height: 42;
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-right: 16px;
-    padding-bottom: 10px;
-    padding-left: 16px;
+    width: 20vw;
+    height: 2vw;
+    border-radius: 0.69444444444vw;
+    padding-top: 0.69444444444vw;
+    padding-right: 1.11111111111vw;
+    padding-bottom: 0.69444444444vw;
+    padding-left: 1.11111111111vw;
     gap: 10px;
     border-width: 1px;
+    font-size: 0.75vw;
+    border: 0.05249343832vw solid black;
 
+}
+input:focus{
+    outline: 0.01249343832vw solid black;
+    /* color: ; */
 }
 .inline-hr-div{
     display: inline-block;
@@ -135,10 +186,11 @@ input{
 }
 .auth{
     cursor: pointer; 
-    border-bottom: #543C52 2px solid;
+    border-bottom: #543C52 0.1vw solid;
     width: 189;
     height: 39;
     text-decoration:none ;
+    
 }
 .header_div{
     height: 56px;
@@ -158,8 +210,8 @@ a{
     margin-top: 36px;
 }
 #qr-img{
-    width: 107.51868438720703px;
-    height: 116.962890625px;
+    width: 5.64402542714vw;
+    height: 12.8389561608vh;
 }
 .text{
     display: inline;

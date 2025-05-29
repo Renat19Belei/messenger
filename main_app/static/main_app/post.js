@@ -16,8 +16,9 @@ document.querySelector('#bg').addEventListener('click', (event)=> {
 console.log('conect')
 const cont = document.querySelector("#imagesDiv")
 let readers = []
+let count = 0
 // cont.innerHTML = ""
-// let filesToUpload = [];
+let filesToUpload = [];
 for (let i of new Array(9)){
     // console.log('ghe')
     let trashUrl = document.querySelector('#trash').value
@@ -32,20 +33,22 @@ for (let i of new Array(9)){
         div.id = `div${number}`
         let img = document.createElement("img")
         img.src = loadEvent.target.result
-        let input = document.createElement("img")
-        input = document.querySelector('#images1')
+        // input = document.createElement("img")
+        
 
-        try {
+        // try {
             
-            input.value = JSON.stringify(JSON.parse(input.value) + [loadEvent.target.result])
-        } catch (error) {
+        //     input.value = JSON.stringify(JSON.parse(input.value) + [loadEvent.target.result])
+        // } catch (error) {
             
-            input.value = JSON.stringify([loadEvent.target.result])
-        }
+        //     input.value = JSON.stringify([loadEvent.target.result])
+        // }
         // console.log(loadEvent.target.result) images1
         img.classList.add('image')
         let trashImg = document.createElement("img")
         trashImg.src = trashUrl
+        trashImg.id = count
+        count++
         let button = document.createElement("button")
         button.type = 'button'
         button.className = 'removeImg'
@@ -56,7 +59,10 @@ for (let i of new Array(9)){
         div.append(button)
         // div.append(input)
         cont.append(div)
+        let input = document.querySelector('#images1')
         button.addEventListener('click',() => {
+            input.value += `${trashImg.id} `
+            console.log('gerhtjyukiloikujyhtgrfews',input.value,input)
             div.remove()
         })
         number +=1 
@@ -75,3 +81,27 @@ document.querySelector("#imageInput").addEventListener('change', (event) => {
     }
 }
 )
+let buttonTags  = document.querySelector("#addTags")
+buttonTags.addEventListener("click", (event)=>{
+    let span =document.createElement("span")
+    span.style.zIndex = -999999999999999
+    let input = document.createElement("input")
+    input.className = "tag"
+    input.value = '#'
+    input.name = 'tags'
+    span.style.left = -13290808213787
+    document.body.append(span)
+    span.id = 'widthMeasurer'
+    span.textContent = input.value
+    input.style.width = `${span.scrollWidth}px`
+    input.addEventListener('input', () => {
+        span.textContent = input.value
+        input.style.width = `${span.scrollWidth}px`
+        
+        if (input.value.split('')[0] != '#'){
+            input.remove()
+        }
+    })
+    document.querySelector(".tags-div").append(input)
+    input.focus()
+})
