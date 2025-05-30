@@ -157,7 +157,7 @@ header nav a {
     visibility: hidden;
     white-space: nowrap; 
     font-size: 0.73490813648vw;
-    padding: 6px;
+    padding: 0.31496062992vw;
     border: 0; 
     box-sizing: border-box;
 }
@@ -204,8 +204,8 @@ button{
   background-color: transparent;
 }.removeImg{
   border: 0;
-  width: 40;
-height: 40;
+  width: 2.09973753281vw;
+height: 2.09973753281vw;
 top: 0.5249343832vw;
 right: 0.5249343832vw;
 padding: 0.5249343832vw;
@@ -216,6 +216,13 @@ position: absolute; /* Position relative to the nearest positioned ancestor (.im
 }
 .formName{
   position: relative;
+    font-size: 1.78477690288vw;
+
+}
+#formName{
+  /* position: relative; */
+    font-size: 1.78477690288vw;
+
 }
 .ellipsis{
     display: none;
@@ -225,6 +232,7 @@ position: absolute; /* Position relative to the nearest positioned ancestor (.im
   margin-left: auto;
   right: 0.7874015748vw;
   position:absolute;
+  width: 1.0498687664vw;
 }
 .post .text {
   font-size: 0.73490813648vw;
@@ -290,7 +298,7 @@ html, body {
 }
 
 .content {
-  height: 85vh;
+  height: 100%;
   
   /* flex-grow: 1; */
   /* flex-grow: ; */
@@ -313,46 +321,46 @@ html, body {
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 490px;
+  width: 25.7217847769vw;
   justify-self: center;
-  border-radius: 20px;
-  height: 465px;
+  border-radius: 1.0498687664vw;
+  height: 24.4094488189vw;
   align-items: center;
   transform: translate(-50%,-50%);
-  gap: 15px;
+  gap: 0.7874015748vw;
   justify-content: center;
   background-color: white;
 }
 .green{
   color: #22C55E;
 }.inputos{
-  gap: 16px;
+  gap: 0.83989501312vw;
   display: flex;
   flex-direction: column;
 }
 .small{
-  font-size: 12px;
-  width: 373px;
-  height: 14px;
+  font-size: 0.62992125984vw;
+  width: 19.5800524934vw;
+  height: 0.73490813648vh;
   font-family: GT Walsheim Pro;
-font-weight: 400;
-font-size: 12px;
-line-height: 100%;
-letter-spacing: -0.01em;
+  font-weight: 400;
+  font-size: 0.62992125984vw;
+  line-height: 100%;
+  letter-spacing: -0.01em;
 
 }.hoh{
-  width: 402px;
+  width: 21.1023622047vw;
 }.space{
-  width: 402px;
-  height: 20px;
+  width: 21.1023622047vw;
+  height: 1.0498687664vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #toRight{
   margin-left: auto;
-  width: 112px;
-  height: 40px;
+  width:5.87926509186vw ;
+  height:2.09973753281vh ;
 }
 /* label{
   display: none;

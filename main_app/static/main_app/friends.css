@@ -1,7 +1,7 @@
 .friends-app {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    /* min-height: 100vw; */
     background-color: #FAF8FF;
 }
 
@@ -12,12 +12,13 @@
     font-size: 1.25984251968vw;
     font-weight: bold;
     color: #000000;
-}
+} 
 
 .app-container {
     display: flex;
-    
-    flex: 1;
+    position: relative;
+    /* flex: 1; */
+    height: 90vh;
 }
 
 .sidebar {
@@ -84,7 +85,7 @@
     flex-direction: column;
     gap: 1.0498687664vw;
     overflow-y: auto;
-    height: 90vh;
+    /* height: 50%; */
 }
 body {
   overflow-y: hidden;

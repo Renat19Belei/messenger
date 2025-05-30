@@ -22,3 +22,14 @@ class User_Post(models.Model):
         if self.tags.count()>9: 
             raise ValidationError("Максимальна кількість тегів дорівнює 9")
         return ok
+# album
+class Album(models.Model):
+    image = models.ImageField(upload_to="album")
+    name = models.CharField(max_length=255)
+    year = models.DateField(blank= True)
+    theme = models.CharField(max_length=255)
+
+class Profile(models.Model):
+    icon = models.ImageField(upload_to= "profile/")
+    birthday = models.DateField(blank= True)
+    user = models.OneToOneField(to = User, on_delete= models.CASCADE)

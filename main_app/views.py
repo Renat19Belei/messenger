@@ -146,8 +146,8 @@ class Posts(FormView):
         form.send(self.request.user,files,self.request.POST.get('type'),self.request.POST.get('imgs'),[remove_List,remove_List_2],self.request.POST.getlist('tags'))
         return super().form_valid(form)
 
-def friends(request):
-    return render(request, 'main_app/friends.html')
+def friends(request,typek='123'):
+    return render(request, 'main_app/friends.html', context={'typek':typek})
 def friends_account(request,pk):
     user =User.objects.get(pk = pk)
     return render(request, 'main_app/friends_account.html',context={'pk':pk,'user':user})

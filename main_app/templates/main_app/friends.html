@@ -26,6 +26,7 @@
             </div>
         </aside>
         <main class="content">
+    {% if "1" in typek %}
     <section id="friend-section">
     <div class="section-header">
     <h2 class="section-title">Запити</h2>
@@ -63,7 +64,9 @@
         </div>
     </div>
 </section></section>
-    <section id="friend-section">
+{% endif %}
+{% if "2" in typek %}
+<section id="friend-section">
 <div class="section-header">
     <h2 class="section-title">Рекомендації</h2>
     <a href="#" class="see-all">Дивитись всі</a>
@@ -98,7 +101,9 @@
         </div>
     </div>
 </section></section>
-    <section id="friend-section">
+{% endif %}
+{% if "3" in typek %}
+<section id="friend-section">
 <div class="section-header">
     <h2 class="section-title">Всі друзі</h2>
     <a href="#" class="see-all">Дивитись всі</a>
@@ -149,6 +154,7 @@
     
     
 </section></section>
+{% endif %}
         </main>
     </div>
 </div>
