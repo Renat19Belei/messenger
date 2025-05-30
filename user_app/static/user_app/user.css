@@ -4,19 +4,21 @@
 .reg{
     cursor: pointer; 
     color: black;
-    border-width: 2px;
+    border-width: 0.10498687664vw;
     text-decoration: none;
-    border-bottom: #543C52 0.1vw solid;
+    border-bottom: #543C52 0.10498687664vw solid;
     width: 12.9166666667vw;
-    height: 2.04724409449vw;
-    gap: 8px;
+    height: 2.26719160105vw;
+    font-size: 1.78477690288vw;
+    gap: 0.41994750656vw;
 
 }
 .auth{
    color: #81818D;
     width: 9.76377952755vw;
-    height: 2.04724409449vw;
-    border-width: 2px;
+    font-size: 1.78477690288vw;
+    height: 2.26719160105vw;
+    border-width: 0.10498687664vw;
     text-decoration: none;
     border-bottom: unset;
     

@@ -1,37 +1,53 @@
+*{
+    font-size: 0.83989501312vw;
+}
 .sidebar {
-    width: 400px;
-    padding: 20px;
+    width: 20.9973753281vw;
+    padding: 1.0498687664vw;
 }
 .menu-title.active{
   color: #000000;
 }
 .menu-section {
-    /* margin-bottom: 30px; */
     position: fixed;
-    top: 130px;
-    left: 80px;
-    gap: 16px;
+    top: 6.82414698162vw;
+    left: 4.19947506561vw;
+    gap: 0.83989501312vw;
 }
 
 .menu-title {
     color: #65676b;
-    font-size: 17px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-    /* padding-left: 10px; */
+    font-size: 0.89238845144vw;
+    margin-bottom: 0.7874015748vw;
+    margin-left: 0.5249343832vw;
+    /* padding-left: 0.5249343832vw; */
 }
-
+#checkName, #checkEmail{
+    appearance: checkbox;
+    width: 1.0498687664vw;
+    height: 1.0498687664vw;
+    border: 0.10498687664vw solid #543C52;
+    /* outline:; */
+    border-radius: 0.2624671916vw;
+    background-color: white;
+    cursor: pointer;
+    
+}
+.view-password-img{
+    width: 1.0498687664vw;
+    height: 1.0498687664vw;
+}
 .menu-list {
     list-style: none;
 }
 
 .menu-item {
-    padding: 10px;
+    padding: 0.5249343832vw;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 0.41994750656vw;
     color: #050505;
-    margin-bottom: 5px;
-    font-size: 15px;
+    margin-bottom: 0.2624671916vw;
+    font-size: 0.7874015748vw;
 }
 
 .menu-item.active {
@@ -41,19 +57,19 @@
 }               
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 1.0498687664vw;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.0498687664vw;
     overflow-y: auto;
-    height: 90vh;
+    height: 100%;
 }
 .active{
   font-weight: 700;
-  border-bottom: 2px solid #543C52;
+  border-bottom: 0.10498687664vw solid #543C52;
   /* width: 63px; */
-  height: 26px;
-  font-size: 16px;
+  height: 1.36482939632vw;
+  font-size: 0.83989501312vw;
   line-height: 100%;
   letter-spacing: -0.03em;
 }
@@ -62,20 +78,39 @@
 }
 .app-container {
     display: flex;
-    
+    position: relative;
     flex: 1;
 }
 .card{
-    width: 924px;
-    /* height: 263px; */
-    border-radius: 10px;
-    border: #CDCED2 solid 1px;
-    padding: 16px;
-    gap: 16px;
+    width: 48.5039370078vw;
+    /* height: 13.8057742782vw; */
+    border-radius: 0.5249343832vw;
+    border: #CDCED2 solid 0.05249343832vw;
+    padding: 0.83989501312vw;
+    gap: 0.83989501312vw;
     display: flex;
     flex-direction: column;
+    background-color: white;
     /* align-items:center; */
     
+}
+.password-p {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.view-password-but {
+    padding: 0;
+    position: absolute;
+    /* right: -0vw; */
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+    background-color: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
 }
 .header-card{
 justify-content: space-between;
@@ -86,39 +121,80 @@ justify-content: space-between;
 .inputs-part{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 0.83989501312vw;
+    color: #070A1C;
+    
+    /* justify-content: left; */
+}
+.inputs-part label{
+    color: gray;
 }
 .input-part{
     display: flex;
     flex-direction: column;
 }
+.FormInput{
+    width: 16.4304461942vw;
+height: 2.20472440945vw;
+gap: 0.5249343832vw;
+border-radius: 0.5249343832vw;
+border-width: 0.05249343832vw;
+padding-top: 0.5249343832vw;
+padding-right: 0.83989501312vw;
+padding-bottom: 0.5249343832vw;
+padding-left: 0.83989501312vw;
+
+}
 .main-card{
-    gap: 24px;
-    height: 185px;
-    width: 892px;
+    gap: 1.25984251968vw;
+    /* height: 185px; */
+    width: 46.8241469816vw;
     display: flex;
     flex-direction: column;
     
     align-items:center;
 }
 .save{
-    width: 203;
-height: 40;
-border-radius: 190px;
-gap: 10px;
-border-width: 1px;
-padding: 10px;
+    width: 10.69vw;
+height: 2.09973753281vw;
+border-radius: 9.97375328083vw;
+gap: 0.5249343832vw;
+/* border-width: ; */
+border: solid 0.05249343832vw #543C52;
+padding: 0.5249343832vw;
 display: flex;
 background-color: white;
+font-size: 0.73490813648vw;
+line-height: 1.0498687664vw;
+font-weight: 500;
+letter-spacing: -0.01em;
 }
 .data-part{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.5249343832vw;
     
     align-items:center;
 }
 .avatar{
-    width: 96px;
-    height: 96px;
+    width: 5.03937007873vw;
+    height: 5.03937007873vw;
+}.left{
+    
+    align-items: flex-start;
+}
+/* h4{
+    margin-bottom: ;
+} */
+.checks{
+    gap: 1.25984251968vw;
+    display: flex;
+    flex-direction: column;
+    
+}
+#electronicSignature{
+    width: 11.5485564304vw;
+height: 3.41207349081vw;
+border-radius: 0.31496062992vw;
+
 }

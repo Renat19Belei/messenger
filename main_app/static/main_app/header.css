@@ -2,7 +2,7 @@ header {
   background: white;
   padding: 0.5249343832vw 1.0498687664vw;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   font-weight: 500;
   padding: 2.634467618vw 5.55555555556vw;
@@ -16,7 +16,7 @@ header nav{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.66666666667vw;
+  gap: 1.25984251968vw;
 }
 header nav a {
   
@@ -34,13 +34,20 @@ header nav a {
   align-items: center;
   height: 1.46981627296vw;
   text-align: center;
-
-  
+  font-size: 0.83989501312vw;
+  padding-top:0.20997375328vw;
+  padding-right: 0.41994750656vw;
+  padding-bottom: 0.20997375328vw;
+  padding-left: 0.41994750656vw;
+  font-weight: 500;
+  gap: 0.41994750656vw;
+  border-radius: 0.15748031496vw;
+  height: 1.46981627296vw;
 }
 header nav img {
   vertical-align: center;
-  width: 1.38888888889vw;
-  height: 1.38888888889vw;
+  width: 1.0498687664vw;
+  height: 1.0498687664vw;
 }
 .logout{
   background-color:unset;
@@ -48,105 +55,72 @@ header nav img {
   display: flex;
   justify-content: center;
   border: #543C52 solid 1px;
-  height: 40px;
+  height: 2.09973753281vw;
   width: 95px;
   align-items: center;
   padding: 16px 10px;
 
 }
 .posts{
-  width: 10.2083333333vw;
-  height: 1.46981627296vw;
-  font-size: 1vw;
-  padding-top:0.27777777777vw;
-  padding-right: 0.55555555555vw;
-  padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  gap: 0.55555555555vw;
-  border-radius: 0.15748031496vw;
+  width: 7.71653543306vw;
+  /* height: 1.46981627296vw; */
 
 }
 .friends{
-  width: 5.90277777778vw;
-  height: 1.94444444444vw;
-  font-size: 1vw;
-  padding-top:0.27777777777vw;
-  padding-right: 0.55555555555vw;
-  padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  gap: 0.55555555555vw;
-  border-radius: 0.15748031496vw;
+  width: 4.46194225721vw;
+  /* height: 1.94444444444vw; */
 
 }
 .chats{
-  width: 5.48611111111vw;
-  height: 1.94444444444vw;
-  font-size: 1vw;
-  padding-top:0.27777777777vw;
-  padding-right: 0.55555555555vw;
-  padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  gap: 0.55555555555vw;
-  border-radius: 0.15748031496vw;
+  width: 4.14698162729vw;
+  /* height: 1.94444444444vw; */
 
 }
+::-webkit-scrollbar {
+    display: none;
+}
 .personal{
-  width: 10.6944444444vw;
-  height: 1.94444444444vw;
-  font-size: 1vw;
-  padding-top:0.27777777777vw;
-  padding-right: 0.55555555555vw;
-  padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  gap: 0.55555555555vw;
-  border-radius: 0.15748031496vw;
+  width: 8.0839895013vw;
+  /* height: 1.94444444444vw; */
 
 }
 .home{
-  width: 103;
-  width: 7.15277777778vw;
-  height: 1.94444444444vw;
-  font-size: 1vw;
-  height: 2.53853127833vh;
-  padding-top:0.27777777777vw;
-  padding-right: 0.55555555555vw;
-  padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  gap: 0.55555555555vw;
-  border-radius: 0.15748031496vw;
+  width: 5.40682414697vw;
+  
+  
 }
 .World-IT{
-  padding-top:0.27777777777vw;
+  /* padding-top:0.27777777777vw;
   padding-right: 0.55555555555vw;
   padding-bottom: 0.27777777777vw;
-  padding-left: 0.55555555555vw;
-  height: 1.75vw;
-  width: 10.0694444444vw;
+  padding-left: 0.55555555555vw; */
+  height: 0.94488188976vw;
+  width: 7.61154855642vw;
 }
 .current-page{
   background-color: #E9E5EE;
   border-radius: 3px;
 }
 #reviewForm{
-  width: 6.59722222222vw;
-  height: 2.77777777778vw;
+  width: 4.98687664041vw;
+  height: 2.09973753281vw;
   border-radius: 1234vw;
 }
 .logout{
   background-color:unset;
-  border-radius: 64.7769028871vw;
+  border-radius: 1234vw;
   display: flex;
   justify-content: center;
   align-items: center;
   border: #543C52 solid 0.05249343832vw;
-  height: 2.77777777778vw;
-  width: 6.59722222222vw;
+  height: 2.09973753281vw;
+  width: 4.98687664041vw;
   align-items: center;
   padding: 0.83989501312vw 0.5249343832vw;
-  font-size: 0.97222222222vw;
+  font-size: 0.73490813648vw;
 }.logout img{
-  width: 1.38888888889vw;
-  height: 1.38888888889vw;
+  width: 1.0498687664vw;
+  height: 1.0498687664vw;
 }
 body{
     background-color: #FAF8FF;

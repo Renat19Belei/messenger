@@ -9,7 +9,7 @@
 
 
 .app-title {
-    font-size: 24px;
+    font-size: 1.25984251968vw;
     font-weight: bold;
     color: #000000;
 }
@@ -21,8 +21,8 @@
 }
 
 .sidebar {
-    width: 400px;
-    padding: 20px;
+    width: 20.9973753281vw;
+    padding: 1.0498687664vw;
 }
 /* h3 {
   padding: 0;
@@ -34,17 +34,17 @@
 .menu-section {
     /* margin-bottom: 30px; */
     position: fixed;
-    top: 130px;
-    left: 80px;
-    gap: 16px;
+    top: 6.82414698162vw;
+    left: 4.19947506561vw;
+    gap: 0.83989501312vw;
 }
 
 .menu-title {
     color: #65676b;
-    font-size: 17px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-    /* padding-left: 10px; */
+    font-size: 0.89238845144vw;
+    margin-bottom: 0.7874015748vw;
+    margin-left: 0.5249343832vw;
+    /* padding-left: 0.5249343832vw; */
 }
 
 .menu-list {
@@ -52,12 +52,12 @@
 }
 
 .menu-item {
-    padding: 10px;
+    padding: 0.5249343832vw;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 0.41994750656vw;
     color: #050505;
-    margin-bottom: 5px;
-    font-size: 15px;
+    margin-bottom: 0.2624671916vw;
+    font-size: 0.7874015748vw;
 }
 
 .menu-item.active {
@@ -67,9 +67,9 @@
 }               
 .active{
   font-weight: 700;
-  border-bottom: 2px solid #543C52;
-  width: 63px;
-  font-size: 16px;
+  border-bottom: 0.10498687664vw solid #543C52;
+  width: 3.30708661417vw;
+  font-size: 0.83989501312vw;
   line-height: 100%;
   letter-spacing: -0.03em;
 }
@@ -79,10 +79,10 @@
 
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 1.0498687664vw;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.0498687664vw;
     overflow-y: auto;
     height: 90vh;
 }
@@ -93,31 +93,31 @@ body {
 .friends-section {
     background-color: transparent;
     padding: 0;
-    margin-bottom: 20px;
+    margin-bottom: 1.0498687664vw;
     flex-wrap: wrap;display: flex;
-    gap: 8px;
+    gap: 0.41994750656vw;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 0.7874015748vw;
 }
 
 .section-title {
     margin: 0;
-    font-size: 20px;
+    font-size: 1.0498687664vw;
     color: #050505;
 }
 
 .friend-card {
-    width: 289;
-    height: 263;
-    border-radius: 10px;
-    border-width: 1px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    width: 15.1706036745vw;
+    height: 13.8057742782vw;
+    border-radius: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+    padding-top: 0.83989501312vw;
+    padding-bottom: 0.83989501312vw;
     flex-direction: column;
     align-items: center;
     font-size: 0.73490813648vw;
@@ -127,28 +127,26 @@ body {
     justify-content: center;
     display: flex;
     align-items: center;
-    border: 1px solid #CDCED2;
+    border: 0.05249343832vw solid #CDCED2;
     text-align: center;
     box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
 
 }
 #friend-section{
   background-color: white;
-  border: 1px solid #CDCED2;
-  border-radius: 10px;
-  /* width: 923px; */
-  /* height: 330px; */
-  padding: 20px;
+  border: 0.05249343832vw solid #CDCED2;
+  border-radius: 0.5249343832vw;
+  padding: 1.0498687664vw;
 }
 .friend-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.62992125984vw;
     flex-direction: column;
     align-items: center;
     font-family: GT Walsheim Pro;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 1.25984251968vw;
     line-height: 100%;
     letter-spacing: -1%;
     text-align: center;
@@ -156,13 +154,13 @@ body {
 }
 
 .friend-avatar {
-    width: 50px;
-    height: 50px;
+    width: 2.62467191601vw;
+    height: 2.62467191601vw;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #f0f2f5;
-    width: 96;
-    height: 96;
+    border: 0.10498687664vw solid #f0f2f5;
+    width: 5.03937007873vw;
+    height: 5.03937007873vw;
     overflow: visible;
 }
 
@@ -172,44 +170,44 @@ body {
 }
 
 .friend-name {
-    font-size: 16px;
+    font-size: 0.83989501312vw;
     font-weight: 600;
     color: #333;
-    margin-bottom: 2px;
+    margin-bottom: 0.10498687664vw;
 }
 
 .friend-username {
-    font-size: 14px;
+    font-size: 0.73490813648vw;
     color: #65676b;
 }
 
 .friend-actions {
   display: flex;
   width: 100%;
-  gap: 16px;
+  gap: 0.83989501312vw;
   /* width: 221; */
-  height: 50;
-  border-radius: 1234px;
-  gap: 8px;
-  padding-top: 10px;
-  padding-right: 16px;
-  padding-bottom: 10px;
-  padding-left: 16px;
+  height: 2.62467191601vw;
+  border-radius: 1234vw;
+  gap: 0.41994750656vw;
+  padding-top: 0.5249343832vw;
+  padding-right: 0.83989501312vw;
+  padding-bottom: 0.5249343832vw;
+  padding-left: 0.83989501312vw;
   justify-content:space-evenly; 
 }
 
 .btn {
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 0.41994750656vw 0.83989501312vw;
+    border-radius: 0.31496062992vw;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.73490813648vw;
     cursor: pointer;
     transition: all 0.2s;
     border: none;
-    border-radius: 1024px;
-    padding: 10 16;
-    height: 40px;
-    width: 111px;
+    border-radius: 9999vw;
+    padding: 0.5249343832vw 0.83989501312vw;
+    height: 2.09973753281vw;
+    width: 5.82677165354vw;
     text-align: center;
 }
 
@@ -222,7 +220,7 @@ body {
     /* background: #f0f2f5; */
     background-color: white;
     color: #543C52;
-    border: 1px solid #543C52 !important;
+    border: 0.05249343832vw solid #543C52 !important;
 }
 
 .btn-delete:hover {
@@ -234,28 +232,28 @@ body {
 }
 
 .section-title {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 1.0498687664vw;
+    margin-bottom: 0.7874015748vw;
     color: #333;
 }
 
 .see-all {
     color: #543C52;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 0.73490813648vw;
 }
 ::-webkit-scrollbar {
     display: none;
 }
 .friend-cards{
   display: flex;
-    width: 289;
-    height: 263;
-    border-radius: 10px;
-    gap: 1000px;
-    border-width: 1px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    width: 15.1706036745vw;
+    height: 13.8057742782vw;
+    border-radius: 0.5249343832vw;
+    gap: 52.4934383201vw;
+    border-width: 0.05249343832vw;
+    padding-top: 0.83989501312vw;
+    padding-bottom: 0.83989501312vw;
     flex-direction: column;
     align-items: center;
     font-size: 0.73490813648vw;

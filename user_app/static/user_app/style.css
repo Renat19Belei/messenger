@@ -8,9 +8,10 @@ h1{
     /* width: 355;
     height: 27; */
     color: #070A1C;
-    gap: 6vw;
+    gap: 1.25984251968vw;
     text-align: center;
-    width: 20vw;
+    justify-content: center;
+    width: 20.9448818897vw;
     height: 1vw;
 
 }
@@ -19,32 +20,21 @@ main{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0px;
+    /* gap: -15; */
+    align-items: center;
     /* height: max-content; */
     /* width: max-content; */
+    height: 90.3402854007vh;
 }
-/* p{
-    width: 400;
-    height: 42;
-    border-radius: 10px;
-    gap: 10px;
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-left: 40px;
-    border-width: 1px;
-    
-    
-} */
 .login{
     width: 20vw;
     height: 2.5vw;
-    border-radius: 1234px;
-    gap: 8px;
+    border-radius: 1234vw;
+    gap: 0.41994750656vw;
     padding-top: 1vw;
-    padding-right: 24px;
+    padding-right: 1.25984251968vw;
     padding-bottom: 1vw;
-    padding-left: 24px;
+    padding-left: 1.25984251968vw;
     background-color: #543C52;
     font-family: GT;
     color: white;
@@ -83,7 +73,7 @@ header{
     background-color: white;
 }
 body{
-    margin: 0px;
+    margin: 0;
 }
 .view-password-img{
     width: 1.0498687664vw;
@@ -91,29 +81,32 @@ body{
 }
 #create{
     display: flex;
-    /* width: 488;
-    height: 657;
-    top: 728.5px;
-    left: 49.99px; */
     left: 13.0419947506vw;
     border-radius: 1.0498687664vw;
     padding: 2.30971128609vw;
     flex-direction: column;
     align-content: stretch;
     justify-content: center;
-    flex-wrap:wrap;
+    /* flex-wrap:wrap; */
     align-items: center;
     background-color: white;
     z-index: 11;
-    /* margin-left: 450px; */
-    margin: 0px;
-    margin-right: 16vw;
-    margin-top: 8vh;
+    margin: 0;
+    /* margin-right: 13.0456692913vw; */
+    /* margin-top: 12.3884514436vw; */
+    /* position: absolute;
+    left: 13.0456692913vw;
+    top: 12.3884514436vw; */
     /* height: 38.3333333333vw; */
-    height: 30vw;
+    height: 28.9763779527vw;
     width: 25.5643044619vw;
-    font-size: 0.75vw;
+    font-size: 0.83989501312vw;
+    transform: translate(5.5%,0); 
 }
+::-webkit-scrollbar {
+  display: none;
+}
+
 img{
     display: flex;
     z-index: 0;
@@ -144,15 +137,12 @@ body{
 
     width: 35.6588208456vw;
     height: 27.6696424909vw;
-    /* top: 248.45px; */
-    /* left: 657.68px; */
-    position: absolute;
+    /* position: absolute; */
     /* left: 50vw;
-    top: 50vh;
     transform: translate(0,-50%); */
     left: 34.5238845144vw;
     top: 13.0419947506vw;
-    transform: translate(50%,0); 
+    transform: translate(-5.5%,0); 
 }
 input{
     width: 20vw;
@@ -162,8 +152,8 @@ input{
     padding-right: 1.11111111111vw;
     padding-bottom: 0.69444444444vw;
     padding-left: 1.11111111111vw;
-    gap: 10px;
-    border-width: 1px;
+    gap: 0.5249343832vw;
+    border-width: 0.05249343832vw;
     font-size: 0.75vw;
     border: 0.05249343832vw solid black;
 
@@ -174,50 +164,51 @@ input:focus{
 }
 .inline-hr-div{
     display: inline-block;
-    width: 55px;
-    height: 1px;
+    width: 2.88713910761vw;
+    height: 0.05249343832vw;
     background-color: #81818D;
-    margin: 0 5px;
+    margin: 0 0.2624671916vw;
     vertical-align: center;
 }
 .reg{
     color: #81818D;
     text-decoration:none ;
+    width: 9.76377952755vw;
+    height: 2.26719160105vw;
 }
 .auth{
     cursor: pointer; 
-    border-bottom: #543C52 0.1vw solid;
-    width: 189;
-    height: 39;
+    border-bottom: #543C52 0.10498687664vw solid;
+    width: 9.92125984251vw;
+    height: 2.26719160105vw;
     text-decoration:none ;
     
 }
 .header_div{
-    height: 56px;
-    width: 400px;
+    height: 2.93963254593vw;
+    width: 20.9973753281vw;
 }
 a{
     color: black;
 }
 .qr{
-    gap: 24px;
+    gap: 1.25984251968vw;
     display: flex;
     flex-direction: column;
-    height: 142px;
+    height: 7.45406824146vw;
     justify-content: center;
     align-items: center;
-    margin: 0 8;
-    margin-top: 36px;
+    margin: 0 8vw;
+    margin-top: 1.88976377952vw;
 }
 #qr-img{
-    width: 5.64402542714vw;
-    height: 12.8389561608vh;
+    width: 5.24934383201vw;
+    height: 5.24934383201vw;
 }
 .text{
     display: inline;
+    font-size: 0.83989501312vw;
 }
-/* h1{
-    margin: 0;
-    height: 47px;
-    width: 399px;
-} */
+.qr-p{
+    width: 20.9973753281vw;
+}

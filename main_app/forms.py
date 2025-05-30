@@ -118,5 +118,5 @@ class ProfileForm(forms.Form):
     last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
     date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "", "class":"FormInput DateInput"}), label="Дата народження")
     
-    email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "form-field"}), label="Електронна адреса")
-    password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "***********", "class": "form-field password"}),label="Пароль")
+    email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "FormInput"}), label="Електронна адреса")
+    password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "***********", "class": "FormInput password"}),label="Пароль")

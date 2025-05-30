@@ -10,6 +10,8 @@
 {% block title %}Особиста інформація{% endblock %}
 {% block content %}
 {% render_header 0 0 0 0 1 %}
+
+<input type="hidden" id="eyeUrl" value="{% static 'user_app/images/eye.png' %}">
 <div class="app-container">
         <aside class="sidebar">
             <div class="menu-section">
@@ -40,7 +42,7 @@
                     <p>Особиста інформація</p>
                     <button class="save"><img src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати інформацію</button>
                 </div>
-                <div class="main-card">
+                <div class="main-card left">
                     
                     <div class="inputs-part">
                         <!-- {{ form.as_p }} -->
@@ -54,7 +56,19 @@
                 </div>
 
             </div>
-            
+            <div class="card">
+                <div class="header-card">
+                    <p>Варіанти підпису</p>
+                    <button class="save"><img src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати інформацію</button>
+                </div>
+                <div class="checks">
+                    <p><input type="checkbox" name="" id="checkName"> <label for="checkName" class="checker">Ім'я та призвіще</label></p>
+                    <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
+                    <p><input type="checkbox" name="" id="checkEmail"> <label for="checkEmail" class="checker">Мій електронний підпис</label></p>
+                    <img src="{% static 'main_app/images/Frame 1000002435.png' %}" alt="" id="electronicSignature">
+                </div>
+
+            </div>
         </main>
 </div>
 {% endblock %}
