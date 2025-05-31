@@ -18,10 +18,10 @@
         <aside class="sidebar">
             <div class="menu-section">
                 <ul class="menu-list">
-                    <h3 class="menu-title active">Головна</h3>
-                    <li class="menu-item">Запити</li>
-                    <li class="menu-item">Рекомендації</li>
-                    <li class="menu-item">Всі друзі</li>
+                    <h3 class="menu-title active"><a class="list-a" href="{% url 'friends' '1123' %}">Головна</a></h3>
+                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '1' %}">Запити</a></li>
+                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '2' %}">Рекомендації</a></li>
+                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '3' %}">Всі друзі</a></li>
                 </ul>
             </div>
         </aside>

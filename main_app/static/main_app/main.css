@@ -72,6 +72,9 @@ header nav a {
   margin: 1.0498687664vw auto;
   gap: 1.0498687664vw;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  height: 85vh;
 }
 
 .sidebar {
@@ -286,7 +289,7 @@ html, body {
 }
 
 .container {
-  width: calc(18.372703412vw+48.4514435695vw); 
+  width: 66.8241469815vw; 
   overflow: hidden;
 }
 

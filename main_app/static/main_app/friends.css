@@ -87,6 +87,10 @@
     overflow-y: auto;
     /* height: 50%; */
 }
+.list-a{
+    color: black;
+    text-decoration: none;
+}
 body {
   overflow-y: hidden;
   background-color: #FAF8FF;
