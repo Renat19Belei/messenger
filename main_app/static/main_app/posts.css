@@ -19,6 +19,7 @@
     width: 40.5774278215vw;
     padding: 1.25984251968vw 2.30971128609vw 2.30971128609vw 2.30971128609vw;
     border-radius: 1.0498687664vw;
+    z-index: 1000;
 }
 #imageInput{
     display: none;

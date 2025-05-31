@@ -22,7 +22,6 @@ class User_Post(models.Model):
         if self.tags.count()>9: 
             raise ValidationError("Максимальна кількість тегів дорівнює 9")
         return ok
-# album
 class Album(models.Model):
     image = models.ImageField(upload_to="album")
     name = models.CharField(max_length=255)
