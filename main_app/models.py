@@ -26,10 +26,11 @@ class User_Post(models.Model):
 class Album(models.Model):
     image = models.ImageField(upload_to="album")
     name = models.CharField(max_length=255)
-    year = models.DateField(blank= True)
+    year = models.DateField(blank= True,null=True)
     theme = models.CharField(max_length=255)
 
 class Profile(models.Model):
     icon = models.ImageField(upload_to= "profile/")
-    birthday = models.DateField(blank= True)
+    birthday = models.DateField(blank= True,null=True)
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
+    album = models.ForeignKey(to=Album, on_delete= models.CASCADE,null=True)

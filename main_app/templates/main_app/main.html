@@ -56,8 +56,8 @@
 <form action="" id="userSet" method="post">
   {% csrf_token %}
   <input type="hidden" name="formType" value="userSet">
-  <div class="space"><button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" alt=""></button></div>
-  <h1>Додай деталі про себе</h1>
+  <div class="space"><button class="close" type="button"><img src="{% static 'main_app/images/close.png' %}" class="close" alt=""></button></div>
+  <h1 class="hello">Додай деталі про себе</h1>
   <div class="inputos">
     {{ form2 }}
   </div>

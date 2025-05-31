@@ -24,6 +24,11 @@ header nav form{
   display: inline-block;
   margin-right: 0.5249343832vw;
 }
+.hello{
+  width: 21.1023622046vw;
+  height: 2.04724409448vw;
+  font-size: 1.78477690288vw;
+}
 header nav{
   display: flex;
   justify-content: center;
@@ -289,7 +294,7 @@ html, body {
 }
 
 .container {
-  width: 66.8241469815vw; 
+  /* width: 66.8241469815vw;  */
   overflow: hidden;
 }
 
@@ -321,6 +326,7 @@ html, body {
 #userSet{
   display: flex;
   flex-direction: column;
+  z-index: 999;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -363,7 +369,7 @@ html, body {
 #toRight{
   margin-left: auto;
   width:5.87926509186vw ;
-  height:2.09973753281vh ;
+  height:2.09973753281vw ;
 }
 /* label{
   display: none;
