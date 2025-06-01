@@ -33,3 +33,33 @@ for (let p of ps){
         }
     }
 }
+let canvas = document.querySelector('canvas')
+canvas.style.borderWidth = 5
+canvas.style.borderColor = 'black'
+canvas.style.borderStyle = 'solid'
+canvas.style.padding = 0
+let draw = canvas.getContext('2d')
+draw.fillStyle = 'black'
+let drawing = false
+
+function coor(event){
+    let rect = canvas.getBoundingClientRect()
+    return [(event.clientX-rect.left-2.5)*canvas.width / rect.width,(event.clientY-rect.top-2.5)*canvas.height / rect.height]
+}
+canvas.addEventListener('mousedown', (event) => {
+    pastplace = coor(event)
+    drawing = true
+})
+document.addEventListener('mouseup',()=> {
+    drawing = false
+})
+let pastplace = []
+canvas.addEventListener('mousemove',(event)=>{
+    if (drawing){
+        draw.beginPath();
+        draw.moveTo(pastplace[0], pastplace[1]);
+        pastplace = coor(event)
+        draw.lineTo(pastplace[0], pastplace[1]);
+        draw.stroke();
+    }
+})

@@ -76,6 +76,10 @@
 .menu-item:hover:not(.active) {
     background-color: #f2f2f2;
 }
+canvas{
+    width: 48.5039370078vw;
+    height: 13.8057742782vw;
+}
 .app-container {
     display: flex;
     position: relative;
