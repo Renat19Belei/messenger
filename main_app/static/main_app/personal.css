@@ -201,3 +201,10 @@ height: 3.41207349081vw;
 border-radius: 0.31496062992vw;
 
 }
+canvas{
+    width: 20.5485564304vw;
+height: 7.41207349081vw;
+border-radius: 0.31496062992vw;
+border: 0.00249343832vw solid black;
+cursor: cell;
+}

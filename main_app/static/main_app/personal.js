@@ -34,9 +34,6 @@ for (let p of ps){
     }
 }
 let canvas = document.querySelector('canvas')
-canvas.style.borderWidth = 5
-canvas.style.borderColor = 'black'
-canvas.style.borderStyle = 'solid'
 canvas.style.padding = 0
 let draw = canvas.getContext('2d')
 draw.fillStyle = 'black'
