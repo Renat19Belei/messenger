@@ -114,7 +114,7 @@ class UserSet(forms.Form):
         user.username = self.cleaned_data.get('username')
         user.save()
 class ProfileForm(forms.Form):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput firstNameInput"}),label='Ім’я',max_length=255)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput firstNameInput", }),label='Ім’я',max_length=255)
     last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
     date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "", "class":"FormInput DateInput"}), label="Дата народження")
     
