@@ -114,9 +114,9 @@ class UserSet(forms.Form):
         user.username = self.cleaned_data.get('username')
         user.save()
 class ProfileForm(forms.Form):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput firstNameInput", }),label='Ім’я',max_length=255)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
-    date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "", "class":"FormInput DateInput"}), label="Дата народження")
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput firstNameInput", "readonly":True,"required":False}),label='Ім’я',max_length=255)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput lastNameInput", "readonly":True,"required":False}),label='Прізвище',max_length=255)
+    date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "", "class":"FormInput DateInput", "readonly":True,"required":False}), label="Дата народження")
     
-    email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "FormInput"}), label="Електронна адреса")
-    password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "***********", "class": "FormInput password"}),label="Пароль")
+    email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "FormInput", "readonly":True,"required":False}), label="Електронна адреса")
+    password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "***********", "class": "FormInput password heh", "readonly":True, "required":False}),label="Пароль")

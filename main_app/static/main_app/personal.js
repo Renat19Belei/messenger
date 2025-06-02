@@ -8,6 +8,7 @@ if (passwords.length == 0){
 }
 for (let p of ps){
     for (let passw of passwords){
+        passw.requered = false
         // id_password
         if (p.contains(passw)){
             let but = document.createElement("button")

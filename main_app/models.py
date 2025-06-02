@@ -33,4 +33,4 @@ class Profile(models.Model):
     birthday = models.DateField(blank= True,null=True)
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
     album = models.ForeignKey(to=Album, on_delete= models.CASCADE,null=True)
-    electronicSignature = models.ImageField(upload_to= "images/")
+    electronicSignature = models.ImageField(upload_to= "images/electronicSignature/")

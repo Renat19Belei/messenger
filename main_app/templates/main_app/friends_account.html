@@ -10,7 +10,7 @@
 {% endblock %}
 {% block content %}
 {% render_header 0 0 1 %}
-<input type="hidden" id="link" value="{% url 'friends' %}">
+<input type="hidden" id="link" value="{% url 'friends' '123' %}">
 <script defer>
 document.querySelector('#reviewForm').action = document.querySelector('#link').value
 </script>
