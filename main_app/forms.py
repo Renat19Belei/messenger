@@ -120,3 +120,9 @@ class ProfileForm(forms.Form):
     
     email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "FormInput"}), label="Електронна адреса")
     password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "***********", "class": "FormInput password"}),label="Пароль")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['readonly'] = 'readonly'
+            field.widget.attrs['class'] += ' gray-input'

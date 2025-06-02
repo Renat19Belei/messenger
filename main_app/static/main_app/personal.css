@@ -211,3 +211,16 @@ border-radius: 0.31496062992vw;
 border: 0.00249343832vw solid black;
 cursor: cell;
 }
+
+.gray-input {
+    background-color: #f0f0f0;
+    color: gray;
+    border: 1px solid #ccc;
+    pointer-events: none;
+}
+
+.editable {
+    background-color: white;
+    color: black;
+    pointer-events: auto;
+}
