@@ -96,6 +96,8 @@ header nav img {
   padding-left: 0.55555555555vw; */
   height: 0.94488188976vw;
   width: 7.61154855642vw;
+  position: absolute;
+  left: 5.22414698161vw;
 }
 .current-page{
   background-color: #E9E5EE;

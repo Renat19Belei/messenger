@@ -10,9 +10,9 @@
 }
 .menu-section {
     position: fixed;
-    margin-left: 2.5rem;
+    /* margin-left: 2.5rem; */
     top: 6.82414698162vw;
-    left: 4.19947506561vw;
+    /* left: 4.19947506561vw; */
     gap: 0.83989501312vw;
 }
 
