@@ -160,7 +160,6 @@ input{
 }
 input:focus{
     outline: 0.01249343832vw solid black;
-    /* color: ; */
 }
 .inline-hr-div{
     display: inline-block;

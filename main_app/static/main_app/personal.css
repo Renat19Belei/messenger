@@ -150,7 +150,9 @@ padding-top: 0.5249343832vw;
 padding-right: 0.83989501312vw;
 padding-bottom: 0.5249343832vw;
 padding-left: 0.83989501312vw;
-
+}
+input:focus{
+    outline: 0.01249343832vw solid black;
 }
 .main-card{
     gap: 1.25984251968vw;
@@ -209,5 +211,5 @@ canvas{
 height: 7.41207349081vw;
 border-radius: 0.31496062992vw;
 border: 0.00249343832vw solid black;
-cursor: cell;
+/* cursor: cell; */
 }

@@ -41,7 +41,7 @@ let drawing = false
 
 function coor(event){
     let rect = canvas.getBoundingClientRect()
-    return [(event.clientX-rect.left-2.5)*canvas.width / rect.width,(event.clientY-rect.top-2.5)*canvas.height / rect.height]
+    return [(event.clientX-rect.left+0.1)*canvas.width / rect.width,(event.clientY-rect.top+7)*canvas.height / rect.height]
 }
 canvas.addEventListener('mousedown', (event) => {
     pastplace = coor(event)
