@@ -30,6 +30,7 @@ class Album(models.Model):
 
 class Profile(models.Model):
     icon = models.ImageField(upload_to= "profile/")
+    
     birthday = models.DateField(blank= True,null=True)
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
     album = models.ForeignKey(to=Album, on_delete= models.CASCADE,null=True)
