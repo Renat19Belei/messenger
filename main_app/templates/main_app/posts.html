@@ -31,18 +31,30 @@
   <div id="form">
     {% csrf_token %}
     {% for field in form %}
-        
+    {% if field.label == "Посилання" %}
         <p>
+          {{field.label_tag }}
+          
+          <div class="plus">{{field}}<img src="{% static 'main_app/images/Tag.png' %}" alt="" ></div>
+         
+        </p>
+      {% else %}
+         <p>
           {{field.label_tag }}
           {{field}}
         </p>
-        {% if field.label == 'Тема публікації' %}
-          <div id="tags">
-            <div class="tags-div"></div>
-            <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
-          </div>
-        {% endif %}
+      {% endif %}
+    
+      {% if field.label == 'Тема публікації' %}
+        <div id="tags">
+          <div class="tags-div"></div>
+          <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
+        </div>
+
+      {% endif %}
+       
     {% endfor %}
+    
   <div id="imagesDiv">
 
   </div>

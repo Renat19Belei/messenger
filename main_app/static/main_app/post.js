@@ -14,6 +14,11 @@ document.querySelector('#bg').addEventListener('click', (event)=> {
     document.querySelector('#modalForm').classList.add('hidden')
 })
 console.log('conect')
+plus.addEventListener("click", ()=>{
+    let input = document.createElement("input")
+    
+})
+let plus = document.querySelector(".plus")
 const cont = document.querySelector("#imagesDiv")
 let readers = []
 let count = 0
