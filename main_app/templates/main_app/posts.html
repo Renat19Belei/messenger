@@ -42,7 +42,13 @@
             <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
           </div>
         {% endif %}
+        {% else if field.label == "link" %}
+            <div>
+              <img src="{% static 'main_app/images/Tag.png' %}" alt="" class="plus">
+            </div>
+        {% endif %}
     {% endfor %}
+    
   <div id="imagesDiv">
 
   </div>
