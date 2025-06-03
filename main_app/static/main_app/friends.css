@@ -24,6 +24,7 @@
 .sidebar {
     width: 20.9973753281vw;
     padding: 1.0498687664vw;
+    padding-left: 3.8vw;
 }
 /* h3 {
   padding: 0;
@@ -34,9 +35,8 @@
 }
 .menu-section {
     /* margin-bottom: 30px; */
-    position: fixed;
-    top: 6.82414698162vw;
-    left: 4.19947506561vw;
+    margin-top: 2vw;
+    padding-left: 1vw;
     gap: 0.83989501312vw;
 }
 
@@ -50,6 +50,7 @@
 
 .menu-list {
     list-style: none;
+    
 }
 
 .menu-item {

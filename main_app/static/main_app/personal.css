@@ -3,24 +3,24 @@
 }
 .sidebar {
     width: 20.9973753281vw;
-    padding: 1.0498687664vw;
+    /* padding: 1.0498687664vw; */
 }
 .menu-title.active{
   color: #000000;
 }
 .menu-section {
     position: fixed;
-    margin-left: 2.5rem;
+    /* margin-left: 2.5rem; */
     top: 6.82414698162vw;
-    left: 4.19947506561vw;
+    /* left: 4.19947506561vw; */
     gap: 0.83989501312vw;
 }
-
 .menu-title {
     color: #65676b;
     font-size: 0.89238845144vw;
-    margin-bottom: 0.7874015748vw;
     margin-left: 0.5249343832vw;
+    margin: 0;
+    margin-bottom: 0.7874015748vw;
     /* padding-left: 0.5249343832vw; */
 }
 #checkName, #checkEmail{
@@ -40,7 +40,8 @@
 }
 .menu-list {
     list-style: none;
-    margin-left: 8.3989501312vw;
+    margin-left: 5.22414698161vw;
+    /* margin-left: 0; */
 }
 
 .menu-item {
@@ -50,6 +51,7 @@
     color: #050505;
     margin-bottom: 0.2624671916vw;
     font-size: 0.7874015748vw;
+    padding: 0;
 }
 
 .menu-item.active {
@@ -57,6 +59,9 @@
     color: #1877f2;
     
 }               
+/* header{ */
+    /* position: fixed; */
+/* } */
 .content {
     flex: 1;
     padding: 1.0498687664vw;
@@ -86,6 +91,7 @@ canvas{
 .app-container {
     display: flex;
     position: relative;
+    height: 89vh;
     flex: 1;
 }
 .card{
@@ -211,5 +217,20 @@ canvas{
 height: 7.41207349081vw;
 border-radius: 0.31496062992vw;
 border: 0.00249343832vw solid black;
-/* cursor: cell; */
+}
+
+.gray-input {
+    
+    color: gray;
+    border: 1px solid #ccc;
+    pointer-events: none;
+}
+.active{
+background-color: #f0f0f0;
+}
+.editable {
+    background-color: white;
+    color: black;
+    pointer-events: auto;
+/* >>>>>>> origin/Renat */
 }

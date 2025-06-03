@@ -126,16 +126,34 @@ class CustomLogoutView(LogoutView):
 # def get(request):
 #     return render(request, 'main_app/main.html')
 
-def personal(request):
-    profile_form = ProfileForm()
-    return render(request, 'main_app/personal.html',context={"form":profile_form})
+def personal(request:WSGIRequest):
+    profile_form = ProfileForm(user=request.user)
+    if request.method == 'POST':
+        print('hello')
+        user = request.user
+        # profile_form = ProfileForm(request.POST,user=request.user)
+        user.first_name = request.POST.get('first_name')
+        user.last_name =request.POST.get('last_name')
+        user.email = request.POST.get('email')
+        user.save()
+        # if profile_form.is_valid():
+        #     profile_form.save(user=request.user)
+        # print(profile_form)
+    # request.user.password.
+    # user = request.user
+    return render(request, 'main_app/personal.html',context={
+        "form":profile_form,
+        # 'first_name':user.first_name,
+        # 'last_name':user.last_name,
+        # 'email':user.email,
+        # 'password':user.password,
+    })
 class Posts(FormView):
     template_name = "main_app/posts.html"
     form_class = messageForm
     success_url = reverse_lazy('posts')
     def form_valid(self, form):
         files = self.request.FILES.getlist("images")
-        print(self.request.POST.get("images1"),312,213,312,23,54,67,9,786,5,43,self.request.POST)
         remove_List = self.request.POST.get("images1").split(" ")
         del remove_List[-1]
         # remove_dict = 

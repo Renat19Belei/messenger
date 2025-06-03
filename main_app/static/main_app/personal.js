@@ -1,3 +1,4 @@
+$(document).ready(function(){
 // let profileCard = document.querySelector("")  
 let eyeUrl = document.querySelector("#eyeUrl")
 let passwords = document.querySelectorAll(".password")
@@ -60,4 +61,64 @@ canvas.addEventListener('mousemove',(event)=>{
         draw.lineTo(pastplace[0], pastplace[1]);
         draw.stroke();
     }
+})
+// edit-img
+let info = document.querySelector('#info')
+let inputs = document.querySelectorAll('.FormInput') 
+let editImg = document.querySelector('.edit-img')
+info.addEventListener('click',()=>{
+    let info = document.querySelector('#info')
+    let inputs = document.querySelectorAll('.FormInput') 
+    console.log(editImg)
+    if (info.classList.contains('active')){
+        info.classList.remove('active')
+        for (let input of inputs){
+            input.requered = false
+            input.readOnly = true
+            input.classList.add('gray-input')
+        }
+            // fetch(document.querySelector('#personalUrl').value,{
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'X-CSRFToken': csrfToken
+            //     },
+
+            // })
+            $.ajax({
+            type: 'post',
+            url: document.querySelector('#personalUrl').value,
+            data: {
+
+                csrfmiddlewaretoken:document.querySelector('input').value,
+                first_name: document.querySelector('[name="first_name"]').value,
+                last_name: document.querySelector('[name="last_name"]').value,
+                email: document.querySelector('[name="email"]').value
+
+            },
+            success:function(request){
+                console.log('ok')
+            }})
+        
+        
+
+        info.textContent = ''
+        info.append(editImg)
+        info.innerHTML += `Редагувати інформацію`
+
+    }else{
+        info.classList.add('active')
+        for (let input of inputs){
+            console.log(!input.classList.contains('password'),input)
+            if (!input.classList.contains('password')){
+                input.requered = true
+                input.readOnly = false
+                input.classList.remove('gray-input')
+            }
+        }
+        info.textContent = ''
+        info.append(editImg)
+        info.innerHTML += `Зберегти`
+    }
+})
 })
