@@ -59,7 +59,8 @@ main{
     margin: 0;
 }
 label{
-    display: flex;
+    display: block;
+    margin-bottom: 0.5vw;
 }
 header{
     display: flex;
@@ -156,8 +157,13 @@ input{
     border-width: 0.05249343832vw;
     font-size: 0.75vw;
     border: 0.05249343832vw solid black;
-
 }
+
+input::placeholder {
+    color: #81818D !important; 
+    opacity: 1 !important; 
+}
+
 input:focus{
     outline: 0.01249343832vw solid black;
 }

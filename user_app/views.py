@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.shortcuts import render,redirect
 from .forms import UserForm,AuthenticationForm2
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView as DjangoLoginView, LogoutView as DjangoLogoutView 
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
 from .models import Code
@@ -13,15 +13,52 @@ from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta
 from django.http import HttpResponse
+from django.db.models import Q 
+from .forms import AuthenticationForm2
 # from django.template.loader import render_to_string
 # from django.core.mail import send_mail
 import random
 import threading
 import qrcode, io 
 from PIL import Image
+from .forms import AuthenticationForm2 
+from django.contrib.auth import login, logout, get_user_model
 # from django.urls import 
 # Create your views here.
-class customLogoutView(LogoutView):
+
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm2(request, data=request.POST) 
+        if form.is_valid():
+            username_input = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            UserModel = get_user_model()
+            user = None
+
+            try:
+                user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
+            except UserModel.DoesNotExist:
+                user = None
+            except UserModel.MultipleObjectsReturned:
+                user = None
+
+            if user is not None and user.check_password(password):
+                login(request, user)
+                return redirect('home')
+            else:
+                form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+    else:
+        form = AuthenticationForm2()
+    
+    return render(request, 'user_app/login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('login') 
+
+
+class customLogoutView(DjangoLogoutView):
     # success_url = '/user/login/'
     next_page = "login"
 
@@ -34,7 +71,7 @@ class UserPageView(FormView):
         # First, render the plain text content.
         user=form.save()
         user.is_active = False
-        user.email = user.username
+        # user.email = user.username
         user.save()
         text_content = random.randint(100000, 999999)
         code= Code.objects.create(code=text_content,user_id = user)
@@ -86,9 +123,34 @@ class Get_Random_Qr_Code(View):
     
 
 
-class LoginView(LoginView):
+class LoginView(DjangoLoginView):
     template_name = "user_app/login.html"
-    # form_class = AuthenticationForm2
+    form_class = AuthenticationForm2
+
+    def post(self, request, *args, **kwargs): # <<<--- ЭТОТ МЕТОД ДОЛЖЕН БЫТЬ ВНУТРИ КЛАССА
+        form = self.get_form()
+        if form.is_valid():
+            username_input = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            UserModel = get_user_model()
+            user = None
+
+            try:
+                user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
+            except UserModel.DoesNotExist:
+                user = None
+            except UserModel.MultipleObjectsReturned:
+                user = None 
+
+            if user is not None and user.check_password(password):
+                login(request, user)
+                return self.form_valid(form) 
+            else:
+                form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+                return self.form_invalid(form) 
+        else:
+            return self.form_invalid(form) 
     # def form_valid(self, form):
         
     #     print(self.request.current_user.email)
