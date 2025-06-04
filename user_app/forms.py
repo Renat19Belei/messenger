@@ -8,8 +8,8 @@ class UserForm(UserCreationForm):
     password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
     password2 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повтори пароль","class": "form-field password"}), label="Підтвердження пароля")
 class AuthenticationForm2(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "you@example.com","class": "form-field"}),label="Електронна пошта")
-    password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Ім'я користувача або Електронна пошта","class": "form-field"}),label="Ім'я користувача або Електронна пошта")
+    password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
 
     # def save(self):
     #     user = User.objects.create(

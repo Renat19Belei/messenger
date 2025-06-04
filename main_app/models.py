@@ -34,3 +34,14 @@ class Profile(models.Model):
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
     album = models.ForeignKey(to=Album, on_delete= models.CASCADE,null=True)
     electronicSignature = models.ImageField(upload_to= "images/electronicSignature/")
+
+
+
+    
+class Link(models.Model):
+    url = models.URLField()
+    description = models.CharField(max_length=255, blank=True)
+    post = models.ForeignKey(User_Post, related_name='links', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.url
