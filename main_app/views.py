@@ -7,6 +7,7 @@ from .models import *
 from django.http import JsonResponse
 from django.core.handlers.wsgi import WSGIRequest
 import json
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 # Create your views here.
 class MainPageView(FormView):
@@ -125,7 +126,7 @@ class CustomLogoutView(LogoutView):
 
 # def get(request):
 #     return render(request, 'main_app/main.html')
-
+@login_required
 def personal(request:WSGIRequest):
     if not request.user.is_authenticated:
         return redirect('login')
