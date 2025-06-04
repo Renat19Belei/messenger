@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import  LogoutView
@@ -127,6 +127,8 @@ class CustomLogoutView(LogoutView):
 #     return render(request, 'main_app/main.html')
 
 def personal(request:WSGIRequest):
+    if not request.user.is_authenticated:
+        return redirect('login')
     profile_form = ProfileForm(user=request.user)
     if request.method == 'POST':
         print('hello')

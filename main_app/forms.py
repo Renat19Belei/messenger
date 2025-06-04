@@ -142,3 +142,16 @@ class ProfileForm(forms.Form):
             field.widget.attrs['required'] = 'required'
             field.widget.attrs['class'] += ' gray-input'
 # >>>>>>> origin/Renat
+
+class UserPostForm(forms.ModelForm):
+    links = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={
+            'placeholder': 'Введіть посилання через новий рядок',
+            'rows': 3
+        })
+    )
+
+    class Meta:
+        model = User_Post
+        fields = ['name', 'theme', 'tags', 'text', 'images']
