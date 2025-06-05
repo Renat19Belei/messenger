@@ -171,7 +171,7 @@ body {
 .my-photos-block .photo-overlay-actions {
     position: absolute;
     bottom: 0;
-    left: 0;
+    /* left: 0; */
     right: 0;
     padding: 5px 0;
     display: flex;
@@ -186,13 +186,18 @@ body {
     cursor: pointer;
     padding: 5px;
     border-radius: 4px;
+    font-size: 20px;
 }
-
+/* .icon-img {
+    width: 2.0997375328vw;
+    height: 2.0997375328vw;
+} */
 
 .my-photos-block .action-icon-btn img {
-    width: 20px;
-    height: 20px;
+    width: 2.0997375328vw;
+    height: 2.0997375328vw;
     display: block;
+    
 }
 
 .no-album-block {
