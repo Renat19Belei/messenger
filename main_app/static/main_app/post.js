@@ -14,6 +14,53 @@ document.querySelector('#bg').addEventListener('click', (event)=> {
     document.querySelector('#modalForm').classList.add('hidden')
 })
 console.log('conect')
+let plus = document.querySelector(".plus")
+let counts = document.querySelector('.countOfPlus')
+let imgPlus = document.querySelector('.img-plus')
+plus.remove()
+counts.append(plus)
+// img-plus
+imgPlus.addEventListener("click", ()=>{
+    let input = document.createElement("input")
+    let plus = document.createElement("div")
+    let imgClose = document.createElement("img")
+    imgClose.src = document.querySelector('#linkClose').value
+    // imgClose.style.marginRight = 15
+    imgClose.className = 'imgClose'
+    input.maxLength = 255
+    input.required = false
+    input.className = "formInput linkInput"
+    input.placeholder = "вставте посилання публікації"
+    plus.className = 'plus'
+    plus.style.marginTop = 15
+    imgClose.addEventListener('click',()=>{
+        plus.remove()
+        let plusList = document.querySelectorAll('.plus')
+        let elem = plusList[plusList.length-1]
+        console.log(elem.querySelector(".imgClose"),elem)
+        elem.append(imgPlus)
+        if (elem.querySelector(".imgClose")){
+            console.log('heh is not error')
+            elem.querySelector(".imgClose").remove()
+            elem.append(imgClose)
+        }
+        
+    })
+
+    // let plus = document.querySelector(".plus")
+    counts.append(plus)
+    // imgPlus.remove()
+    plus.append(input)
+    plus.append(imgPlus)
+    plus.append(imgClose)
+})
+//     link = forms.CharField(widget=forms.TextInput(attrs=
+// {"placeholder": "вставте посилання публікації",
+// "class": "formInput linkInput"}),
+// label='Посилання',
+// max_length=255, 
+// required=False)
+
 const cont = document.querySelector("#imagesDiv")
 let readers = []
 let count = 0

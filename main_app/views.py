@@ -174,3 +174,5 @@ def friends_account(request,pk):
     return render(request, 'main_app/friends_account.html',context={'pk':pk,'user':user})
 def chats(request):
     return render(request, 'main_app/chat.html')
+def albums(request):
+    return render(request, 'main_app/albums.html')

@@ -18,6 +18,7 @@
 {% render_header 0 1 %}
 <input type="hidden" id="trash" value="{% static 'main_app/images/remove_img.png' %}">
 <input type="hidden" id="request" value="{% url 'list' %}">
+<input type="hidden" name="" id="linkClose" value="{% static 'main_app/images/linkClose.png' %}">
 <!-- <div class="container"> -->
 
 <div id="bg" class="hidden"></div>
@@ -31,18 +32,33 @@
   <div id="form">
     {% csrf_token %}
     {% for field in form %}
-        
-        <p>
-          {{field.label_tag }}
-          {{field}}
-        </p>
+    
+        {% if field.label == "Посилання" %}
+        <p class="countOfPlus">
+            {{field.label_tag }}
+            <div class="plus">
+              {{field}}
+              <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
+            </div>
+          </p>
+          
+        {% else %}
+          <p>
+            {{field.label_tag }}
+            {{field}}
+          </p>
+        {% endif %}
+    
         {% if field.label == 'Тема публікації' %}
           <div id="tags">
             <div class="tags-div"></div>
             <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
           </div>
-        {% endif %}
+
+      {% endif %}
+       
     {% endfor %}
+    
   <div id="imagesDiv">
 
   </div>
