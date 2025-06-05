@@ -37,6 +37,18 @@
             <div class="tags-div"></div>
             <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
           </div>
+        {% elif field.label == '' %}
+        <p class="countOfPlus">
+            <!-- {{field.label_tag }} -->
+             <label for="link_id">Посилання</label>
+            <div class="plus">
+              <input type="text" id="link_id" name="link" placeholder="вставте посилання публікації" class="formInput linkInput" maxlength="255">
+              <!-- {{field}} -->
+        <!-- # link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False) -->
+
+              <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
+            </div>
+          </p>
         {% endif %}
     {% endfor %}
   <div id="imagesDiv">
@@ -50,7 +62,7 @@
     <button class="send sendCreate"><span class="center">Публікація</span><img id="beer" src="{% static 'main_app/images/send.png' %}" alt=""></button>
   </div>
 </form>
-{% if request.user.email == request.user.username %}
+{% if request.user.email == '' %}
 
 <div id="bg"></div>
 <form action="" id="userSet" method="post">

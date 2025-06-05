@@ -7,13 +7,22 @@ class Tags(models.Model):
     # posts = models.ManyToManyField(to=User_Post)
 class Images(models.Model):
     image = models.ImageField(upload_to="images")
+class Link(models.Model):
+    url = models.URLField()
+    # description = models.CharField(max_length=255, blank=True)
+    # post = models.ForeignKey(User_Post, related_name='links', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.url
+
 class User_Post(models.Model):
     user  = models.ForeignKey(to=User, on_delete= models.CASCADE)
     name = models.CharField(max_length=255)
     theme = models.CharField(max_length=255,null=True)
     tags  = models.ManyToManyField(to=Tags)
     text = models.TextField()
-    link  = models.CharField(max_length=255, null=True)
+    # link  = models.CharField(max_length=255, null=True)
+    links  = models.ManyToManyField(to=Link)
     images = models.ManyToManyField(to=Images)
     reviewers = models.IntegerField()
     likes = models.IntegerField()
@@ -38,10 +47,3 @@ class Profile(models.Model):
 
 
     
-class Link(models.Model):
-    url = models.URLField()
-    description = models.CharField(max_length=255, blank=True)
-    post = models.ForeignKey(User_Post, related_name='links', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.url
