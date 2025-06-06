@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'main_app/albums.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+{% endblock %}
+
+{% block content %}
+{% render_header 0 0 0 0 1 %}
+<div class="app-container">
+        <aside class="sidebar">
+            <div class="menu-section">
+                <ul class="menu-list">
+                    <a href="{% url 'personal' %}" class="menu-item">Особиста інформація</a>
+                    <h3 class="menu-title active">Альбоми</h3>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="content-panel">
+            <div class="my-photos-block">
+                <h2 class="block-title">Мої фото</h2>
+                <button class="add-photo-button"><img src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
+
+                <div class="photo-container">
+                    <img src="{% static 'main_app/images/avatar9.png' %}" alt="Моє фото">
+                    <div class="photo-overlay-actions">
+                        <button class="action-icon-btn"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
+                        <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-album-block">
+                <p>Немає ще жодного альбому</p>
+                <button class="create-album-button"><img src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

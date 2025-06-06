@@ -26,33 +26,51 @@ from django.contrib.auth import login, logout, get_user_model
 # from django.urls import 
 # Create your views here.
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         form = AuthenticationForm2(request.POST) 
 
-#         if form.is_valid():
-#             username_input = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password')
 
-#             UserModel = get_user_model()
-#             user = None
-#             print('qeweqwwe')
-#             try:
-#                 user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
-#             except UserModel.DoesNotExist:
-#                 user = None
-#             except UserModel.MultipleObjectsReturned:
-#                 user = None
-#             user = authenticate(request, username= username_input, password = password)
-#             if user is not None and user.check_password(password):
-#                 login(request, user)
-#                 return redirect('main')
+def user_login(request):
+    if request.method == 'POST':
+# <<<<<<< Renat
+        form = AuthenticationForm2(request, data=request.POST) 
+# =======
+        form = AuthenticationForm2(request.POST) 
+
+# >>>>>>> master
+        if form.is_valid():
+            username_input = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            UserModel = get_user_model()
+            user = None
+# <<<<<<< Renat
+
+# =======
+            print('qeweqwwe')
+# >>>>>>> master
+            try:
+                user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
+            except UserModel.DoesNotExist:
+                user = None
+            except UserModel.MultipleObjectsReturned:
+                user = None
+
+            if user is not None and user.check_password(password):
+                login(request, user)
+# <<<<<<< Renat
+#                 return redirect('home')
 #             else:
 #                 form.add_error(None, "Невірне ім'я користувача/email або пароль.")
-
 #     else:
+# =======
+                return redirect('main')
+            else:
+                form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+
+    else:
         
-#         form = AuthenticationForm2()
+# >>>>>>> master
+        form = AuthenticationForm2()
+# >>>>>>> 1b6447b33220cae596bf1a051ddb9a5084984f42
     
 #     return render(request, 'user_app/login.html', {'form': form})
 

@@ -7,7 +7,13 @@ class UserForm(UserCreationForm):
     username = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "form-field"}), label="Електронна пошта")
     password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
     password2 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повтори пароль","class": "form-field password"}), label="Підтвердження пароля")
+# <<<<<<< HEAD
 class AuthenticationForm2(AuthenticationForm):
+# =======
+# <<<<<<< Renat
+# class AuthenticationForm2(AuthenticationForm):
+# =======
+# class AuthenticationForm2(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Ім'я користувача або Електронна пошта","class": "form-field"}),label="Ім'я користувача або Електронна пошта")
     password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
 

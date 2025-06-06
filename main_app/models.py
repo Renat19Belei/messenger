@@ -47,3 +47,13 @@ class Profile(models.Model):
 
 
     
+# <<<<<<< Renat
+# class Link(models.Model):
+#     url = models.URLField()
+#     description = models.CharField(max_length=255, blank=True)
+#     post = models.ForeignKey(User_Post, related_name='links', on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.url
+# =======
+# >>>>>>> master
