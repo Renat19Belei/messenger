@@ -132,10 +132,7 @@ class CustomLogoutView(LogoutView):
 
 # def get(request):
 #     return render(request, 'main_app/main.html')
-@login_required
 def personal(request:WSGIRequest):
-    if not request.user.is_authenticated:
-        return redirect('login')
     profile_form = ProfileForm(user=request.user)
     if request.method == 'POST':
         print('hello')
