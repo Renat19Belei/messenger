@@ -28,15 +28,23 @@ from django.contrib.auth import login, logout, get_user_model
 
 def user_login(request):
     if request.method == 'POST':
+# <<<<<<< Renat
+        form = AuthenticationForm2(request, data=request.POST) 
+# =======
         form = AuthenticationForm2(request.POST) 
 
+# >>>>>>> master
         if form.is_valid():
             username_input = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
             UserModel = get_user_model()
             user = None
+# <<<<<<< Renat
+
+# =======
             print('qeweqwwe')
+# >>>>>>> master
             try:
                 user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
             except UserModel.DoesNotExist:
@@ -46,12 +54,19 @@ def user_login(request):
 
             if user is not None and user.check_password(password):
                 login(request, user)
+# <<<<<<< Renat
+#                 return redirect('home')
+#             else:
+#                 form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+#     else:
+# =======
                 return redirect('main')
             else:
                 form.add_error(None, "Невірне ім'я користувача/email або пароль.")
 
     else:
         
+# >>>>>>> master
         form = AuthenticationForm2()
     
     return render(request, 'user_app/login.html', {'form': form})
