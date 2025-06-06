@@ -33,28 +33,28 @@
     {% csrf_token %}
     {% for field in form %}
     
-        {% if field.label == "Посилання" %}
-        <p class="countOfPlus">
-            {{field.label_tag }}
-            <div class="plus">
-              {{field}}
-              <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
-            </div>
-          </p>
-          
-        {% else %}
           <p>
             {{field.label_tag }}
             {{field}}
           </p>
-        {% endif %}
     
         {% if field.label == 'Тема публікації' %}
           <div id="tags">
             <div class="tags-div"></div>
             <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
           </div>
+        {% elif field.label == '' %}
+        <p class="countOfPlus">
+            <!-- {{field.label_tag }} -->
+             <label for="link_id">Посилання</label>
+            <div class="plus">
+              <input type="text" id="link_id" name="link" placeholder="вставте посилання публікації" class="formInput linkInput" maxlength="255">
+              <!-- {{field}} -->
+        <!-- # link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False) -->
 
+              <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
+            </div>
+          </p>
       {% endif %}
        
     {% endfor %}

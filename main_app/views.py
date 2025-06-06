@@ -55,11 +55,12 @@ def MainPageView(request:WSGIRequest):
             form1 = messageForm(request.POST)
             if form1.is_valid():
                 print(request.POST.getlist('tags'),'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-                form1.send(request.user,request.FILES.getlist('images'),request.POST.get('type'),request.POST.get('imgs'),request.POST.getlist('tags'))
+                form1.send(request.user,request.FILES.getlist('images'),request.POST.get('type'),request.POST.get('imgs'),request.POST.getlist('tags'),request.POST.getlist('link'))
         else:
             form2 = UserSet(request.POST)
             if form2.is_valid():
                 form2.save(request.user)
+                
 
     return render(request,'main_app/main.html',context={
         'form1':form1,
@@ -98,6 +99,7 @@ def new_posts(request:WSGIRequest):
     if request.method == "POST":
         list_posts =  [] 
         type = request.POST.get('type')
+        
         print(type, 'friends' in type)
         if type == 'posts':
             all_posts = User_Post.objects.filter(user = request.user)
@@ -109,6 +111,10 @@ def new_posts(request:WSGIRequest):
             print(all_posts, user)
         else:
             all_posts = User_Post.objects.all()
+        links = {}
+        # for post in all_posts:
+        #     links2 = Link.objects.filter(post = post)
+        #     links[post.pk] = links2
         # all_posts=all_posts.reverse()
         # print(all_posts)
         for post in json.loads(request.POST.get('posts')):
@@ -164,7 +170,13 @@ class Posts(FormView):
         del remove_List_2[-1]
         #removing imgs
         self.request.POST.get('tags')
-        form.send(self.request.user,files,self.request.POST.get('type'),self.request.POST.get('imgs'),[remove_List,remove_List_2],self.request.POST.getlist('tags'))
+        form.send(
+            self.request.user,
+            files,self.request.POST.get('type'),
+            self.request.POST.get('imgs'),
+            [remove_List,remove_List_2],
+            self.request.POST.getlist('tags'),
+            self.request.POST.getlist('link'))
         return super().form_valid(form)
 
 def friends(request,typek='123'):

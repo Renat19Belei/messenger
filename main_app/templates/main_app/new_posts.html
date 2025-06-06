@@ -35,15 +35,19 @@
             {%  endfor %}
         {% endif %}
         </span></p>
-        {% if post.link %}
-        <a href="{{ post.link }}">{{ post.link }}</a>
+        {% if post.links.all %}
+            <div class="images">
+                {% for link in post.links.all %}
+                    <p><a href="{{link}}">{{link}}</a></p>
+                {%  endfor %}
+            </div>
         {% endif %}
         
         {% if post.images.all %}
             <div class="images">
                 {% for image in post.images.all %}
                     <img src="{{image.image.url}}" alt="" class="change-img">
-                    {%  endfor %}
+                {%  endfor %}
             </div>
         {% endif %}
     </div>

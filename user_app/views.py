@@ -8,7 +8,7 @@ from .forms import UserForm,AuthenticationForm2
 from django.contrib.auth.views import LoginView as DjangoLoginView, LogoutView as DjangoLogoutView 
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
-from .models import Code
+from .models import Code,Profile
 from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta
@@ -28,14 +28,23 @@ from django.contrib.auth import login, logout, get_user_model
 
 def user_login(request):
     if request.method == 'POST':
+# <<<<<<< Renat
         form = AuthenticationForm2(request, data=request.POST) 
+# =======
+        form = AuthenticationForm2(request.POST) 
+
+# >>>>>>> master
         if form.is_valid():
             username_input = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
             UserModel = get_user_model()
             user = None
+# <<<<<<< Renat
 
+# =======
+            print('qeweqwwe')
+# >>>>>>> master
             try:
                 user = UserModel.objects.get(Q(username__iexact=username_input) | Q(email__iexact=username_input))
             except UserModel.DoesNotExist:
@@ -45,10 +54,19 @@ def user_login(request):
 
             if user is not None and user.check_password(password):
                 login(request, user)
-                return redirect('home')
+# <<<<<<< Renat
+#                 return redirect('home')
+#             else:
+#                 form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+#     else:
+# =======
+                return redirect('main')
             else:
                 form.add_error(None, "Невірне ім'я користувача/email або пароль.")
+
     else:
+        
+# >>>>>>> master
         form = AuthenticationForm2()
     
     return render(request, 'user_app/login.html', {'form': form})
@@ -76,6 +94,7 @@ class UserPageView(FormView):
         text_content = random.randint(100000, 999999)
         code= Code.objects.create(code=text_content,user_id = user)
         self.success_url = f'/user/email/{code.id}'
+        profile = Profile.objects.create(user_id=user.pk)
         # delete_old_code.apply_async(
             # args=[code.id],
             # eta=timezone.now() + timedelta(hours=1)

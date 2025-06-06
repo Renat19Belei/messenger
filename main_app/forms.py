@@ -11,11 +11,11 @@ class messageForm(forms.Form):
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
 
     text = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-    link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
+    # link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
 # >>>>>>> origin/Renat
     # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
     #     
-    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]],tags=[]):
+    def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]],tags=[],links = []):
         print(user)
         if user and user.is_authenticated:
                 
@@ -41,26 +41,12 @@ class messageForm(forms.Form):
             except Exception as error:
                 print(error)
             text = self.cleaned_data.get('text')
-            # print('3212213213'.startswith('2'))
-            # tags = re.findall("#(\w+)", text)
-            # text = '#hhhh hello #hi '
-            # text_list = []
-            # tags = []
-            # tags2 = text.split(' ')
-            # # tags_list = []
-            # for tag in tags2:
-            #     if tag.startswith('#'):
-            #         t = tag[1::]
-            #         tags.append(t)
-            #     else:
-            #         text_list.append(tag)
-            
-            # text = ' '.join(text_list)
-            # print(tags_list)
-            # tags
             for tag in tags:
                 tag = tag[1::]
                 tags_list.append(Tags.objects.create(name= tag))
+            link_list = []
+            for link in links:
+                link_list += [Link.objects.create(url=link)]
                 # text = "".join(text.split('#'+tag))
             if type == 'save':
                 
@@ -71,11 +57,17 @@ class messageForm(forms.Form):
                     likes = 0,
                     name = self.cleaned_data.get('name'),
                     theme = self.cleaned_data.get('theme'),
-                    link = self.cleaned_data.get('link'),
+                    # link = self.cleaned_data.get('link'),
                 )
                 user_post.images.set(images_list)
                 user_post.tags.set(tags_list)
+                user_post.links.set(link_list)
+                
                 user_post.save()
+                # for link in links:
+                #     lonk = Link.objects.create(url=link,post=user_post)
+                    
+
                 # for count in range(132):
                 #     print(user_post.name)
             else:
@@ -109,6 +101,7 @@ class UserSet(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "@","class": "FormInput lastNameInput"}),label='Ім’я користувача',max_length=255)  
     def save(self,user):
         print('gwewgeg')
+        user.email = user.username
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
         user.username = self.cleaned_data.get('username')

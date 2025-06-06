@@ -46,5 +46,5 @@ window.addEventListener('keydown', function (e) {
 });
 
 
-textElement.textContent = "•".repeat(textElement.dataset.originalText.length);
-button.id = 'close'
+// textElement.textContent = "•".repeat(textElement.dataset.originalText.length);
+// button.id = 'close'
