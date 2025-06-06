@@ -27,7 +27,24 @@
             <div class="card">
                 <div class="header-card">
                     <p>Картка профілю</p>
-                    <button class="save"><img src="{% static 'main_app/images/edit.png' %}" alt="">Редагувати інформацію</button>
+                    <button class="save" id="view-mode"><img src="{% static 'main_app/images/edit.png' %}" alt="">Редагувати інформацію</button>
+                    <div id="edit-mode" style="display: none;">
+                    <div class="header">
+                    <span>Картка профілю</span>
+                    <buttonclass="save-btn"> Зберегти</button>
+                    </div>
+                    <div class="content">
+                    <p>Оберіть або завантажте фото профілю</p>
+                    <div class="photo-options">
+                        <button> Додайте фото</button>
+                        <button> Оберіть фото</button>
+                    </div>
+                    <h2>Lina Li</h2>
+                    <label>
+                        <br>Ім'я користувача<br/>
+                        <input type="text" value="@thelili"/>
+                    </label>
+                    </div>
                 </div>
                 <div class="main-card">
                     

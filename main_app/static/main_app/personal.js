@@ -3,6 +3,18 @@ $(document).ready(function(){
 let eyeUrl = document.querySelector("#eyeUrl")
 let passwords = document.querySelectorAll(".password")
 let ps = document.querySelectorAll("p")
+function toggleEdit() {
+  const view = document.getElementById("view-mode");
+  const edit = document.getElementById("edit-mode");
+
+  if (view.style.display === "none") {
+    view.style.display = "block";
+    edit.style.display = "none";
+  } else {
+    view.style.display = "none";
+    edit.style.display = "block";
+  }
+}
 // eyeUrl.value
 if (passwords.length == 0){
     passwords  = document.querySelectorAll("#id_password")
