@@ -178,9 +178,7 @@ justify-content: space-between;
     align-items: center;
 
 }
-.hidden{
-    display: none;
-}
+
 .name-h2{
     font-size: 1.25984251968vw;
 }
@@ -286,4 +284,10 @@ background-color: #f0f0f0;
     color: black;
     pointer-events: auto;
 /* >>>>>>> origin/Renat */
+}
+.hidden{
+    display: none;
+}
+.editElec{
+    width: 7.5vw;
 }

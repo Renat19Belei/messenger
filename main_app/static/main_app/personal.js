@@ -155,5 +155,44 @@ avatar.addEventListener('click',()=>{
         editContAvatar.classList.add('hidden')
     }
 })
+
+
+let editImg3 = document.querySelector('.edit-elec-img')
+// avatar-div content-hidden
+let editElec = document.querySelector('.editElec')
+// let editContAvatar = document.querySelector('.content-hidden')
+let elecButton = document.querySelector('.edit-elec-button')
+// let listOfchange = document.querySelectorAll(".checkInput") + [editElec]
+console.log(elecButton)
+elecButton.addEventListener('click',()=>{
+    if (!elecButton.classList.contains('active')){
+        elecButton.textContent = ''
+        elecButton.append(editImg3)
+        elecButton.innerHTML += `Зберегти`
+        elecButton.classList.add('active')
+        
+        for (let inp of document.querySelectorAll(".checkInput")){
+            inp.disabled = false
+        }
+        editElec.classList.remove('hidden')
+        // contAvatar.classList.add('hidden')
+        // editContAvatar.classList.remove('hidden')
+    }else{
+        elecButton.textContent = ''
+        elecButton.append(editImg3)
+        elecButton.innerHTML += `Редагувати інформацію`
+        elecButton.classList.remove('active')
+        // checkInput
+        for (let inp of document.querySelectorAll(".checkInput")){
+            inp.disabled = true
+        }
+        editElec.classList.add('hidden')
+        // contAvatar.classList.remove('hidden')
+        // editContAvatar.classList.add('hidden')
+    }
+})
+editElec.addEventListener('click', () =>{
+    document.querySelector('canvas').classList.toggle('hidden')
+})
 })
 // edit-avatar
