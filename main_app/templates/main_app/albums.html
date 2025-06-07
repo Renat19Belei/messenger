@@ -46,7 +46,36 @@
         </div>
     </div>
 </div>
+<div id="albumModal" class="modal-overlay" style="display: none;">
+  <div class="modal">
+    <button class="close-modal">×</button>
+    <h2>Створити альбом</h2>
+    <form>
+      <label for="albumName">Назва альбому</label>
+      <input type="text" id="albumName" placeholder="Назва альбому"/>
 
+      <label for="themeSelect">Оберіть тему</label>
+      <select id="themeSelect">
+        <option>Природа</option>
+        <option>Подорожі</option>
+        <option>Друзі</option>
+      </select>
+
+      <label for="yearSelect">Рік альбому</label>
+      <select id="yearSelect">
+        <option value="" disabled selected hidden>Оберіть рік</option>
+        <option>2025</option>
+        <option>2024</option>
+      </select>
+
+      <div class="modal-actions">
+        <button type="button">Скасувати</button>
+        <button type="submit">Зберегти</button>
+      </div>
+    </form>
+  </div>
 </div>
-
+{% block scripts %}
+    <script src="{% static 'main_app/album.js' %}"></script>
+{% endblock %}
 {% endblock %}
