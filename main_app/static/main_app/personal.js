@@ -133,4 +133,27 @@ info.addEventListener('click',()=>{
         info.innerHTML += `Зберегти`
     }
 })
+let editImg2 = document.querySelector('.edit-avatar')
+// avatar-div content-hidden
+let contAvatar = document.querySelector('.avatar-div')
+let editContAvatar = document.querySelector('.content-hidden')
+let avatar = document.querySelector('#avatar')
+avatar.addEventListener('click',()=>{
+    if (!avatar.classList.contains('active')){
+        avatar.textContent = ''
+        avatar.append(editImg2)
+        avatar.innerHTML += `Зберегти`
+        avatar.classList.add('active')
+        contAvatar.classList.add('hidden')
+        editContAvatar.classList.remove('hidden')
+    }else{
+        avatar.textContent = ''
+        avatar.append(editImg2)
+        avatar.innerHTML += `Редагувати інформацію`
+        avatar.classList.remove('active')
+        contAvatar.classList.remove('hidden')
+        editContAvatar.classList.add('hidden')
+    }
 })
+})
+// edit-avatar

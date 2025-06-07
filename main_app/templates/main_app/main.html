@@ -17,6 +17,7 @@
 {% csrf_token %}
 <input type="hidden" id="request" value="{% url 'list' %}">
 <div id="bg" class="hidden"></div>
+<input type="hidden" name="" id="linkClose" value="{% static 'main_app/images/linkClose.png' %}">
 <form action="" method="post" id="modalForm" class="hidden" enctype="multipart/form-data">
   <input type="hidden" name="formType" value="modalForm">
   <input type="hidden" value="save" name="type" id="type">

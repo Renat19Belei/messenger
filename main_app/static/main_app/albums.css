@@ -18,9 +18,9 @@ body {
 
 .main-content-area {
     display: flex;
-    gap: 20px; 
-    padding: 20px;
-    max-width: 1200px;
+    gap: 1.0498687664vw; 
+    padding: 1.0498687664vw;
+    max-width: 62.992125984vw;
     width: 100%;
     box-sizing: border-box;
 }
@@ -41,27 +41,27 @@ body {
     width: 20.9973753281vw;
     padding: 1.0498687664vw;
     padding-left: 3.8vw;
-    padding: 0px 20px;
-    margin-left: 55px;
+    padding: 0 1.0498687664vw;
+    margin-left: 2.8871391076vw;
 }
 
 .menu-list .menu-item {
     display: block; 
-    margin-bottom: 8px;
+    margin-bottom: 0.41994750656vw;
     text-decoration: none;
     color: #666;
-    padding: 0 5px;
+    padding: 0 0.2624671916vw;
 }
 .menu-list .menu-title.active {
     font-weight: bold;
     color: #333;
-    padding: 10px 5px;
+    padding: 0.5249343832vw 0.2624671916vw;
     margin: 0;
-    width: 70px;
+    width: 3.6745406824vw;
 }
 .menu-title.active{
   color: #000000;
-  width: 63px;
+  width: 3.30708661416vw;
 }
 .menu-section {
     margin-top: 2vw;
@@ -78,7 +78,7 @@ body {
 
 .menu-list {
     list-style: none;
-    padding: px;
+    /* padding: vw; */
 }
 
 .menu-item {
@@ -106,37 +106,37 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.0498687664vw;
 }
 
 .my-photos-block {
     background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 0.5249343832vw;
+    padding: 1.0498687664vw;
     position: relative;
 }
 
 .my-photos-block .block-title {
-    font-size: 1.3em;
+    font-size: 0.83989501312vw;
     font-weight: bold;
     color: #333;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 1.0498687664vw;
 }
 
 .my-photos-block .add-photo-button {
-    
+    font-size: 0.73490813648vw;
     /* color: #666; */
     /* border: none; */
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 0.41994750656vw 0.7874015748vw;
+    border-radius: 1.0498687664vw;
     cursor: pointer;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
     font-weight: 500;
     position: absolute;
-    top: 20px;
-    gap: 5px;
-    right: 20px;
+    top: 1.0498687664vw;
+    gap: 0.2624671916vw;
+    right: 1.0498687664vw;
     display: flex;
     /* align-items: center; */
     background-color: white;
@@ -149,7 +149,7 @@ padding: 0.5249343832vw;
 display: flex;
 background-color: white;
 font-size: 0.73490813648vw;
-gap: 5px;
+gap: 0.2624671916vw;
 line-height: 1.0498687664vw;
 font-weight: 500;
 letter-spacing: -0.01em; */
@@ -168,9 +168,9 @@ letter-spacing: -0.01em; */
 
 .my-photos-block .photo-container {
     position: relative;
-    width: 200px;
-    height: 200px;
-    border-radius: 8px;
+    width: 10.498687664vw;
+    height: 10.498687664vw;
+    border-radius: 0.41994750656vw;
     overflow: hidden;
     background-color: #eee;
 }
@@ -187,10 +187,10 @@ letter-spacing: -0.01em; */
     bottom: 0;
     /* left: 0; */
     right: 0;
-    padding: 5px 0;
+    padding: 0.2624671916vw 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 0.5249343832vw;
 }
 
 
@@ -198,9 +198,9 @@ letter-spacing: -0.01em; */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 20px;
+    padding: 0.2624671916vw;
+    border-radius: 0.20997375328vw;
+    font-size: 1.0498687664vw;
 }
 /* .icon-img {
     width: 2.0997375328vw;
@@ -216,8 +216,8 @@ letter-spacing: -0.01em; */
 
 .no-album-block {
     background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 0.5249343832vw;
+    padding: 1.0498687664vw;
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -225,24 +225,29 @@ letter-spacing: -0.01em; */
 }
 
 .no-album-block p {
-    font-size: 1em;
+    font-size: 0.83989501312vw;
     color: #666;
     margin: 0;
 }
-
+.icon{
+    width:1.0498687664vw ;
+    height: 1.0498687664vw;
+}
 .no-album-block .create-album-button {
     
     background-color: white;
     border: solid 0.05249343832vw #543C52;
     /* border: none; */
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 0.41994750656vw 0.7874015748vw;
+    border-radius: 1.0498687664vw;
     cursor: pointer;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
+    
+    font-size: 0.73490813648vw;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.2624671916vw;
 }
 
 .no-album-block .create-album-button:hover {

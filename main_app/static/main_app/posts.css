@@ -26,9 +26,9 @@
     /* opacity: 1; */
 }
 .imgClose{
-    margin-right: 15px;
-    width: 25px;
-    height: 25px;
+    margin-right: 0.7874015748vw;
+    /* width: 0.83989501312vw;
+    height: 0.83989501312vw; */
 }
 .plus{
     display: flex;
@@ -165,7 +165,7 @@ background-color: transparent;
 #beer{
     width: 1.0498687664vw;
 }
-#addTags, #addTagsImg{
+#addTags, #addTagsImg, .img-plus, .imgClose{
     width: 1.46981627296vw;
     /* height: 1.46981627296vw; */
 }

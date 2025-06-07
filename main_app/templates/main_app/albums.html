@@ -17,11 +17,18 @@
                 </ul>
             </div>
         </aside>
-
+<!-- <aside class="sidebar">
+            <div class="menu-section">
+                <ul class="menu-list">
+                    <h3 class="menu-title active">Особлива інформація</h3>
+                    <a href="{% url 'albums' %}" class="menu-item">Альбоми</a>
+                </ul>
+            </div>
+        </aside> -->
         <div class="content-panel">
             <div class="my-photos-block">
                 <h2 class="block-title">Мої фото</h2>
-                <button class="add-photo-button"><img src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
+                <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
 
                 <div class="photo-container">
                     <img src="{% static 'main_app/images/avatar9.png' %}" alt="Моє фото">
@@ -34,7 +41,7 @@
 
             <div class="no-album-block">
                 <p>Немає ще жодного альбому</p>
-                <button class="create-album-button"><img src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
+                <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
             </div>
         </div>
     </div>

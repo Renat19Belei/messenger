@@ -17,6 +17,9 @@ header nav{
   justify-content: center;
   align-items: center;
   gap: 1.25984251968vw;
+  right: 5.22414698161vw;
+  /* left: 5.22414698161vw; */
+  position: absolute;
 }
 header nav a {
   

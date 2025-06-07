@@ -26,32 +26,33 @@
         <main class="content">
             <div class="card">
                 <div class="header-card">
+                    <!-- <div class="header-part"> -->
                     <p>Картка профілю</p>
-                    <button class="save" id="view-mode"><img src="{% static 'main_app/images/edit.png' %}" alt="">Редагувати інформацію</button>
-                    <div id="edit-mode" style="display: none;">
-                    <div class="header">
-                    <span>Картка профілю</span>
-                    <buttonclass="save-btn"> Зберегти</button>
+                    <button class="save" id="avatar"><img src="{% static 'main_app/images/edit.png' %}" alt="" class="edit-avatar">Редагувати інформацію</button>
+                
+                </div>
+                
+                <div class="main-card ">
+                    <div class="avatar-div">
+
+                        <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
+                        <div class="data-part">
+                            <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>
+                            <p>@{{request.user.username}}</p>
+                        </div>
                     </div>
-                    <div class="content">
+                    <div class="content-hidden hidden">
                     <p>Оберіть або завантажте фото профілю</p>
+                    <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
                     <div class="photo-options">
-                        <button> Додайте фото</button>
-                        <button> Оберіть фото</button>
+                        <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
+                        <button class="add-button"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</button>
                     </div>
-                    <h2>Lina Li</h2>
+                    <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>
                     <label>
                         <br>Ім'я користувача<br/>
-                        <input type="text" value="@thelili"/>
+                        <input type="text" value="@{{request.user.username}}" class="FormInput gray-input" readonly/>
                     </label>
-                    </div>
-                </div>
-                <div class="main-card">
-                    
-                    <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
-                    <div class="data-part">
-                        <h2>{{request.user.first_name}}</h2>
-                        <p>@{{request.user.username}}</p>
                     </div>
                 </div>
 
