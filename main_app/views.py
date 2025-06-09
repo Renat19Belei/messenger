@@ -133,6 +133,10 @@ class CustomLogoutView(LogoutView):
 # def get(request):
 #     return render(request, 'main_app/main.html')
 def personal(request:WSGIRequest):
+    print(request.user,request.user.is_authenticated)
+    if not request.user.is_authenticated:
+
+        return redirect('login')
     profile_form = ProfileForm(user=request.user)
     
     profile = Profile.objects.get(user_id = request.user.pk)
