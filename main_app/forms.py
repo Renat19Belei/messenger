@@ -109,7 +109,7 @@ class UserSet(forms.Form):
 class ProfileForm(forms.Form):
     first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput firstNameInput"}),label='Ім’я',max_length=255)
     last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "","class": "FormInput lastNameInput"}),label='Прізвище',max_length=255)
-    date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "", "class":"FormInput DateInput"}), label="Дата народження")
+    date_of_birthday = forms.DateField(widget=forms.DateInput(attrs={"type":'date',"placeholder": "", "class":"FormInput DateInput"}), label="Дата народження")
     
 # <<<<<<< HEAD
     email = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "FormInput"}), label="Електронна адреса")
@@ -124,12 +124,14 @@ class ProfileForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
-        
-        print()
+        profile=Profile.objects.get(user=self.user)
+        print(profile.pk,profile.user,profile.birthday)
         self.fields.get('first_name').widget.attrs['value'] = self.user.first_name
         self.fields.get('last_name').widget.attrs['value'] = self.user.last_name
         self.fields.get('email').widget.attrs['value'] = self.user.email
         self.fields.get('password').widget.attrs['value'] = '••••••••••••••'
+        print(profile.birthday,67890-909987565432)
+        self.fields.get('date_of_birthday').widget.attrs['value'] = profile.birthday
         for field_name, field in self.fields.items():
             field.widget.attrs['readonly'] = 'readonly'
             field.widget.attrs['required'] = 'required'

@@ -134,6 +134,9 @@ class CustomLogoutView(LogoutView):
 #     return render(request, 'main_app/main.html')
 def personal(request:WSGIRequest):
     profile_form = ProfileForm(user=request.user)
+    
+    profile = Profile.objects.get(user_id = request.user.pk)
+    print(profile,'profile')
     if request.method == 'POST':
         print('hello')
         user = request.user
@@ -141,6 +144,12 @@ def personal(request:WSGIRequest):
         user.first_name = request.POST.get('first_name')
         user.last_name =request.POST.get('last_name')
         user.email = request.POST.get('email')
+        print(request.POST.get('date_of_birthday'))
+        
+        print(request.POST)
+        profile.birthday = request.POST.get('date_of_birthday')
+        print(profile.birthday)
+        profile.save()
         user.save()
         # if profile_form.is_valid():
         #     profile_form.save(user=request.user)
@@ -148,7 +157,7 @@ def personal(request:WSGIRequest):
     # request.user.password.
     # user = request.user
     return render(request, 'main_app/personal.html',context={
-        "form":profile_form,
+        "form":profile_form
         # 'first_name':user.first_name,
         # 'last_name':user.last_name,
         # 'email':user.email,

@@ -8,7 +8,8 @@ from .forms import UserForm,AuthenticationForm2
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
-from .models import Code,Profile
+from .models import Code
+from main_app.models import Profile
 from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta

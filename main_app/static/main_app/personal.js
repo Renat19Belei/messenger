@@ -97,6 +97,7 @@ info.addEventListener('click',()=>{
             //     },
 
             // })
+            // DateInput
             $.ajax({
             type: 'post',
             url: document.querySelector('#personalUrl').value,
@@ -105,7 +106,8 @@ info.addEventListener('click',()=>{
                 csrfmiddlewaretoken:document.querySelector('input').value,
                 first_name: document.querySelector('[name="first_name"]').value,
                 last_name: document.querySelector('[name="last_name"]').value,
-                email: document.querySelector('[name="email"]').value
+                email: document.querySelector('[name="email"]').value,
+                date_of_birthday: document.querySelector('[name="date_of_birthday"]').value
 
             },
             success:function(request){

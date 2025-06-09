@@ -38,11 +38,13 @@ class Album(models.Model):
     theme = models.CharField(max_length=255)
 
 class Profile(models.Model):
-    icon = models.ImageField(upload_to= "profile/")
+    icon = models.ImageField(upload_to= "profile/",null=True,blank=True)
     birthday = models.DateField(blank= True,null=True)
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
-    album = models.ForeignKey(to=Album, on_delete= models.CASCADE,null=True)
-    electronicSignature = models.ImageField(upload_to= "images/electronicSignature/")
+    # album = models.ManyToManyField(to=Album,blank=True)
+    name_view = models.BooleanField(default=True)
+    electronicSignature_view = models.BooleanField(default=True)
+    electronicSignature = models.ImageField(upload_to= "images/electronicSignature/",null=True,blank=True)
 
 
 
