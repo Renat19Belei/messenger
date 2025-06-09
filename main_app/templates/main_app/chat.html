@@ -1,5 +1,47 @@
-{% extends "base.html" %}
-{% block title %}Список чатів{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'main_app/chat.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+{% endblock %}
+
 {% block content %}
-<h1>Список чатів</h1>
+{% render_header 0 0 0 0 1 %}
+<main class="chat-wrapper">
+        <aside class="sidebar">
+            <button class="create-group">➕ Створити груповий чат</button>
+            <div class="contacts">
+                <h3><img src="{% static 'main_app/images/people2.png' %}" alt=""  class="icon">Контакти</h3>
+                <input type="text" placeholder="Пошук" class="search">
+                <ul class="contact-list">
+                    <li><img src="{% static '' %}" alt=""> Jane Cooper</li>
+                    <li><img src="{% static '' %}" alt=""> Cameron Williamson</li>
+                    <li><img src="{% static '' %}" alt=""> Leslie Alexander</li>
+                </ul>
+            </div>
+        </aside>
+
+        <section class="chat-panel">
+            <div class="chat-card">
+                <h2>Почніть нове спілкування</h2>
+                <p>Оберіть контакт зі списку ліворуч або створіть групу, щоб почати спілкування</p>
+            </div>
+        </section>
+
+        <aside class="chat-info">
+            <div class="messages">
+                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt="">Повідомлення <a href="">Дивитись всі</a></div>
+                <ul>
+                    <li><img src="{% static '' %}" alt=""> Mona Lisa<br><small>Привіт! Як справи ?</small></li>
+                </ul>
+            </div>
+            <div class="groups">
+                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt=""> Групові чати <a href="">Дивитись всі</a></div>
+                <ul>
+                    <li><span class="group-icon">NP</span> New group<br><small>Чудово!</small></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
 {% endblock %}
