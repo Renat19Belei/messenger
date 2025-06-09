@@ -195,4 +195,18 @@ editElec.addEventListener('click', () =>{
     document.querySelector('canvas').classList.toggle('hidden')
 })
 })
+let avatar = document.querySelector('#avatar')
+const fileInput = document.getElementById('fileInput');
+fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    profileImage.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
 // edit-avatar
