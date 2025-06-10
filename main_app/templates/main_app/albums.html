@@ -28,7 +28,8 @@
         <div class="content-panel">
             <div class="my-photos-block">
                 <h2 class="block-title">Мої фото</h2>
-                <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""><input type="file" id="imageInput" name="images" accept="image/*" multiple> Додати фото</button>
+                <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
+                <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
 
                 <div class="photo-container">
                     <img src="{% static 'main_app/images/avatar9.png' %}" alt="Моє фото">
@@ -63,11 +64,11 @@
       </select>
 
       <label for="yearSelect" >Рік альбому</label>
-      <input id="yearSelect" name="year" maxlength="4" type="number">
-        <option value="" disabled selected hidden>Оберіть рік</option>
-        <option>2025</option>
-        <option>2024</option>
-    </input>
+      <input id="yearSelect" name="year" maxlength=4 type="number" >
+        <!-- <option value="" disabled selected hidden>Оберіть рік</option> -->
+        <!-- <option>2025</option> -->
+        <!-- <option>2024</option> -->
+    <!-- </input> -->
       <div class="modal-actions">
         <button type="button">Скасувати</button>
         <button type="submit">Зберегти</button>

@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.core.exceptions import ValidationError
+from django.conf import settings
 # Create your models here.
 class Tags(models.Model):
     name = models.CharField(max_length=100)
@@ -16,7 +17,7 @@ class Link(models.Model):
         return self.url
 
 class User_Post(models.Model):
-    user  = models.ForeignKey(to=User, on_delete= models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_posts')
     name = models.CharField(max_length=255)
     theme = models.CharField(max_length=255,null=True)
     tags  = models.ManyToManyField(to=Tags)
@@ -40,7 +41,7 @@ class User_Post(models.Model):
 class Profile(models.Model):
     icon = models.ImageField(upload_to= "profile/",null=True,blank=True)
     birthday = models.DateField(blank= True,null=True)
-    user = models.OneToOneField(to = User, on_delete= models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     # album = models.ManyToManyField(to=Album,blank=True)
     name_view = models.BooleanField(default=True)
     electronicSignature_view = models.BooleanField(default=True)
@@ -53,7 +54,8 @@ class Album(models.Model):
     theme = models.CharField(max_length=255)
     user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='user')
 
-
+# class CustomUser(AbstractUser):
+#     pass
     
 # <<<<<<< Renat
 # class Link(models.Model):

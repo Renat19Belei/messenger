@@ -24,7 +24,8 @@ urlpatterns = [
     path('', MainPageView, name='main'),
     path('user/', include("user_app.urls")),
     path('main/', include("main_app.urls")),
-    
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

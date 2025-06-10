@@ -236,14 +236,12 @@ body {
     color: #666;
     font-size: 14px;
 }
-/* .messages .icon{ */
-/* } */
-.messages .icon, .groups .icon{
-
+.icon {
     width: 20px;
     height: 20px;
 }
-.icon{
-    width: 20px;
-    height: 20px;
+.messages .icon, .groups .icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }

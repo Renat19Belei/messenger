@@ -46,8 +46,8 @@
                     <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
                     <div class="photo-options">
                         <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
-                        <button class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"><input type="file" id="imageInput" name="images" accept="image/*" multiple> Оберіть фото</button>
-                        
+                        <button class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</button>
+                        <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
                     </div>
                     <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>
                     <label>

@@ -320,7 +320,7 @@ letter-spacing: -0.01em; */
 }
 
 
-.modal select {
+.modal select, .modal input {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid #ddd;
