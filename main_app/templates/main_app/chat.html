@@ -14,11 +14,18 @@
             <div class="contacts">
                 <h3><img src="{% static 'main_app/images/people2.png' %}" alt=""  class="icon">Контакти</h3>
                 <input type="text" placeholder="Пошук" class="search">
-                <ul class="contact-list">
-                    <li><img src="{% static '' %}" alt=""> Jane Cooper</li>
-                    <li><img src="{% static '' %}" alt=""> Cameron Williamson</li>
-                    <li><img src="{% static '' %}" alt=""> Leslie Alexander</li>
-                </ul>
+    <ul class="contact-list">
+                {% if contacts %}
+                    {% for contact in contacts %}
+                        <li class="contact-item">
+                           <img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar">
+                             <div class="contact-info">
+                                <span class="contact-name">{{ contact.first_name }} {{ contact.last_name }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
             </div>
         </aside>
 

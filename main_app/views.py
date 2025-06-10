@@ -9,6 +9,12 @@ from django.core.handlers.wsgi import WSGIRequest
 import json
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
+from django.contrib.auth.views import LogoutView
+from .forms import messageForm,UserSet,ProfileForm
+from .models import User_Post, Profile, CustomUser, Tags, Images, Link
+from django.conf import settings
 # Create your views here.
 class MainPageView(FormView):
     template_name = "main_app/main.html"
@@ -198,3 +204,12 @@ def chats(request):
     return render(request, 'main_app/chat.html')
 def albums(request):
     return render(request, 'main_app/albums.html')
+
+@login_required 
+def chat_view(request):
+    users_queryset = CustomUser.objects.filter(is_active=True).exclude(pk=request.user.pk).order_by('first_name')
+
+    context = {
+        'contacts': users_queryset, 
+    }
+    return render(request, 'main_app/chat.html', context)
