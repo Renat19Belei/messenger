@@ -16,15 +16,25 @@ body {
 }
 
 .sidebar {
-    width: 20%;
-    background: white;
-    border-right: 1px solid #e0dfe9;
+    width: 391px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
+.searchImg{
+    position: absolute;
+    top: 40%;
+    left: 10;
+    transform: translate(0,-50%);
+}
+.searches{
+    /* width: 14.645833969116211px; */
+    /* display: flex; */
+    position: relative;
+    width: 318.870361328125px;
+    height: 42px;
+}
 .create-group {
     background-color: #543C52;
     color: white;
@@ -35,9 +45,23 @@ body {
     margin-bottom: 1rem;
     cursor: pointer;
     transition: 0.3s ease;
+    justify-content: center;
+
     font-size: 14px;
 }
-
+.chat-wrapper{
+    position: absolute;
+    
+  right: 5.22414698161vw;
+  left: 5.22414698161vw;
+}
+.img-conteiner{
+    display: flex;
+    /* justify-content: center; */
+    gap: 5px;
+    align-items: center;
+    border-radius: 1234px;
+}
 .create-group:hover {
     background-color: #543C52;
 }
@@ -48,13 +72,17 @@ body {
 }
 
 .search {
-    width: 100%;
+    width: 318.870361328125px;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
-
+.contacts {
+    background: white;
+    
+    border-right: 1px solid #e0dfe9;
+}
 .contact-list li {
     list-style: none;
     padding: 0.5rem;
@@ -65,7 +93,11 @@ body {
     border-radius: 8px;
     transition: background 0.2s;
 }
+.text-group{
+    display: flex;
+    flex-direction: column;
 
+}
 .contact-list li:hover {
     background-color: #f0e8fc;
 }
@@ -77,8 +109,9 @@ body {
 }
 
 .chat-panel {
-    width: 50%;
+    width: 75%;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     background: #f7f3fc;
@@ -171,7 +204,7 @@ body {
 }
 
 .chat-panel {
-    width: 55%;
+    /* width: 55%; */
     background-color: #f7f2fc;
     display: flex;
     align-items: center;
@@ -183,7 +216,7 @@ body {
     background-color: #fff;
     padding: 40px;
     border-radius: 16px;
-    max-width: 500px;
+    /* max-width: 500px; */
     width: 100%;
     text-align: center;
     height: 100%;
@@ -202,4 +235,15 @@ body {
 .chat-card p {
     color: #666;
     font-size: 14px;
+}
+/* .messages .icon{ */
+/* } */
+.messages .icon, .groups .icon{
+
+    width: 20px;
+    height: 20px;
+}
+.icon{
+    width: 20px;
+    height: 20px;
 }

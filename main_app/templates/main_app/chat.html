@@ -10,14 +10,15 @@
 {% render_header 0 0 0 1 0 %}
 <main class="chat-wrapper">
         <aside class="sidebar">
-            <button class="create-group"><img src="{% static 'main_app/images/whitePlus.png' %}" alt=""> Створити груповий чат</button>
+            <button class="create-group img-conteiner"><img src="{% static 'main_app/images/whitePlus.png' %}" alt="" class="icon"> Створити груповий чат</button>
             <div class="contacts">
-                <h3><img src="{% static 'main_app/images/people2.png' %}" alt=""  class="icon">Контакти</h3>
-                <input type="text" placeholder="Пошук" class="search">
+                <h3 class="contacts-h3 img-conteiner"><img src="{% static 'main_app/images/people2.png' %}" alt=""  class="icon">Контакти</h3>
+                <!-- search.png -->
+                <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
                 <ul class="contact-list">
-                    <li><img src="{% static '' %}" alt=""> Jane Cooper</li>
-                    <li><img src="{% static '' %}" alt=""> Cameron Williamson</li>
-                    <li><img src="{% static '' %}" alt=""> Leslie Alexander</li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Jane Cooper</li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Cameron Williamson</li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Leslie Alexander</li>
                 </ul>
             </div>
         </aside>
@@ -31,15 +32,17 @@
 
         <aside class="chat-info">
             <div class="messages">
-                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt="">Повідомлення <a href="">Дивитись всі</a></div>
+                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt=""  class="icon">Повідомлення <a href="">Дивитись всі</a></div>
                 <ul>
-                    <li><img src="{% static '' %}" alt=""> Mona Lisa<br><small>Привіт! Як справи ?</small></li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt="" > Mona Lisa<br><small>Привіт! Як справи ?</small></li>
                 </ul>
+                <!-- Indicator.png -->
             </div>
+            <!-- group.png -->
             <div class="groups">
-                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt=""> Групові чати <a href="">Дивитись всі</a></div>
+                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" class="icon" alt="">Групові чати <a href="">Дивитись всі</a></div>
                 <ul>
-                    <li><span class="group-icon">NP</span> New group<br><small>Чудово!</small></li>
+                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div></li>
                 </ul>
             </div>
         </aside>

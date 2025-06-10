@@ -31,6 +31,7 @@ class User_Post(models.Model):
         if self.tags.count()>9: 
             raise ValidationError("Максимальна кількість тегів дорівнює 9")
         return ok
+# User_Post.objects.get(pk=1).images.
 class Album(models.Model):
     image = models.ImageField(upload_to="album")
     name = models.CharField(max_length=255)
@@ -41,7 +42,7 @@ class Profile(models.Model):
     icon = models.ImageField(upload_to= "profile/",null=True,blank=True)
     birthday = models.DateField(blank= True,null=True)
     user = models.OneToOneField(to = User, on_delete= models.CASCADE)
-    # album = models.ManyToManyField(to=Album,blank=True)
+    album = models.ManyToManyField(to=Album,blank=True)
     name_view = models.BooleanField(default=True)
     electronicSignature_view = models.BooleanField(default=True)
     electronicSignature = models.ImageField(upload_to= "images/electronicSignature/",null=True,blank=True)

@@ -112,25 +112,11 @@ for (let i of new Array(9)){
     const reader = new FileReader();
     let number = 0
     reader.onload = (loadEvent) => {
-    // trash
-    // filesToUpload.splice(index, 1);
-// .imagesDiv
         
         let div = document.createElement("div")
         div.id = `div${number}`
         let img = document.createElement("img")
         img.src = loadEvent.target.result
-        // input = document.createElement("img")
-        
-
-        // try {
-            
-        //     input.value = JSON.stringify(JSON.parse(input.value) + [loadEvent.target.result])
-        // } catch (error) {
-            
-        //     input.value = JSON.stringify([loadEvent.target.result])
-        // }
-        // console.log(loadEvent.target.result) images1
         img.classList.add('image')
         let trashImg = document.createElement("img")
         trashImg.src = trashUrl

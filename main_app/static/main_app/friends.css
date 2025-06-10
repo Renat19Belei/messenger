@@ -80,12 +80,13 @@
 }
 
 .content {
-    flex: 1;
+    /* flex: 1; */
     padding: 1.0498687664vw;
     display: flex;
     flex-direction: column;
     gap: 1.0498687664vw;
     overflow-y: auto;
+    width: 74.5vw;
     /* height: 50%; */
 }
 .list-a{
@@ -102,6 +103,7 @@ body {
     margin-bottom: 1.0498687664vw;
     flex-wrap: wrap;display: flex;
     gap: 0.41994750656vw;
+
 }
 
 .section-header {
@@ -150,7 +152,7 @@ body {
     gap: 0.62992125984vw;
     flex-direction: column;
     align-items: center;
-    font-family: GT Walsheim Pro;
+    /* font-family: GT Walsheim Pro; */
     font-weight: 700;
     font-size: 1.25984251968vw;
     line-height: 100%;
