@@ -28,7 +28,7 @@
         <div class="content-panel">
             <div class="my-photos-block">
                 <h2 class="block-title">Мої фото</h2>
-                <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
+                <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""><input type="file" id="imageInput" name="images" accept="image/*" multiple> Додати фото</button>
 
                 <div class="photo-container">
                     <img src="{% static 'main_app/images/avatar9.png' %}" alt="Моє фото">
@@ -50,24 +50,24 @@
   <div class="modal">
     <button class="close-modal">×</button>
     <h2>Створити альбом</h2>
-    <form>
-      <label for="albumName">Назва альбому</label>
-      <input type="text" id="albumName" placeholder="Назва альбому"/>
+    <form method="post">
+      {% csrf_token %}
+      <label for="albumName" >Назва альбому</label>
+      <input type="text" id="albumName" placeholder="Назва альбому" name="name">
 
-      <label for="themeSelect">Оберіть тему</label>
-      <select id="themeSelect">
+      <label for="themeSelect" >Оберіть тему</label>
+      <select id="themeSelect"name="theme">
         <option>Природа</option>
         <option>Подорожі</option>
         <option>Друзі</option>
       </select>
 
-      <label for="yearSelect">Рік альбому</label>
-      <select id="yearSelect">
+      <label for="yearSelect" >Рік альбому</label>
+      <input id="yearSelect" name="year" maxlength="4" type="number">
         <option value="" disabled selected hidden>Оберіть рік</option>
         <option>2025</option>
         <option>2024</option>
-      </select>
-    <input type="month">
+    </input>
       <div class="modal-actions">
         <button type="button">Скасувати</button>
         <button type="submit">Зберегти</button>

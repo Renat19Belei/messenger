@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import  LogoutView
-from .forms import messageForm,UserSet,ProfileForm
+from .forms import messageForm,UserSet,ProfileForm,AlbumForm
 from .models import *
 from django.http import JsonResponse
 from django.core.handlers.wsgi import WSGIRequest
@@ -197,4 +197,12 @@ def friends_account(request,pk):
 def chats(request):
     return render(request, 'main_app/chat.html')
 def albums(request):
+    profile  = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        album = Album.objects.create(
+            name = request.POST.get("name"),
+            year = request.POST.get("year"),
+            theme = request.POST.get("theme"),
+            user = profile
+        )
     return render(request, 'main_app/albums.html')
