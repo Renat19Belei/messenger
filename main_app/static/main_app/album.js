@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const openBtn = document.querySelector(".create-album-button");
   const closeBtn = document.querySelector(".close-modal");
   const cancelBtn = document.querySelector("#albumModal .modal-actions button[type='button']");
+  
 
   if (openBtn && modal) {
     openBtn.addEventListener("click", () => {
@@ -22,3 +23,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+const add = document.querySelector(".add-photo-button")
+add.addEventListener("click")

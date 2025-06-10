@@ -150,3 +150,7 @@ class UserPostForm(forms.ModelForm):
     class Meta:
         model = User_Post
         fields = ['name', 'theme', 'tags', 'text', 'images']
+class AlbumForm(forms.ModelForm):
+    class Meta:
+        model = Album
+        fields = ['image', 'name', 'year', 'theme']
