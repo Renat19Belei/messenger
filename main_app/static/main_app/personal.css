@@ -160,7 +160,6 @@ justify-content: space-between;
     justify-content: center;
 }
 .avatar-div{
-    
     display: flex;
     flex-direction: column;
     gap: 1.25984251968vw;
@@ -245,6 +244,7 @@ letter-spacing: -0.01em;
     align-items:center;
 }
 .avatar{
+    border-radius: 50%;
     width: 5.03937007873vw;
     height: 5.03937007873vw;
 }.left{
@@ -254,6 +254,15 @@ letter-spacing: -0.01em;
 /* h4{
     margin-bottom: ;
 } */
+.color{
+    border-radius: 50%;
+    width: 2.624671916vw;
+    height: 2.624671916vw;
+}
+.colors{
+    display: flex;
+    gap: 0.5249343832vw;
+}
 .checks{
     gap: 1.25984251968vw;
     display: flex;

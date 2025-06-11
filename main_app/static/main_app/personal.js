@@ -65,6 +65,7 @@ let canvas = document.querySelector('canvas')
 canvas.style.padding = 0
 let draw = canvas.getContext('2d')
 draw.fillStyle = 'black'
+draw.fillStyle = 'blue'
 let drawing = false
 
 function coor(event){
@@ -81,7 +82,10 @@ document.addEventListener('mouseup',()=> {
 let pastplace = []
 canvas.addEventListener('mousemove',(event)=>{
     if (drawing){
+        console.log(draw.fillStyle,'rtyuioupuoiouytreww')
+        // draw.fillStyle = '#800080'
         draw.beginPath();
+        // draw.strokeStyle  = '#800080'
         draw.moveTo(pastplace[0], pastplace[1]);
         pastplace = coor(event)
         draw.lineTo(pastplace[0], pastplace[1]);
@@ -95,7 +99,7 @@ let editImg = document.querySelector('.edit-img')
 info.addEventListener('click',()=>{
     let info = document.querySelector('#info')
     let inputs = document.querySelectorAll('.FormInput') 
-    console.log(editImg)
+    // console.log(editImg)
     if (info.classList.contains('active')){
         info.classList.remove('active')
         for (let input of inputs){
@@ -112,20 +116,29 @@ info.addEventListener('click',()=>{
 
             // })
             // DateInput
+            let first_name = document.querySelector('[name="first_name"]').value
+            let last_name = document.querySelector('[name="last_name"]').value
             $.ajax({
             type: 'post',
             url: document.querySelector('#personalUrl').value,
             data: {
 
                 csrfmiddlewaretoken:document.querySelector('input').value,
-                first_name: document.querySelector('[name="first_name"]').value,
-                last_name: document.querySelector('[name="last_name"]').value,
+                first_name: first_name,
+                last_name: last_name,
                 email: document.querySelector('[name="email"]').value,
-                date_of_birthday: document.querySelector('[name="date_of_birthday"]').value
+                date_of_birthday: document.querySelector('[name="date_of_birthday"]').value,
+                type:'main_data'
 
             },
             success:function(request){
-                console.log('ok')
+
+                // main_data h4
+                let name_tags =document.querySelectorAll('.name-h2, h4')
+                console.log(name_tags)
+                for(let tag of name_tags){
+                    tag.textContent = `${first_name} ${last_name}`
+                }
             }})
         
         
@@ -137,7 +150,7 @@ info.addEventListener('click',()=>{
     }else{
         info.classList.add('active')
         for (let input of inputs){
-            console.log(!input.classList.contains('password'),input)
+            // console.log(!input.classList.contains('password'),input)
             if (!input.classList.contains('password')){
                 input.requered = true
                 input.readOnly = false
@@ -154,6 +167,17 @@ let editImg2 = document.querySelector('.edit-avatar')
 let contAvatar = document.querySelector('.avatar-div')
 let editContAvatar = document.querySelector('.content-hidden')
 let avatar = document.querySelector('#avatar')
+let fileInput = document.getElementById('fileInput')
+fileInput.addEventListener('change',()=>{
+    reader.readAsDataURL(fileInput.files[0])
+})
+const reader = new FileReader();
+reader.onload = (loadEvent) => {
+    let avatars = document.querySelectorAll('.avatar')
+    for (let avatar of avatars){
+        avatar.src = loadEvent.target.result
+    }
+}
 avatar.addEventListener('click',()=>{
     if (!avatar.classList.contains('active')){
         avatar.textContent = ''
@@ -169,6 +193,27 @@ avatar.addEventListener('click',()=>{
         avatar.classList.remove('active')
         contAvatar.classList.remove('hidden')
         editContAvatar.classList.add('hidden')
+        // 
+        if (fileInput.files[0]!=undefined){
+
+        
+        let formData = new FormData()
+        formData.append('profile_icon', fileInput.files[0])
+        // console.log(fileInput.files[0])
+        formData.append('csrfmiddlewaretoken',document.querySelector('input').value)
+        formData.append('type', 'profile')
+        
+        $.ajax({
+            type: 'post',
+            url: document.querySelector('#personalUrl').value,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success:function(request){
+
+            
+            }})
+        }
     }
 })
 
@@ -178,10 +223,12 @@ let editImg3 = document.querySelector('.edit-elec-img')
 let editElec = document.querySelector('.editElec')
 // let editContAvatar = document.querySelector('.content-hidden')
 let elecButton = document.querySelector('.edit-elec-button')
+let electronicSignature = document.querySelector('#electronicSignature')
 // let listOfchange = document.querySelectorAll(".checkInput") + [editElec]
-console.log(elecButton)
+// console.log(elecButton)
 elecButton.addEventListener('click',()=>{
     if (!elecButton.classList.contains('active')){
+        
         elecButton.textContent = ''
         elecButton.append(editImg3)
         elecButton.innerHTML += `Зберегти`
@@ -197,32 +244,79 @@ elecButton.addEventListener('click',()=>{
         elecButton.textContent = ''
         elecButton.append(editImg3)
         elecButton.innerHTML += `Редагувати інформацію`
+        // toDataURL check
+        
+        // document.querySelector('#check').src = canvas.toDataURL('images/png')
         elecButton.classList.remove('active')
         // checkInput
         for (let inp of document.querySelectorAll(".checkInput")){
             inp.disabled = true
         }
         editElec.classList.add('hidden')
+        // if (canvas.classList.contains('hidden')){
+        let formData = new FormData()
+        canvas.toBlob(function (blob){
+
+            formData.append('elec', blob, 'canvas_image.png')
+            // console.log(fileInput.files[0])
+            formData.append('csrfmiddlewaretoken',document.querySelector('input').value)
+            formData.append('type', 'elec')
+            
+            // elec
+            $.ajax({
+                type: 'post',
+                url: document.querySelector('#personalUrl').value,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success:function(request){
+                   
+                    
+                    // electronicSignature
+            }})
+
+        },'images/png')
+        electronicSignature.src = canvas.toDataURL('images/png')
+        canvas.classList.add('hidden')
+        editElec.classList.add('hidden')
+        colors[0].classList.add('hidden')
+        colors[1].classList.add('hidden')
+        electronicSignature.classList.remove('hidden')
         // contAvatar.classList.remove('hidden')
         // editContAvatar.classList.add('hidden')
     }
 })
+// let color = 'black'
+function colorEdit(event){
+    console.log(event.target.style.background)
+    draw.strokeStyle = event.target.style.background
+    // color = event.target.style.background
+}
+// let electronicSignature = document.querySelector('#electronicSignature')
+let colors = document.querySelectorAll('.color')
+colors[0].addEventListener('click',colorEdit)
+colors[1].addEventListener('click',colorEdit)
 editElec.addEventListener('click', () =>{
-    document.querySelector('canvas').classList.toggle('hidden')
+    // color
+    electronicSignature.classList.toggle('hidden')
+    canvas.classList.toggle('hidden')
+    editElec.classList.toggle('hidden')
+    colors[0].classList.toggle('hidden')
+    colors[1].classList.toggle('hidden')
 })
 })
 let avatar = document.querySelector('#avatar')
-const fileInput = document.getElementById('fileInput');
-fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
+// const fileInput = document.getElementById('fileInput');
+// fileInput.addEventListener('change', function() {
+//             const file = this.files[0];
+//             if (file) {
+//                 const reader = new FileReader();
 
-                reader.addEventListener('load', function() {
-                    profileImage.setAttribute('src', this.result);
-                });
+//                 reader.addEventListener('load', function() {
+//                     profileImage.setAttribute('src', this.result);
+//                 });
 
-                reader.readAsDataURL(file);
-            }
-        });
+//                 reader.readAsDataURL(file);
+//             }
+//         });
 // edit-avatar

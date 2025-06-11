@@ -362,6 +362,9 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+.avatar-big{
+  border-radius: 50%;
+}
 .small{
   font-size: 0.62992125984vw;
   width: 19.5800524934vw;

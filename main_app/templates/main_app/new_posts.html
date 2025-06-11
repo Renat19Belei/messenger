@@ -1,9 +1,10 @@
 
 {% load static %}
-
+{% load tags %}
 {% for post in list_posts %}
 <div class="post" id="post{{post.pk}}">
-    <div class="user"><img class="avatar" src="{% static 'main_app/images/Indicator.png' %}" alt="">
+    <div class="user">
+        {% profile_icon post.user %}
         {% if post.user.first_name %}
             {{ post.user.first_name}} 
         {% else %}

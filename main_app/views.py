@@ -139,7 +139,6 @@ class CustomLogoutView(LogoutView):
 # def get(request):
 #     return render(request, 'main_app/main.html')
 def personal(request:WSGIRequest):
-    print(request.user,request.user.is_authenticated)
     if not request.user.is_authenticated:
 
         return redirect('login')
@@ -150,24 +149,33 @@ def personal(request:WSGIRequest):
     if request.method == 'POST':
         print('hello')
         user = request.user
-        # profile_form = ProfileForm(request.POST,user=request.user)
-        user.first_name = request.POST.get('first_name')
-        user.last_name =request.POST.get('last_name')
-        user.email = request.POST.get('email')
-        print(request.POST.get('date_of_birthday'))
-        
-        print(request.POST)
-        profile.birthday = request.POST.get('date_of_birthday')
-        print(profile.birthday)
+        # print
+        type = request.POST.get('type')
+        if type == 'main_data':
+            user.first_name = request.POST.get('first_name')
+            user.last_name =request.POST.get('last_name')
+            user.email = request.POST.get('email')
+            profile.birthday = request.POST.get('date_of_birthday')
+            user.save()
+            # profile
+            # elec
+        elif type == 'profile':
+            profile.icon = request.FILES.get('profile_icon')
+        elif type == 'elec':
+
+            profile.electronicSignature = request.FILES.get('elec')
+            print(profile.electronicSignature,8976543213)
         profile.save()
-        user.save()
         # if profile_form.is_valid():
         #     profile_form.save(user=request.user)
         # print(profile_form)
     # request.user.password.
     # user = request.user
     return render(request, 'main_app/personal.html',context={
-        "form":profile_form
+        "form":profile_form,
+        'profile':profile
+
+        # 'profile_icon':profile.icon
         # 'first_name':user.first_name,
         # 'last_name':user.last_name,
         # 'email':user.email,
@@ -204,13 +212,13 @@ def chats(request):
     return render(request, 'main_app/chat.html')
 def albums(request):
 # <<<<<<< HEAD
-    profile  = Profile.objects.get(user=request.user)
+    # profile  = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         album = Album.objects.create(
             name = request.POST.get("name"),
             year = request.POST.get("year"),
             theme = request.POST.get("theme"),
-            user = profile
+            user = request.user
         )
     return render(request, 'main_app/albums.html')
 # =======

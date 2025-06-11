@@ -34,8 +34,8 @@
                 
                 <div class="main-card ">
                     <div class="avatar-div">
-
-                        <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
+                        {% profile_icon request.user %}
+                        <!-- profile_icon -->
                         <div class="data-part">
                             <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>
                             <p>@{{request.user.username}}</p>
@@ -43,10 +43,11 @@
                     </div>
                     <div class="content-hidden hidden">
                     <p>Оберіть або завантажте фото профілю</p>
-                    <img src="{% static 'main_app/images/Indicator.png'%}" class="avatar" alt="">
+                    {% profile_icon request.user %}
                     <div class="photo-options">
                         <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
-                        <button class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</button>
+                        <label for="fileInput"  class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</label>
+                        <input type="file" id="fileInput" name="profile_icon" hidden>
                         <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
                     </div>
                     <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>
@@ -87,14 +88,25 @@
                     <p><input type="checkbox" disabled checked name="" id="checkName" class="checkInput"> <label for="checkName" class="checker">Ім'я та призвіще</label></p>
                     <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
                     <p><input type="checkbox" disabled name="" id="checkEmail" class="checkInput"> <label for="checkEmail" class="checker">Мій електронний підпис</label></p>
-                    <img src="{% static 'main_app/images/Frame 1000002435.png' %}" alt="" id="electronicSignature">
-                    <button class="save editElec hidden">Редагувати підпис  </button>
+                    <!-- electronicSignature -->
+                     <!-- {% static 'main_app/images/Frame 1000002435.png' %} -->
+                    {% if profile.electronicSignature %}
+                        <img src="{{profile.electronicSignature.url}}" alt="" id="electronicSignature">
+                    {% else %}
+                        <img src="{% static 'main_app/images/Frame 1000002435.png' %}" alt="" id="electronicSignature">
+                    {% endif %}
                     <style>
                         canvas {
                             cursor: url("{% static 'main_app/images/edit-2.png' %}") 0 30, auto;
                         }
                     </style>
                     <canvas class="hidden"></canvas>
+                    <div class="colors">
+                        <div style="background:#543C52;" class="color hidden"></div>
+                        <div style="background:black;" class="color hidden"></div>
+                    </div>
+                    <button class="save editElec hidden">Редагувати підпис  </button>
+                    
                 </div>
             </div>
         </main>
