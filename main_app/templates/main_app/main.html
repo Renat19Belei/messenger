@@ -85,11 +85,13 @@
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
+      {% if request.user.is_authenticated %}
       {% profile_icon request.user "avatar-big" %}
       <!-- <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li"> -->
       <div class="online-dot"></div>
       <h2>{{request.user.first_name}}</h2>
       <p>@{{request.user.username}}</p>
+      {% endif %}
     </div>
     <div class="stats">
       <div><strong>566</strong><br><span class="grey">Дописи</span></div>
