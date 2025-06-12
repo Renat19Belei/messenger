@@ -101,7 +101,10 @@ body {
     background-color: transparent;
     padding: 0;
     margin-bottom: 1.0498687664vw;
-    flex-wrap: wrap;display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    max-height: 28.0314960629vw;
+    /* flex-direction: column; */
     gap: 0.41994750656vw;
 
 }
@@ -169,7 +172,7 @@ body {
     border: 0.10498687664vw solid #f0f2f5;
     width: 5.03937007873vw;
     height: 5.03937007873vw;
-    overflow: visible;
+    /* overflow: visible; */
 }
 
 .friend-info {

@@ -169,3 +169,9 @@ background-color: transparent;
     width: 1.46981627296vw;
     /* height: 1.46981627296vw; */
 }
+.center-icon{
+    display: flex;
+    align-items: center;
+    font-size: 0.73490813648vw;
+    gap: 0.41994750656vw;
+}

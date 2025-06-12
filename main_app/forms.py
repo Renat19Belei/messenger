@@ -53,7 +53,7 @@ class messageForm(forms.Form):
                 user_post = User_Post.objects.create(
                     text=text,
                     user = user,
-                    reviewers = 0,
+                    # reviewers = 0,
                     likes = 0,
                     name = self.cleaned_data.get('name'),
                     theme = self.cleaned_data.get('theme'),

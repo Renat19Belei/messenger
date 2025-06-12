@@ -10,15 +10,15 @@
 {% endblock %}
 
 {% block content %}
+{% csrf_token %}
 {% render_header 0 0 1 %}
 <div class="friends-app">
-
 
     <div class="app-container">
         <aside class="sidebar">
             <div class="menu-section">
                 <ul class="menu-list">
-                    <h3 class="menu-title active"><a class="list-a" href="{% url 'friends' '1123' %}">Головна</a></h3>
+                    <h3 class="menu-title active"><a class="list-a" href="{% url 'friends' '123' %}">Головна</a></h3>
                     <li class="menu-item"><a class="list-a" href="{% url 'friends' '1' %}">Запити</a></li>
                     <li class="menu-item"><a class="list-a" href="{% url 'friends' '2' %}">Рекомендації</a></li>
                     <li class="menu-item"><a class="list-a" href="{% url 'friends' '3' %}">Всі друзі</a></li>
@@ -35,34 +35,9 @@
     <!-- <div class="friends-part"> -->
 
     <!-- </div> -->
-    <div class="friend-card">
-        <input type="hidden" value="{% url 'friends_account' 1 %}">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar1.png' %}" class="friend-avatar" >
-            <div class="friend-info">
-                <strong class="friend-name">Уchor Aung</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-confirm">Підтвердити</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
+     <!-- requests -->
+    {% friends_cards requests %}
     
-    <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar2.png' %}" class="friend-avatar" alt="">
-            <div class="friend-info">
-                <strong class="friend-name">Ann Ann</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-confirm">Підтвердити</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
 </section></section>
 {% endif %}
 {% if "2" in typek %}
@@ -72,34 +47,7 @@
     <a href="#" class="see-all">Дивитись всі</a>
 </div>
 <section class="friends-section">
-    
-    <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar3.png' %}" class="friend-avatar" >
-            <div class="friend-info">
-                <strong class="friend-name">Уchor Aung</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-add">Додати</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
-    
-        <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar4.png' %}" class="friend-avatar" alt="Аватар">
-            <div class="friend-info">
-                <strong class="friend-name">Ann Ann</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-confirm">Підтвердити</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
+
 </section></section>
 {% endif %}
 {% if "3" in typek %}
@@ -108,49 +56,9 @@
     <h2 class="section-title">Всі друзі</h2>
     <a href="#" class="see-all">Дивитись всі</a>
 </div>
-<section class="friends-section">
+<section class="friends-section allFriends">
+    {% friends_cards friends %}
     
-    <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar5.png' %}" class="friend-avatar" alt="Аватар">
-            <div class="friend-info">
-                <strong class="friend-name">Уchor Aung</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-add">Додати</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
-
-            <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar6.png' %}" class="friend-avatar" alt="Аватар">
-            <div class="friend-info">
-                <strong class="friend-name">Ann Ann</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-confirm">Підтвердити</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
-
-    <div class="friend-card">
-        <div class="friend-profile">
-            <img src="{% static 'main_app/images/avatar7.png' %}" class="friend-avatar" alt="Аватар">
-            <div class="friend-info">
-                <strong class="friend-name">Уchor Aung</strong>
-                <span class="friend-username">@thelili</span>
-            </div>
-        </div>
-        <div class="friend-actions">
-            <button class="btn btn-add">Додати</button>
-            <button class="btn btn-delete">Видалити</button>
-        </div>
-    </div>
     
     
 </section></section>

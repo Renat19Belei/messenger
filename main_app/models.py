@@ -25,7 +25,7 @@ class User_Post(models.Model):
     # link  = models.CharField(max_length=255, null=True)
     links  = models.ManyToManyField(to=Link)
     images = models.ManyToManyField(to=Images)
-    reviewers = models.IntegerField()
+    reviewers = models.ManyToManyField(blank=True,to=User)
     likes = models.IntegerField()
     def clean(self):
         ok = super().clean()
@@ -44,8 +44,9 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     # album = models.ManyToManyField(to=Album,blank=True)
     name_view = models.BooleanField(default=True)
-    electronicSignature_view = models.BooleanField(default=True)
+    electronicSignature_view = models.BooleanField(default=False)
     electronicSignature = models.ImageField(upload_to= "images/electronicSignature/",null=True,blank=True)
+    friends = models.ManyToManyField(to="self", blank=True, symmetrical=True)
 
 class Album(models.Model):
     image = models.ManyToManyField(to=Images,blank= True , related_name='image1')

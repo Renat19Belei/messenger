@@ -19,7 +19,13 @@ def render_header(main=0, posts=0, friends=0, chats=0, personal=0):
     # 
     return pages
 # 'profile_icon':profile.icon
+
+# users
 @register.inclusion_tag(filename = "main_app/inclusiontags/profile_icon.html")
 def profile_icon(user, clas = 'avatar'):
     profile = Profile.objects.get(user=user)
     return {'profile_icon':profile.icon,'class':clas}
+
+@register.inclusion_tag(filename = "main_app/inclusiontags/friends_cards.html")
+def friends_cards(users,text= 'Підтвердити'):
+    return {"users":users, "text": text}

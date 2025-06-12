@@ -111,7 +111,6 @@ def new_posts(request:WSGIRequest):
             all_posts = User_Post.objects.filter(user = request.user)
             # all_posts = User_Post.objects.all()
         if 'friends' in type:
-            print(int("".join(type.split('friends'))),'qweewq')
             user = User.objects.get(pk= int("".join(type.split('friends'))))
             all_posts = User_Post.objects.filter(user = user)
             print(all_posts, user)
@@ -127,6 +126,7 @@ def new_posts(request:WSGIRequest):
             try:
                 print(len(all_posts)-(int(post)),'423567890-9')
                 list_posts.append(all_posts[len(all_posts)-(int(post)-1)]) 
+                list_posts[-1].reviewers.add( request.user)
             except Exception as error:
                 print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
         return render(request, "main_app/new_posts.html", context={'list_posts':list_posts, "type":type})
@@ -203,14 +203,41 @@ class Posts(FormView):
             self.request.POST.getlist('link'))
         return super().form_valid(form)
 
-def friends(request,typek='123'):
-    return render(request, 'main_app/friends.html', context={'typek':typek})
-def friends_account(request,pk):
+def friends(request:WSGIRequest,typek='123'):
+    users = User.objects.exclude(pk= request.user.pk)
+    user = Profile.objects.get(user = request.user)
+    # ,friends=request.user.pk
+    requests = []
+    friends_users = []
+    for request_user in users:
+        # 
+        if not Profile.objects.filter(user = request_user).exclude(friends=user):
+            friends_users.append(request_user)
+        else:
+            requests.append(request_user)
+    if request.method == 'POST':
+        post = json.loads(request.body)
+        pk = post.get("pk")
+        # json
+        print(pk)
+        user_friend = Profile.objects.get(user_id = pk)
+        print(user_friend.birthday)
+        print(user_friend.birthday,user.birthday)
+        user_friend.friends.add(user)
+        user_friend.save()
+    # print(user.friends.all()[0].birthday)
+    print(requests,friends_users)
+    return render(request, 'main_app/friends.html', context={
+        'typek':typek,
+        'requests':requests,
+        'friends':friends_users
+    })
+def friends_account(request:WSGIRequest,pk):
     user =User.objects.get(pk = pk)
     return render(request, 'main_app/friends_account.html',context={'pk':pk,'user':user})
-def chats(request):
+def chats(request:WSGIRequest):
     return render(request, 'main_app/chat.html')
-def albums(request):
+def albums(request:WSGIRequest):
 # <<<<<<< HEAD
     # profile  = Profile.objects.get(user=request.user)
     if request.method == 'POST':
@@ -225,9 +252,8 @@ def albums(request):
 #     return render(request, 'main_app/albums.html')
 
 # @login_required 
-def chat_view(request):
+def chat_view(request:WSGIRequest):
     users_queryset = User.objects.filter(is_active=True).exclude(pk=request.user.pk)
-    print(users_queryset)
     context = {
         'contacts': users_queryset, 
     }
