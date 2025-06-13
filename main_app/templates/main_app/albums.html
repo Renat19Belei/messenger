@@ -39,11 +39,26 @@
                     </div>
                 </div>
             </div>
-
-            <div class="no-album-block">
-                <p>Немає ще жодного альбому</p>
+            
+            <div>
                 <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
-            </div>
+                {% if albums %}
+                    {% for album in albums %}
+                        <div class="album-card">
+                            <h3>{{ album.name }}</h3>
+                            <p>Рік: {{ album.year }}</p>
+                            <p>Тема: {{ album.theme }}</p>
+                            <input type="file" id="imageInput" name="images" accept="image/*" multiple>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-album-block">
+                        <p>Немає ще жодного альбому</p>
+                        
+                    </div>
+                {% endif %}
+                </div>
+            
         </div>
     </div>
 </div>
