@@ -247,7 +247,9 @@ def albums(request:WSGIRequest):
             theme = request.POST.get("theme"),
             user = request.user
         )
-    return render(request, 'main_app/albums.html')
+        print(album)
+        user_albums = Album.objects.filter(user=request.user)
+    return render(request, 'main_app/albums.html', context= {"albums" :user_albums})
 # =======
 #     return render(request, 'main_app/albums.html')
 
