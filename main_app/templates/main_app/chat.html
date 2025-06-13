@@ -4,6 +4,7 @@
 {% block link %}
 <link rel="stylesheet" href="{% static 'main_app/chat.css' %}">
 <link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+<script src="{% static 'main_app/chat.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -21,23 +22,24 @@
                     <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Leslie Alexander</li>
                 </ul>
 ======= -->
-                <h3><img src="{% static 'main_app/images/people2.png' %}" alt="" class="icon">Контакти</h3>
+                <h3 class="contact-h3"><img src="{% static 'main_app/images/people2.png' %}" alt="" class="icon">Контакти</h3>
                 <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
     <ul class="contact-list">
                 {% if contacts %}
                     {% for contact in contacts %}
-                        <li class="contact-item">
-                           <img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar">
+                        <li class="contact-item" id="user{{contact.pk}}">
+                           <!-- <img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"> -->
+                           {% profile_icon contact "contact-avatar" %}
                              <div class="contact-info">
                                 <span class="contact-name">{{ contact.first_name }} {{ contact.last_name }}</span>
                             </div>
-                            <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"><div class="contact-info"><span class="contact-name">Jane Cooper</span></div></li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Cameron Williamson</li>
+                            <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"><div class="contact-info"><span class="contact-name">Jane Cooper</span></div></li> -->
+                <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Cameron Williamson</li>
                 <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Leslie Alexander</li>
                 <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Robert Fox</li>
                 <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Jacob Jones</li>
                 <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Brooklyn Simmons</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Albert Flores</li>
+                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Albert Flores</li> -->
                         </li>
                     {% endfor %}
                 {% endif %}
@@ -48,50 +50,63 @@
 
         <section class="chat-panel">
             <div class="chat-card">
-                <h2>Почніть нове спілкування</h2>
-                <p>Оберіть контакт зі списку ліворуч або створіть групу, щоб почати спілкування</p>
+                <div id="haederCard" style="display: none;">
+                    <div class="chat-exit">
+                        
+                        <img src="{% static 'main_app/images/left_arrow.png' %}" alt="" class="icon exit-img">
+                        <!-- left_arrow -->
+                        <div class="chat-icon">
+                            {% profile_icon request.user "avatar current-group-avatar" %}
+                            <div class="chat-data">
+                                <h3>Friend</h3>
+                                <p>в мережі</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="center-message">
+                    <h2>Почніть нове спілкування</h2>
+                    <p>Оберіть контакт зі списку ліворуч або створіть групу, щоб почати спілкування</p>
+                </div>
+                <footer id="chatCard" style="display: none;">
+                    <input type="text" name="" id="messageInput" placeholder="Повідомлення">
+                    <div class="send-part">
+                        <img src="{% static 'main_app/images/em.png' %}" alt="">
+                        <img src="{% static 'main_app/images/img.png' %}" alt="">
+                        <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt=""></button> 
+                        <!-- img.png -->
+                    </div>
+                </footer>   
             </div>
         </section>
 
         <aside class="chat-info">
             <div class="messages">
-                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" alt=""  class="icon">Повідомлення <a href="">Дивитись всі</a></div>
+                <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" alt=""  class="icon">Повідомлення</div> <a href="">Дивитись всі</a></div>
                 <ul>
                     <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
                 </ul>
                 <ul>
-                    <li><img src="{% static 'main_app/images/Indicatorrr.png' %}" alt="" > Ann Ti<br><small>Привіт! Як справи ?</small><span class="message-date">25.04.2025</span></li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
                 </ul>
                 <ul>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt="" > Ann Ti<br><small>Привіт! Як справи ?</small><span class="message-date">25.04.2025</span></li>
+                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
                 </ul>
-                <ul>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt="" > Ann Ti<br><small>Привіт! Як справи ?</small><span class="message-date">25.04.2025</span></li>
-                </ul>
-                <ul>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt="" > Ann Ti<br><small>Привіт! Як справи ?</small><span class="message-date">25.04.2025</span></li>
-                </ul>
+                
             </div>
             <div class="groups">
-                <div class="title"><img src="{% static 'main_app/images/chat.png' %}" class="icon" alt="">Групові чати <a href="">Дивитись всі</a></div>
+                <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" class="icon" alt="">Групові чати</div> <a href="">Дивитись всі</a></div>
                 <ul>
                     <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div><span class="message-date">09:41</span></li>
+                <!-- </ul> -->
+                <!-- <ul> -->
+                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div><span class="message-date">09:41</span></li>
+                <!-- </ul> -->
+                <!-- <ul> -->
+                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div><span class="message-date">09:41</span></li>
                 </ul>
-                                <ul>
-                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> Ann Ti<small>Чудово!</small></div><span class="message-date">25.04.2025</span></li>
-                </ul>
-                                <ul>
-                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> Ness Ty<small>Чудово!</small></div><span class="message-date">25.04.2025</span></li>
-                </ul>
-                                <ul>
-                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> Ann Ti<small>Чудово!</small></div><span class="message-date">25.04.2025</span></li>
-                </ul>
-                                <ul>
-                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> Ann Ti<small>Чудово!</small></div><span class="message-date">25.04.2025</span></li>
-                </ul>
-                                <ul>
-                    <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> Ann Ti<small>Чудово!</small></div><span class="message-date">25.04.2025</span></li>
-                </ul>
+                
             </div>
         </aside>
     </main>

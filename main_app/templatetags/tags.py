@@ -23,7 +23,10 @@ def render_header(main=0, posts=0, friends=0, chats=0, personal=0):
 # users
 @register.inclusion_tag(filename = "main_app/inclusiontags/profile_icon.html")
 def profile_icon(user, clas = 'avatar'):
-    profile = Profile.objects.get(user=user)
+    if type(user)==type(131):
+        profile = Profile.objects.get(user_id=user)
+    else:
+        profile = Profile.objects.get(user=user)
     return {'profile_icon':profile.icon,'class':clas}
 
 @register.inclusion_tag(filename = "main_app/inclusiontags/friends_cards.html")

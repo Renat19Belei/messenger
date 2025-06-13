@@ -18,6 +18,7 @@ body {
 .sidebar {
     width: 391px;
     padding: 20px;
+    height: 43.7795275589vw;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -119,11 +120,34 @@ body {
     padding: 40px 20px;
     text-align: center;
 }
-
+#haederCard{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
 .start-chat {
     text-align: center;
 }
-
+.chat-exit, .chat-icon{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.chat-icon{
+    gap: 10px;
+}
+.chat-icon.icon{
+    margin: 0;
+}
+.chat-data{
+    text-align: left;
+}
 .start-chat h2 {
     color: #543C52;
     margin-bottom: 0.5rem;
@@ -168,6 +192,7 @@ body {
     align-items: center;
     font-weight: bold;
     margin-bottom: 10px;
+
 }
 .title a:hover {
     text-decoration: underline;
@@ -211,12 +236,60 @@ body {
     justify-content: center;
     padding: 40px 20px;
 }
-
+.avatar {
+    height: 2.41469816272vw;
+    width: 2.41469816272vw;
+    border-radius: 50%;
+}
+/* .chat-card .hidden{
+    display: none;
+} */
+#chatCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+}
+.send-part{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-left: 24px;
+}
+ .send-button{
+    background-color: #543C52;
+    height: 40px;
+    border-radius: 190px;
+    width: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+ }
+.contact-h3{
+    gap: 8px;
+    display: flex;
+    align-items: center;
+}
+#messageInput{
+    width: 350px;
+    border-radius: 10px;
+    flex: 1;
+    height: 42px;
+    padding-left: 6px;
+    /* gap: 6px; */
+    display: flex;
+    /* text-align: left 5px; */
+}
 .chat-card {
     background-color: #fff;
     padding: 40px;
     border-radius: 16px;
     /* max-width: 500px; */
+    position: relative;
     width: 100%;
     text-align: center;
     height: 100%;
