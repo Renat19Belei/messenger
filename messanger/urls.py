@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main_app.views import MainPageView
+from post_app.views import MainPageView
 from . import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -24,6 +24,8 @@ urlpatterns = [
     path('', MainPageView, name='main'),
     path('user/', include("user_app.urls")),
     path('main/', include("main_app.urls")),
+    path('chat/', include("chat_app.urls")),
+    path('post/', include("post_app.urls")),
     # path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:

@@ -6,14 +6,12 @@ urlpatterns = [
     # path('logout/', LogoutView.as_view(), name = "logout"),
     # path('', views.MainPageView.as_view(), name='main'),
     path('personal/', personal, name='personal'),
-    path('posts/', Posts.as_view(), name='posts'),
     path('friends/<str:typek>', friends, name='friends'),
-    path('chats/', views.chat_view, name='chats'),
-    path('remove/<int:pk>', remove, name='remove'),
-    path('get/<int:pk>', gets, name='get'),
-    path('list_posts/', new_posts, name= 'list'),
+    
+    
     path('friends_account/<int:pk>',friends_account,name="friends_account"),
     path('albums/', albums, name='albums'),
     path('personal/', personal, name='personal')
     # <str:posts>
 ]
+print(bool([]),32146789)

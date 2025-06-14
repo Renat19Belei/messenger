@@ -11,9 +11,7 @@ class messageForm(forms.Form):
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
 
     text = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Напишіть текст публікації","class": "BigFormInput textInput"}),label='',max_length=2000)
-    # link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False)
-# >>>>>>> origin/Renat
-    # images = forms.ImageField(widget=forms.HiddenInput(attrs={"id":"imageInput","type":"file", "accept":"image/*", "multiple":True}))
+
     #     
     def send(self, user, images,type = 'save',imgs=[],remove_List=[[],[]],tags=[],links = []):
         print(user)
@@ -21,11 +19,9 @@ class messageForm(forms.Form):
                 
             images_list = []
             tags_list = []
-            print(imgs.split(','),remove_List)
             try:
                 count = 0
                 for img in json.loads(imgs):
-                    print(remove_List[1],str(count) in remove_List[1],str(count),remove_List[1])
                     if not (str(count) in remove_List[1]):
                         images_list += [Images.objects.get(pk=int(img))]
                     count+= 1

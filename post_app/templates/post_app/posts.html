@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load tags %}
+{% load post_tags %}
 {% if request.user.is_authenticated %}
 {% endif %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'main_app/main.css' %}">
-<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
+<link rel="stylesheet" href="{% static 'post_app/main.css' %}">
+<link rel="stylesheet" href="{% static 'post_app/posts.css' %}">
 <script src="{% static 'main_app/jquery.js' %}" defer></script>
-<script src="{% static 'main_app/script.js' %}" defer></script>
-<script src="{% static 'main_app/post.js' %}" defer></script>
-<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+<script src="{% static 'post_app/script.js' %}" defer></script>
+<script src="{% static 'post_app/post.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'post_app/header.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -81,13 +82,14 @@
       <h2>{{request.user.first_name}}</h2>
       <p>@{{request.user.username}}</p>
     </div>
-    <div class="stats">
+    {% status request.user %}
+    <!-- <div class="stats">
       <div><strong>0</strong><br><span class="grey">Дописи</span></div>
       <div class="vertical-line"></div>
       <div><strong>0</strong><br><span class="grey">Читачі</span></div>
       <div class="vertical-line"></div>
       <div><strong>0</strong><br><span class="grey">Друзі</span></div>
-    </div>
+    </div> -->
   </div>
   
 

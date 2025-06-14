@@ -94,7 +94,7 @@ body {
     gap: 0.5rem;
     cursor: pointer;
     border-radius: 0.41994750656vw;
-    transition: background 0.2s;
+    /* transition: background 0.2s; */
 }
 .text-group{
     display: flex;

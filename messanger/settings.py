@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
-    'user_app'
+    'user_app',
+    'post_app',
+    'chat_app'
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,13 @@ TEMPLATES = [
 ]
 
 ASGI_APPLICATION = 'messanger.asgi.application'
-
+CHANNEL_LAYERS = {
+    # Створюємо канал, на якому знаходиться користувач по замовчуванню
+    "default":{
+        # Вказуємо, що інформація про усі з'єднання зберігається в пам'яті комп'ютера
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

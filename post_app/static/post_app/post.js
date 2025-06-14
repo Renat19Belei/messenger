@@ -2,18 +2,25 @@ document.querySelector('.publiaction').addEventListener('submit', (event)=> {
     event.preventDefault()
     document.querySelector('#bg').classList.remove('hidden')
     document.querySelector('#modalForm').classList.remove('hidden')
+    
+    const textMessage = document.querySelector('.textInput')
+    const messageContent = document.querySelector('.input')
+        
+    textMessage.value = messageContent.value
+    messageContent.value = '';
 })
+// '1' - 1 = 0
+// '1' + 1 = '11'
 document.querySelector('.close').addEventListener('click', (event)=> {
-    console.log('wrewererw')
     document.querySelector('#bg').classList.add('hidden')
     document.querySelector('#modalForm').classList.add('hidden')
 })
 document.querySelector('#bg').addEventListener('click', (event)=> {
-    console.log('wrewererw')
+
     document.querySelector('#bg').classList.add('hidden')
     document.querySelector('#modalForm').classList.add('hidden')
 })
-console.log('conect')
+console.log('connect')
 
 // let plus = null
 // let counts = null

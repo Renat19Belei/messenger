@@ -2,6 +2,7 @@
 {% load static %}
 {% load tags %}
 {% for post in list_posts %}
+
 <div class="post" id="post{{post.pk}}">
     <div class="user">
         {% profile_icon post.user %}
@@ -53,6 +54,7 @@
         {% endif %}
     </div>
         <div class="reaction">
+
         <span class="center-icon"><img src="{% static 'main_app/images/like.png' %}" alt=""  class="icon">{{post.likes }} вподобань</span>
         <span class="center-icon"><img src="{% static 'user_app/images/eye_on.png' %}" alt=""  class="icon">{{post.reviewers.all | length }} Переглядів</span>
     </div>

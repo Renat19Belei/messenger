@@ -2,13 +2,14 @@
 {% load static %}
 {% load tags %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'main_app/chat.css' %}">
-<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
-<script src="{% static 'main_app/chat.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'chat_app/chat.css' %}">
+
+<script src="{% static 'chat_app/chat.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 {% render_header 0 0 0 1 0 %}
+<input type="hidden" value="{{ chat_group.pk }}" id="chatGroupPk">
 <main class="chat-wrapper">
         <aside class="sidebar">
             <button class="create-group img-conteiner"><img src="{% static 'main_app/images/whitePlus.png' %}" alt="" class="icon"> Створити груповий чат</button>
@@ -29,9 +30,9 @@
                     {% for contact in contacts %}
                         <li class="contact-item" id="user{{contact.pk}}">
                            <!-- <img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"> -->
-                           {% profile_icon contact "contact-avatar" %}
+                           {% profile_icon contact.user "contact-avatar" %}
                              <div class="contact-info">
-                                <span class="contact-name">{{ contact.first_name }} {{ contact.last_name }}</span>
+                                <span class="contact-name">{{ contact.user.first_name }} {{ contact.user.last_name }}</span>
                             </div>
                             <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"><div class="contact-info"><span class="contact-name">Jane Cooper</span></div></li> -->
                 <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Cameron Williamson</li>
