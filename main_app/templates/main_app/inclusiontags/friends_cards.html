@@ -3,7 +3,7 @@
     <div class="friend-card" id="card{{ user.pk }}">
         <input type="hidden" value="{% url 'friends_account' user.pk %}">
         <div class="friend-profile">
-            {% profile_icon user "friend-avatar avatar{{ user.pk }}" %}
+            {% profile_icon user "friend-avatar" %}
             <div class="friend-info">
                 <strong class="friend-name">{{user.first_name }} {{user.last_name}}</strong>
                 <span class="friend-username">@{{ user.username }}</span>

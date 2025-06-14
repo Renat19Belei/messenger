@@ -198,6 +198,7 @@ avatar.addEventListener('click',()=>{
 
         
         let formData = new FormData()
+        
         formData.append('profile_icon', fileInput.files[0])
         // console.log(fileInput.files[0])
         formData.append('csrfmiddlewaretoken',document.querySelector('input').value)

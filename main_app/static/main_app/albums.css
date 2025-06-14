@@ -102,10 +102,13 @@ body {
 }
 
 .content-panel {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     display: flex;
     flex-direction: column;
     gap: 1.0498687664vw;
+    position: absolute;
+    right: 5.22414698161vw;
+    width: 70vw;
 }
 
 .my-photos-block {
@@ -165,7 +168,15 @@ letter-spacing: -0.01em; */
     color: #333;
 }
 
-.my-photos-block .photo-container {
+.photo-container {
+    position: relative;
+    /* width: 10.498687664vw; */
+    /* height: 10.498687664vw; */
+    border-radius: 0.41994750656vw;
+    overflow: hidden;
+    background-color: #eee;
+}
+.photo-container {
     position: relative;
     width: 10.498687664vw;
     height: 10.498687664vw;
@@ -173,15 +184,21 @@ letter-spacing: -0.01em; */
     overflow: hidden;
     background-color: #eee;
 }
-
-.my-photos-block .photo-container img {
+.plus{
+  width: 2.0997375328vw;
+  height: 2.0997375328vw;
+}
+.text-album{
+  font-size: 0.83989501312vw;
+}
+.photo-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.my-photos-block .photo-overlay-actions {
+.photo-overlay-actions {
     position: absolute;
     bottom: 0;
     /* left: 0; */
@@ -193,7 +210,7 @@ letter-spacing: -0.01em; */
 }
 
 
-.my-photos-block .action-icon-btn {
+.action-icon-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -201,12 +218,74 @@ letter-spacing: -0.01em; */
     border-radius: 0.20997375328vw;
     font-size: 1.0498687664vw;
 }
+.image-label{
+  display: flex;
+  width: 10.498687664vw;
+  height: 10.498687664vw;
+  border-radius: 0.5249343832vw;
+  border: 0.05249343832vw solid #81818D;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+}
+.images-div{
+  display: flex;
+  gap: 0.83989501312vw;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+.image{
+  display: flex;
+  border-radius: 0.5249343832vw;
+  width: 10.498687664vw;
+  height: 10.498687664vw;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+}
+.album-options{
+  display: flex;
+  align-items: center;  
+}
+.album-data{
+  display: flex;
+  border-bottom: 0.05249343832vw solid #CDCED2;
+  gap: 0.83989501312vw;
+  padding-bottom: 0.83989501312vw;
+  
+}
+.ellipsis{
+    display: block;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 1.5748031496vw;
+  height: 1.5748031496vw;
+  position: relative;
+  right: 0;
+  top: 0;
+  
+}
+.year{
+  color:#81818D ;
+}
+.album-card{
+  display: flex;
+  background-color: white;
+  border: 0.05249343832vw solid #CDCED2;
+  border-radius: 0.5249343832vw;
+  gap: 0.83989501312vw;
+  padding: 0.83989501312vw;
+  flex-direction: column;
+  
+}
 /* .icon-img {
     width: 2.0997375328vw;
     height: 2.0997375328vw;
 } */
 
-.my-photos-block .action-icon-btn img {
+.action-icon-btn img {
     width: 2.0997375328vw;
     height: 2.0997375328vw;
     display: block;
@@ -270,47 +349,47 @@ letter-spacing: -0.01em; */
 
 .modal {
   background-color: #fff;
-  padding: 30px;
-  border-radius: 20px; 
+  padding: 1.5748031496vw;
+  border-radius: 1.0498687664vw; 
   width: 90%;
-  max-width: 450px;
+  max-width: 23.62204724vw;
   position: relative;
 }
 
 .close-modal {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 0.7874015748vw;
+  right: 0.7874015748vw;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.25984251968vw;
   cursor: pointer;
   color: #333;
 }
 
 .modal h2 {
-  font-size: 24px;
+  font-size: 1.25984251968vw;
   color: #333;
-  margin-bottom: 25px;
+  margin-bottom: 1.312335958vw;
   text-align: center;
 }
 
 .modal label {
   display: block;
-  font-size: 14px;
+  font-size: 0.73490813648vw;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 0.41994750656vw;
   font-weight: 500;
 }
 
 
 .modal input[type="text"] {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 16px;
+  padding: 0.62992125984vw 0.7874015748vw;
+  border: 0.05249343832vw solid #ddd;
+  border-radius: 0.41994750656vw;
+  margin-bottom: 1.0498687664vw;
+  font-size: 0.83989501312vw;
   color: #333;
   box-sizing: border-box;
 }
@@ -322,11 +401,11 @@ letter-spacing: -0.01em; */
 
 .modal select, .modal input {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 16px;
+  padding: 0.62992125984vw 0.7874015748vw;
+  border: 0.05249343832vw solid #ddd;
+  border-radius: 0.41994750656vw;
+  margin-bottom: 1.0498687664vw;
+  font-size: 0.83989501312vw;
   color: #999;
   appearance: none; 
   -webkit-appearance: none;
@@ -334,12 +413,17 @@ letter-spacing: -0.01em; */
   background-color: #fff;
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23333333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
   background-repeat: no-repeat;
-  background-position: right 15px center; 
-  background-size: 16px; 
+  background-position: right 0.7874015748vw center; 
+  background-size: 0.83989501312vw; 
   cursor: pointer;
   box-sizing: border-box;
 }
-
+.album-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
 .modal select.selected-value {
   color: #333;
 }
@@ -364,15 +448,15 @@ letter-spacing: -0.01em; */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 0.7874015748vw;
+  margin-top: 1.5748031496vw;
 }
 
 .modal-actions button {
-  padding: 12px 25px;
+  padding: 0.62992125984vw 1.312335958vw;
   border: none;
-  border-radius: 1234px; 
-  font-size: 14px;
+  border-radius: 1234vw; 
+  font-size: 0.73490813648vw;
   cursor: pointer;
 }
 

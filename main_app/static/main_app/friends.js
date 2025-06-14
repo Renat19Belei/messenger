@@ -1,15 +1,19 @@
 
 // avatar{{ user.pk }}
-// for (let card of document.querySelectorAll('.friend-card')){
-//     card.addEventListener("click",()=>{
-        
-//         window.location.href = card.querySelector('input').value
-//     })  
-// }
-// for (let card of document.querySelectorAll('.friend-avatar')){
-//     card.addEventListener("click",()=>{
-        
-//         window.location.href = card.querySelector('input').value
+for (let card of document.querySelectorAll('.friend-card')){
+    card.addEventListener("click",(event)=>{
+        console.log(event.target)
+        if (event.target != card.querySelector('.btn-confirm') && event.target != card.querySelector('.btn-delete')){
+
+            window.location.href = card.querySelector('input').value
+        }
+    })  
+}
+// for (let avatar of document.querySelectorAll('.friend-avatar')){
+//     avatar.addEventListener("click",()=>{
+//         let pk = avatar.className.split(' ')[1]
+
+//         window.location.href = avatar.querySelector('input').value
 //     })  
 // }
 // friend-avatar

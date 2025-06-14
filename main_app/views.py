@@ -241,14 +241,29 @@ def albums(request:WSGIRequest):
 # <<<<<<< HEAD
     # profile  = Profile.objects.get(user=request.user)
     if request.method == 'POST':
-        album = Album.objects.create(
-            name = request.POST.get("name"),
-            year = request.POST.get("year"),
-            theme = request.POST.get("theme"),
-            user = request.user
-        )
-        print(album)
-        user_albums = Album.objects.filter(user=request.user)
+        form_type = request.POST.get("type")
+        if form_type == 'album':
+            album = Album.objects.create(
+                name = request.POST.get("name"),
+                year = request.POST.get("year"),
+                theme = request.POST.get("theme"),
+                user = request.user
+            )
+        if form_type == 'images':
+            print('tyuyiuopiuytwefsvbgnyujk7iy6trewqergtyu798')
+            album = Album.objects.get(pk=int(request.POST.get("pk")))
+            img_list = []
+            print(request.FILES)
+            for img in request.FILES.getlist('images'):
+                print('imgmgg')                # img_list.append(Images.objects.create(image=img))
+                album.images.add(Images.objects.create(image=img))
+            
+            album.save()
+        # images 
+            print(album)
+            print(album.images.all())
+    user_albums = Album.objects.filter(user=request.user)
+    
     return render(request, 'main_app/albums.html', context= {"albums" :user_albums})
 # =======
 #     return render(request, 'main_app/albums.html')

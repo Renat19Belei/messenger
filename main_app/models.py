@@ -49,7 +49,7 @@ class Profile(models.Model):
     friends = models.ManyToManyField(to="self", blank=True, symmetrical=True)
 
 class Album(models.Model):
-    image = models.ManyToManyField(to=Images,blank= True , related_name='image1')
+    images = models.ManyToManyField(to=Images,blank= True)
     name = models.CharField(max_length=255)
     year = models.IntegerField(blank= True,null=True)
     theme = models.CharField(max_length=255)

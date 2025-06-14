@@ -21,7 +21,9 @@ document.querySelector('#reviewForm').action = document.querySelector('#link').v
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
-      <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li">
+      {% profile_icon user "avatar-big" %}
+      <!-- <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li"> -->
+       <!-- user -->
       <div class="online-dot"></div>
       <h2>{{user.first_name}}</h2>
       <p>@{{user.username}}</p>

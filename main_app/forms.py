@@ -153,4 +153,4 @@ class UserPostForm(forms.ModelForm):
 class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ['image', 'name', 'year', 'theme']
+        fields = ['name', 'year', 'theme']

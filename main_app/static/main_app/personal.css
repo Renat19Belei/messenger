@@ -74,6 +74,8 @@
     overflow-y: auto;
     height: 100%;
     margin-left: 8.3989501312vw;
+    position: absolute;
+    right: 5.22414698161vw;
 }
 .active{
   font-weight: 700;
@@ -101,7 +103,7 @@ canvas{
     flex: 1;
 }
 .card{
-    width: 48.5039370078vw;
+    width: 70vw;
     /* height: 13.8057742782vw; */
     border-radius: 0.5249343832vw;
     border: #CDCED2 solid 0.05249343832vw;
@@ -199,6 +201,7 @@ justify-content: space-between;
     display: flex;
     flex-direction: column;
 }
+
 .FormInput{
     width: 16.4304461942vw;
 height: 2.20472440945vw;
@@ -215,7 +218,7 @@ input:focus{
 }
 .main-card{
     gap: 1.25984251968vw;
-    width: 46.8241469816vw;
+    /* width: 46.8241469816vw; */
     display: flex;
     flex-direction: column;
     
