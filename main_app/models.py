@@ -53,7 +53,7 @@ class Album(models.Model):
     name = models.CharField(max_length=255)
     year = models.IntegerField(blank= True,null=True)
     theme = models.CharField(max_length=255)
-    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='user')
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='albums')
 
 # class CustomUser(AbstractUser):
 #     pass

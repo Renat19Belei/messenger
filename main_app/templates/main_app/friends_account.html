@@ -3,21 +3,68 @@
 {% load tags %}
 {% load post_tags %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'post_app/posts.css' %}">
-<link rel="stylesheet" href="{% static 'post_app/main.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'post_app/posts.css' %}"> 
+<link rel="stylesheet" href="{% static 'post_app/main.css' %}"> 
+<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/friends_account.css' %}">
+
 <script src="{% static 'main_app/jquery.js' %}" defer></script>
 <script src="{% static 'post_app/script.js' %}" defer></script>
-<link rel="stylesheet" href="{% static 'main_app/header.css' %}">
 {% endblock %}
 {% block content %}
 {% render_header 0 0 1 %}
-<input type="hidden" id="link" value="{% url 'friends' '123' %}">
-<script defer>
-document.querySelector('#reviewForm').action = document.querySelector('#link').value
-</script>
-<input type="hidden" id="request" value="{% url 'list' %}">
-<input type="hidden" class="type" name="type" value="friends{{ pk }}">
+
+
 <div class="container">
+    <aside class="sidebar">
+        <div class="profile-card">
+            <div class="profile-1">
+                {% if user.is_authenticated and user.profile %}
+                    {% profile_icon user "avatar-big" %}
+                    <div class="online-dot"></div>
+                    <h2>{{ user.first_name }}</h2>
+                    <p>@{{ user.username }}</p>
+                {% else %}
+                    <img class="avatar-big" src="{% static 'main_app/images/default_avatar.png' %}" alt="">
+                    <div class="online-dot"></div>
+                    <h2>Неизвестный</h2>
+                    <p>@guest</p>
+                {% endif %}
+            </div>
+            <div class="stats">
+                <div><strong>566</strong><br><span class="grey">Дописи</span></div>
+                <div class="vertical-line"></div>
+                <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
+                <div class="vertical-line"></div>
+                <div><strong>222</strong><br><span class="grey">Друзі</span></div>
+            </div>
+            <div class="profile-actions">
+                <button class="btn btn-primary">Повідомити</button>
+                <button class="btn btn-secondary">Відобразити</button>
+            </div>
+        </div>
+        <div class="albums-section"> 
+            <div class="section-header">
+                <h3 class="section-title">Альбоми</h3>
+                <a href="#" class="see-all">Дивитись всі</a>
+            </div>
+            <div class="mood-gallery">
+                {% if albums %}
+                    {% for album in albums %}
+                        <div class="mood-item">
+                            <h4 class="mood-title">{{ album.name }}</h4>
+                            <span class="mood-date">{{ album.year }}</span>
+                            <img src="{{ album.images.first.image.url }}" alt="{{ album.name }}">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Альбомів немає.</p>
+                {% endif %}
+            </div>
+        </div>
+    </aside>
 
 <aside class="sidebar">
   <div class="profile-card">
@@ -41,6 +88,5 @@ document.querySelector('#reviewForm').action = document.querySelector('#link').v
     </div>
   </main>
 </div>
-
 
 {% endblock %}

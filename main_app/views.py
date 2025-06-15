@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 
 from django.contrib.auth.views import  LogoutView
@@ -13,7 +13,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LogoutView
 from .forms import messageForm,UserSet,ProfileForm
-from .models import User_Post, Profile, Tags, Images, Link
+from .models import User_Post, Profile, Tags, Images, Link, Album
 from chat_app.models import ChatGroup
 # ChatGroup
 # from django.conf import settings
@@ -115,7 +115,6 @@ def friends(request:WSGIRequest,typek='123'):
     requests = []
     friends_users = []
     for request_user in users:
-        # 
         if not Profile.objects.filter(user = request_user).exclude(friends=user):
             friends_users.append(request_user)
         else:
@@ -123,18 +122,15 @@ def friends(request:WSGIRequest,typek='123'):
     if request.method == 'POST':
         post = json.loads(request.body)
         pk = post.get("pk")
-        # json
         user_friend = Profile.objects.get(user_id = pk)
         name = f"{request.user.pk} {user_friend.user.pk}"
         chat = ChatGroup.objects.filter(name = name)
-        # если немає чатів 
         if  not chat:
             chat_group = ChatGroup.objects.create(name = name)
             print(name)
         user_friend.friends.add(user)
         user_friend.save()
         
-    # print(user.friends.all()[0].birthday)
     print(requests,friends_users)
     return render(request, 'main_app/friends.html', context={
         'typek':typek,
@@ -142,8 +138,23 @@ def friends(request:WSGIRequest,typek='123'):
         'friends':friends_users
     })
 def friends_account(request:WSGIRequest,pk):
-    user =User.objects.get(pk = pk)
-    return render(request, 'main_app/friends_account.html',context={'pk':pk,'user':user})
+    user_to_view = get_object_or_404(User, pk=pk)
+    albums_for_friend = Album.objects.filter(user=user_to_view).order_by('-year', 'name') 
+    user_to_view_profile = None
+    try:
+        user_to_view_profile = Profile.objects.get(user=user_to_view)
+    except Profile.DoesNotExist:
+        print(f"'{user_to_view.username}'")
+
+
+    return render(request, 'main_app/friends_account.html', context={
+        'pk': pk,
+        'user': user_to_view,
+        'profile': user_to_view_profile, 
+        'albums': albums_for_friend,
+    })
+
+
 def albums(request:WSGIRequest):
 # <<<<<<< HEAD
     # profile  = Profile.objects.get(user=request.user)
