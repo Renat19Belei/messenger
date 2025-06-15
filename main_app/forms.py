@@ -75,7 +75,7 @@ class messageForm(forms.Form):
                     user_post.text = text
                     user_post.name = self.cleaned_data.get('name')
                     user_post.theme = self.cleaned_data.get('theme')
-                    user_post.link = self.cleaned_data.get('link')
+                    # user_post.link = self.cleaned_data.get('link')
                     user_post.images.set(images_list)
                     user_post.tags.set(tags_list)
                     user_post.save()

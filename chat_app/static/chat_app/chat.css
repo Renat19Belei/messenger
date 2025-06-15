@@ -101,6 +101,40 @@ body {
     flex-direction: column;
 
 }
+.details-message{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.7874015748vw;
+    width: 1.99475065616vw;
+    height: 0.57742782152vw;
+    margin-left: auto;
+    
+}
+.details-message .check-mark{
+    width: 0.5249343832vw;
+    height: 0.5249343832vw;
+}
+.time{
+    font-size: 0.5249343832vw;
+    color: #81818D;
+}
+.my-message{
+    background-color: #CDCED2;
+    height: 2.20472440944vw;
+    display: flex;
+    flex-direction: row;
+    position: static;
+    color: #070A1C;
+    align-items: center;
+    padding: 0.5249343832vw;
+    font-size: 0.73490813648vw;
+    gap: 0.5249343832vw;
+    border-radius: 0.31496062992vw;
+    margin-left: auto;
+    margin-right: 0;
+    width: min-content;
+}
 .contact-list li:hover {
     background-color: #f0e8fc;
 }
@@ -254,12 +288,27 @@ body {
 #chatCard{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 95%;
     position: absolute;
     bottom: 0.83989501312vw;
     left: 0.83989501312vw;
     right: 0.83989501312vw;
+    flex-direction: column;
+    gap: 1.25984251968vw;
+}
+.messages{
+    width: 95%;
+    gap: 0.5249343832vw;
+    display: flex;
+    flex-direction: column;
+}
+.footer{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }
 .send-part{
     display: flex;

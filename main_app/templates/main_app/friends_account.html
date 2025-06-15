@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load tags %}
+{% load post_tags %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
-<link rel="stylesheet" href="{% static 'main_app/main.css' %}">
+<link rel="stylesheet" href="{% static 'post_app/posts.css' %}">
+<link rel="stylesheet" href="{% static 'post_app/main.css' %}">
 <script src="{% static 'main_app/jquery.js' %}" defer></script>
-<script src="{% static 'main_app/script.js' %}" defer></script>
+<script src="{% static 'post_app/script.js' %}" defer></script>
 <link rel="stylesheet" href="{% static 'main_app/header.css' %}">
 {% endblock %}
 {% block content %}
@@ -28,13 +29,7 @@ document.querySelector('#reviewForm').action = document.querySelector('#link').v
       <h2>{{user.first_name}}</h2>
       <p>@{{user.username}}</p>
     </div>
-    <div class="stats">
-      <div><strong>566</strong><br><span class="grey">Дописи</span></div>
-      <div class="vertical-line"></div>
-      <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
-      <div class="vertical-line"></div>
-      <div><strong>222</strong><br><span class="grey">Друзі</span></div>
-    </div>
+    {% status user %}
   </div>
   
 

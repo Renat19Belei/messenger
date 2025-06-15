@@ -48,7 +48,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 # Дані, що передаємо у send_message_to_chat через параметр event
                 "text_data": text_data,
                 "username": username,
-                "date_time": saved_message.date_time
+                "date_time": saved_message.send_at
             }
         )
     

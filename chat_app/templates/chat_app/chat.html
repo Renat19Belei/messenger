@@ -10,6 +10,7 @@
 {% block content %}
 {% render_header 0 0 0 1 0 %}
 <input type="hidden" value="{{ chat_group.pk }}" id="chatGroupPk">
+<input type="hidden" id="checkMark" value="{% static 'main_app/images/check_mark.png' %}">
 <main class="chat-wrapper">
         <aside class="sidebar">
             <button class="create-group img-conteiner"><img src="{% static 'main_app/images/whitePlus.png' %}" alt="" class="icon"> Створити груповий чат</button>
@@ -70,15 +71,26 @@
                     <h2>Почніть нове спілкування</h2>
                     <p>Оберіть контакт зі списку ліворуч або створіть групу, щоб почати спілкування</p>
                 </div>
-                <footer id="chatCard" style="display: none;">
-                    <input type="text" name="" id="messageInput" placeholder="Повідомлення">
-                    <div class="send-part">
-                        <img src="{% static 'main_app/images/em.png' %}" alt="">
-                        <img src="{% static 'main_app/images/img.png' %}" alt="">
-                        <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt=""></button> 
-                        <!-- img.png -->
-                    </div>
-                </footer>   
+                
+
+                    
+                    <footer id="chatCard" style="display: none;">
+                        <main class="messages">
+                            <!-- <p class="my-message">
+                                Привіт! <span class="details-message"> <span class="time">10:01</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
+                            </p> -->
+                        </main>
+                        <div class="footer">
+                        <input type="text" name="" id="messageInput" placeholder="Повідомлення">
+                        <div class="send-part">
+                            <img src="{% static 'main_app/images/em.png' %}" alt="">
+                            <img src="{% static 'main_app/images/img.png' %}" alt="">
+                            <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt=""></button> 
+                            <!-- img.png -->
+                        </div>
+                        </div>
+                    </footer>   
+                
             </div>
         </section>
 

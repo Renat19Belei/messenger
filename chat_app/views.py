@@ -9,6 +9,7 @@ def chat_view(request:WSGIRequest):
     profile = Profile.objects.get(user=request.user)
     users_queryset = User.objects.filter(is_active=True).exclude(pk=request.user.pk)
     users = []
+    
     profiles = Profile.objects.filter(friends=profile)
     print(profiles)
     # profiles = profiles.filter(user=users_queryset)
