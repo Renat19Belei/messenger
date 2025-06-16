@@ -131,11 +131,12 @@ body {
     font-size: 0.73490813648vw;
     gap: 0.5249343832vw;
     border-radius: 0.31496062992vw;
-    margin-left: auto;
-    margin-right: 0;
     width: min-content;
 }
 .my.message{
+margin-left: auto;
+margin-right: 0;
+width: min-content;
 background-color: #CDCED2;
 }
 .contact-list li:hover {
@@ -300,11 +301,29 @@ background-color: #CDCED2;
     flex-direction: column;
     gap: 1.25984251968vw;
 }
-.messages{
+#messages{
     width: 95%;
+    height: 30.0524934382vw;
+    overflow-y: scroll;
     gap: 0.5249343832vw;
     display: flex;
+    flex-direction: column-reverse;
+}
+body{
+    overflow: hidden;
+}
+.message-data{
+    display: flex;
     flex-direction: column;
+
+}
+.username{
+    margin-right: auto;
+    margin-left: 0;
+    width: min-content;
+}
+.messageContent{
+    display: flex;
 }
 .footer{
     width: 95%;
@@ -342,6 +361,130 @@ background-color: #CDCED2;
     /* gap: 0.31496062992vw; */
     display: flex;
     /* text-align: left 0.2624671916vw; */
+}
+.contact-avatar{
+    width: 2.41469816272vw;
+    height: 2.41469816272vw;
+    
+}
+.bg{
+    background-color: black;
+    opacity: 0.5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+}
+.nameGroupDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+}
+.add-button{
+    display: flex;
+    flex-direction: row;
+    border: none;
+    /* justify-content: center; */
+
+    background-color: white;
+    width:7.5vw;
+}
+.photo-options{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5249343832vw;
+    justify-content: space-evenly;
+}
+.avatar-div{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25984251968vw;
+    justify-content: center;
+    align-items: center;
+}
+.groupH1{
+    font-size: 1.78477690288vw;
+}
+#grouupcreation, #selectUsers{
+    position: fixed;
+    top: 50%;
+    border-radius: 1.0498687664vw;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99;
+    background-color: white;
+    gap: 1.25984251968vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 44px;
+    padding-top: 24px;
+    text-align: center;
+}
+#nameGroupInput{
+    
+    width: 16.4304461942vw;
+height: 2.20472440945vw;
+gap: 0.5249343832vw;
+border-radius: 0.5249343832vw;
+border-width: 0.05249343832vw;
+padding-top: 0.5249343832vw;
+padding-right: 0.83989501312vw;
+padding-bottom: 0.5249343832vw;
+padding-left: 0.83989501312vw;
+
+}
+.btn {
+    padding: 0.41994750656vw 0.83989501312vw;
+    border-radius: 0.31496062992vw;
+    font-weight: 600;
+    font-size: 0.73490813648vw;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    border-radius: 9999vw;
+    padding: 0.5249343832vw 0.83989501312vw;
+    height: 2.09973753281vw;
+    width: fit-content;
+
+    text-align: center;
+}
+.membersP{
+    text-align: left;
+}
+.btn-confirm{
+    background: #543C52;
+    color: white;
+}
+.hidden{
+    display: none !important;
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    gap: 0.83989501312vw;
+}
+.btn-delete {
+    /* background: #f0f2f5; */
+    background-color: white;
+    color: #543C52;
+    border: 0.05249343832vw solid #543C52 !important;
+}
+.user-data-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.62992125984vw;
+}
+.contact{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.62992125984vw;
+    padding: 0.41994750656vw 0.83989501312vw;
 }
 .chat-card {
     background-color: #fff;

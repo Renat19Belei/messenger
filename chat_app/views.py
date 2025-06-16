@@ -10,31 +10,45 @@ from .models import ChatMessage,ChatGroup
 def chat_view(request:WSGIRequest):
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
+        if request.POST.get('type')=='groupCreation':
+            chatGroup =ChatGroup.objects.create(
+                admin=profile,
+                name = request.POST.get('name')
+            )
+            chatGroup.members.add(profile)
+            chatGroup.members.add(Profile.objects.get(pk=request.POST.get('members')))
+            chatGroup.save()
         if request.POST.get('type')=='personal':
-            # pk = 
             friend_profile = Profile.objects.filter(user_id=int(request.POST.get('pk')))
-            print(friend_profile,profile)
-            group = ChatGroup.objects.filter(members=friend_profile[0]).filter(members=profile).first()
-            print('7564324i56mlbutvjompuithk')
-            # friendship = Friendship.objects.filter(profile1=profile,profile2 = friend_profile,accepted=True)
-            # if not len(profiles):
-            #     friendship = Friendship.objects.filter(profile2=profile,profile1 = friend_profile,accepted=True)
+            group = ChatGroup.objects.filter(members=friend_profile[0],is_personal_chat=True).filter(members=profile).first()
             messages = ChatMessage.objects.filter(chat_group=group.pk)
             messages_list = []
             for message in messages:
                 messages_list.append({
                     'message':message.content,
+                
                     # "avatar":message.author 
                     # 'send_at':message.send_at
                 })
-                # print(message.content,message.send_at)
-            # return render(request, 'chat_app/message.html', {
-            #     'messages':messages,
-            #     'pk':group.pk
-            # })
-            return JsonResponse({   
-                'pk':group.pk,
-                'messages':messages_list
+            messages.reverse()
+            return render(request, 'chat_app/message.html', {
+                'messages':messages,
+                'pk':group.pk
+            })
+        if  request.POST.get('type')=='group':
+            messages = ChatMessage.objects.filter(chat_group=int(request.POST.get('pk')))
+            messages_list = []
+            for message in messages:
+                messages_list.append({
+                    'message':message.content,
+                
+                    # "avatar":message.author 
+                    # 'send_at':message.send_at
+                })
+            messages.reverse()
+            return render(request, 'chat_app/message.html', {
+                'messages':messages,
+                'pk':int(request.POST.get('pk'))
             })
     # users_queryset = User.objects.filter(is_active=True).exclude(pk=request.user.pk)
     # users = []
@@ -53,7 +67,9 @@ def chat_view(request:WSGIRequest):
         # if profile in Profile.objects.get(user=).friends:
             # pass
     # friends=request.user
+    chatGroups=ChatGroup.objects.filter(members=profile,is_personal_chat=False)
     context = {
         'contacts': profiles, 
+        'chatGroups':chatGroups
     }
     return render(request, 'chat_app/chat.html', context)
