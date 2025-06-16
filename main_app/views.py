@@ -128,8 +128,12 @@ def friends(request:WSGIRequest,typek='123'):
             if not friendship:
                 recommend.append(request_user)
             else:
-                friends_users.append(request_user)
-        # if not Profile.objects.filter(user = request_user):
+                if friendship.filter(accepted=True):
+                
+                    friends_users.append(request_user)
+                # else:
+                #     requests.append(request_user)
+        # if notProfile.objects.filter(user = request_user):
         #     friends_users.append(request_user)
         # else:
         #     requests.append(request_user)
@@ -157,7 +161,7 @@ def friends(request:WSGIRequest,typek='123'):
                 chat_group.members.add(user_friend)
                 chat_group.members.add(user)
                 chat_group.save()
-            friend = Friendship.objects.filter(profile2=user).first()
+            friend = Friendship.objects.filter(profile2=user,profile1=user_friend,accepted=False).first()
             if friend:
                 friend.accepted = True
                 friend.save()
