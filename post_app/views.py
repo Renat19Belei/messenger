@@ -99,9 +99,14 @@ class Posts(FormView):
         self.request.POST.get('tags')
         form.send(
             self.request.user,
-            files,self.request.POST.get('type'),
+            files,
+            self.request.POST.get('type'),
             self.request.POST.get('imgs'),
             [remove_List,remove_List_2],
             self.request.POST.getlist('tags'),
-            self.request.POST.getlist('link'))
+            self.request.POST.getlist('link'),
+            # self.request.POST.get('title'),
+            # self.request.POST.get('content')
+            )
+            
         return super().form_valid(form)
