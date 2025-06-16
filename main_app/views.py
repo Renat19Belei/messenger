@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 
 from django.contrib.auth.views import  LogoutView
-from .forms import messageForm,UserSet,ProfileForm
 from .models import *
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -12,58 +11,15 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LogoutView
-from .forms import messageForm,UserSet,ProfileForm
-from user_app.models import Friendship
+from .forms import ProfileForm
+from user_app.models import Friendship,Avatar
 from post_app.models import Post, Profile, Tag, Image, Link, Album
 from chat_app.models import ChatGroup
-# ChatGroup
-# from django.conf import settings
-# Create your views here.
-# class MainPageView(FormView):
-#     template_name = "main_app/main.html"
-#     form_class = messageForm
-#     success_url = reverse_lazy('main')
-#     # def get_form_kwargs(self):
-#     #     kwargs = super().get_form_kwargs()
-#     #     kwargs['user'] = self.request.user
-#     #     return kwargs
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         # Instantiate forms for GET request (initial display)
-#         context['form1'] = messageForm()
-#         context['form2'] = UserSet()
-#         return context
-#     def post(self, request, *args, **kwargs):
-#         form1 = messageForm(request.POST, prefix='form1')
-#         form2 = UserSet(request.POST, prefix='form2')
-#         print('heheeheh')
-#         if 'images1' in request.POST:
-#             if form1.is_valid():
-#                 return self.form_valid(form1)
-#             else:
-#                 return self.form_invalid(form1)
-#         else:
-#             print('hello')
-#             if form2.is_valid():
-#                 return self.form_valid(form2)
-#             else:
-#                 return self.form_invalid(form2)
-#     def form_valid(self, form):
-#         print('heelo')
-#         if self.request.POST.get('formType') == 'modalForm':
-#             form.send(self.request.user,self.request.FILES.getlist("images"),self.request.POST.get('type'),self.request.POST.get('imgs'))
-#         else:
-#             print(form,self.request.user)
-#             form.save(self.request.user)
-#         return super().form_valid(form)
-
 
 
 class CustomLogoutView(LogoutView):
     next_page = "login"
 
-# def get(request):
-#     return render(request, 'main_app/main.html')
 def personal(request:WSGIRequest):
     if not request.user.is_authenticated:
 
@@ -75,6 +31,7 @@ def personal(request:WSGIRequest):
     if request.method == 'POST':
         print('hello')
         user = request.user
+        
         # print
         type = request.POST.get('type')
         if type == 'main_data':
@@ -86,7 +43,15 @@ def personal(request:WSGIRequest):
             # profile
             # elec
         elif type == 'profile':
-            profile.icon = request.FILES.get('profile_icon')
+            avatar=Avatar.objects.filter(profile=profile,shown=True)
+            if avatar:
+                avatar=avatar.filter(active = True).first()
+                avatar.image=request.FILES.get('profile_icon')
+                avatar.save()
+            else:
+                # 
+                Avatar.objects.create(image=request.FILES.get('profile_icon'), profile = profile)
+            # profile.icon = 
         elif type == 'elec':
 
             profile.signature = request.FILES.get('elec')

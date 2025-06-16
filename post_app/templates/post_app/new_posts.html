@@ -1,15 +1,16 @@
 
 {% load static %}
 {% load tags %}
+{% load post_tags %}
 {% for post in list_posts %}
 
 <div class="post" id="post{{post.pk}}">
     <div class="user">
-        {% profile_icon post.user %}
-        {% if post.user.first_name %}
-            {{ post.user.first_name}} 
+        {% profile_icon post.author.user %}
+        {% if post.author.user.first_name %}
+            {{ post.author.user.first_name}} 
         {% else %}
-            @{{ post.user.username}} 
+            @{{ post.author.user.username}} 
         {% endif %}
         <!-- <form method="dialog"> -->
             {% if type == "posts" %}
@@ -20,16 +21,16 @@
                 <hr>
                 <button class="config remove" id="{{post.pk}}"><img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">Видалити публікацію</button>
             </dialog>
-            {% endif %}
+        {% endif %}
     <!-- </form> -->
     </div>
     <div class="text">
         <!-- <hr> -->
         <!-- <div> -->
-        <h3>{{ post.name}}</h3>
+        <h3>{{ post.title}}</h3>
             
         <!-- </div> -->
-        <p>{{ post.text }}
+        <p>{{ post.content }}
         <span class="grey">
         {% if post.tags %}
             {% for tag in post.tags.all %}
@@ -37,26 +38,23 @@
             {%  endfor %}
         {% endif %}
         </span></p>
-        {% if post.links.all %}
-            <div class="images">
-                {% for link in post.links.all %}
-                    <p><a href="{{link}}">{{link}}</a></p>
-                {%  endfor %}
-            </div>
-        {% endif %}
-        
+
+        {% links post %}
+       
         {% if post.images.all %}
+            <!-- optjnerwtty -->
             <div class="images">
                 {% for image in post.images.all %}
-                    <img src="{{image.image.url}}" alt="" class="change-img">
+                    <img src="{{image.file.url}}" alt="" class="change-img">
                 {%  endfor %}
             </div>
         {% endif %}
+         
     </div>
         <div class="reaction">
-
-        <span class="center-icon"><img src="{% static 'main_app/images/like.png' %}" alt=""  class="icon">{{post.likes }} вподобань</span>
-        <span class="center-icon"><img src="{% static 'user_app/images/eye_on.png' %}" alt=""  class="icon">{{post.reviewers.all | length }} Переглядів</span>
+        
+        <span class="center-icon"><img src="{% static 'main_app/images/like.png' %}" alt=""  class="icon">{{ post.likes.all | length }} вподобань</span>
+        <span class="center-icon"><img src="{% static 'user_app/images/eye_on.png' %}" alt=""  class="icon">{{post.views.all | length }} Переглядів</span>
     </div>
     </div>
 {% endfor  %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
-from main_app.forms import messageForm,UserSet,ProfileForm
+from .forms import messageForm,UserSet
 from .models import Post, Profile, Tag, Image, Link
 
 from django.http import JsonResponse
@@ -63,25 +63,36 @@ def new_posts(request:WSGIRequest):
         list_posts =  [] 
         type = request.POST.get('type')
         
-        print(type, 'friends' in type)
+        # print(type, 'friends' in type)
+        profile = Profile.objects.get(user = request.user)
         if type == 'posts':
-            all_posts = Post.objects.filter(user = request.user)
+            all_posts = Post.objects.filter(author = profile)
             # all_posts = User_Post.objects.all()
         if 'friends' in type:
-            user = User.objects.get(pk= int("".join(type.split('friends'))))
-            all_posts = Post.objects.filter(user = user)
+            user =  User.objects.get(pk= int("".join(type.split('friends'))))
+            profileFriend = Profile.objects.get(user = user)
+            all_posts = Post.objects.filter(author = profileFriend)
             print(all_posts, user)
         else:
             all_posts = Post.objects.all()
-        links = {}
+        
+        print(all_posts,31246789032456903241384980)
+        links = []
+        
         for post in json.loads(request.POST.get('posts')):
             try:
                 
                 list_posts.append(all_posts[len(all_posts)-(int(post)-1)]) 
-                if list_posts[-1].user != request.user:
-                    list_posts[-1].reviewers.add( request.user)
+                if list_posts[-1].author != profile:
+                    list_posts[-1].views.add( profile)
+                    print(list_posts[-1].views.all())
+                    list_posts[-1].save()
+                links.append(Link.objects.filter(pk=list_posts[-1].pk)) 
+                # links = 
             except Exception as error:
                 print(error,12324,5467,89,0,243098765442,3435,677,87654,42)
+        print(all_posts,9999999999999999999999999999999999999999999999999999999999999999)
+        
         return render(request, "post_app/new_posts.html", context={'list_posts':list_posts, "type":type})
     return 'onlyPost'
 class Posts(FormView):

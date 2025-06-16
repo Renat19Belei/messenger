@@ -3,7 +3,7 @@ import json
 # from .forms import MessageForm
 from channels.db import database_sync_to_async
 from .models import ChatGroup, ChatMessage
-from main_app.forms import messageForm
+from post_app.forms import messageForm
 
 class ChatConsumer(AsyncWebsocketConsumer):
     '''

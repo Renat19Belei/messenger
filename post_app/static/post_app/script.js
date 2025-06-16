@@ -38,7 +38,7 @@ $(document).ready(function(){
             console.log("posts" in type,'eqwqewewqw',type,window.location.href)
 
             type = {}
-            type["http://127.0.0.1:8000/main/posts/"] = "posts"
+            type["http://127.0.0.1:8000/post/posts/"] = "posts"
             console.log(window.location.href in type,'eqwqewewqw',type,window.location.href)
             if (window.location.href in type){
                 console.log("posts yey")

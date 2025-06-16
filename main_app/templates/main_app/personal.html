@@ -91,7 +91,7 @@
                     <!-- electronicSignature -->
                      <!-- {% static 'main_app/images/Frame 1000002435.png' %} -->
                     {% if profile.signature %}
-                        <img src="{{profile.electronicSignature.url}}" alt="" id="electronicSignature">
+                        <img src="{{profile.signature.url}}" alt="" id="electronicSignature">
                     {% else %}
                         <img src="{% static 'main_app/images/Frame 1000002435.png' %}" alt="" id="electronicSignature">
                     {% endif %}

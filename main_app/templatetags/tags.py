@@ -24,8 +24,11 @@ def render_header(main=0, posts=0, friends=0, chats=0, personal=0):
 @register.inclusion_tag(filename = "main_app/inclusiontags/profile_icon.html")
 def profile_icon(user, clas = 'avatar'):
     # Avatar
+    
     if type(user)==type(131):
         profile = Profile.objects.get(user_id=user)
+    elif type(user)==type(Profile):
+        pass
     else:
         profile = Profile.objects.get(user=user)
     avatar = Avatar.objects.filter(profile=profile,shown=True,active=True).first()
