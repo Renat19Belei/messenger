@@ -117,14 +117,14 @@ def friends(request:WSGIRequest,typek='123'):
     recommend = []
     friends_users = []
     for request_user in users:
-        friendship = Friendship.objects.filter(profile1=request_user)
+        friendship = Friendship.objects.filter(profile1=request_user,profile2=user)
         if friendship:
             if friendship.filter(accepted=True):
                 friends_users.append(request_user)
             else:
                 requests.append(request_user)
         else:
-            friendship = Friendship.objects.filter(profile2=request_user)
+            friendship = Friendship.objects.filter(profile2=request_user,profile1=user)
             if not friendship:
                 recommend.append(request_user)
             else:

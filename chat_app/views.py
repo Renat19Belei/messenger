@@ -16,7 +16,12 @@ def chat_view(request:WSGIRequest):
                 name = request.POST.get('name')
             )
             chatGroup.members.add(profile)
-            chatGroup.members.add(Profile.objects.get(pk=request.POST.get('members')))
+            # for
+            try:
+                chatGroup.members.add(Profile.objects.get(pk=request.POST.get('members')))
+            except:
+                for friend in Profile.objects.filter(pk=request.POST.getlist('members')):
+                    chatGroup.members.add(friend)
             chatGroup.save()
         if request.POST.get('type')=='personal':
             friend_profile = Profile.objects.filter(user_id=int(request.POST.get('pk')))
