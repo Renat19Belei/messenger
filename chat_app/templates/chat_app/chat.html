@@ -3,7 +3,7 @@
 {% load tags %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'chat_app/chat.css' %}">
-
+<script src="{% static 'main_app/jquery.js' %}" defer></script>
 <script src="{% static 'chat_app/chat.js' %}" defer></script>
 {% endblock %}
 
@@ -30,18 +30,10 @@
                 {% if contacts %}
                     {% for contact in contacts %}
                         <li class="contact-item" id="user{{contact.pk}}">
-                           <!-- <img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"> -->
                            {% profile_icon contact.user "contact-avatar" %}
                              <div class="contact-info">
                                 <span class="contact-name">{{ contact.user.first_name }} {{ contact.user.last_name }}</span>
                             </div>
-                            <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="Аватар" class="contact-avatar"><div class="contact-info"><span class="contact-name">Jane Cooper</span></div></li> -->
-                <!-- <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Cameron Williamson</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Leslie Alexander</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Robert Fox</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Jacob Jones</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="" >Brooklyn Simmons</li>
-                <li class="contact-item"><img src="{% static 'main_app/images/Avatar10.png' %}" alt="">Albert Flores</li> -->
                         </li>
                     {% endfor %}
                 {% endif %}
@@ -60,7 +52,7 @@
                         <div class="chat-icon">
                             {% profile_icon request.user "avatar current-group-avatar" %}
                             <div class="chat-data">
-                                <h3>Friend</h3>
+                                <h3 class="friend-current-name">Friend</h3>
                                 <p>в мережі</p>
                             </div>
                         </div>

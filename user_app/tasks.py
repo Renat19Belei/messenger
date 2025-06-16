@@ -2,13 +2,13 @@
 
 from django.utils import timezone
 from datetime import timedelta
-from .models import Code
+from .models import VerificationCode
 import time
 # @shared_task
 def delete_old_code(code_id):
     time.sleep(1000)
     try:
-        code = Code.objects.get(id=code_id)
+        code = VerificationCode.objects.get(id=code_id)
         code.delete()
     except:
         pass

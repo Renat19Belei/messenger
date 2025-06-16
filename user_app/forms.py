@@ -7,17 +7,17 @@ class UserForm(UserCreationForm):
     username = forms.EmailField(max_length=255,widget=forms.EmailInput(attrs={"placeholder": "you@example.com", "class": "form-field"}), label="Електронна пошта")
     password1 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
     password2 =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Повтори пароль","class": "form-field password"}), label="Підтвердження пароля")
+    # def remove(self):
+        # users = User.objects.filter(username=self.fields.get('username').widget.attrs.get('value'), is_active=False)
+        # if len(users):
+        #     users[0].delete()
 # <<<<<<< HEAD
 class AuthenticationForm2(AuthenticationForm):
-# =======
-# <<<<<<< Renat
-# class AuthenticationForm2(AuthenticationForm):
-# =======
-# class AuthenticationForm2(forms.Form):
+
     username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Ім'я користувача або Електронна пошта","class": "form-field"}),label="Ім'я користувача або Електронна пошта")
     password =forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Введи пароль", "class": "form-field password"}),label="Пароль")
 
-    # def save(self):
+   
     #     user = User.objects.create(
     #         username=self.cleaned_data["username"],
     #         password=self.cleaned_data["password1"],

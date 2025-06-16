@@ -8,11 +8,12 @@ from .forms import UserForm,AuthenticationForm2
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.handlers.wsgi import WSGIRequest
-from .models import Code
-from main_app.models import Profile
+from .models import VerificationCode
+from .models import Profile
 from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta
+
 from django.http import HttpResponse
 from django.db.models import Q 
 from .forms import AuthenticationForm2
@@ -37,6 +38,7 @@ def user_login(request):
         form = AuthenticationForm2(request.POST) 
 
 # >>>>>>> master
+
         if form.is_valid():
             username_input = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -88,17 +90,30 @@ class UserPageView(FormView):
     template_name = "user_app/user.html"
     form_class = UserForm
     success_url = '/user/login/'
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            
+            users = User.objects.filter(username=request.POST.get('username'), is_active=False)
+            if len(users):
+                users[0].delete()
+        return super().dispatch(request, *args, **kwargs)
+    def form_invalid(self, form):
+        # form.remove()
+        return super().form_invalid(form)
     def form_valid(self, form):
         
         # First, render the plain text content.
+        # form.clean_
+        # form.remove()
         user=form.save()
         user.is_active = False
         # user.email = user.username
         user.save()
         text_content = random.randint(100000, 999999)
-        code= Code.objects.create(code=text_content,user_id = user)
+        # VerificationCode
+        code= VerificationCode.objects.create(code=str(text_content),username = user.pk)
         self.success_url = f'/user/email/{code.id}'
-        profile = Profile.objects.create(user_id=user.pk)
+        profile = Profile.objects.create(user_id=user.pk,date_of_birth=timezone.now().date())
         # delete_old_code.apply_async(
             # args=[code.id],
             # eta=timezone.now() + timedelta(hours=1)
@@ -194,7 +209,8 @@ class CustomLoginView(LoginView):
 def render_email(request:WSGIRequest, code):
     # print(type(request))
     print()
-    code= Code.objects.get(id = code)
+    code= VerificationCode.objects.get(id = code)
+    user = User.objects.get(pk=code.username)
     if request.method == 'POST':
         # print('eeeeee', type(code.code),type(request.POST.get('code')))
         written = ''
@@ -202,10 +218,10 @@ def render_email(request:WSGIRequest, code):
             written += request.POST.get(f'code{count+1}')
         if str(code.code) == written:
             print('wrerwewer')
-            code.user_id.is_active = True
-            code.user_id.save()
-            Code.delete(code)
+            user.is_active = True
+            user.save()
+            VerificationCode.delete(code)
             return redirect("/user/login/")
 
 
-    return render(request,'user_app/my_email.html',context={'email':code.user_id.email})
+    return render(request,'user_app/my_email.html',context={'email':user.email})

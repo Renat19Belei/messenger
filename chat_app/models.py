@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from main_app.models import Profile, Images
+from user_app.models import Profile
 # Create your models here.
 # class messageForm(models.Model):
 #     text = 

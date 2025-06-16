@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 from main_app.forms import messageForm,UserSet,ProfileForm
-from main_app.models import User_Post, Profile, Tags, Images, Link
+from .models import Post, Profile, Tag, Image, Link
+
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 import json
 from django.views.generic.edit import FormView
 from  django.contrib.auth.models import User
+from  django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required(login_url=reverse_lazy('login'))
 def MainPageView(request:WSGIRequest):
     form1 = messageForm()
     form2 = UserSet()
@@ -29,30 +32,30 @@ def MainPageView(request:WSGIRequest):
     })
 def remove(request:WSGIRequest,pk:int):
     print(request.user)
-    user_post = User_Post.objects.get(pk = pk)
+    user_post = Post.objects.get(pk = pk)
     # print(user_post.user, request.user, 'hehheehehehhe')
-    if user_post.user == request.user:
+    if user_post.author == request.user:
         print("REMOVE")
-        User_Post.delete(user_post)
+        Post.delete(user_post)
     return render(request, "post_app/new_posts.html")
 def gets(request:WSGIRequest,pk:int):
     # if request.method == 'POST':
     print('heehheeeh',pk)
 
-    user_post= User_Post.objects.get(pk = pk)
-    if user_post.user == request.user:
-        text = user_post.text
+    user_post= Post.objects.get(pk = pk)
+    if user_post.author == request.user:
+        text = user_post.content
         list_of_imgs = []
         list_of_imgs_pk = []
 
         for image in user_post.images.all():
             # Images().image.url
-            list_of_imgs += [image.image.url]
+            list_of_imgs += [image.file.url]
             list_of_imgs_pk += [image.pk]
         tags  = []
         for tag in user_post.tags.all():
             tags +=[tag.name]
-        data = JsonResponse({'text':text,'name':user_post.name,"theme":user_post.theme,"link":user_post.link,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
+        data = JsonResponse({'text':text,'name':user_post.title,"theme":user_post,"link":user_post,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
         return data
     return 'who are you'
 def new_posts(request:WSGIRequest):
@@ -62,14 +65,14 @@ def new_posts(request:WSGIRequest):
         
         print(type, 'friends' in type)
         if type == 'posts':
-            all_posts = User_Post.objects.filter(user = request.user)
+            all_posts = Post.objects.filter(user = request.user)
             # all_posts = User_Post.objects.all()
         if 'friends' in type:
             user = User.objects.get(pk= int("".join(type.split('friends'))))
-            all_posts = User_Post.objects.filter(user = user)
+            all_posts = Post.objects.filter(user = user)
             print(all_posts, user)
         else:
-            all_posts = User_Post.objects.all()
+            all_posts = Post.objects.all()
         links = {}
         for post in json.loads(request.POST.get('posts')):
             try:

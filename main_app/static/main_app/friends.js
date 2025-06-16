@@ -23,11 +23,32 @@ console.log(buttons)
 for (let button of buttons){
     button.addEventListener("click", () => {
         let pk = button.value
+        let type;
+       
+        if (pk.split('Підтвердити').length>1){
+            type = 'confirm'
+            pk = pk.split('Підтвердити')[1]
+            
+        }else if (pk.split('Додати').length>1){
+            type = 'add'
+            pk = pk.split('Додати')[1]
+
+        }else if (pk.split('Повідомлення').length>1){
+            // type = 'confirm'
+            
+            pk = pk.split('Повідомлення')[1]
+            window.location.href = document.querySelector('#chatUrl').value
+            // 
+            
+        }
         let card = document.querySelector('#card'+pk)
+        let allFriends = document.querySelector('.allFriends')
         card.remove()
+        if (type=='confirm'){
+            allFriends.append(card)
+        }
         // allFriends
-        document.querySelector('.allFriends').append(card)
-        console.log(card)
+        
         fetch(window.location.href, {
             method: 'POST',
             headers: {
@@ -35,7 +56,8 @@ for (let button of buttons){
                 'X-CSRFToken': document.querySelector('input').value
             },
             body: JSON.stringify({
-                'pk': pk
+                'pk': pk,
+                'type':type
                 })
         })
 

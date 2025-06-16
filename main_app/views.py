@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 
 from django.contrib.auth.views import  LogoutView
-from .forms import messageForm,UserSet,ProfileForm,AlbumForm
+from .forms import messageForm,UserSet,ProfileForm
 from .models import *
 
 from django.core.handlers.wsgi import WSGIRequest
@@ -13,7 +13,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LogoutView
 from .forms import messageForm,UserSet,ProfileForm
-from .models import User_Post, Profile, Tags, Images, Link, Album
+from user_app.models import Friendship
+from post_app.models import Post, Profile, Tag, Image, Link, Album
 from chat_app.models import ChatGroup
 # ChatGroup
 # from django.conf import settings
@@ -80,7 +81,7 @@ def personal(request:WSGIRequest):
             user.first_name = request.POST.get('first_name')
             user.last_name =request.POST.get('last_name')
             user.email = request.POST.get('email')
-            profile.birthday = request.POST.get('date_of_birthday')
+            profile.date_of_birth = request.POST.get('date_of_birthday')
             user.save()
             # profile
             # elec
@@ -88,8 +89,8 @@ def personal(request:WSGIRequest):
             profile.icon = request.FILES.get('profile_icon')
         elif type == 'elec':
 
-            profile.electronicSignature = request.FILES.get('elec')
-            print(profile.electronicSignature,8976543213)
+            profile.signature = request.FILES.get('elec')
+            print(profile.signature,8976543213)
         profile.save()
         # if profile_form.is_valid():
         #     profile_form.save(user=request.user)
@@ -109,37 +110,70 @@ def personal(request:WSGIRequest):
 
 
 def friends(request:WSGIRequest,typek='123'):
-    users = User.objects.exclude(pk= request.user.pk)
     user = Profile.objects.get(user = request.user)
+    users = Profile.objects.exclude(pk= user.pk)
     # ,friends=request.user.pk
     requests = []
+    recommend = []
     friends_users = []
     for request_user in users:
-        if not Profile.objects.filter(user = request_user).exclude(friends=user):
-            friends_users.append(request_user)
+        friendship = Friendship.objects.filter(profile1=request_user)
+        if friendship:
+            if friendship.filter(accepted=True):
+                friends_users.append(request_user)
+            else:
+                requests.append(request_user)
         else:
-            requests.append(request_user)
+            friendship = Friendship.objects.filter(profile2=request_user)
+            if not friendship:
+                recommend.append(request_user)
+            else:
+                friends_users.append(request_user)
+        # if not Profile.objects.filter(user = request_user):
+        #     friends_users.append(request_user)
+        # else:
+        #     requests.append(request_user)
     if request.method == 'POST':
+        
         post = json.loads(request.body)
+        # confirm
+        type_request = post.get("type")
+        print(type_request)
         pk = post.get("pk")
         user_friend = Profile.objects.get(user_id = pk)
         name = f"{request.user.pk} {user_friend.user.pk}"
         chat = ChatGroup.objects.filter(name = name)
-        if  not chat:
-            chat_group = ChatGroup.objects.create(name = name)
-            print(name)
-        user_friend.friends.add(user)
-        user_friend.save()
+
+        
+            # print(name)
+        if type_request == 'add':
+            Friendship.objects.create(
+                profile1 = user,
+                profile2 = user_friend
+            )
+        elif type_request == 'confirm':
+            if not chat:
+                chat_group = ChatGroup.objects.create(name = name,is_personal_chat=True,admin=user)
+                chat_group.members.add(user_friend)
+                chat_group.members.add(user)
+                chat_group.save()
+            friend = Friendship.objects.filter(profile2=user).first()
+            if friend:
+                friend.accepted = True
+                friend.save()
+        # user_friend.friends.add(user)
+        # user_friend.save()
         
     print(requests,friends_users)
     return render(request, 'main_app/friends.html', context={
         'typek':typek,
         'requests':requests,
-        'friends':friends_users
+        'friends':friends_users,
+        'recommend':recommend
     })
 def friends_account(request:WSGIRequest,pk):
     user_to_view = get_object_or_404(User, pk=pk)
-    albums_for_friend = Album.objects.filter(user=user_to_view).order_by('-year', 'name') 
+    # albums_for_friend = Album.objects.filter(user=user_to_view).order_by('-year', 'name') 
     user_to_view_profile = None
     try:
         user_to_view_profile = Profile.objects.get(user=user_to_view)
@@ -151,7 +185,7 @@ def friends_account(request:WSGIRequest,pk):
         'pk': pk,
         'user': user_to_view,
         'profile': user_to_view_profile, 
-        'albums': albums_for_friend,
+        # 'albums': albums_for_friend,
     })
 
 
@@ -174,7 +208,7 @@ def albums(request:WSGIRequest):
             print(request.FILES)
             for img in request.FILES.getlist('images'):
                 print('imgmgg')                # img_list.append(Images.objects.create(image=img))
-                album.images.add(Images.objects.create(image=img))
+                album.images.add(Image.objects.create(image=img))
             
             album.save()
         # images 

@@ -12,6 +12,7 @@
 {% block content %}
 {% csrf_token %}
 {% render_header 0 0 1 %}
+<input type="hidden" value="{% url 'chats' %}" id="chatUrl">
 <div class="friends-app">
 
     <div class="app-container">
@@ -31,12 +32,12 @@
     <div class="section-header">
     <h2 class="section-title">Запити</h2>
     <a href="#" class="see-all">Дивитись всі</a></div>
-    <section class="friends-section">
+    <section class="friends-section requests">
     <!-- <div class="friends-part"> -->
 
     <!-- </div> -->
      <!-- requests -->
-    
+    {% friends_cards requests %}
     
 </section></section>
 {% endif %}
@@ -46,8 +47,9 @@
     <h2 class="section-title">Рекомендації</h2>
     <a href="#" class="see-all">Дивитись всі</a>
 </div>
-<section class="friends-section">
-{% friends_cards requests 'Додати' %}
+<section class="friends-section recommend">
+
+{% friends_cards recommend 'Додати' %}
 </section></section>
 {% endif %}
 {% if "3" in typek %}
@@ -57,7 +59,7 @@
     <a href="#" class="see-all">Дивитись всі</a>
 </div>
 <section class="friends-section allFriends">
-    {% friends_cards friends %}
+    {% friends_cards friends 'Повідомлення' %}
     
     
     

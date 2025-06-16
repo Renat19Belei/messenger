@@ -3,14 +3,14 @@
     <div class="friend-card" id="card{{ user.pk }}">
         <input type="hidden" value="{% url 'friends_account' user.pk %}">
         <div class="friend-profile">
-            {% profile_icon user "friend-avatar" %}
+            {% profile_icon user.user "friend-avatar" %}
             <div class="friend-info">
-                <strong class="friend-name">{{user.first_name }} {{user.last_name}}</strong>
-                <span class="friend-username">@{{ user.username }}</span>
+                <strong class="friend-name">{{user.user.first_name }} {{user.user.last_name}}</strong>
+                <span class="friend-username">@{{ user.user.username }}</span>
             </div>
         </div>
         <div class="friend-actions">
-            <button class="btn btn-confirm" value="{{ user.pk }}">Підтвердити</button>
+            <button class="btn btn-confirm" value="{{text}}{{ user.pk }}">{{text}}</button>
             <button class="btn btn-delete">Видалити</button>
         </div>
     </div>
