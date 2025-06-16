@@ -47,13 +47,15 @@ class messageForm(forms.Form):
             if type == 'save':
                 
                 user_post = Post.objects.create(
-                    text=text,
-                    user = user,
+                    # text=text,
+                    # user = user,
                     # reviewers = 0,
-                    likes = 0,
-                    name = self.cleaned_data.get('name'),
-                    theme = self.cleaned_data.get('theme'),
+                    
+                    # name = self.cleaned_data.get('name'),
+                    # theme = self.cleaned_data.get('theme'),
                     # link = self.cleaned_data.get('link'),
+                    title = self.cleaned_data.get('title'),
+                    content = self.cleaned_data.get('content'),
                 )
                 user_post.images.set(images_list)
                 user_post.tags.set(tags_list)
