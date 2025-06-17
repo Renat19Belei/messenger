@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.handlers.wsgi import WSGIRequest
-from .forms import messageForm,UserSet
+from .forms import messageForm,UserSet, PostForm
 from .models import Post, Profile, Tag, Image, Link
 
 from django.http import JsonResponse
@@ -78,7 +78,11 @@ def new_posts(request:WSGIRequest):
         
         print(all_posts,31246789032456903241384980)
         links = []
-        
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            form = PostForm()
         for post in json.loads(request.POST.get('posts')):
             try:
                 
