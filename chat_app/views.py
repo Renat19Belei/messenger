@@ -26,7 +26,7 @@ def chat_view(request:WSGIRequest):
         if request.POST.get('type')=='personal':
             friend_profile = Profile.objects.filter(user_id=int(request.POST.get('pk')))
             group = ChatGroup.objects.filter(members=friend_profile[0],is_personal_chat=True).filter(members=profile).first()
-            messages = ChatMessage.objects.filter(chat_group=group.pk)
+            messages = ChatMessage.objects.filter(chat_group=group.pk).order_by('-send_at')
             messages_list = []
             for message in messages:
                 messages_list.append({
@@ -35,13 +35,12 @@ def chat_view(request:WSGIRequest):
                     # "avatar":message.author 
                     # 'send_at':message.send_at
                 })
-            messages.reverse()
             return render(request, 'chat_app/message.html', {
                 'messages':messages,
                 'pk':group.pk
             })
         if  request.POST.get('type')=='group':
-            messages = ChatMessage.objects.filter(chat_group=int(request.POST.get('pk')))
+            messages = ChatMessage.objects.filter(chat_group=int(request.POST.get('pk'))).order_by('-send_at')
             messages_list = []
             for message in messages:
                 messages_list.append({
@@ -50,7 +49,7 @@ def chat_view(request:WSGIRequest):
                     # "avatar":message.author 
                     # 'send_at':message.send_at
                 })
-            messages.reverse()
+            # messages.reverse()
             return render(request, 'chat_app/message.html', {
                 'messages':messages,
                 'pk':int(request.POST.get('pk'))

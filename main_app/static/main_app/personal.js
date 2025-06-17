@@ -168,6 +168,7 @@ let contAvatar = document.querySelector('.avatar-div')
 let editContAvatar = document.querySelector('.content-hidden')
 let avatar = document.querySelector('#avatar')
 let fileInput = document.getElementById('fileInput')
+let avatarsInput = document.getElementById('avatarsInput')
 fileInput.addEventListener('change',()=>{
     reader.readAsDataURL(fileInput.files[0])
 })
@@ -203,7 +204,13 @@ avatar.addEventListener('click',()=>{
         // console.log(fileInput.files[0])
         formData.append('csrfmiddlewaretoken',document.querySelector('input').value)
         formData.append('type', 'profile')
-        
+        // formData.append('avatars', )
+        // avatarsInput
+        let files = avatarsInput.files
+        console.log(avatarsInput,123122132132312132)
+        for (let i = 0; i < files.length; i++) {
+            formData.append('avatars', files[i]);
+        }
         $.ajax({
             type: 'post',
             url: document.querySelector('#personalUrl').value,

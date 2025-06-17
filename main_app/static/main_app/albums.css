@@ -184,6 +184,11 @@ letter-spacing: -0.01em; */
     overflow: hidden;
     background-color: #eee;
 }
+.photos-container{
+  display: flex;flex-wrap: wrap;
+  gap: 1.312335958vw;
+  /* justify-content: space-between; */
+}
 .plus{
   width: 2.0997375328vw;
   height: 2.0997375328vw;

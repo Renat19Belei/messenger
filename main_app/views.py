@@ -47,10 +47,14 @@ def personal(request:WSGIRequest):
             if avatar:
                 avatar=avatar.filter(active = True).first()
                 avatar.image=request.FILES.get('profile_icon')
+                # avatars
                 avatar.save()
             else:
                 # 
                 Avatar.objects.create(image=request.FILES.get('profile_icon'), profile = profile)
+            for avatar in request.FILES.getlist('avatars'):
+                print(avatar)
+                Avatar.objects.create(image=avatar, profile = profile,active=False)
             # profile.icon = 
         elif type == 'elec':
 
@@ -161,6 +165,7 @@ def friends_account(request:WSGIRequest,pk):
 def albums(request:WSGIRequest):
 # <<<<<<< HEAD
     # profile  = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form_type = request.POST.get("type")
         if form_type == 'album':
@@ -187,8 +192,9 @@ def albums(request:WSGIRequest):
             # print(album)
             # print(album.images.all())
     user_albums = Album.objects.all()
-    
-    return render(request, 'main_app/albums.html', context= {"albums" :user_albums})
+    avatars = Avatar.objects.filter(profile=profile,active=False)
+    print(avatars)
+    return render(request, 'main_app/albums.html', context= {"albums" :user_albums,'avatars':avatars})
 # =======
 #     return render(request, 'main_app/albums.html')
 

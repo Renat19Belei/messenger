@@ -45,9 +45,10 @@
                     <p>Оберіть або завантажте фото профілю</p>
                     {% profile_icon request.user %}
                     <div class="photo-options">
-                        <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
+                        <label class="add-button" for="avatarsInput"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</label>
                         <label for="fileInput"  class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</label>
                         <input type="file" id="fileInput" name="profile_icon" hidden>
+                        <input type="file" id="avatarsInput" name="avatars" hidden multiple>
                         <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
                     </div>
                     <h2 class="name-h2">{{request.user.first_name}} {{request.user.last_name}}</h2>

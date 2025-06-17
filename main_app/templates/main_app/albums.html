@@ -33,13 +33,23 @@
                 <h2 class="block-title">Мої фото</h2>
                 <button class="add-photo-button"><img class="icon" src="{% static 'main_app/images/public.png' %}" alt=""> Додати фото</button>
                 <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
-
+                <div class="photos-container">
                 <div class="photo-container">
-                    <img src="{% static 'main_app/images/avatar9.png' %}" alt="Моє фото">
+                    {% profile_icon request.user %}
                     <div class="photo-overlay-actions">
                         <button class="action-icon-btn"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
                         <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
                     </div>
+                </div>
+                {% for avatar in avatars %}
+                    <div class="photo-container">
+                    <img src="{{ avatar.image.url }}" alt="">
+                    <div class="photo-overlay-actions">
+                        <button class="action-icon-btn"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
+                        <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
+                    </div>
+                </div>
+                {% endfor %}
                 </div>
             </div>
             
