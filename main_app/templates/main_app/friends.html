@@ -18,10 +18,10 @@
         <aside class="sidebar">
             <div class="menu-section">
                 <ul class="menu-list">
-                    <h3 class="menu-title active"><a class="list-a" href="{% url 'friends' '123' %}">Головна</a></h3>
-                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '1' %}">Запити</a></li>
-                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '2' %}">Рекомендації</a></li>
-                    <li class="menu-item"><a class="list-a" href="{% url 'friends' '3' %}">Всі друзі</a></li>
+                    <h3 class="menu-title {% if typek == '123' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '123' %}">Головна</a></h3>
+                    <li class="menu-item {% if typek == '1' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '1' %}">Запити</a></li>
+                    <li class="menu-item {% if typek == '2' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '2' %}">Рекомендації</a></li>
+                    <li class="menu-item {% if typek == '3' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '3' %}">Всі друзі</a></li>
                 </ul>
             </div>
         </aside>
@@ -32,13 +32,7 @@
     <h2 class="section-title">Запити</h2>
     <a href="#" class="see-all">Дивитись всі</a></div>
     <section class="friends-section">
-    <!-- <div class="friends-part"> -->
-
-    <!-- </div> -->
-     <!-- requests -->
-    
-    
-</section></section>
+    </section></section>
 {% endif %}
 {% if "2" in typek %}
 <section id="friend-section">
@@ -58,9 +52,9 @@
 </div>
 <section class="friends-section allFriends">
     {% friends_cards friends %}
-    
-    
-    
+
+
+
 </section></section>
 {% endif %}
         </main>

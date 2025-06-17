@@ -24,7 +24,8 @@
 .sidebar {
     width: 20.9973753281vw;
     padding: 1.0498687664vw;
-    padding-left: 3.8vw;
+    padding-left: 3.4vw;
+    padding-right: 9.8vw;
 }
 /* h3 {
   padding: 0;
@@ -54,7 +55,8 @@
 }
 
 .menu-item {
-    padding: 0.5249343832vw;
+    padding: 0.1249343832vw;
+    padding-left: 0.5vw;
     cursor: pointer;
     border-radius: 0.41994750656vw;
     color: #050505;
@@ -67,14 +69,14 @@
     color: #1877f2;
     
 }               
-.active{
+/* .active{
   font-weight: 700;
   border-bottom: 0.10498687664vw solid #543C52;
   width: 3.30708661417vw;
   font-size: 0.83989501312vw;
   line-height: 100%;
   letter-spacing: -0.03em;
-}
+} */
 .menu-item:hover:not(.active) {
     background-color: #f2f2f2;
 }
@@ -275,4 +277,38 @@ body {
 }
 
 
+.menu-title.active, 
+.menu-item.active { 
+    background-color: transparent; 
+    color: #050505;
+}
 
+.list-a {
+    color: black; 
+    text-decoration: none; 
+    display: block; 
+    padding: 2px 0; 
+    position: relative; 
+    overflow: hidden; 
+    transition: all 0.2s ease-in-out;
+
+    font-weight: normal;
+}
+
+.menu-section .menu-list a::after {
+    content: '';
+    position: absolute; 
+    bottom: 2px; 
+    height: 2px; 
+    background-color: black; 
+    
+ 
+    width: 70%; 
+    left: 20%;
+    transform: translateX(-50%) scaleX(0); 
+}
+
+.menu-section .menu-list .menu-title.active a::after,
+.menu-section .menu-list .menu-item.active a::after {
+    transform: translateX(-50%) scaleX(1); 
+} 
