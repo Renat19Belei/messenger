@@ -100,10 +100,10 @@ class UserPageView(FormView):
     def form_invalid(self, form):
         # form.remove()
         return super().form_invalid(form)
-    def form_valid(self, form):
+    def form_valid(self, form:AuthenticationForm2):
         
         # First, render the plain text content.
-        # form.clean_
+        # form.cleaned_data.get
         # form.remove()
         user=form.save()
         user.is_active = False
