@@ -3,6 +3,20 @@ from .models import *
 from django.contrib.auth.models import User
 import re,json
 # User = get_user_model()
+STANDARD_TAG_NAMES = [
+    "відпочинок", "натхнення", "життя", "природа", "читання",
+    "спокій", "гармонія", "музика", "фільми", "подорожі"
+]
+
+class PostForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.filter(name__in=STANDARD_TAG_NAMES).order_by("name"),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    class Meta:
+        model = Post  
+        fields = ['title', 'content', 'tags', 'images']
 class messageForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть назву публікації","class": "FormInput nameInput"}),label='Назва публікації',max_length=255)
     theme = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),label='Тема публікації',max_length=255, required=False)
