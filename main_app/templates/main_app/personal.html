@@ -66,17 +66,33 @@
                     <button class="save" id="info"><img class="edit-img" src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати інформацію</button>
                 </div>
                 <div class="main-card left">
-                    
-                    <div class="inputs-part">
-                        <!-- {{ form.as_p }} -->
-                        {% for field in form %}
-                            <p class="input-part">
-                                {{field.label_tag }}
-                                {{field}}
-                            </p>
-                        {% endfor %}
-                    </div>
-                </div>
+                   <div class="inputs-part">
+                       {% for field in form %}
+                           {% if field.name != 'password' and field.name != 'new_password' and field.name != 'confirm_password' %}
+                               <p class="input-part">
+                                   {{field.label_tag }}
+                                   {{field}}
+                               </p>
+                           {% endif %}
+                       {% endfor %}
+
+                       <p class="section-title-password">Пароль</p>
+                       <p class="input-part-label">
+                           <label for="id_password_main">Пароль:</label>
+                       </p>
+                       <div class="password-input-row-container">
+                           <div class="password-input-with-eye">
+                               <input type="password" id="id_password_main" value="**********" readonly class="FormInput gray-input">
+                               <button type="button" class="view-password-but" id="togglePassword">
+                                   <img src="{% static 'user_app/images/eye.png' %}" alt="Показати/Приховати пароль" class="view-password-img">
+                               </button>
+                           </div>
+                           <button class="save password-edit-inline-button" id="info2"> 
+                               <img class="edit-img-password" src="{% static 'main_app/images/edit.png' %}" alt=""> Редагувати пароль
+                           </button>
+                       </div>
+                   </div>
+               </div>
                 <!-- </form> -->
             </div>
             <div class="card">

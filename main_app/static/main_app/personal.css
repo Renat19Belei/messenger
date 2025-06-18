@@ -306,3 +306,68 @@ background-color: #f0f0f0;
 .editElec{
     width: 7.5vw;
 }
+.section-title-password {
+    color: #000000;
+    font-size: 0.89238845144vw;
+    font-weight: 700;
+    margin-top: 1.25984251968vw;
+    margin-bottom: 0.83989501312vw;
+}
+
+.input-part-label label {
+    color: gray;
+    font-size: 0.7874015748vw;
+    margin-bottom: 0.2vw;
+    display: block;
+}
+
+.password-input-row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.83989501312vw;
+}
+
+.password-input-with-eye {
+    position: relative;
+    display: block;
+    flex-grow: 1;
+    max-width: 16.4304461942vw; 
+}
+
+
+.password-input-with-eye .FormInput {
+    width: 100%;
+    padding-right: 2.0997375328vw;
+    box-sizing: border-box;
+}
+.view-password-but {
+    position: absolute;
+    right: 0.5249343832vw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+.password-edit-inline-button {
+    flex-shrink: 0; 
+    width: auto;
+    min-width: 10.69vw;
+    height: 2.20472440945vw;
+    align-self: flex-end; 
+    border: solid 0.05249343832vw #543C52;
+    background-color: white;
+    border-radius: 9.97375328083vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5249343832vw;
+    font-size: 0.73490813648vw;
+    gap: 0.5249343832vw;
+}
