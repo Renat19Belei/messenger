@@ -34,7 +34,7 @@ def remove(request:WSGIRequest,pk:int):
     print(request.user)
     user_post = Post.objects.get(pk = pk)
     # print(user_post.user, request.user, 'hehheehehehhe')
-    if user_post.author == request.user:
+    if user_post.author == Profile.objects.get(user=request.user):
         print("REMOVE")
         Post.delete(user_post)
     return render(request, "post_app/new_posts.html")
@@ -42,22 +42,30 @@ def gets(request:WSGIRequest,pk:int):
     # if request.method == 'POST':
     print('heehheeeh',pk)
 
-    user_post= Post.objects.get(pk = pk)
-    if user_post.author == request.user:
+    user_post= Post.objects.get(pk = int(pk))
+    print('ok')
+    if user_post.author == Profile.objects.get(user=request.user):
+        print('okok')
         text = user_post.content
         list_of_imgs = []
         list_of_imgs_pk = []
-
+        print('heh')
         for image in user_post.images.all():
             # Images().image.url
             list_of_imgs += [image.file.url]
             list_of_imgs_pk += [image.pk]
+        print('imgs ok')
         tags  = []
         for tag in user_post.tags.all():
             tags +=[tag.name]
-        data = JsonResponse({'text':text,'name':user_post.title,"theme":user_post,"link":user_post,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
+        links  = []
+        for link in Link.objects.filter(post=user_post):
+            links.append(link.url)
+        print('t@gs')
+        data = JsonResponse({'text':text,'name':user_post.title,"theme":'',"link":links,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
+        print('WTF')
         return data
-    return 'who are you'
+    return JsonResponse({'error':'who are you'})
 def new_posts(request:WSGIRequest):
     if request.method == "POST":
         list_posts =  [] 

@@ -1,5 +1,7 @@
 {% load static %}
+{% load tags %}
 <input type="hidden" value="{{ pk }}" id="pkInput">
+<input type="hidden" name="is_admin" value="{{is_admin}}" id="is_admin">
 {% for message in messages %}
     {% if message.author == request.user %}
         <p class="my message">
@@ -7,7 +9,8 @@
         </p>
     {% else %}
         <p class="message">
-            <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt=""> 
+            {% profile_icon message.author %}
+            <!-- <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt="">  -->
             <span class="message-data">
 
                 <span class="username">

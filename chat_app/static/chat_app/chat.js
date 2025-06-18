@@ -29,15 +29,27 @@ addUsers.addEventListener('click',(event)=>{
     grouupcreation.classList.remove('hidden')
 })
 // addUsers
+// <img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">
 selectUsers.addEventListener('submit',(event) =>{
     event.preventDefault()
+    
     for (let contact of contacts){
         if (contact.querySelector('input').checked){
             contact.querySelector('input').remove()
             selectedContacts.push(contact)
+            // removeLink
+            let img = document.createElement('img')
+            img.src = document.querySelector('#removeLink').value
+            img.className = 'removeImg'
+            img.addEventListener('click', () =>{
+                contact.remove()
+            })
+            contact.append(img)
             membersDiv.append(contact)
         }
     }
+        
+    
 })
 // create-group
 sendMessage.addEventListener("click", (event)=>{
@@ -93,10 +105,91 @@ socket.addEventListener("message", function(event){
 
     details.append(img)
     p.textContent = messageObject['message']
+    
+    // if (!messageObject['you']){
+    //     let img = document.createElement('img')
+    //     img.src = document.getElementById('avatarLink').value
+    //     let message_data = document.createElement('span')
+    //     message_data.className = 'message-data'
+    //     let username = document.createElement('span')
+    //     message_data.className = 'username'
+    //     username.textContent = messageObject['username']
+    //     // let messageContent = 
+    //     message_data.append(username)
+    //     message_data.append(details)
+    //     p.append(message_data)
+    //     img.className= 'avatar'
+    //     p.append(img)
+    //     p.className = 'message'
+    // }else{
     p.append(details)
+    // }
+    // avatarLink
     messages.prepend(p)
+    // <p class="message">
+    //         {% profile_icon message.author %}
+    //         <!-- <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt="">  -->
+    //         <span class="message-data">
+
+    //             <span class="username">
+    //                 {{message.author.username}}
+    //             </span>
+    //             <span class="messageContent">
+                    
+    //                 {{message.content}} 
+    //                 <span class="details-message"> 
+    //                     <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> 
+    //                     <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
+    //                 </span>
+    //             </span>
+    //         </span>
+    //     </p>
 })
 }
+let editChat =document.querySelector('.editChat')
+editChat.addEventListener('click',()=>{
+// user-data-group
+    console.log(groupPk)
+    $.ajax({
+        type: 'post',
+        url: document.querySelector('#getLink').value,
+        data: {
+
+            csrfmiddlewaretoken:document.querySelector('input').value,
+            pk: groupPk
+        },
+        success: function(request){
+            grouupcreation.classList.remove('hidden')
+            bg.hidden = false
+            console.log(request)
+            // changeGroupAvatar
+            if (request.avatar){
+                
+                document.querySelector('#changeGroupAvatar').src = request.avatar
+            }
+            document.querySelector('#nameGroupInput').value = request.name
+            document.querySelector('#groupCreation').value = 'groupEdit'
+            document.querySelector('#pkInput').value = groupPk
+            // pkInput
+            // request = JSON.parse(request)
+            // groupCreation
+            for (let contact of contacts){
+                if (contact.querySelector('#member').value in request.members){
+                    contact.querySelector('input').remove()
+                    selectedContacts.push(contact)
+                    // removeLink
+                    let img = document.createElement('img')
+                    img.src = document.querySelector('#removeLink').value
+                    img.className = 'removeImg'
+                    img.addEventListener('click', () =>{
+                        contact.remove()
+                    })
+                    contact.append(img)
+                    membersDiv.append(contact)
+                }
+            }
+        }})
+})
 for (let group of groups){
     group.addEventListener('click',()=>{
         let pk = group.id.split('group').join('')-0
@@ -115,13 +208,62 @@ for (let group of groups){
 
                 csrfmiddlewaretoken:document.querySelector('input').value,
                 pk: pk,
-                type:'group'},
+                type:'group'
+            },
             success: function(request){
                 messages.innerHTML = request
                 groupPk = messages.querySelector('#pkInput').value
+                let is_admin = document.querySelector('#is_admin').value-0
+                let url = document.querySelector('#leaveGroup').value
+                // leaveGroup
+                console.log(is_admin)
+                console.log(document.querySelector('#adminChat'),
+                    document.querySelector('#userChat'))
+                
+                if (!is_admin){
+                    document.querySelector('#adminChat').classList.add('hidden')
+                    document.querySelector('#userChat').classList.remove('hidden')
+                    document.querySelector('.editChat').classList.add('hidden')
+                    document.querySelector('dialog').style.height = '7.3490813648vw'
+                    // editChat
+                }else{
+                    // 7.3490813648
+                    // 9.23884514432
+                    document.querySelector('dialog').style.height = '9.23884514432vw'
+                    document.querySelector('.editChat').classList.remove('hidden')
+                    document.querySelector('#adminChat').classList.remove('hidden')
+                    document.querySelector('#userChat').classList.add('hidden')
+                }
+                
+                let leaveLink = document.querySelector('#leaveLink').value
+                leaveLink = leaveLink.split('0').join(`${groupPk}`)
+                for (let exitElem of document.querySelectorAll('.exitChat')){
+                    exitElem.addEventListener('click', (event) => {
+                        $.ajax({
+                        type: 'get',
+                        url: leaveLink,
+                        // data: {
+
+                        //     csrfmiddlewaretoken:document.querySelector('input').value,
+                        //     pk: pk,
+                        //     type:'group'
+                        // },
+                        success:function func(){}
+                    })
+                    })
+                }
+                // leaveLink
                 messageCreate()
             }
         })
+    })
+}
+let ellipsises =document.querySelectorAll(".ellipsis")
+for (let ellipsis of ellipsises){
+    ellipsis.addEventListener('click', () => {
+        for (let object of document.querySelectorAll(`#${ellipsis.id}`)){
+            object.classList.toggle("hidden")
+        }
     })
 }
 for (let user of users){

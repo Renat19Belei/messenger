@@ -93,10 +93,7 @@ imgPlus.addEventListener("click", ()=>{
         }
         
     })
-
-    // let plus = document.querySelector(".plus")
     counts.append(plus)
-    // imgPlus.remove()
     plus.append(input)
     plus.append(imgPlus)
     plus.append(imgClose)

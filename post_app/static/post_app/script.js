@@ -119,8 +119,9 @@ $(document).ready(function(){
                                     // document.querySelector('.formName').textContent = ''
                                     console.log(request.text)
                                     document.querySelector('.textInput').value = request.text
-                                    document.querySelector('.linkInput').value = request.link
-                                    document.querySelector('.themeInput').value = request.theme
+                                    document.querySelector('.linkInput').value = request.link[0]
+                                    let links = request.link
+                                    // document.querySelector('.themeInput').value = request.theme
                                     document.querySelector('.nameInput').value = request.name
                                     let count = 0
                                     for (let img of request.imgs){
@@ -174,6 +175,40 @@ $(document).ready(function(){
                                     document.querySelector(".tags-div").append(input)
                                         // input.focus()
                                 }
+                                // for (let linkUrl of links){
+                                // let input = document.createElement("input")
+                                // input.textContent = linkUrl
+                                // let plus = document.createElement("div")
+                                // let imgClose = document.createElement("img")
+                                // imgClose.src = document.querySelector('#linkClose').value
+                                // // imgClose.style.marginRight = 15
+                                // imgClose.className = 'imgClose'
+                                // input.maxLength = 255
+                                // input.required = false
+                                // input.className = "formInput linkInput"
+                                // input.placeholder = "вставте посилання публікації"
+                                // input.name = 'link'
+                                // //  name="link"
+                                // plus.className = 'plus'
+                                // plus.style.marginTop = 15
+                                // imgClose.addEventListener('click',()=>{
+                                //     plus.remove()
+                                //     let plusList = document.querySelectorAll('.plus')
+                                //     let elem = plusList[plusList.length-1]
+                                //     console.log(elem.querySelector(".imgClose"),elem)
+                                //     elem.append(imgPlus)
+                                //     if (elem.querySelector(".imgClose")){
+                                //         console.log('heh is not error')
+                                //         elem.querySelector(".imgClose").remove()
+                                //         elem.append(imgClose)
+                                //     }
+                                    
+                                // })
+                                // counts.append(plus)
+                                // plus.append(input)
+                                // plus.append(imgPlus)
+                                // plus.append(imgClose)
+                                // }
                                 }})
                         // document.querySelector("#type").value = 
                     })}}

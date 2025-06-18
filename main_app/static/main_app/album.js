@@ -101,3 +101,12 @@ $(document).ready(function(){
 });
 // const add = document.querySelector(".add-photo-button")
 // add.addEventListener("click")
+// yearSelect
+
+
+let yearSelect = document.getElementById('yearSelect')
+for (let year=new Date().getFullYear();year > 1900;year-=1){
+    let option = document.createElement('option')
+    option.textContent = year;
+    yearSelect.append(option);
+}

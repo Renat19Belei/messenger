@@ -169,8 +169,15 @@ def albums(request:WSGIRequest):
     if request.method == 'POST':
         form_type = request.POST.get("type")
         if form_type == 'album':
+            theme=request.POST.get("themeSelect")
+            tag=Tag.objects.filter(name=theme).first()
+            tag = None
+            if not tag:
+                
+                tag = Tag.objects.create(name=theme)
             album = Album.objects.create(
                 name = request.POST.get("name"),
+                topic= tag
                 # created_at = request.POST.get("created_at"),
                 # priview_image = request.POST.get("priview_image"),
                 # image = request.POST.get("image"),
@@ -184,9 +191,9 @@ def albums(request:WSGIRequest):
             img_list = []
             print(request.FILES)
             for img in request.FILES.getlist('images'):
-                # print('imgmgg')                # img_list.append(Images.objects.create(image=img))
-                album.images.add(Image.objects.create(image=img))
-            
+                print('imgmgg',img)            
+                album.image.add(Image.objects.create(file=img))
+                album.save()
             album.save()
         # images 
             # print(album)

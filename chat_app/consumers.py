@@ -4,7 +4,8 @@ import json
 from channels.db import database_sync_to_async
 from .models import ChatGroup, ChatMessage
 from post_app.forms import messageForm
-
+from user_app.models import Profile,Avatar
+from .models import ChatMessage
 class ChatConsumer(AsyncWebsocketConsumer):
     '''
     Обробка WebSocket з'єднання для чату
@@ -35,9 +36,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Отримуємо поточного користувача
         self.user = self.scope["user"]
         # Отримуємо ім'я поточного користувача
-        username = self.user.username
+        first_name = self.user.first_name
+        last_name = self.user.last_name
         # Зберігаємо повідомлення у базу даних та у цю змінну
         saved_message = await self.save_message(message = json.loads(text_data)['message'])
+        message_pk = saved_message.pk
+        
         # Надсилаємо повідомлення у группу
         await self.channel_layer.group_send(
             # ім'я группи, до якої відправляємо повідомлення
@@ -47,8 +51,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "type": "send_message_to_chat",
                 # Дані, що передаємо у send_message_to_chat через параметр event
                 "text_data": text_data,
-                "username": username,
-                "date_time": saved_message.send_at
+                'message_pk':message_pk,
+                'user_pk':self.user.pk,
+                # "first_name": first_name,
+                "date_time": saved_message.send_at,
+                "username": first_name + ' ' + last_name,
+                # 'avatar': avatar
             }
         )
     
@@ -56,7 +64,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         '''
         Метод, який відправляє повідомлення у чат
         '''
-        
+        print('hoh')
         # Перетворюємо json рядок з повідомленням у словник
         text_data_dict = json.loads(event["text_data"])
         # отримаємо ім`я відправника
@@ -65,7 +73,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_dict['username'] = username
         # задання для text_data_dict дату відправки в iso форматі
         text_data_dict["date_time"] = event["date_time"].isoformat()
-
+        # self.group_name
+        # text_data_dict['you'] = True
+        # if self.scope["user"]==ChatMessage.objects.get(pk=event["message_pk"]).author:
+        #     text_data_dict['you'] = False
+        #     avatar = Avatar.objects.filter(profile=Profile.objects.filter(user=event["user_pk"]).first(),active=True).first()
         # свторення об'єкту форми з параметром text_data_dict
         # form = messageForm(text_data_dict)
         # # робимо валідацію форми 
@@ -74,6 +86,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.send(json.dumps(text_data_dict))
         # else:
         #     print('error')
+    
     @database_sync_to_async
     def save_message(self, message):
         '''

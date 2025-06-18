@@ -10,7 +10,14 @@
 {% block content %}
 {% render_header 0 0 0 1 0 %}
 <input type="hidden" value="{{ chat_group.pk }}" id="chatGroupPk">
+<input type="hidden" value="{% static 'main_app/images/remove.png' %}" id="removeLink">
+<!-- leave -->
+ <!-- {% static 'main_app/images/remove.png' %} -->
+  <!-- get -->
 <input type="hidden" id="checkMark" value="{% static 'main_app/images/check_mark.png' %}">
+<input type="hidden" id="leaveLink" value="{% url 'leave' 0 %}">
+<input type="hidden" id="getLink" value="{% url 'get' %}">
+<input type="hidden" value="{% static 'main_app/images/Indicator.png' %}" id="avatarLink">
 <div class="bg" hidden></div>
 <form id="selectUsers" class="hidden">
     <h1 class="groupH1">Нова група</h1>
@@ -24,7 +31,7 @@
                     <span id="span{{contact.pk}}">{{contact.user.first_name}} {{contact.user.last_name}}</span> 
                 </span>
                 <input type="checkbox" id="input{{contact.pk}}">
-                <input type="hidden" name="members" value="{{contact.pk}}">
+                <input type="hidden" name="members" id="member" value="{{contact.pk}}">
             </div>
         {% endfor %}
     {% endif %}
@@ -33,20 +40,22 @@
         <button class="btn btn-confirm" id="addUsers">Далі</button>
     </div>
 </form>
-<form id="grouupcreation" class="hidden" method="post">
+<input type="hidden" id="leaveGroup" value="{% static 'main_app/images/leaveGroup.png' %}">
+<form id="grouupcreation" class="hidden" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="hidden" name="type" value="groupCreation">
+    <input type="hidden" name="type" value="groupCreation" id="groupCreation">
+    <input type="hidden" name="pk" value="pk" id="pkInput">
     <h1 class="groupH1">Нова група</h1>
     <div class="nameGroupDiv">
         <label for="nameGroupInput">Назва</label>
         <input type="text" name="name" id="nameGroupInput" placeholder="Введіть назву">
     </div>
     <div class="avatar-div">
-        <img src="{% static 'main_app/images/group.png' %}" alt="" class="contact-avatar">
+        <img src="{% static 'main_app/images/group.png' %}" alt="" class="contact-avatar" id="changeGroupAvatar">
         <div class="photo-options">
             <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
             <label for="fileInput"  class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</label>
-            <input type="file" id="fileInput" name="profile_icon" hidden>
+            <input type="file" id="fileInput" name="group_img" hidden>
             <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
         </div>
     </div>
@@ -105,6 +114,16 @@
                             </div>
                         </div>
                     </div>
+                    <!-- {% static 'main_app/images/leaveGroup.png' %} -->
+                    <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
+                    <dialog class="dialog hidden" id="heh{{post.pk}}">
+                        <button class="ellipsis hidden"  id="heh" type="submit" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
+                        <button class="removeChat" id=""><img src="{% static 'main_app/images/public.png' %}" alt=""  class="icon">Медіа</button>
+                        <button class="editChat" id=""><img src="{% static 'main_app/images/edit.png' %}" alt=""  class="icon">Редагувати групу</button>
+                        <hr>
+                        <button class="exitChat" id="adminChat"><img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">Видалити чат</button>
+                        <button class="exitChat" id="userChat"><img src="{% static 'main_app/images/leaveGroup.png' %}" alt=""  class="icon">Покинути групу</button>
+                    </dialog>
 
                 </div>
                 <div class="center-message">
@@ -154,10 +173,14 @@
                 <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" class="icon" alt="">Групові чати</div> <a href="">Дивитись всі</a></div>
                 <!-- chatGroups -->
 
-                <ul>
+                <ul id="allGroups">
                     {% for chatGroup in chatGroups %}
                         <li class="group-item" id="group{{chatGroup.pk}}">
+                            {% if chatGroup.avatar %}
+                            <img src="{{chatGroup.avatar.url}}" alt="">
+                            {% else %}
                             <img src="{% static 'main_app/images/group.png' %}" alt="">
+                            {% endif %}
                             <div class="text-group">
                                 <span class="groupName">{{chatGroup.name}}</span><small>Чудово!</small>
                             </div>
