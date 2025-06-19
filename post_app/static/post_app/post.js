@@ -158,6 +158,88 @@ document.querySelector("#imageInput").addEventListener('change', (event) => {
     }
 }
 )
+for (let tag of document.querySelectorAll('.tag')){
+    
+    let span =document.createElement("span")
+    span.style.zIndex = -999999999999999
+    // let input = document.createElement("input")
+    // input.className = "tag"
+    // input.value = '#'
+    // input.name = 'tags'
+    span.style.left = -13290808213787
+    document.body.append(span)
+    span.id = 'widthMeasurer'
+    span.textContent = tag.value
+    tag.style.width = `${span.scrollWidth}px`
+}
+let textInput = document.querySelector('.textInput')
+let p = textInput.parentElement
+let input = document.createElement('span')
+p.className = 'textWithTags'
+input.textContent = ''
+input.className = 'grayTags'
+// input/
+// input.style.top = textInput.scrollHeight
+input.style.top = 0.83989501312*2+'vw'
+input.style.left = '0.83989501312vw'
+p.append(input)
+textInput.addEventListener('input', (event) => {
+console.log(textInput.value.split('\n'))
+input.style.top = 0.83989501312 + 0.9*textInput.value.split('\n').length+'vw'
+})
+// standard_tag
+let objectOfStandard_tags = {
+
+}
+let standard_tags = document.querySelectorAll('.standard_tag')
+console.log(standard_tags,input)
+for (let standard_tag of standard_tags){
+    standard_tag.addEventListener('click',()=>{
+        if (!(standard_tag.value in objectOfStandard_tags)){
+            objectOfStandard_tags[standard_tag.value] = 1
+            // .name = 'everyTag' 
+            let sp = document.createElement('span')
+            let inp = document.createElement('input')
+            inp.type = 'hidden'
+            inp.value = standard_tag.value
+            inp.name = 'everyTag'
+            sp.className = 'everyTag'
+            // inp.value = standard_tag.value
+            sp.textContent = standard_tag.value + ' '
+            input.append(sp)
+            input.append(inp)
+        }
+    })
+}
+// tag.style.width = `${span.scrollWidth}px`
+// span.readOnly = true
+// let span = document.createElement('div')
+// span.textContent = 'hello'
+// span.className = "grayTags"
+// let div = document.createElement('div')
+// div.name
+// editableBox
+// let innerDiv = document.createElement('textarea')
+// div.className = "BigFormInput textInput"
+// innerDiv.textContent = ''
+// let textInput = document.querySelector(".textInput")
+// let editableBox = document.querySelector(".editableBox")
+// textInput.value = span
+// span.contenteditable='false'
+// div.contenteditable='true'
+// div.append(editableBox)
+// div.append(span)
+// div.addEventListener('click',()=>{
+//     editableBox.focus()
+// })
+// editableBox
+// textInput.style.position
+// span.style.bottom = '10px'
+// div.name = textInput.name
+// textInput.replaceWith(div)
+// textInput.append(span)
+// console.log(textInput)
+// textInput
 let buttonTags  = document.querySelector("#addTags")
 buttonTags.addEventListener("click", (event)=>{
     let span =document.createElement("span")

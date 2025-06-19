@@ -367,9 +367,12 @@ background-color: transparent;
 .hidden{
     display: none;
 }
-#allGroups{
-    max-height: 19.527559055vw;
+#allGroups, .messages, .contact-list{
+    height: 19.527559055vw;
     overflow-y: scroll;
+}
+.contact-list{
+    height: 30vw;
 }
 body{
     overflow: hidden;

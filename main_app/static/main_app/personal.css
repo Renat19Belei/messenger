@@ -126,7 +126,7 @@ canvas{
     /* right: -0vw; */
     right: 0;
     top: 50%;
-    bottom: 50%;
+    /* bottom: 50%; */
     transform: translate(-50%, -50%);
     background-color: none;
     border: none;
@@ -168,6 +168,14 @@ justify-content: space-between;
     justify-content: center;
     align-items: center;
 }
+.password-header{
+    display: flex;
+    justify-content: space-between;
+    width: 415%;
+}
+/* #changePassword{
+
+} */
 .icon{
     height: 1.0498687664vw;
     width: 1.0498687664vw;
@@ -332,8 +340,10 @@ background-color: #f0f0f0;
 
 .password-input-with-eye {
     position: relative;
-    display: block;
-    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-grow: 1; */
     max-width: 16.4304461942vw; 
 }
 

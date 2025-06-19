@@ -152,7 +152,7 @@ header nav a {
     border: 0; 
     box-sizing: border-box;
 }
-.tag{
+.tag, .standard_tag{
   border: none;
   outline: none;
   background-color: #E9E5EE;
@@ -163,6 +163,12 @@ header nav a {
   /* width: 3.20209973753vw; */
   font-size: 0.73490813648vw;
   text-align: center;
+}
+.everyTag{
+  border: none;
+  /* width: min-content; */
+ /* white-space: ; */
+  /* margin-left: 10; */
 }
 .tags-div{
   display: flex;

@@ -83,7 +83,7 @@
 ======= -->
                 <h3 class="contact-h3"><img src="{% static 'main_app/images/people2.png' %}" alt="" class="icon">Контакти</h3>
                 <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
-    <ul class="contact-list">
+            <ul class="contact-list">
                 {% if contacts %}
                     {% for contact in contacts %}
                         <li class="contact-item" id="user{{contact.pk}}">

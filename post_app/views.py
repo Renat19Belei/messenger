@@ -10,6 +10,9 @@ from django.views.generic.edit import FormView
 from  django.contrib.auth.models import User
 from  django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
+
 @login_required(login_url=reverse_lazy('login'))
 def MainPageView(request:WSGIRequest):
     form1 = messageForm()
@@ -115,18 +118,19 @@ class Posts(FormView):
         files = self.request.FILES.getlist("images")
         remove_List = self.request.POST.get("images1").split(" ")
         del remove_List[-1]
-        # remove_dict = 
+        # remove_dict = everyTag
         remove_List_2 = self.request.POST.get("images2").split(" ")
         del remove_List_2[-1]
         #removing imgs
         self.request.POST.get('tags')
+        print( self.request.POST.getlist('everyTag'),1231212313212313223213, self.request.POST)
         form.send(
             self.request.user,
             files,
             self.request.POST.get('type'),
             self.request.POST.get('imgs'),
             [remove_List,remove_List_2],
-            self.request.POST.getlist('tags'),
+            self.request.POST.getlist('tags') + self.request.POST.getlist('everyTag'),
             self.request.POST.getlist('link'),
             # self.request.POST.get('title'),
             # self.request.POST.get('content')

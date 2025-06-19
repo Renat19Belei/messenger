@@ -55,7 +55,14 @@ class messageForm(forms.Form):
                     tags_list.append(Tag.objects.filter(name = tag).first())
                 else:
                     tags_list.append(Tag.objects.create(name= tag))
-            
+            # everyTag
+            # everyTag
+            # for tag in everyTag:
+            #     tag = tag[1::]
+            #     if Tag.objects.filter(name = tag):
+            #         tags_list.append(Tag.objects.filter(name = tag).first())
+            #     else:
+            #         tags_list.append(Tag.objects.create(name= tag))
                 # text = "".join(text.split('#'+tag))
             if type == 'save':
                 
