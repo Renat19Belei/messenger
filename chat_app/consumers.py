@@ -52,7 +52,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 # Дані, що передаємо у send_message_to_chat через параметр event
                 "text_data": text_data,
                 'message_pk':message_pk,
-                'user_pk':self.user.pk,
+                'userous_pk':self.user.pk,
+                # 'avatar':self.user.pk,
                 # "first_name": first_name,
                 "date_time": saved_message.send_at,
                 "username": first_name + ' ' + last_name,
@@ -74,9 +75,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # задання для text_data_dict дату відправки в iso форматі
         text_data_dict["date_time"] = event["date_time"].isoformat()
         # self.group_name
-        # text_data_dict['you'] = True
-        # if self.scope["user"]==ChatMessage.objects.get(pk=event["message_pk"]).author:
-        #     text_data_dict['you'] = False
+        text_data_dict['you'] = 1
+        if self.scope["user"].pk!=event['userous_pk']:
+            text_data_dict['you'] = 0
+            text_data_dict['avatar'] = await self.get_avatar(event['userous_pk'])
         #     avatar = Avatar.objects.filter(profile=Profile.objects.filter(user=event["user_pk"]).first(),active=True).first()
         # свторення об'єкту форми з параметром text_data_dict
         # form = messageForm(text_data_dict)
@@ -86,7 +88,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.send(json.dumps(text_data_dict))
         # else:
         #     print('error')
-    
+    @database_sync_to_async
+    def get_avatar(self, user_pk):
+        profile = Profile.objects.filter(user_id=user_pk).first()
+        avatar = Avatar.objects.filter(profile=profile,active=True).first().image
+        if avatar:
+            avatar = avatar.url
+        else:
+            avatar = 0
+        return avatar
     @database_sync_to_async
     def save_message(self, message):
         '''

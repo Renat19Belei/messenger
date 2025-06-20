@@ -5,7 +5,7 @@
 {% for message in messages %}
     {% if message.author == request.user %}
         <p class="my message">
-            {{message.content}} <span class="details-message"> <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
+            <span class="messageContent">{{message.content}}</span> <span class="details-message"> <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
         </p>
     {% else %}
         <p class="message">
@@ -14,7 +14,7 @@
             <span class="message-data">
 
                 <span class="username">
-                    {{message.author.username}}
+                    {{message.author.first_name}} {{message.author.last_name}}
                 </span>
                 <span class="messageContent">
                     

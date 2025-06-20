@@ -105,11 +105,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 0.7874015748vw;
+    margin-top: 0.5vw;
     width: 1.99475065616vw;
     height: 0.57742782152vw;
     margin-left: auto;
     
+}
+.messageContent{
+    display: flex;
+    gap: 0.5249343832vw;
 }
 .details-message .check-mark{
     width: 0.5249343832vw;
@@ -120,7 +124,8 @@ body {
     color: #81818D;
 }
 .message{
-    background-color: #E9E5EE;
+    /* background-color: #E9E5EE; */
+
     height: 2.20472440944vw;
     display: flex;
     flex-direction: row;
@@ -132,8 +137,10 @@ body {
     gap: 0.5249343832vw;
     border-radius: 0.31496062992vw;
     width: min-content;
+    margin-top:15;
 }
 .my.message{
+    margin-top:0;
 margin-left: auto;
 margin-right: 0;
 width: min-content;
@@ -167,6 +174,8 @@ background-color: #CDCED2;
     top: 0.83989501312vw;
     display: flex;
     justify-content: space-between;
+    border-bottom: #CDCED2 0.05249343832vw solid;
+    padding-bottom: 0.5249343832vw;
     margin-top: 0.83989501312vw;
     margin-left: 0.83989501312vw;
     margin-right: 0.83989501312vw;
@@ -374,6 +383,22 @@ background-color: transparent;
 .contact-list{
     height: 30vw;
 }
+.username{
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 160%;
+    letter-spacing: 0%;
+    /* width: 10vw; */
+    height: 0.83989501312vw;
+
+}
+.message-data{
+    background-color: white;
+    border: #E9E5EE solid  0.05249343832vw;
+    /* border-radius: 0.31496062992; */
+    border-radius: 0.31496062992vw;
+    padding: 0.5249343832vw;
+}
 body{
     overflow: hidden;
 }
@@ -385,10 +410,11 @@ body{
 .username{
     margin-right: auto;
     margin-left: 0;
-    width: min-content;
+    width: max-content;
 }
 .messageContent{
     display: flex;
+    color: black;
 }
 .footer{
     width: 95%;

@@ -90,6 +90,9 @@ socket.addEventListener("message", function(event){
     let dateTime = new Date(messageObject['date_time'])
     // messages.append(messageElem)
     let p = document.createElement('p')
+    let messageContent = document.createElement('span')
+    messageContent.className = 'messageContent'
+    // messageContent
     let details = document.createElement('span')
     let time = document.createElement('span')
     let img = document.createElement('img')
@@ -104,26 +107,35 @@ socket.addEventListener("message", function(event){
     details.append(time)
 
     details.append(img)
-    p.textContent = messageObject['message']
+    messageContent.textContent = messageObject['message']
+    messageContent.append(details)
+    console.log(!messageObject['you'])
+    if (!messageObject['you']){
+        let img = document.createElement('img')
+        if (messageObject['avatar']){
+            img.src = messageObject['avatar']
+        }else{
+            img.src = document.getElementById('avatarLink').value
+        }
+        // <span class="username">
+        //             {{message.author.username}}
+        //         </span>
+        let message_data = document.createElement('span')
+        message_data.className = 'message-data'
+        let username = document.createElement('span')
+        username.className = 'username'
+        username.textContent = messageObject['username']
+        // let messageContent = 
+        message_data.append(username)
+        message_data.append(messageContent)
+        p.append(message_data)
+        img.className= 'avatar'
+        p.prepend(img)
+        p.className = 'message'
+    }else{
     
-    // if (!messageObject['you']){
-    //     let img = document.createElement('img')
-    //     img.src = document.getElementById('avatarLink').value
-    //     let message_data = document.createElement('span')
-    //     message_data.className = 'message-data'
-    //     let username = document.createElement('span')
-    //     message_data.className = 'username'
-    //     username.textContent = messageObject['username']
-    //     // let messageContent = 
-    //     message_data.append(username)
-    //     message_data.append(details)
-    //     p.append(message_data)
-    //     img.className= 'avatar'
-    //     p.append(img)
-    //     p.className = 'message'
-    // }else{
-    p.append(details)
-    // }
+    p.append(messageContent)
+    }
     // avatarLink
     messages.prepend(p)
     // <p class="message">
