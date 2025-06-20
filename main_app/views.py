@@ -202,6 +202,24 @@ def albums(request:WSGIRequest):
     avatars = Avatar.objects.filter(profile=profile,active=False)
     print(avatars)
     return render(request, 'main_app/albums.html', context= {"albums" :user_albums,'avatars':avatars})
+#             print(album)
+#             print(album.images.all())
+#     user_albums = Album.objects.filter(user=request.user)
+    
+#     return render(request, 'main_app/albums.html', context= {"albums" :user_albums})
+# def album_detail_view(request, album_pk):
+#     album = get_object_or_404(Album, pk=album_pk)
+#     all_images = list(album.images.all().order_by('id')) 
+#     split_point = (len(all_images) + 1) // 2
+#     row1_images = all_images[:split_point]
+#     row2_images = all_images[split_point:]
+
+#     context = {
+#         'album': album,
+#         'row1_images': row1_images,
+#         'row2_images': row2_images,
+#     }
+#     return render(request, 'main_app/albums.html', context)
 # =======
 #     return render(request, 'main_app/albums.html')
 
