@@ -482,3 +482,54 @@ letter-spacing: -0.01em; */
 .modal-actions button[type="submit"]:hover {
   background-color: #4b3457;
 }
+/* main_app/static/main_app/albums.css */
+
+.images-div {
+    display: flex; /* Включаємо Flexbox для контейнера */
+    flex-wrap: wrap; /* Дозволяємо елементам переноситися на новий рядок */
+    gap: 10px; /* Відстань між фотографіями (можете налаштувати) */
+    /* Додайте інші стилі, які вам потрібні для самого контейнера */
+    justify-content: flex-start; /* Вирівнювання елементів на початку */
+    align-items: flex-start; /* Вирівнювання елементів по верхньому краю */
+}
+
+.photo-container {
+    /* Цей блок має контролювати ширину, щоб вписуватися у два ряди */
+    flex: 0 0 calc(50% - 5px); /* Кожна фотографія займає 50% ширини мінус половина gap */
+    /* 5px - це половина gap, якщо gap 10px. Якщо gap інший, скоригуйте. */
+    /* Або, якщо простіше, фіксована ширина: */
+    /* width: calc(50% - 5px); */
+    
+    max-width: calc(50% - 5px); /* Обмежте максимальну ширину */
+    aspect-ratio: 1 / 1; /* Зберігає співвідношення сторін 1:1, щоб фото були квадратними */
+    position: relative; /* Важливо для позиціонування overlay */
+    overflow: hidden; /* Обрізає вміст, якщо він виходить за межі контейнера */
+    border-radius: 8px; /* Додайте, якщо хочете заокруглені кути */
+}
+
+.photo-container img.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Забезпечує заповнення контейнера зображенням, обрізаючи зайве */
+    display: block; /* Усуває зайві пробіли під зображенням */
+}
+
+/* Якщо у вас є стилі для .photo-overlay-actions, вони, ймовірно, вже добре працюють,
+   але переконайтеся, що вони позиціонуються абсолютно */
+.photo-overlay-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Напівпрозорий фон при наведенні */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Приховуємо за замовчуванням */
+    transition: opacity 0.3s ease; /* Плавний перехід */
+}
+
+.photo-container:hover .photo-overlay-actions {
+    opacity: 1; /* З'являється при наведенні */
+}
