@@ -517,8 +517,9 @@ letter-spacing: -0.01em; */
     position: relative;
     overflow: hidden;
     border-radius: 0.41994750656vw;
-    background-color: #eee;
+    background-color: #FFFFFF;
     box-sizing: border-box;
+    border: #81818D solid 0.05249343832vw;
 }
 .horizontal-scroll-row::-webkit-scrollbar {
     display: none;

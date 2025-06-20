@@ -35,77 +35,55 @@
         
         <div>
             {% if albums %}
-                {% for album in albums %}
-                    <div class="album-card">
-                        <div class="album-head " >
-                            <h3 class="text-album">{{ album.name }}</h3>
-                            <div class="album-options">
-                                <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
-                                <button class="ellipsis" type="submit" id="heh{{album.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
-                                <dialog class="dialog hidden" id="dialog-{{album.pk}}"> 
-                                    <button class="ellipsis hidden" id="close-dialog-{{album.pk}}" type="button" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
-                                    <button class="config edit" id="edit-{{album.pk}}"><img src="{% static 'main_app/images/edit.png' %}" alt="" class="icon">Редагувати допис</button>
-                                    <hr>
-                                    <button class="config remove" id="remove-{{album.pk}}"><img src="{% static 'main_app/images/remove.png' %}" alt="" class="icon">Видалити публікацію</button> 
-                                </dialog>
+                    {% for album in albums %}
+                        <div class="album-card">
+                            <div class="album-head " >
+                                <h3 class="text-album">{{ album.name }}</h3>
+                                <div class="album-options">
+                                    <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
+                                    <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
+                                    <dialog class="dialog hidden" id="heh{{post.pk}}">
+                                        <button class="ellipsis hidden"  id="heh{{post.pk}}" type="submit" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
+                                        <button class="config edit" id="{{post.pk}}"><img src="{% static 'main_app/images/edit.png' %}" alt=""  class="icon">Редагувати допис</button>
+                                        <hr>
+                                        <button class="config remove" id="{{post.pk}}"><img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">Видалити публікацію</button>
+                                    </dialog>
+                                </div>
                             </div>
-                        </div>
-                        <div class="album-data">
-                            <p class="text-album">{{ album.theme }}</p>
-                            <p class="year text-album">{{ album.year }} рік</p>
-                        </div>
-                        <p class="text-album">Фотографіїї</p>
-                        
-                        <div class="img{{ album.pk }} images-div">
-                            <div class="horizontal-scroll-row">
-                                {% for image in album.row1_images %}
-                                    <div class="photo-container">
-                                        <img src="{{image.image.url}}" alt="" class="image">
-                                        <div class="photo-overlay-actions">
-                                            <button class="action-icon-btn delete-image-btn" data-image-id="{{ image.pk }}"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
-                                            <button class="action-icon-btn toggle-visibility-btn" data-image-id="{{ image.pk }}"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                                {% if not album.row2_images %} 
-                                    <label for="imageInput{{ album.pk }}" class="image-label" id="label{{album.pk}}">
-                                        <img src="{% static 'main_app/images/plus.png' %}" alt="" class="plus">
-                                    </label>
+                            <div class="album-data">
+                                <p class="text-album">{{ album.theme }}</p>
+                                <p class="year text-album">{{ album.year }} рік</p>
+                            </div>
+                            <p class="text-album">Фотографіїї</p>
+                            <div class="img{{ album.pk }} images-div">
+                                <!-- image -->
+                                {% if album.image.all %}
+                                    
+                                    <!-- <div class="images"> -->
+                                        {% for image in album.image.all %}
+                                            
+                                            <div class="photo-container">
+                                                <img src="{{image.file.url}}" alt="" class="image">
+                                                <div class="photo-overlay-actions">
+                                                    <button class="action-icon-btn"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
+                                                    <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
+                                                </div>
+                                            </div>
+                                        {%  endfor %}
+                                    <!-- </div> -->
                                 {% endif %}
+                                <label for="imageInput{{ album.pk }}" class="image-label" id="label{{album.pk}}">
+                                    <img src="{% static 'main_app/images/plus_img.png' %}" alt="" class="plus">
+                                </label>
                             </div>
-
-                            <div class="horizontal-scroll-row">
-                                {% for image in album.row2_images %}
-                                    <div class="photo-container">
-                                        <img src="{{image.image.url}}" alt="" class="image">
-                                        <div class="photo-overlay-actions">
-                                            <button class="action-icon-btn delete-image-btn" data-image-id="{{ image.pk }}"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
-                                            <button class="action-icon-btn toggle-visibility-btn" data-image-id="{{ image.pk }}"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                                {% if album.row1_images and not album.row2_images %}
-                                    <label for="imageInput{{ album.pk }}" class="image-label" id="label{{album.pk}}">
-                                        <img src="{% static 'main_app/images/plus.png' %}" alt="" class="plus">
-                                    </label>
-                                {% elif album.row2_images %}
-                                    <label for="imageInput{{ album.pk }}" class="image-label" id="label{{album.pk}}">
-                                        <img src="{% static 'main_app/images/plus.png' %}" alt="" class="plus">
-                                    </label>
-                                {% endif %}
-                            </div>
-
+                            <input type="file" id="imageInput{{ album.pk }}" name="images" class="imageInput" accept="image/*" multiple hidden>
                         </div>
-
-                        <input type="file" id="imageInput{{ album.pk }}" name="images" class="imageInput" accept="image/*" multiple hidden>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="no-album-block">
-                    <p>Немає ще жодного альбому</p>
-                    <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
-                </div>
-            {% endif %}
+                    {% endfor %}
+             {% endif %}
+            <div class="no-album-block">
+                <p>Немає ще жодного альбому</p>
+                <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
+            </div>
         </div>
             
     </div>
