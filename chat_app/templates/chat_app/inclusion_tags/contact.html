@@ -1,0 +1,13 @@
+
+{% load static %}
+<li class="group-item" id="">
+    {% if avatar %}
+    <img src="{{avatar.image.url}}" alt="">
+    {% else %}
+    <img src="{% static 'main_app/images/indicator.png' %}" alt="">
+    {% endif %}
+    <div class="text-group">
+        <span class="groupName">{{username}}</span><small>{{message}}</small>
+    </div>
+    <span class="message-date">{{time_text}}</span>
+</li>

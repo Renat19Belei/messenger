@@ -241,7 +241,9 @@ for (let standard_tag of standard_tags){
 // console.log(textInput)
 // textInput
 let buttonTags  = document.querySelector("#addTags")
-buttonTags.addEventListener("click", (event)=>{
+buttonTags.addEventListener("click", addTag)
+function addTag(e){
+    let buttonTags  = document.querySelector("#addTags")
     let span =document.createElement("span")
     span.style.zIndex = -999999999999999
     let input = document.createElement("input")
@@ -261,6 +263,12 @@ buttonTags.addEventListener("click", (event)=>{
             input.remove()
         }
     })
+    // tags-div
+    let buttonTags2 =buttonTags.cloneNode(true)
+    buttonTags.remove()
+    buttonTags2.addEventListener('click', addTag)
+    let tagsDiv = document.querySelector(".tags-div")
     document.querySelector(".tags-div").append(input)
+    tagsDiv.append(buttonTags2)
     input.focus()
-})
+}

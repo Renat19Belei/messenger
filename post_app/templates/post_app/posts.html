@@ -41,12 +41,12 @@
     
         {% if field.label == 'Тема публікації' %}
           <div id="tags">
-            <div class="tags-div"></div>
+            <div class="tags-div">{% standard_tags %}<button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button></div>
+            
             <!-- standard_tags -->
-            {% standard_tags %}
+            
             
             <!--  -->
-            <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
           </div>
         {% elif field.label == '' %}
         <div class="editableBox"></div>

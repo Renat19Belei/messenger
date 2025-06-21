@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load tags %}
+{% load chat_tags %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'chat_app/chat.css' %}">
 <script src="{% static 'main_app/jquery.js' %}" defer></script>
@@ -158,16 +159,17 @@
                 
                 <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" alt=""  class="icon">Повідомлення</div> <a href="">Дивитись всі</a></div>
                 <!-- messagesList -->
-                {% for message in messagesList %}
                 <ul>
+                {% for message in messagesList %}
                     <li>
-                        <img src="{% static 'main_app/images/Indicator.png' %}" alt="">
+                        <!-- <img src="{% static 'main_app/images/Indicator.png' %}" alt="">
                         <div class="text-group">{{message.autor.first_name}} {{message.autor.last_name}}<small>{{message.content}}</small>
                         </div>
-                        <span class="message-date">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span>
+                        <span class="message-date">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> -->
+                        {% contact request message.pk %}
                     </li>
+                    {% endfor %}
                 </ul>
-                {% endfor %}
                 <!-- <ul>
                     <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
                 </ul>

@@ -173,6 +173,10 @@ background-color: transparent;
   font-size: 0.73490813648vw;
   text-align: center;
 }
+.tags{
+    display: flex;
+    /* flex-direction: col; */
+}
 .textInput {
     /* border: 1px ; */
     width: 35.9580052493vw;
