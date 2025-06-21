@@ -72,6 +72,7 @@ def chat_view(request:WSGIRequest):
                     # "avatar":message.author 
                     # 'send_at':message.send_at
                 })
+            
             return render(request, 'chat_app/message.html', {
                 'messages':messages,
                 'pk':group.pk
@@ -89,6 +90,7 @@ def chat_view(request:WSGIRequest):
                     # "avatar":message.author 
                     # 'send_at':message.send_at
                 })
+            
             # messages.reverse()
             return render(request, 'chat_app/message.html', {
                 'messages':messages,
@@ -113,8 +115,17 @@ def chat_view(request:WSGIRequest):
             # pass
     # friends=request.user
     chatGroups=ChatGroup.objects.filter(members=profile,is_personal_chat=False)
+    chatPersonal=ChatGroup.objects.filter(members=profile,is_personal_chat=True)
+    # chatGroups=ChatGroup.objects.filter(members=profile,is_personal_chat=False)
+    messagesList = []
+    for chat in chatPersonal:
+        messageElem  = ChatMessage.objects.filter(chat_group=chat).order_by('-send_at').first()
+        # messageElem  = ChatMessage.objects.filter(author=chat.user).order_by('-send_at').first()
+        messagesList.append(messageElem)
+    print(messagesList)
     context = {
         'contacts': profiles, 
-        'chatGroups':chatGroups
+        'chatGroups':chatGroups,
+        'messagesList':messagesList
     }
     return render(request, 'chat_app/chat.html', context)

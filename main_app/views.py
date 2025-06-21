@@ -1,38 +1,63 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic.base import TemplateView
+
 
 from django.contrib.auth.views import  LogoutView
 from .models import *
-
+from django.http import JsonResponse
 from django.core.handlers.wsgi import WSGIRequest
 import json
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView,DeleteView
+# from django.views.generic.detail import 
 from django.contrib.auth.views import LogoutView
-from .forms import ProfileForm
-from user_app.models import Friendship,Avatar
+from .forms import ProfileForm,PasswordForm
+from user_app.models import Friendship,Avatar,VerificationCode
 from post_app.models import Post, Profile, Tag, Image, Link, Album
 from chat_app.models import ChatGroup
-
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+import random
+# @login_required
+# def change_password(request:WSGIRequest):
+#     # request.user.check_password
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user) 
+#             return redirect('change_password')
+#         else:
+#             messages.error(request, 'Будь ласка, виправте помилки нижче.')
+#     else:
+#         form = PasswordChangeForm(request.user)
 class CustomLogoutView(LogoutView):
     next_page = "login"
 
+@login_required
 def personal(request:WSGIRequest):
     if not request.user.is_authenticated:
 
         return redirect('login')
+
     profile_form = ProfileForm(user=request.user)
-    
+    form = PasswordForm()
     profile = Profile.objects.get(user_id = request.user.pk)
     print(profile,'profile')
     if request.method == 'POST':
-        print('hello')
+        # form = PasswordForm(request.POST)
+        # if form.is_valid():
+        #     user = form.save()
+        #     update_session_auth_hash(request, user) 
+        #     return redirect('change_password')
+        # else:
+        #     messages.error(request, 'Будь ласка, виправте помилки нижче.')
+        # print('hello')
         user = request.user
         
         # print
+        # check_password
         type = request.POST.get('type')
         if type == 'main_data':
             user.first_name = request.POST.get('first_name')
@@ -60,16 +85,26 @@ def personal(request:WSGIRequest):
 
             profile.signature = request.FILES.get('elec')
             print(profile.signature,8976543213)
+        elif type == 'check_password':
+            password = request.POST.get('password')
+            password = request.user.check_password(password)
+            VerificationCode.objects.create(username=str(user.pk),code = random.randint(100000,999999))
+            return JsonResponse({'correct':password})
+        elif type == 'check_code':
+            verificationCode = VerificationCode.objects.filter(username=str(user.pk)).first()
+            
         profile.save()
+        # JsonResponse
         # if profile_form.is_valid():
         #     profile_form.save(user=request.user)
         # print(profile_form)
     # request.user.password.
     # user = request.user
+    
     return render(request, 'main_app/personal.html',context={
         "form":profile_form,
-        'profile':profile
-
+        'profile':profile,
+        "password_form":form
         # 'profile_icon':profile.icon
         # 'first_name':user.first_name,
         # 'last_name':user.last_name,
@@ -202,6 +237,8 @@ def albums(request:WSGIRequest):
     avatars = Avatar.objects.filter(profile=profile,active=False)
     print(avatars)
     return render(request, 'main_app/albums.html', context= {"albums" :user_albums,'avatars':avatars})
+def remove_album_icon(request:WSGIRequest):
+    pass
 #             print(album)
 #             print(album.images.all())
 #     user_albums = Album.objects.filter(user=request.user)
@@ -220,9 +257,3 @@ def albums(request:WSGIRequest):
 #         'row2_images': row2_images,
 #     }
 #     return render(request, 'main_app/albums.html', context)
-# =======
-#     return render(request, 'main_app/albums.html')
-
-# @login_required 
-
-# >>>>>>> origin/Renat

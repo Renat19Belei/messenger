@@ -110,3 +110,12 @@ for (let year=new Date().getFullYear();year > 1900;year-=1){
     option.textContent = year;
     yearSelect.append(option);
 }
+
+$(document).on('click', '.delete-photo-button', function(){
+  const button = $(this);
+  const imageID = button.data('image-id')
+  
+  // $.
+  // function 
+})
+

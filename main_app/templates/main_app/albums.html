@@ -65,7 +65,7 @@
                                             <div class="photo-container">
                                                 <img src="{{image.file.url}}" alt="" class="image">
                                                 <div class="photo-overlay-actions">
-                                                    <button class="action-icon-btn"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
+                                                    <button class="action-icon-btn delete-photo-button" data-image-id="{{ image.pk }}"><img src="{% static 'main_app/images/remove_img.png' %}" alt="Видалити" class="icon-img"></button>
                                                     <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
                                                 </div>
                                             </div>
@@ -80,11 +80,11 @@
                         </div>
                     {% endfor %}
              {% endif %}
+            </div>
             <div class="no-album-block">
                 <p>Немає ще жодного альбому</p>
                 <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
             </div>
-        </div>
             
     </div>
 </div>

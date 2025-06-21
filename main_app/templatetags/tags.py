@@ -1,7 +1,12 @@
 from django import template
 from user_app.models import Profile,Avatar
 register  = template.Library()
-
+from chat_app.models import ChatGroup,ChatMessage
+# contact.html
+# @register.inclusion_tag(filename = "main_app/inclusiontags/contact.html")
+# def render_header(pk):
+#     chatMessage =ChatMessage.objects.filter(pk=pk).order_by('-send_at').first()
+#     ChatGroup.objects.filter()
 @register.inclusion_tag(filename = "main_app/inclusiontags/header.html")
 def render_header(main=0, posts=0, friends=0, chats=0, personal=0):
     pages = {

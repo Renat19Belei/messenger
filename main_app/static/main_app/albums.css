@@ -521,6 +521,9 @@ letter-spacing: -0.01em; */
     box-sizing: border-box;
     border: #81818D solid 0.05249343832vw;
 }
+.no-album-block, .my-photos-block{
+  border: #CDCED2 solid 0.05249343832vw;
+}
 .horizontal-scroll-row::-webkit-scrollbar {
     display: none;
 }

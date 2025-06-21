@@ -133,6 +133,9 @@ canvas{
     cursor: pointer;
     margin: 0;
 }
+/* .password-change-div{
+
+} */
 .header-card{
 justify-content: space-between;
 /* align-items:center; */
@@ -293,15 +296,8 @@ border-radius: 0.31496062992vw;
 border: 0.00249343832vw solid black;
 }
 
-.gray-input {
-    
-    color: gray;
-    border: 1px solid #ccc;
-    pointer-events: none;
-}
-.active{
-background-color: #f0f0f0;
-}
+
+
 .editable {
     background-color: white;
     color: black;
@@ -380,4 +376,13 @@ background-color: #f0f0f0;
     padding: 0.5249343832vw;
     font-size: 0.73490813648vw;
     gap: 0.5249343832vw;
+}
+.gray-input {
+    
+    color: gray !important;
+    border: 1px solid #ccc !important;
+    pointer-events: none;
+}
+.active{
+background-color: #f0f0f0;
 }

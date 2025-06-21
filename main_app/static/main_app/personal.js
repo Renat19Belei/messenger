@@ -61,6 +61,143 @@ for (let p of ps){
         }
     }
 }
+// old-password
+// edit-img-password
+let editPasswordImg = document.querySelector(".edit-img-password")
+let save = document.querySelector(".password-edit-inline-button")
+
+let oldPassword = document.querySelector(".old-password")
+let newPassword = document.querySelector(".new-password")
+let acceptPassword  = document.querySelector(".confirm-password")
+let codes = document.querySelectorAll(".code")
+let codes_list = []
+for (let code of codes){
+    codes_list.push(code.value)
+}
+document.querySelector('.email').addEventListener('click', ()=>{
+    $.ajax({
+            type: 'post',
+            url: document.querySelector('#personalUrl').value,
+            data: {
+
+                csrfmiddlewaretoken:document.querySelector('input').value,
+                codes:codes_list,
+                type:'code'
+            },
+            success:function(request){
+            if (request.correct){
+            // oldPassword.classList.add("hidden")
+            oldPassword.parentElement.classList.add("hidden")
+            acceptPassword.parentElement.classList.remove("hidden")
+            newPassword.parentElement.classList.remove("hidden")
+            save.classList.add('active')
+            // for (let input of inputs){
+            //     // console.log(!input.classList.contains('password'),input)
+            //     // "password-change-div"
+            //     if (!input.classList.contains('password')){
+            //         input.requered = true
+            //         input.readOnly = false
+            //         input.classList.remove('gray-input')
+            //     }
+            // }
+            // email
+            // bg
+            document.querySelector('.email').classList.add('hidden')
+            document.querySelector('.bg').classList.add('hidden')
+            save.textContent = ''
+            save.append(editPasswordImg)
+            // info.innerHTML += `Зберегти`
+            save.innerHTML += "Збергти пароль"
+        }
+        }})
+})
+save.addEventListener("click", ()=>{
+    
+    // let info = document.querySelector('#info')
+    let inputs = document.querySelectorAll('.password-change-div .FormInput') 
+    // console.log(editImg)
+    if (save.classList.contains('active')){
+        save.classList.remove('active')
+        oldPassword.parentElement.classList.remove("hidden")
+        acceptPassword.parentElement.classList.add("hidden")
+        newPassword.parentElement.classList.add("hidden")
+        // for (let input of inputs){
+        //     input.requered = false
+        //     input.readOnly = true
+        //     input.classList.add('gray-input')
+        // }
+            
+            // fetch(document.querySelector('#personalUrl').value,{
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'X-CSRFToken': csrfToken
+            //     },
+
+            // })
+            // DateInput
+            let first_name = document.querySelector('[name="first_name"]').value
+            let last_name = document.querySelector('[name="last_name"]').value
+            $.ajax({
+            type: 'post',
+            url: document.querySelector('#personalUrl').value,
+            data: {
+
+                csrfmiddlewaretoken:document.querySelector('input').value,
+                first_name: first_name,
+                last_name: last_name,
+                email: document.querySelector('[name="email"]').value,
+                date_of_birthday: document.querySelector('[name="date_of_birthday"]').value,
+                type:'main_data'
+
+            },
+            success:function(request){
+            }})
+        
+        
+
+        save.textContent = ''
+        save.append(editPasswordImg)
+        save.innerHTML += `Редагувати пароль`
+
+    }else{
+        $.ajax({
+            type: 'post',
+            url: document.querySelector('#personalUrl').value,
+            data: {
+
+                csrfmiddlewaretoken:document.querySelector('input').value,
+                password:oldPassword.value,
+                type:'check_password'
+            },
+            success:function(request){
+            if (request.correct){
+            // oldPassword.classList.add("hidden")
+            oldPassword.parentElement.classList.add("hidden")
+            acceptPassword.parentElement.classList.remove("hidden")
+            newPassword.parentElement.classList.remove("hidden")
+            save.classList.add('active')
+            for (let input of inputs){
+                // console.log(!input.classList.contains('password'),input)
+                // "password-change-div"
+                if (!input.classList.contains('password')){
+                    input.requered = true
+                    input.readOnly = false
+                    input.classList.remove('gray-input')
+                }
+            }
+            // email
+            // bg
+            document.querySelector('.email').classList.remove('hidden')
+            document.querySelector('.bg').classList.remove('hidden')
+            save.textContent = ''
+            save.append(editPasswordImg)
+            // info.innerHTML += `Зберегти`
+            save.innerHTML += "Збергти пароль"
+        }
+        }})
+    }
+})
 let canvas = document.querySelector('canvas')
 canvas.style.padding = 0
 let draw = canvas.getContext('2d')

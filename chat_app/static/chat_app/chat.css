@@ -26,7 +26,7 @@ body {
 .searchImg{
     position: absolute;
     top: 40%;
-    left: 10;
+    left: 0.5249343832vw;
     transform: translate(0,-50%);
 }
 .searches{
@@ -137,7 +137,7 @@ body {
     gap: 0.5249343832vw;
     border-radius: 0.31496062992vw;
     width: min-content;
-    margin-top:15;
+    margin-top:0.7874015748vw;
 }
 .my.message{
     margin-top:0;
@@ -224,7 +224,7 @@ background-color: #CDCED2;
 .chat-info .groups {
     background-color: #fff;
     border-radius: 0.62992125984vw;
-    padding: 0.78740157480.7874015748vw;
+    padding: 0.78740157480vw;
     box-shadow: 0 0 0.41994750656vw rgba(0, 0, 0, 0.03);
 }
 
@@ -356,6 +356,8 @@ button{
 }
 .removeImg{
     margin-left: auto;
+    height: 1.0498687664vw;
+    width: 1.0498687664vw;
 }
 .exitChat, .editChat, .removeChat{
     
@@ -385,7 +387,7 @@ background-color: transparent;
 }
 .username{
     font-weight: 400;
-    font-size: 10px;
+    font-size: 0.5249343832vw;
     line-height: 160%;
     letter-spacing: 0%;
     /* width: 10vw; */
@@ -412,6 +414,7 @@ body{
     margin-left: 0;
     width: max-content;
 }
+
 .messageContent{
     display: flex;
     color: black;
@@ -511,9 +514,17 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 44px;
-    padding-top: 24px;
+    padding: 2.30971128608vw;
+    padding-top: 1.25984251968vw;
     text-align: center;
+}
+.sendElement{
+    width: 2.0997375328vw;
+    height: 2.0997375328vw;
+}
+.sendElementButton{
+    width: 1.0498687664vw;
+    height: 1.0498687664vw;
 }
 #nameGroupInput{
     
@@ -692,4 +703,13 @@ padding-left: 0.83989501312vw;
     font-weight: bold;
     margin-right: 0.2624671916vw;
     flex-shrink: 0;
+}
+.checkbox-input:checked + .custom-checkbox::after{
+    background: none;
+    color: #543C52;
+}
+.checkbox-input{
+    background-color: none !important;
+    width: 1.0498687664vw;
+    height: 1.0498687664vw;
 }
