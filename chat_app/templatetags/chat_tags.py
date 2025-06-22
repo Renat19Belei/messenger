@@ -13,14 +13,15 @@ def contact(request,pk):
     now = timezone.now()
     avatar = Avatar.objects.filter(active = True, profile = friend).first()
     time_text = ""
-    if message.send_at.day == now.day:
+    if message.send_at.day == now.day :
         # 09:41 
         print('ok')
-        time_text = f"{message.send_at.hour}:{message.send_at.minute}" 
+        time_text = f"{message.send_at.hour:02d}:{message.send_at.minute:02d}" 
+
     else:
         # 25.04.2025
         print('ewqweqewq')
-        time_text = f"{message.send_at.day}.{message.send_at.month}.{message.send_at.year}"
+        time_text = f"{message.send_at.day:02d}.{message.send_at.month:02d}.{message.send_at.year:02d}"
     print(time_text)
     return {
         "username": friend.user.first_name + ' ' + friend.user.last_name,
