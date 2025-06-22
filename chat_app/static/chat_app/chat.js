@@ -278,13 +278,20 @@ for (let ellipsis of ellipsises){
         }
     })
 }
+// messages
+function userOpen(users){
 for (let user of users){
     user.addEventListener('click',()=>{
 
         // groupName
         let pk = user.id.split('user').join('')-0
         let icon = user.querySelector('img')
-        let name = user.querySelector('.contact-info .contact-name').textContent
+        let name = user.querySelector('.contact-info .contact-name')
+        if (!name){
+            // text-group groupName
+            name = user.querySelector('.groupName')
+        }
+        name = name.textContent
         document.querySelector('.friend-current-name').textContent = name
         currentIcon.src = icon.src
         groupPk = pk
@@ -305,23 +312,10 @@ for (let user of users){
                 messageCreate()
             }
         })
-        console.log(groupPk)
-        
-        // if (socket){
-
-        //     socket.close()
-        // }
-        
-        
-        // {}
-        
-        // chat-card exit-img
-        // haederCard
-        // icon.remove()
-        // icon
     })
-}
-
+}}
+userOpen(users)
+userOpen(document.querySelector('.messages').querySelectorAll('.contact-item'))
 document.querySelector('.exit-img').addEventListener('click', () => {
     document.querySelector('.center-message').hidden = false
     document.querySelector('#haederCard').style.display = 'none'

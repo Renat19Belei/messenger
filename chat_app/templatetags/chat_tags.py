@@ -23,8 +23,10 @@ def contact(request,pk):
         time_text = f"{message.send_at.day}.{message.send_at.month}.{message.send_at.year}"
     print(time_text)
     return {
-        "username": friend.user.first_name,
+        "username": friend.user.first_name + ' ' + friend.user.last_name,
         "message": message.content, 
         "time_text": time_text,
-        "avatar": avatar
+        # 'time':message.send_at.isoformat,
+        "avatar": avatar,
+        'pk':friend.pk
             }

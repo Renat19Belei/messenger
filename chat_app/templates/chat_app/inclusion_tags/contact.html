@@ -1,6 +1,6 @@
 
 {% load static %}
-<li class="group-item" id="">
+<li class="contact-item" id="user{{pk}}">
     {% if avatar %}
     <img src="{{avatar.image.url}}" alt="">
     {% else %}
@@ -11,3 +11,9 @@
     </div>
     <span class="message-date">{{time_text}}</span>
 </li>
+<!-- <li class="contact-item" id="user{{contact.pk}}"> -->
+    <!-- <li class="contact-item" id="user{{contact.pk}}">
+                             <div class="contact-info">
+                                <span class="contact-name">{{ contact.user.first_name }} {{ contact.user.last_name }}</span>
+                            </div>
+                        </li> -->

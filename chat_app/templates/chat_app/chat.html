@@ -161,13 +161,13 @@
                 <!-- messagesList -->
                 <ul>
                 {% for message in messagesList %}
-                    <li>
+                    <!-- <li> -->
                         <!-- <img src="{% static 'main_app/images/Indicator.png' %}" alt="">
                         <div class="text-group">{{message.autor.first_name}} {{message.autor.last_name}}<small>{{message.content}}</small>
                         </div>
                         <span class="message-date">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> -->
                         {% contact request message.pk %}
-                    </li>
+                    <!-- </li> -->
                     {% endfor %}
                 </ul>
                 <!-- <ul>
