@@ -2,18 +2,19 @@
 {% load static %}
 {% load tags %}
 {% block link %}
+<!-- <link rel="stylesheet" href="{% static 'user_app/email.css' %}"> -->
 <link rel="stylesheet" href="{% static 'main_app/personal.css' %}">
 <link rel="stylesheet" href="{% static 'main_app/header.css' %}">
 <script src="{% static 'main_app/jquery.js' %}" defer></script>
 
 <script src="{% static 'main_app/personal.js' %}" defer></script>
-<link rel="stylesheet" href="{% static 'user_app/email.css' %}">
-<script src="{% static 'user_app/email.js' %}" defer></script>  
+<!-- <script src="{% static 'user_app/email.js' %}" defer></script>   -->
 {% endblock %}
 {% block title %}Особиста інформація{% endblock %}
 {% block content %}
 {% render_header 0 0 0 0 1 %}
 {% csrf_token %}
+<input type="hidden" value="{% url 'login' %}" id="login">
 <form method="post" class="email hidden">
     <h1>Підтвердження пошти</h1>
     <h2>Ми надіслали 6-значний код на вашу пошту ({{user.email}}). Введіть його нижче, щоб підтвердити акаунт</h2>
@@ -29,8 +30,8 @@
         <input type="text" name="code6" maxlength="1" class="code" placeholder="_">
     </div></div>
     <div class="buttons">
-    <button class="confirmChangePassword">Підтвердити</button>
-    <a href="{% url 'user' %}">Назад</a>
+    <button class="confirmChangePassword" type="submit">Підтвердити</button>
+    <a class="back">Назад</a>
     </div>
 </form>
 <div class="bg hidden"></div>

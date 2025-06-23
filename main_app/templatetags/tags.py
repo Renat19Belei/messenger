@@ -1,6 +1,7 @@
 from django import template
 from user_app.models import Profile,Avatar
 register  = template.Library()
+from django.utils import timezone 
 from chat_app.models import ChatGroup,ChatMessage
 # contact.html
 # @register.inclusion_tag(filename = "main_app/inclusiontags/contact.html")
@@ -43,3 +44,7 @@ def profile_icon(user, clas = 'avatar'):
 def friends_cards(users,text= 'Підтвердити'):
     
     return {"users":users, "text": text}
+@register.simple_tag(name = 'currentTime')
+def currentTime():
+    
+    return timezone.now().hour

@@ -16,17 +16,18 @@ def contact(request,pk):
     if message.send_at.day == now.day :
         # 09:41 
         print('ok')
-        time_text = f"{message.send_at.hour:02d}:{message.send_at.minute:02d}" 
+        time_text = f"{message.send_at.hour}:{message.send_at.minute}" 
 
     else:
         # 25.04.2025
         print('ewqweqewq')
-        time_text = f"{message.send_at.day:02d}.{message.send_at.month:02d}.{message.send_at.year:02d}"
+        time_text = f"{message.send_at.day}.{message.send_at.month}.{message.send_at.year}"
     print(time_text)
     return {
         "username": friend.user.first_name + ' ' + friend.user.last_name,
-        "message": message.content, 
+        "messageText": message.content, 
         "time_text": time_text,
+        "message": message,
         # 'time':message.send_at.isoformat,
         "avatar": avatar,
         'pk':friend.pk

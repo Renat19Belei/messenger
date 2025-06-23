@@ -26,6 +26,9 @@
     margin-bottom: 0.7874015748vw;
     /* padding-left: 0.5249343832vw; */
 }
+body{
+    overflow: hidden;
+}
 #checkName, #checkEmail{
     appearance: checkbox;
     width: 1.0498687664vw;
@@ -95,13 +98,14 @@ canvas{
 }
 .app-container {
     display: flex;
-    position: relative;
+    /* position: absolute; */
     /* left: 5.22414698161vw; */
     /* right: 5.22414698161vw; */
     /* width: 100%; */
-    height: 89vh;
-    flex: 1;
+    height: 89vh !important;
+    /* flex: 1; */
 }
+
 .card{
     width: 70vw;
     /* height: 13.8057742782vw; */
@@ -304,9 +308,7 @@ border: 0.00249343832vw solid black;
     pointer-events: auto;
 /* >>>>>>> origin/Renat */
 }
-.hidden{
-    display: none;
-}
+
 .editElec{
     width: 7.5vw;
 }
@@ -385,4 +387,71 @@ border: 0.00249343832vw solid black;
 }
 .active{
 background-color: #f0f0f0;
+}
+.hidden{
+    display: none !important;
+}
+.email{
+    position: fixed;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 1.0498687664vw;
+    z-index: 100;
+    height: 23.3070866141vw;
+    width: 25.6167979002vw;
+    gap: 1.88976377952vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.30971128608vw;
+}
+.code{
+    width: 2.624671916vw;
+    height: 2.3622047244vw;
+    border-radius: 0.5249343832vw;
+    padding: 0.5249343832vw;
+    gap: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+}
+.bg{
+    background-color: #000000;
+    opacity: 0.728;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    right: 0;
+    bottom: 0;
+}
+.back{
+    color: black;
+    text-decoration: none;
+    width: min-content;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+.buttons{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.83989501312vw;
+}
+.confirmChangePassword{
+    width: 20.997375328vw;
+    height: 2.72965879264vw;
+    border-radius: 64.7769028869vw;
+    gap: 0.41994750656vw;
+    padding-top: 0.83989501312vw;
+    padding-right: 1.25984251968vw;
+    padding-bottom: 0.83989501312vw;
+    padding-left: 1.25984251968vw;
+    background-color: #543C52;
+    font-family: GT;
+    color: white;
+    font-size: 0.83989501312vw;
 }

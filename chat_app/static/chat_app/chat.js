@@ -2,9 +2,17 @@
 $(document).ready(function(){
 let users = document.querySelectorAll('.contact-item')
 let groups = document.querySelectorAll('.group-item')
+let time = new Date()
+// let time2 = new Date(time.())
+
+// console.log(time2.getHours(),time.getHours())
 // group-item
 let currentIcon = document.querySelector('.current-group-avatar')
 let checkMark = document.querySelector('#checkMark').value
+// currectTime
+let currectTime = document.querySelector('#currectTime').value
+let differentTime = time.getHours() - currectTime
+console.log(differentTime)
 // checkMark
 const sendMessage = document.querySelector(".send-button")
 const messageInput =  document.getElementById('messageInput')

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-
+from django.core.mail import send_mail
 from django.contrib.auth.views import  LogoutView
 from .models import *
 from django.http import JsonResponse
@@ -86,13 +86,38 @@ def personal(request:WSGIRequest):
             profile.signature = request.FILES.get('elec')
             print(profile.signature,8976543213)
         elif type == 'check_password':
+            VerificationCodes = VerificationCode.objects.filter(username=str(user.pk))
+            if VerificationCodes:
+                for Objectcode in VerificationCodes:
+                    VerificationCode.delete(Objectcode)
             password = request.POST.get('password')
             password = request.user.check_password(password)
-            VerificationCode.objects.create(username=str(user.pk),code = random.randint(100000,999999))
+            code = str(random.randint(100000,999999))
+            VerificationCode.objects.create(username=str(user.pk),code = code)
+            send_mail(
+                "Subject here",
+                str(code),
+                "illyaepik@gmail.com",
+                [request.user.email]
+            )
             return JsonResponse({'correct':password})
         elif type == 'check_code':
-            verificationCode = VerificationCode.objects.filter(username=str(user.pk)).first()
-            
+            verificationCode = VerificationCode.objects.filter(username=str(user.pk)).reverse().first()
+            print(verificationCode.code)
+            code = str(json.loads(request.POST.get('codes')))
+            print()
+            print(str(verificationCode.code) == str(code))
+            if verificationCode.code == code:
+
+                for Objectcode in VerificationCode.objects.filter(username=str(user.pk)):
+                    VerificationCode.delete(Objectcode)
+                return JsonResponse({'correct':True})
+            else:
+                return JsonResponse({'correct':False})
+        elif type == 'edit_password':
+            request.user.set_password(request.POST.get('password'))
+            print(request.POST.get('password'),1435677)
+            request.user.save()
         profile.save()
         # JsonResponse
         # if profile_form.is_valid():

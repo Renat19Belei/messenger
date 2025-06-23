@@ -4,6 +4,25 @@ let eyeUrl = document.querySelector("#eyeUrl")
 let passwords = document.querySelectorAll(".password")
 let ps = document.querySelectorAll("p")
 let mark = document.querySelector("#mark")
+let back = document.querySelector(".back")
+let editPasswordImg = document.querySelector(".edit-img-password")
+let save = document.querySelector(".password-edit-inline-button")
+
+let oldPassword = document.querySelector(".old-password")
+let newPassword = document.querySelector(".new-password")
+let acceptPassword  = document.querySelector(".confirm-password")
+let codes = document.querySelectorAll(".code")
+back.addEventListener("click", ()=>{
+    document.querySelector('.email').classList.add('hidden')
+    document.querySelector('.bg').classList.add('hidden')
+    save.textContent = ''
+    save.append(editPasswordImg)
+    save.innerHTML += "Збергти пароль"
+    save.classList.remove('active')
+    oldPassword.parentElement.classList.remove("hidden")
+    acceptPassword.parentElement.classList.add("hidden")
+    newPassword.parentElement.classList.add("hidden")
+})
 // reader.onload = (loadEvent) =>{
 //     mark.addEventListener("change", (event)=>{
 //     const files = event.target.files
@@ -63,53 +82,66 @@ for (let p of ps){
 }
 // old-password
 // edit-img-password
-let editPasswordImg = document.querySelector(".edit-img-password")
-let save = document.querySelector(".password-edit-inline-button")
-
-let oldPassword = document.querySelector(".old-password")
-let newPassword = document.querySelector(".new-password")
-let acceptPassword  = document.querySelector(".confirm-password")
-let codes = document.querySelectorAll(".code")
-let codes_list = []
-for (let code of codes){
-    codes_list.push(code.value)
-}
-document.querySelector('.email').addEventListener('click', ()=>{
+function submitCode(event){
+    
+    let codes_list = []
+    for (let code of codes){
+        codes_list.push(code.value)
+    }
+    console.log(codes_list.join(''))
     $.ajax({
             type: 'post',
             url: document.querySelector('#personalUrl').value,
             data: {
 
                 csrfmiddlewaretoken:document.querySelector('input').value,
-                codes:codes_list,
-                type:'code'
+                codes:codes_list.join(''),
+                type:'check_code'
             },
             success:function(request){
             if (request.correct){
+                console.log(request)
             // oldPassword.classList.add("hidden")
             oldPassword.parentElement.classList.add("hidden")
             acceptPassword.parentElement.classList.remove("hidden")
             newPassword.parentElement.classList.remove("hidden")
             save.classList.add('active')
-            // for (let input of inputs){
-            //     // console.log(!input.classList.contains('password'),input)
-            //     // "password-change-div"
-            //     if (!input.classList.contains('password')){
-            //         input.requered = true
-            //         input.readOnly = false
-            //         input.classList.remove('gray-input')
-            //     }
-            // }
-            // email
-            // bg
             document.querySelector('.email').classList.add('hidden')
             document.querySelector('.bg').classList.add('hidden')
             save.textContent = ''
             save.append(editPasswordImg)
-            // info.innerHTML += `Зберегти`
             save.innerHTML += "Збергти пароль"
         }
         }})
+}
+
+document.querySelector('.email').addEventListener('submit', (event)=>{
+    event.preventDefault()
+    submitCode()
+})
+const inputsOfcode = document.querySelectorAll('.code');
+const button = document.querySelector('.save');
+const form = document.querySelector('.email');
+console.log(form)
+inputsOfcode[0].focus()
+document.addEventListener('keyup',function(event) {
+    if (document.activeElement != document.body){
+        let number =document.activeElement.name[document.activeElement.name.length-1]
+        console.log(number)
+        if (event.key=='Backspace'){
+            if (1<number){
+                inputsOfcode[number-2].focus()
+            }
+        }else{
+            if (document.activeElement.value) {
+                if (number != 6) {
+                    inputsOfcode[number].focus()
+                }else{
+                    submitCode()
+                }
+            }
+        }
+    }
 })
 save.addEventListener("click", ()=>{
     
@@ -117,48 +149,37 @@ save.addEventListener("click", ()=>{
     let inputs = document.querySelectorAll('.password-change-div .FormInput') 
     // console.log(editImg)
     if (save.classList.contains('active')){
-        save.classList.remove('active')
-        oldPassword.parentElement.classList.remove("hidden")
-        acceptPassword.parentElement.classList.add("hidden")
-        newPassword.parentElement.classList.add("hidden")
-        // for (let input of inputs){
-        //     input.requered = false
-        //     input.readOnly = true
-        //     input.classList.add('gray-input')
-        // }
-            
-            // fetch(document.querySelector('#personalUrl').value,{
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'X-CSRFToken': csrfToken
-            //     },
+            let news = document.querySelector('.new-password').value
+            let confirm = document.querySelector('.confirm-password').value
+            console.log(news,confirm)
+            if (news==confirm){
 
-            // })
-            // DateInput
-            let first_name = document.querySelector('[name="first_name"]').value
-            let last_name = document.querySelector('[name="last_name"]').value
-            $.ajax({
-            type: 'post',
-            url: document.querySelector('#personalUrl').value,
-            data: {
-
-                csrfmiddlewaretoken:document.querySelector('input').value,
-                first_name: first_name,
-                last_name: last_name,
-                email: document.querySelector('[name="email"]').value,
-                date_of_birthday: document.querySelector('[name="date_of_birthday"]').value,
-                type:'main_data'
-
-            },
-            success:function(request){
-            }})
+                $.ajax({
+                type: 'post',
+                url: document.querySelector('#personalUrl').value,
+                data: {
+    
+                    csrfmiddlewaretoken:document.querySelector('input').value,
+                    password: news,
+                    type:'edit_password'
+    
+                },
+                // login
+                success:function(request){
+                    save.classList.remove('active')
+                    oldPassword.parentElement.classList.remove("hidden")
+                    acceptPassword.parentElement.classList.add("hidden")
+                    newPassword.parentElement.classList.add("hidden")
+                    save.textContent = ''
+                    save.append(editPasswordImg)
+                    save.innerHTML += `Редагувати пароль`
+                    window.location.href = document.querySelector('#login').value
+                }})
+            }
         
         
 
-        save.textContent = ''
-        save.append(editPasswordImg)
-        save.innerHTML += `Редагувати пароль`
+        
 
     }else{
         $.ajax({
@@ -188,6 +209,7 @@ save.addEventListener("click", ()=>{
             }
             // email
             // bg
+            // let code = di
             document.querySelector('.email').classList.remove('hidden')
             document.querySelector('.bg').classList.remove('hidden')
             save.textContent = ''

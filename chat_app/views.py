@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from user_app.models import Profile,Friendship
 from .models import ChatMessage,ChatGroup
+
 # Create your views here.
 # def chats(request:WSGIRequest):
 #     return render(request, 'main_app/chat.html')
