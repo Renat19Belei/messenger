@@ -31,8 +31,10 @@ body {
     background-color: white;
     border: 0.05249343832vw solid #CDCED2;
     border-radius: 0.62992125984vw;
-    padding: 14vw 1.5vw 1.5vw 1.5vw;
+    padding: 9vw;
     display: flex;
+    box-sizing: border-box;
+    gap: 0.5vw;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -74,15 +76,17 @@ body {
     border-radius: 50%;
     border: 0.2vw solid white;
     position: absolute;
-    bottom: 1.5vw;
-    right: 1.5vw;
+    bottom: 0.2vw;
+    right: 0.2vw;
 }
 
 .stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    margin-top: 1vw;
+    margin-top: 0vw;
+    gap: 1.5vw;
     font-size: 0.85vw;
     color: #050505;
 }
@@ -99,9 +103,11 @@ body {
 }
 
 .vertical-line {
-    width: 0.1vw;
-    background-color: #E0E0E0;
-    margin: 0 0.8vw;
+    width: 0.05vw; 
+    height: 3vw; 
+    background-color: #81818D; 
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .profile-actions {
@@ -202,4 +208,10 @@ body {
     margin-top: 1vw;
     padding: 1vw; 
 }
-
+.profile-actions {
+    display: flex;
+    gap: 0.5vw;
+    margin-top: 0; /* ИЗМЕНЕНО: Обнуляем, теперь gap родителя будет управлять отступом. */
+    width: 100%;
+    justify-content: center;
+}
