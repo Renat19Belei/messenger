@@ -143,12 +143,13 @@
                         </main>
                         <div class="footer">
                         <input type="text" name="" id="messageInput" placeholder="Повідомлення">
-                        <div class="send-part">
+                        <form class="send-part">
                             <img src="{% static 'main_app/images/em.png' %}" alt="" class="sendElement">
-                            <img src="{% static 'main_app/images/img.png' %}" alt="" class="sendElement">
+                            <label for="fileSendInput"><img src="{% static 'main_app/images/img.png' %}" alt="" class="sendElement"></label>
+                            <input type="file" hidden id="fileSendInput">
                             <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt="" class="sendElementButton"></button> 
                             <!-- img.png -->
-                        </div>
+                        </form>
                         </div>
                     </footer>   
                 

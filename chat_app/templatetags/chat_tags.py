@@ -22,6 +22,7 @@ def contact(request,pk):
         # 25.04.2025
         print('ewqweqewq')
         time_text = f"{message.send_at.day}.{message.send_at.month}.{message.send_at.year}"
+    time_text = message.send_at.isoformat()
     print(time_text)
     return {
         "username": friend.user.first_name + ' ' + friend.user.last_name,

@@ -5,7 +5,16 @@
 {% for message in messages %}
     {% if message.author == request.user %}
         <p class="my message">
-            <span class="messageContent">{{message.content}}</span> <span class="details-message"> <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
+            {% if message.attached_image %}
+                <img src="{{ message.attached_image.url }}" alt="" class="imgFromUser">
+            {% endif %}
+            <span class="messageContent">
+                <span>{{message.content}}</span>
+                <span class="details-message"> 
+                    <span class="time messageTime">{{ message.send_at.isoformat }}</span> 
+                    <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
+                </span>
+            </span> 
         </p>
     {% else %}
         <p class="message">
@@ -20,7 +29,7 @@
                     
                     {{message.content}} 
                     <span class="details-message"> 
-                        <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> 
+                        <span class="time messageTime">{{ message.send_at.isoformat }}</span> 
                         <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
                     </span>
                 </span>

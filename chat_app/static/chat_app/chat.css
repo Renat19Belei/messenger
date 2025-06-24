@@ -105,15 +105,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 0.5vw;
+    /* margin-top: 15vh; */
+    /* margin-bottom: -25%; */
+    /* margin-top: auto; */
+    /* margin-bottom: -25vh; */
+    /* position: relative; */
+    /* bottom: 0.1vw; */
     width: 1.99475065616vw;
     height: 0.57742782152vw;
-    margin-left: auto;
+    /* margin-left: auto; */
+    position: relative;
+    /* right: 0;
+    bottom:0 ;
+    transform: translate(-10%,-10%); */
+    transform: translate(0,50%);
     
 }
 .messageContent{
     display: flex;
+    position: relative;
     gap: 0.5249343832vw;
+    display: flex;
+    width: 80%;
+    height: min-content;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 2.20472440944vw; */
+    height: 1vw;
 }
 .details-message .check-mark{
     width: 0.5249343832vw;
@@ -126,10 +144,12 @@ body {
 .message{
     /* background-color: #E9E5EE; */
 
-    height: 2.20472440944vw;
+    /* height: 2.20472440944vw; */
+    /* height: fit-content; */
     display: flex;
     flex-direction: row;
     position: static;
+    position: relative;
     color: #070A1C;
     align-items: center;
     padding: 0.5249343832vw;
@@ -137,9 +157,15 @@ body {
     gap: 0.5249343832vw;
     border-radius: 0.31496062992vw;
     width: min-content;
+    max-width: 95%;
+    /* width: 95%; */
     margin-top:0.7874015748vw;
 }
+.imgFromUser{
+    max-width: 10vw;
+}
 .my.message{
+    flex-direction: column;
     margin-top:0;
 margin-left: auto;
 margin-right: 0;

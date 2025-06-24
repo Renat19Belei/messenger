@@ -15,6 +15,9 @@ let differentTime = time.getHours() - currectTime
 console.log(differentTime)
 // checkMark
 const sendMessage = document.querySelector(".send-button")
+const sendPart = document.querySelector(".send-part")
+const fileSendInput = document.querySelector("#fileSendInput")
+// /
 const messageInput =  document.getElementById('messageInput')
 const messages = document.querySelector('#messages')
 const createGroup = document.querySelector('.create-group')
@@ -36,6 +39,29 @@ addUsers.addEventListener('click',(event)=>{
     selectUsers.classList.add('hidden')
     grouupcreation.classList.remove('hidden')
 })
+function currectTimes(){
+    let times = document.querySelectorAll(".time")
+    // messageTimeObject
+    for (let time of times){
+        
+        
+        let messageTime = new Date(time.textContent)
+        console.log(messageTime)
+        if (messageTime!='Invalid Date'){
+        console.log()
+        let now = new Date()
+        if (now.getDay()==messageTime.getDay() && now.getFullYear()==messageTime.getFullYear() && now.getMonth()==messageTime.getMonth() || time.classList.contains('messageTime')){
+            // if (messageTime.getHours()<)
+            // time.textContent = `${messageTime.getHours()}:${messageTime.getMinutes()}`
+            let messageTimeList = messageTime.toLocaleTimeString().split(':')
+            messageTimeList.pop()
+            time.textContent = messageTimeList.join(':')
+        }else{
+            time.textContent = messageTime.toLocaleDateString()
+        }}
+    }
+}
+currectTimes()
 // addUsers
 // <img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">
 selectUsers.addEventListener('submit',(event) =>{
@@ -60,13 +86,45 @@ selectUsers.addEventListener('submit',(event) =>{
     
 })
 // create-group
-sendMessage.addEventListener("click", (event)=>{
+fileData = ''
+// fileSendInput.addEventListener('change',function (){
+//     const reader = new FileReader();
+
+//     reader.onload = function(){
+//         fileData= reader.result.split(',')[1];
+//         // socket.send(JSON.stringify({
+//         //     type: "image",
+//         //     data: base64
+//         // }));
+//     };
+
+//     reader.readAsDataURL(fileSendInput.files[0]);
+// })
+sendPart.addEventListener("submit", (event)=>{
+    event.preventDefault()
     let message = messageInput.value
     messageInput.value = ''
     console.log(message)
-    socket.send(JSON.stringify({
-        'message': message
-    }))
+    let file = fileSendInput.files[0]
+    if (file){
+        const reader = new FileReader();
+
+        reader.onload = function(){
+            // fileData= 
+            socket.send(JSON.stringify({
+            'message': message,
+            'img':reader.result.split(',')[1],
+            'imgType':file.type.split('/')[1]
+            }))
+        };
+        reader.readAsDataURL(file)
+        fileSendInput.value = ''
+    }else{
+
+        socket.send(JSON.stringify({
+            'message': message
+        }))
+    }
 })
 
 // <main class="messages">
@@ -96,6 +154,11 @@ socket.addEventListener("message", function(event){
     // const messageElem = document.createElement('p')
     // Створюємо новий об'єкт класу "Date" з даними дати у фоматі iso
     let dateTime = new Date(messageObject['date_time'])
+    // let imgFromUser = document.createElement('img')
+    // if (messageObject['imgType']){
+    //     imgFromUser.src = `data:image/${messageObject.imgType};base64,${messageObject.img}`;
+    //     imgFromUser.append()
+    // }
     // messages.append(messageElem)
     let p = document.createElement('p')
     let messageContent = document.createElement('span')
@@ -118,6 +181,7 @@ socket.addEventListener("message", function(event){
     messageContent.textContent = messageObject['message']
     messageContent.append(details)
     console.log(!messageObject['you'])
+    
     if (!messageObject['you']){
         let img = document.createElement('img')
         if (messageObject['avatar']){
@@ -164,6 +228,7 @@ socket.addEventListener("message", function(event){
     //             </span>
     //         </span>
     //     </p>
+    currectTimes()
 })
 }
 let editChat =document.querySelector('.editChat')
@@ -274,6 +339,7 @@ for (let group of groups){
                 }
                 // leaveLink
                 messageCreate()
+                currectTimes()
             }
         })
     })
@@ -318,8 +384,10 @@ for (let user of users){
                 messages.innerHTML = request
                 groupPk = messages.querySelector('#pkInput').value
                 messageCreate()
+                currectTimes()
             }
         })
+        
     })
 }}
 userOpen(users)
