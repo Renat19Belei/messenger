@@ -23,7 +23,21 @@ def MainPageView(request:WSGIRequest):
             form1 = messageForm(request.POST)
             if form1.is_valid():
                 print(request.POST.getlist('tags'),'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-                form1.send(request.user,request.FILES.getlist('images'),request.POST.get('type'),request.POST.get('imgs'),request.POST.getlist('tags'),request.POST.getlist('link'))
+                files = request.FILES.getlist("images")
+                remove_List = request.POST.get("images1").split(" ")
+                del remove_List[-1]
+                # remove_dict = everyTag
+                remove_List_2 = request.POST.get("images2").split(" ")
+                del remove_List_2[-1]
+                form1.send(
+                    request.user,
+                    files,
+                    request.POST.get('type'),
+                    request.POST.get('imgs'),
+                    [remove_List,remove_List_2],
+                    request.POST.getlist('tags') + request.POST.getlist('everyTag'),
+                    request.POST.getlist('link')
+                    )
         else:
             form2 = UserSet(request.POST)
             if form2.is_valid():
@@ -134,8 +148,6 @@ class Posts(FormView):
             [remove_List,remove_List_2],
             self.request.POST.getlist('tags') + self.request.POST.getlist('everyTag'),
             self.request.POST.getlist('link'),
-            # self.request.POST.get('title'),
-            # self.request.POST.get('content')
             )
             
         return super().form_valid(form)

@@ -440,6 +440,9 @@ background-color: #f0f0f0;
     height: 9999vw !important;
     /* background-color: black; */
 }
+.menu-title.active{
+  background-color:transparentzaa;
+}
 .buttons{
     justify-content: center;
     align-items: center;

@@ -42,25 +42,10 @@
         {% if field.label == 'Тема публікації' %}
           <div id="tags">
             <div class="tags-div">{% standard_tags %}<button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button></div>
-            
-            <!-- standard_tags -->
-            
-            
-            <!--  -->
           </div>
         {% elif field.label == '' %}
         <div class="editableBox"></div>
-        <!-- <div contenteditable="true">
-
-          <div class="editableBox">
-            <div class="textZone" aria-placeholder="Напишіть текст публікації" class="BigFormInput textInput" >
-                Тут можна писати публікацію.
-            </div>
-            <div class="grayTags" contenteditable="false">
-                #відпочинок #натхнення #життя #природа #читання #спокій #гармонія
-            </div>
-        </div> -->
-        </div>
+        <!-- </div> -->
           <p class="countOfPlus">
             <!-- {{field.label_tag }} -->
              <label for="link_id">Посилання</label>

@@ -28,19 +28,21 @@
   <h1 id="formName">Створення публікації <button class="close" type="button"><img class="close" src="{% static 'main_app/images/close.png' %}" alt=""></button></h1>
   <div id="form">
     {% csrf_token %}
-  {% for field in form1 %}
-        
-        <p>
-          {{field.label_tag }}
-          {{field}}
-        </p>
+    {% for field in form1 %}
+    
+          <p>
+            {{field.label_tag }}
+            {{field}}
+          </p>
+    
         {% if field.label == 'Тема публікації' %}
           <div id="tags">
-            <div class="tags-div"></div>
-            <button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button>
+            <div class="tags-div">{% standard_tags %}<button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button></div>
           </div>
         {% elif field.label == '' %}
-        <p class="countOfPlus">
+        <div class="editableBox"></div>
+        <!-- </div> -->
+          <p class="countOfPlus">
             <!-- {{field.label_tag }} -->
              <label for="link_id">Посилання</label>
             <div class="plus">
@@ -52,7 +54,9 @@
             </div>
           </p>
         {% endif %}
+       
     {% endfor %}
+    
   <div id="imagesDiv">
 
   </div>
@@ -104,7 +108,7 @@
       <span><img src="{% static 'main_app/images/people (1).png' %}" alt=""  class="icon"><span class="center">Запити</span></span>
       <a href="#">Дивитись всі</a>
     </div>
-    <div class="request">
+    <!-- <div class="request">
       <img  class="avatar" src="{% static 'main_app/images/yehor.png' %}">
       <div>
         <div class="name">Yehor Aung</div>
@@ -124,7 +128,7 @@
         <div class="name">Yeugen Jenua</div>
         <div class="meta">10.3k підписників</div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="card">
@@ -134,7 +138,7 @@
       <a href="#">Дивитись всі</a>
     </div>
 
-    <div class="message">
+    <!-- <div class="message">
       <img class="avatar" src="{% static 'main_app/images/mona.png' %}">
       <div class="msg-text" >
         <div class="msg-just">
@@ -165,7 +169,7 @@
         </div>
         <div class="meta">Привіт!</div>
       </div>
-    </div>
+    </div> -->
   
   </div>
 </aside>

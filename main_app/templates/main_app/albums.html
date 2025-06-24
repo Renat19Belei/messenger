@@ -46,6 +46,10 @@
         <!-- </div> -->
         
         <div>
+            <div class="no-album-block">
+                <p>Немає ще жодного альбому</p>
+                <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
+            </div>
             {% if albums %}
                 {% for album in albums %}
                     <div class="album-card">
@@ -93,10 +97,7 @@
                 {% endfor %}
              {% endif %}
             </div>
-            <div class="no-album-block">
-                <p>Немає ще жодного альбому</p>
-                <button class="create-album-button"><img class="icon" src="{% static 'main_app/images/plus.png' %}" alt="">Створити альбом</button>
-            </div>
+            
 <!-- =======
 >>>>>>> origin/Renat
             
