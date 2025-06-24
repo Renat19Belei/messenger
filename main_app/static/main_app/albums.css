@@ -542,3 +542,8 @@ body{
     -ms-overflow-style: none;  
     scrollbar-width: none; 
 }
+.menu-item.active .list-a {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    color: #000; 
+}
