@@ -21,29 +21,12 @@
     <aside class="sidebar">
         <div class="profile-card">
             <div class="profile-1">
-                {% if user.is_authenticated and user.profile %}
-                    {% profile_icon user "avatar-big" %}
-                    <div class="online-dot"></div>
-                    <h2>{{ user.first_name }}</h2>
-                    <p>@{{ user.username }}</p>
-                {% else %}
-                    <img class="avatar-big" src="{% static 'main_app/images/default_avatar.png' %}" alt="">
-                    <div class="online-dot"></div>
-                    <h2>Неизвестный</h2>
-                    <p>@guest</p>
-                {% endif %}
+            {% profile_icon user "avatar-big" %}
+            <div class="online-dot"></div>
+            <h2>{{user.first_name}}</h2>
+            <p>@{{user.username}}</p>
             </div>
-            <div class="stats">
-                <div><strong>566</strong><br><span class="grey">Дописи</span></div>
-                <div class="vertical-line"></div>
-                <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
-                <div class="vertical-line"></div>
-                <div><strong>222</strong><br><span class="grey">Друзі</span></div>
-            </div>
-            <div class="profile-actions">
-                <button class="btn btn-primary">Повідомити</button>
-                <button class="btn btn-secondary">Відобразити</button>
-            </div>
+            {% status user %}
         </div>
         <div class="albums-section"> 
             <div class="section-header">
@@ -64,24 +47,6 @@
                 {% endif %}
             </div>
         </div>
-    </aside>
-
-<aside class="sidebar">
-  <div class="profile-card">
-    <div class="profile-1">
-      {% profile_icon user "avatar-big" %}
-      <!-- <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li"> -->
-       <!-- user -->
-      <div class="online-dot"></div>
-      <h2>{{user.first_name}}</h2>
-      <p>@{{user.username}}</p>
-    </div>
-    {% status user %}
-  </div>
-  
-
-  
-</aside>
   </aside>
   <main class="content">
     <div class="poster">

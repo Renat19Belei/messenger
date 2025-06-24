@@ -1,116 +1,4 @@
-body {
-    background-color: #FAF8FF;
-    font-family: Arial, sans-serif; 
-    overflow-x: hidden;
-    margin: 0; 
-    padding: 0;
-}
 
-.container {
-    display: flex;
-    max-width: 90vw; 
-    margin: 1.5vw auto; 
-    gap: 1.5vw; 
-}
-
-.sidebar {
-    width: 25%; 
-    display: flex;
-    flex-direction: column;
-    gap: 1vw; 
-}
-
-.content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vw;
-}
-
-.profile-card {
-    background-color: white;
-    border: 0.05249343832vw solid #CDCED2;
-    border-radius: 0.62992125984vw;
-    padding: 14vw 1.5vw 1.5vw 1.5vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 2vw; 
-}
-
-.profile-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1vw;
-    position: relative;
-}
-
-.profile-1 h2 {
-    font-size: 1.2vw;
-    margin: 0.5vw 0 0.2vw 0;
-    color: #050505;
-}
-
-.profile-1 p {
-    font-size: 0.8vw;
-    color: #65676b;
-    margin: 0;
-}
-
-.avatar-big {
-    width: 6vw;
-    height: 6vw;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 0.2vw solid #f0f2f5;
-}
-
-.online-dot {
-    width: 1vw;
-    height: 1vw;
-    background-color: #4CAF50;
-    border-radius: 50%;
-    border: 0.2vw solid white;
-    position: absolute;
-    bottom: 1.5vw;
-    right: 1.5vw;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 1vw;
-    font-size: 0.85vw;
-    color: #050505;
-}
-
-.stats strong {
-    font-size: 1.1vw;
-    font-weight: bold;
-    color: #050505;
-}
-
-.stats .grey {
-    color: #65676b;
-    font-size: 0.75vw;
-}
-
-.vertical-line {
-    width: 0.1vw;
-    background-color: #E0E0E0;
-    margin: 0 0.8vw;
-}
-
-.profile-actions {
-    display: flex;
-    gap: 0.5vw;
-    margin-top: 1.5vw;
-    width: 100%;
-    justify-content: center;
-}
 
 .btn {
     padding: 0.6vw 1.2vw;
@@ -202,4 +90,10 @@ body {
     margin-top: 1vw;
     padding: 1vw; 
 }
-
+.profile-actions {
+    display: flex;
+    gap: 0.5vw;
+    margin-top: 0; /* ИЗМЕНЕНО: Обнуляем, теперь gap родителя будет управлять отступом. */
+    width: 100%;
+    justify-content: center;
+}

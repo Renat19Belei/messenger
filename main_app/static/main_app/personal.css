@@ -434,6 +434,12 @@ background-color: #f0f0f0;
     display: flex;
     cursor: pointer;
 }
+#hidden{
+    background-color: none;
+    border: none;
+    height: 9999vw !important;
+    /* background-color: black; */
+}
 .buttons{
     justify-content: center;
     align-items: center;
