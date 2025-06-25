@@ -14,7 +14,6 @@
 {% block content %}
 {% render_header 0 0 1 %}
 
-
 <div class="container">
     <aside class="sidebar">
         <div class="profile-card">
@@ -32,18 +31,18 @@
                 {% endif %}
             </div>
             <div class="stats">
-                <div><strong>566</strong><br><span class="grey">Дописи</span></div>
+                <div><strong>3</strong><br><span class="grey">Дописи</span></div>
                 <div class="vertical-line"></div>
                 <div><strong>12.1K</strong><br><span class="grey">Читачі</span></div>
                 <div class="vertical-line"></div>
-                <div><strong>222</strong><br><span class="grey">Друзі</span></div>
+                <div><strong>222</strong><br><span class="grey">Друзі</span></div> 
             </div>
             <div class="profile-actions">
                 <button class="btn btn-primary">Повідомити</button>
                 <button class="btn btn-secondary">Відобразити</button>
             </div>
         </div>
-        <div class="albums-section"> 
+        <div class="albums-section">
             <div class="section-header">
                 <h3 class="section-title">Альбоми</h3>
                 <a href="#" class="see-all">Дивитись всі</a>
@@ -58,14 +57,74 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p>Альбомів немає.</p>
+                    <div class="mood-item no-albums-placeholder">
+                        <p>Альбомів немає.</p>
+                    </div>
                 {% endif %}
             </div>
         </div>
     </aside>
 
     <main class="content">
-        <div class="poster">
+        <div class="post-card">
+            <div class="post-header">
+                <img src="" alt="" class="post-avatar">
+                <div class="post-info">
+                    <span class="post-author">Yehor Aung</span>
+                </div>
+                <button class="post-options">...</button>
+            </div>
+            <div class="post-body">
+                <p class="post-text">Буває такий настрій: просто лежиш і існуєш 😊 чай в одній руці, телефон в іншій, думки десь у космосі🌌! і знаєте що? норм  #вайб</p>
+            </div>
+            <div class="post-footer">
+                <div class="post-actions">
+                    <span class="action-item"><img src="" alt="Лайки"> 120 Вподобань</span>
+                    <span class="action-item"><img src="" alt="Комментарии"> 890 Переглядів</span>
+                </div>
+            </div>
+        </div>
+        <div class="post-card">
+            <div class="post-header">
+                <img src="" alt="" class="post-avatar">
+                <div class="post-info">
+                    <span class="post-author">Yehor Aung</span>
+                </div>
+                <button class="post-options">...</button>
+            </div>
+            <div class="post-body">
+                <p class="post-text">Інколи найкращі ідеї народжуються в тиші! 🌿 Природа, книга і спокій - усе, що потрібно, аби перезавантажитись. #відпочинок #натхнення #життя #читання #спокій #гармонія</p>
+                <div class="post-images four-images">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="post-footer">
+                <div class="post-actions">
+                    <span class="action-item"><img src="" alt="Лайки"> 120 Вподобань</span>
+                    <span class="action-item"><img src="" alt="Комментарии"> 890 Переглядів</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-card">
+            <div class="post-header">
+                <img src="" alt="" class="post-avatar">
+                <div class="post-info">
+                    <span class="post-author">Yehor Aung</span>
+                </div>
+                <button class="post-options">...</button>
+            </div>
+            <div class="post-body">
+                <p class="post-text">Буває такий настрій: просто лежиш і існуєш 😊 чай в одній руці, телефон в іншій, думки десь у космосі🌌! і знаєте що? норм  #вайб</p>
+            </div>
+            <div class="post-footer">
+                <div class="post-actions">
+                    <span class="action-item"><img src="" alt=""> 120 Вподобань</span>
+                    <span class="action-item"><img src="" alt=""> 890 Переглядів</span>
+            </div>
         </div>
     </main>
 </div>
