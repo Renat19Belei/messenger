@@ -450,7 +450,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    /* flex-direction: column; */
+}
+.sending{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    gap: 0.83989501312vw;
+}
+.sending #imgFromInput{
+    max-width: 25%;
+}
+.contact-avatar{
+    border-radius: 50%;
 }
 .send-part{
     display: flex;

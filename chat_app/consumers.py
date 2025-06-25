@@ -47,7 +47,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             img = base64.b64decode(loads_text_data.get('img'))
             django_file = ContentFile(img, name=f'fileo.{imgType}')
         saved_message = await self.save_message(message = loads_text_data['message'],attached_image=django_file)
-        imgs = {}
         message_pk = saved_message.pk
         # if imgType:
         #     imgs['image'] = saved_message.attached_image.url
@@ -62,8 +61,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "text_data": text_data,
                 'message_pk':message_pk,
                 'userous_pk':self.user.pk,
-                # 'img':img,
-                'imgType':imgType,
+                'img':saved_message.attached_image,
+                # 'imgType':imgType,
                 # 'avatar':self.user.pk,
                 "date_time": saved_message.send_at,
                 "username": first_name + ' ' + last_name,
@@ -80,7 +79,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_dict = json.loads(event["text_data"])
         # отримаємо ім`я відправника
         username = event["username"]
-        
+        if event['img']:
+            text_data_dict['img'] = event["img"].url
+        # img
         # if event["img"]:
         #     base64.decode(event["img"])
         # задання для text_data_dict ім'я користувача
@@ -96,7 +97,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             text_data_dict['you'] = 0
             text_data_dict['avatar'] = await self.get_avatar(event['userous_pk'])
         # attached_image
-        #     avatar = Avatar.objects.filter(profile=Profile.objects.filter(user=event["user_pk"]).first(),active=True).first()
+            # avatar = Avatar.objects.filter(profile=Profile.objects.filter(user=event["user_pk"]).first(),active=True).first()
         # свторення об'єкту форми з параметром text_data_dict
         # form = messageForm(text_data_dict)
         # # робимо валідацію форми 

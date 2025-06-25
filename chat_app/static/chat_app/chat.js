@@ -4,7 +4,7 @@ let users = document.querySelectorAll('.contact-item')
 let groups = document.querySelectorAll('.group-item')
 let time = new Date()
 // let time2 = new Date(time.())
-
+// imgFromInput
 // console.log(time2.getHours(),time.getHours())
 // group-item
 let currentIcon = document.querySelector('.current-group-avatar')
@@ -13,11 +13,21 @@ let checkMark = document.querySelector('#checkMark').value
 let currectTime = document.querySelector('#currectTime').value
 let differentTime = time.getHours() - currectTime
 console.log(differentTime)
-// checkMark
+// checkMark btn-back groupH1 addUsers
+const groupH1 = document.querySelector(".groupH1")
+const h1grouupcreation = document.querySelector(".h1grouupcreation")
+const groupcreationButton = document.querySelector(".groupcreationButton")
+
+// h1grouupcreation
+// const addUsers = document.querySelector("#addUsers")
+const btnBack = document.querySelector(".btn-back")
+const imgFromInput = document.getElementById('imgFromInput')
 const sendMessage = document.querySelector(".send-button")
 const sendPart = document.querySelector(".send-part")
 const fileSendInput = document.querySelector("#fileSendInput")
-// /
+const fileInput = document.querySelector("#fileInput")
+const changeGroupAvatar = document.querySelector("#changeGroupAvatar")
+// /fileInput changeGroupAvatar
 const messageInput =  document.getElementById('messageInput')
 const messages = document.querySelector('#messages')
 const createGroup = document.querySelector('.create-group')
@@ -28,6 +38,18 @@ const membersDiv = document.querySelector('.members')
 const contacts = document.querySelectorAll('.contact')
 const bg = document.querySelector('.bg')
 let selectedContacts = []
+fileInput.addEventListener('change', (event) =>{
+    let file = fileInput.files[0]
+    console.log(file)
+    if (file){
+        let reader = new FileReader()
+
+        reader.onload = (event) =>{
+            changeGroupAvatar.src = reader.result
+        }
+        reader.readAsDataURL(file)
+    }
+})
 // grouupcreation members
 createGroup.addEventListener('click',(event)=>{
     // if (selectUsers.hidden){
@@ -46,9 +68,9 @@ function currectTimes(){
         
         
         let messageTime = new Date(time.textContent)
-        console.log(messageTime)
+        // console.log(messageTime)
         if (messageTime!='Invalid Date'){
-        console.log()
+        // console.log()
         let now = new Date()
         if (now.getDay()==messageTime.getDay() && now.getFullYear()==messageTime.getFullYear() && now.getMonth()==messageTime.getMonth() || time.classList.contains('messageTime')){
             // if (messageTime.getHours()<)
@@ -69,8 +91,9 @@ selectUsers.addEventListener('submit',(event) =>{
     
     for (let contact of contacts){
         if (contact.querySelector('input').checked){
+            contact = contact.cloneNode(true)
             contact.querySelector('input').remove()
-            selectedContacts.push(contact)
+            // selectedContacts.push(contact)
             // removeLink
             let img = document.createElement('img')
             img.src = document.querySelector('#removeLink').value
@@ -82,43 +105,52 @@ selectUsers.addEventListener('submit',(event) =>{
             membersDiv.append(contact)
         }
     }
+})
+
+btnBack.addEventListener('click', (event) =>{
+    // for (let member of membersDiv){
         
-    
+        // document.querySelector('.member'+member.id).checked = 'true'
+    // }
+    selectUsers.classList.remove('hidden')
+    grouupcreation.classList.add('hidden')
+    membersDiv.innerHTML =''
+
 })
 // create-group
 fileData = ''
-// fileSendInput.addEventListener('change',function (){
-//     const reader = new FileReader();
-
-//     reader.onload = function(){
-//         fileData= reader.result.split(',')[1];
-//         // socket.send(JSON.stringify({
-//         //     type: "image",
-//         //     data: base64
-//         // }));
-//     };
-
-//     reader.readAsDataURL(fileSendInput.files[0]);
-// })
-sendPart.addEventListener("submit", (event)=>{
-    event.preventDefault()
-    let message = messageInput.value
-    messageInput.value = ''
-    console.log(message)
+fileSendInput.addEventListener('change',function (){
     let file = fileSendInput.files[0]
     if (file){
         const reader = new FileReader();
 
-        reader.onload = function(){
+        reader.onload = function(event){
             // fileData= 
+            imgFromInput.src = event.target.result
+        };
+        reader.readAsDataURL(file)
+    }
+// btn-back
+
+})
+sendPart.addEventListener("submit", (event)=>{
+    event.preventDefault()
+    let message = messageInput.value
+    messageInput.value = ''
+    let file = fileSendInput.files[0]
+    if (file){
+        const reader = new FileReader();
+
+        reader.onload = function(event){
             socket.send(JSON.stringify({
-            'message': message,
-            'img':reader.result.split(',')[1],
-            'imgType':file.type.split('/')[1]
+                'message': message,
+                'img':reader.result.split(',')[1],
+                'imgType':file.type.split('/')[1]
             }))
         };
         reader.readAsDataURL(file)
         fileSendInput.value = ''
+        imgFromInput.src = ''
     }else{
 
         socket.send(JSON.stringify({
@@ -154,11 +186,16 @@ socket.addEventListener("message", function(event){
     // const messageElem = document.createElement('p')
     // Створюємо новий об'єкт класу "Date" з даними дати у фоматі iso
     let dateTime = new Date(messageObject['date_time'])
-    // let imgFromUser = document.createElement('img')
-    // if (messageObject['imgType']){
+    let imageFromUser = document.createElement('img')
+    // if (messageObject['img']){
     //     imgFromUser.src = `data:image/${messageObject.imgType};base64,${messageObject.img}`;
     //     imgFromUser.append()
     // }
+    imageFromUser.src = messageObject['img']
+    imageFromUser.className = 'imgFromUser'
+    // imgFromUser
+    
+    console.log(messageObject['img']==undefined)
     // messages.append(messageElem)
     let p = document.createElement('p')
     let messageContent = document.createElement('span')
@@ -200,12 +237,18 @@ socket.addEventListener("message", function(event){
         // let messageContent = 
         message_data.append(username)
         message_data.append(messageContent)
+        message_data.prepend(imageFromUser)
         p.append(message_data)
         img.className= 'avatar'
         p.prepend(img)
         p.className = 'message'
+       
     }else{
-    
+    // 
+    if (messageObject['img']!=undefined){
+        
+        p.prepend(imageFromUser)
+    }
     p.append(messageContent)
     }
     // avatarLink
@@ -245,6 +288,12 @@ editChat.addEventListener('click',()=>{
         },
         success: function(request){
             grouupcreation.classList.remove('hidden')
+            groupH1.textContent = 'Додати учасника'
+            h1grouupcreation.textContent = 'Редагування групи'
+            // addUsers.textContent = 
+            groupcreationButton.textContent = 'Зберегти зміни'
+            // Редагування групи
+            // Зберегти зміни
             bg.hidden = false
             console.log(request)
             // changeGroupAvatar
@@ -333,7 +382,15 @@ for (let group of groups){
                         //     pk: pk,
                         //     type:'group'
                         // },
-                        success:function func(){}
+                        success:function func(){
+                            // groupPk
+                            exit()
+                            // group
+                            document.querySelector(`#group${groupPk}`).remove()
+                            // for (let object of document.querySelectorAll(`#heh`)){
+                            //     object.classList.add("hidden")
+                            // }
+                        }
                     })
                     })
                 }
@@ -347,6 +404,7 @@ for (let group of groups){
 let ellipsises =document.querySelectorAll(".ellipsis")
 for (let ellipsis of ellipsises){
     ellipsis.addEventListener('click', () => {
+        console.log(ellipsis.id)
         for (let object of document.querySelectorAll(`#${ellipsis.id}`)){
             object.classList.toggle("hidden")
         }
@@ -392,9 +450,10 @@ for (let user of users){
 }}
 userOpen(users)
 userOpen(document.querySelector('.messages').querySelectorAll('.contact-item'))
-document.querySelector('.exit-img').addEventListener('click', () => {
-    document.querySelector('.center-message').hidden = false
+function exit(){
+document.querySelector('.center-message').hidden = false
     document.querySelector('#haederCard').style.display = 'none'
     document.querySelector('#chatCard').style.display = 'none'
-})
+}
+document.querySelector('.exit-img').addEventListener('click', exit)
 })

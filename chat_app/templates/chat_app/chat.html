@@ -26,14 +26,14 @@
     <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
     {% if contacts %}
         {% for contact in contacts %}
-            <div class="contact">
+            <div class="contact" id="contact{{contact.pk}}">
 
                 <span class="user-data-group">
                     <img src="{% static 'main_app/images/Indicator.png' %}" class="contact-avatar">
                     <span id="span{{contact.pk}}">{{contact.user.first_name}} {{contact.user.last_name}}</span> 
                 </span>
                 <input type="checkbox" id="input{{contact.pk}}" class="checkbox-input">
-                <input type="hidden" name="members" id="member" value="{{contact.pk}}">
+                <input type="hidden" name="members" id="member" value="{{contact.pk}}" class="member{{contact.pk}}">
             </div>
         {% endfor %}
     {% endif %}
@@ -47,7 +47,7 @@
     {% csrf_token %}
     <input type="hidden" name="type" value="groupCreation" id="groupCreation">
     <input type="hidden" name="pk" value="pk" id="pkInput">
-    <h1 class="groupH1">Нова група</h1>
+    <h1 class="groupH1 h1grouupcreation">Нова група</h1>
     <div class="nameGroupDiv">
         <label for="nameGroupInput">Назва</label>
         <input type="text" name="name" id="nameGroupInput" placeholder="Введіть назву">
@@ -66,8 +66,8 @@
 
     </div>
     <div class="buttons">
-        <button class="btn btn-delete">Скасувати</button>
-        <button class="btn btn-confirm" id="addUsers">Створити групу</button>
+        <button class="btn btn-delete btn-back" type="button">Назад</button>
+        <button class="btn btn-confirm groupcreationButton" id="addUsers">Створити групу</button>
     </div>
 </form>
 <main class="chat-wrapper">
@@ -141,15 +141,17 @@
                                 Привіт! <span class="details-message"> <span class="time">10:01</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
                             </p> -->
                         </main>
-                        <div class="footer">
-                        <input type="text" name="" id="messageInput" placeholder="Повідомлення">
-                        <form class="send-part">
-                            <img src="{% static 'main_app/images/em.png' %}" alt="" class="sendElement">
-                            <label for="fileSendInput"><img src="{% static 'main_app/images/img.png' %}" alt="" class="sendElement"></label>
-                            <input type="file" hidden id="fileSendInput">
-                            <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt="" class="sendElementButton"></button> 
-                            <!-- img.png -->
-                        </form>
+                        <div class="sending">
+                            <img src="" alt="" id="imgFromInput">
+                            <div class="footer">
+                                <input type="text" name="" id="messageInput" placeholder="Повідомлення">
+                                <form class="send-part">
+                                    <img src="{% static 'main_app/images/em.png' %}" alt="" class="sendElement">
+                                    <label for="fileSendInput"><img src="{% static 'main_app/images/img.png' %}" alt="" class="sendElement"></label>
+                                    <input type="file" hidden id="fileSendInput">
+                                    <button class="send-button"><img src="{% static 'main_app/images/send.png' %}" alt="" class="sendElementButton"></button> 
+                                </form>
+                            </div>
                         </div>
                     </footer>   
                 

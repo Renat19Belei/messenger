@@ -17,11 +17,16 @@
             </span> 
         </p>
     {% else %}
+        
         <p class="message">
+            
+
             {% profile_icon message.author %}
             <!-- <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt="">  -->
             <span class="message-data">
-
+                {% if message.attached_image %}
+                    <img src="{{ message.attached_image.url }}" alt="" class="imgFromUser">
+                {% endif %}
                 <span class="username">
                     {{message.author.first_name}} {{message.author.last_name}}
                 </span>

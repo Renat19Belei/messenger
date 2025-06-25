@@ -49,6 +49,7 @@ def chat_view(request:WSGIRequest):
                 chatGroup =ChatGroup.objects.get(pk=int(request.POST.get('pk')))
                 chatGroup.name = request.POST.get('name')
                 chatGroup.avatar=request.FILES.get('group_img')
+                chatGroup.members.clear()
             chatGroup.members.add(profile)
             
             # for

@@ -435,13 +435,12 @@ background-color: #f0f0f0;
     cursor: pointer;
 }
 #hidden{
-    background-color: none;
+    background-color: transparent;
     border: none;
-    height: 9999vw !important;
-    /* background-color: black; */
+    height: 999vw !important;
 }
 .menu-title.active{
-  background-color:transparentzaa;
+  background-color:transparent;
 }
 .buttons{
     justify-content: center;
