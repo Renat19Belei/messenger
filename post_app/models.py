@@ -10,6 +10,7 @@ class Post(models.Model):
     views = models.ManyToManyField(Profile, blank=True, related_name='posts_viewed')
     likes = models.ManyToManyField(Profile, blank=True, related_name='posts_liked')
     tags = models.ManyToManyField('Tag', blank=True)
+    topic = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
@@ -26,6 +27,7 @@ class Album(models.Model):
     image = models.ManyToManyField(Image, blank=True)
     shown = models.BooleanField(default=True)
     topic = models.ForeignKey('Tag', on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 class Tag(models.Model):
