@@ -1,39 +1,42 @@
 {% load static %}
 {% load tags %}
+<!-- Скрытые поля для передачи pk чата и статуса администратора -->
 <input type="hidden" value="{{ pk }}" id="pkInput">
 <input type="hidden" name="is_admin" value="{{is_admin}}" id="is_admin">
+<!-- Перебираем все сообщения в чате -->
 {% for message in messages %}
     {% if message.author == request.user %}
+        <!-- Сообщение пользователя (отправителя) -->
         <p class="my message">
             {% if message.attached_image %}
+                <!-- Если есть прикрепленное изображение, показываем его -->
                 <img src="{{ message.attached_image.url }}" alt="" class="imgFromUser">
             {% endif %}
             <span class="messageContent">
                 <span>{{message.content}}</span>
                 <span class="details-message"> 
+                    <!-- Время отправки и иконка статуса -->
                     <span class="time messageTime">{{ message.send_at.isoformat }}</span> 
                     <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
                 </span>
             </span> 
         </p>
     {% else %}
-        
+        <!-- Сообщение другого пользователя -->
         <p class="message">
-            
-
             {% profile_icon message.author %}
-            <!-- <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt="">  -->
             <span class="message-data">
                 {% if message.attached_image %}
+                    <!-- Если есть прикрепленное изображение, показываем его -->
                     <img src="{{ message.attached_image.url }}" alt="" class="imgFromUser">
                 {% endif %}
                 <span class="username">
                     {{message.author.first_name}} {{message.author.last_name}}
                 </span>
                 <span class="messageContent">
-                    
                     {{message.content}} 
                     <span class="details-message"> 
+                        <!-- Время отправки и иконка статуса -->
                         <span class="time messageTime">{{ message.send_at.isoformat }}</span> 
                         <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
                     </span>

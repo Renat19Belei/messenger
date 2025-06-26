@@ -23,32 +23,6 @@ back.addEventListener("click", ()=>{
     acceptPassword.parentElement.classList.add("hidden")
     newPassword.parentElement.classList.add("hidden")
 })
-// reader.onload = (loadEvent) =>{
-//     mark.addEventListener("change", (event)=>{
-//     const files = event.target.files
-//     let count = 0
-//     if (files.length > 0){
-//         for (let file of files){
-//             // reader.
-//             readers[count].readAsDataURL(file)
-//             count++
-//         }
-//     }
-// }
-//     )
-// function toggleEdit() {
-//   const view = document.getElementById("view-mode");
-//   const edit = document.getElementById("edit-mode");
-
-//   if (view.style.display === "none") {
-//     view.style.display = "block";
-//     edit.style.display = "none";
-//   } else {
-//     view.style.display = "none";
-//     edit.style.display = "block";
-//   }
-// }
-// eyeUrl.value
 if (passwords.length == 0){
     passwords  = document.querySelectorAll("#id_password")
 }
@@ -80,8 +54,6 @@ for (let p of ps){
         }
     }
 }
-// old-password
-// edit-img-password
 function submitCode(event){
     
     let codes_list = []
@@ -120,7 +92,6 @@ document.querySelector('.email').addEventListener('submit', (event)=>{
     submitCode()
 })
 const inputsOfcode = document.querySelectorAll('.code');
-const button = document.querySelector('.save');
 const form = document.querySelector('.email');
 console.log(form)
 inputsOfcode[0].focus()
@@ -145,9 +116,7 @@ document.addEventListener('keyup',function(event) {
 })
 save.addEventListener("click", ()=>{
     
-    // let info = document.querySelector('#info')
     let inputs = document.querySelectorAll('.password-change-div .FormInput') 
-    // console.log(editImg)
     if (save.classList.contains('active')){
             let news = document.querySelector('.new-password').value
             let confirm = document.querySelector('.confirm-password').value
@@ -164,7 +133,6 @@ save.addEventListener("click", ()=>{
                     type:'edit_password'
     
                 },
-                // login
                 success:function(request){
                     save.classList.remove('active')
                     oldPassword.parentElement.classList.remove("hidden")
@@ -176,11 +144,6 @@ save.addEventListener("click", ()=>{
                     window.location.href = document.querySelector('#login').value
                 }})
             }
-        
-        
-
-        
-
     }else{
         $.ajax({
             type: 'post',
@@ -192,73 +155,79 @@ save.addEventListener("click", ()=>{
                 type:'check_password'
             },
             success:function(request){
-            if (request.correct){
-            // oldPassword.classList.add("hidden")
-            oldPassword.parentElement.classList.add("hidden")
-            acceptPassword.parentElement.classList.remove("hidden")
-            newPassword.parentElement.classList.remove("hidden")
-            save.classList.add('active')
-            for (let input of inputs){
-                // console.log(!input.classList.contains('password'),input)
-                // "password-change-div"
-                if (!input.classList.contains('password')){
-                    input.requered = true
-                    input.readOnly = false
-                    input.classList.remove('gray-input')
+                if (request.correct){
+                    oldPassword.parentElement.classList.add("hidden")
+                    acceptPassword.parentElement.classList.remove("hidden")
+                    newPassword.parentElement.classList.remove("hidden")
+                    save.classList.add('active')
+                    for (let input of inputs){
+                        if (!input.classList.contains('password')){
+                            input.requered = true
+                            input.readOnly = false
+                            input.classList.remove('gray-input')
+                        }
+                    }
+                    document.querySelector('.email').classList.remove('hidden')
+                    document.querySelector('.bg').classList.remove('hidden')
+                    save.textContent = ''
+                    save.append(editPasswordImg)
+                    save.innerHTML += "Зберегти пароль"
                 }
             }
-            // email
-            // bg
-            // let code = di
-            document.querySelector('.email').classList.remove('hidden')
-            document.querySelector('.bg').classList.remove('hidden')
-            save.textContent = ''
-            save.append(editPasswordImg)
-            // info.innerHTML += `Зберегти`
-            save.innerHTML += "Збергти пароль"
-        }
-        }})
+        })
     }
 })
+// Получаем canvas для рисования подписи
 let canvas = document.querySelector('canvas')
+// Убираем внутренние отступы
 canvas.style.padding = 0
+// Получаем контекст рисования 2D
 let draw = canvas.getContext('2d')
+// Устанавливаем цвет заливки (не используется для линий)
 draw.fillStyle = 'black'
-draw.fillStyle = 'blue'
+// Флаг, указывающий, идет ли сейчас рисование
 let drawing = false
 
+// Функция для вычисления координат относительно canvas
 function coor(event){
     let rect = canvas.getBoundingClientRect()
     return [(event.clientX-rect.left+0.1)*canvas.width / rect.width,(event.clientY-rect.top+7)*canvas.height / rect.height]
 }
+
+// Начинаем рисование при нажатии мыши
 canvas.addEventListener('mousedown', (event) => {
     pastplace = coor(event)
     drawing = true
 })
+
+// Завершаем рисование при отпускании мыши
 document.addEventListener('mouseup',()=> {
     drawing = false
 })
+
 let pastplace = []
+
+// Рисуем линию при движении мыши, если рисование активно
 canvas.addEventListener('mousemove',(event)=>{
     if (drawing){
+        // Для отладки: текущий цвет линии
         console.log(draw.fillStyle,'rtyuioupuoiouytreww')
-        // draw.fillStyle = '#800080'
         draw.beginPath();
-        // draw.strokeStyle  = '#800080'
         draw.moveTo(pastplace[0], pastplace[1]);
         pastplace = coor(event)
         draw.lineTo(pastplace[0], pastplace[1]);
         draw.stroke();
     }
 })
-// edit-img
+// Получаем кнопку "Редагувати інформацію" и иконку редактирования
 let info = document.querySelector('#info')
-let inputs = document.querySelectorAll('.FormInput') 
 let editImg = document.querySelector('.edit-img')
+
+// Обработчик клика по кнопке редактирования информации
 info.addEventListener('click',()=>{
     let info = document.querySelector('#info')
     let inputs = document.querySelectorAll('.FormInput') 
-    // console.log(editImg)
+    // Если уже активен режим редактирования — выключаем его и отправляем изменения на сервер
     if (info.classList.contains('active')){
         info.classList.remove('active')
         for (let input of inputs){
@@ -266,50 +235,36 @@ info.addEventListener('click',()=>{
             input.readOnly = true
             input.classList.add('gray-input')
         }
-            // fetch(document.querySelector('#personalUrl').value,{
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'X-CSRFToken': csrfToken
-            //     },
-
-            // })
-            // DateInput
-            let first_name = document.querySelector('[name="first_name"]').value
-            let last_name = document.querySelector('[name="last_name"]').value
-            $.ajax({
+        // Получаем значения из полей формы
+        let first_name = document.querySelector('[name="first_name"]').value
+        let last_name = document.querySelector('[name="last_name"]').value
+        // Отправляем изменения на сервер через AJAX
+        $.ajax({
             type: 'post',
             url: document.querySelector('#personalUrl').value,
             data: {
-
                 csrfmiddlewaretoken:document.querySelector('input').value,
                 first_name: first_name,
                 last_name: last_name,
                 email: document.querySelector('[name="email"]').value,
                 date_of_birthday: document.querySelector('[name="date_of_birthday"]').value,
-                type:'main_data'
-
+                type:'main_data' // вказуємо, що потрібно редагувати в нашому випадку основні дані
             },
             success:function(request){
-
-                // main_data h4
-                let name_tags =document.querySelectorAll('.name-h2, h4')
-                console.log(name_tags)
+                // Обновляем имя пользователя на странице
+                let name_tags = document.querySelectorAll('.name-h2, h4')
                 for(let tag of name_tags){
                     tag.textContent = `${first_name} ${last_name}`
                 }
-            }})
-        
-        
-
+            }
+        })
         info.textContent = ''
         info.append(editImg)
         info.innerHTML += `Редагувати інформацію`
-
     }else{
+        // Включаем режим редактирования: делаем поля активными
         info.classList.add('active')
         for (let input of inputs){
-            // console.log(!input.classList.contains('password'),input)
             if (!input.classList.contains('password')){
                 input.requered = true
                 input.readOnly = false
@@ -321,24 +276,30 @@ info.addEventListener('click',()=>{
         info.innerHTML += `Зберегти`
     }
 })
+
 let editImg2 = document.querySelector('.edit-avatar')
-// avatar-div content-hidden
 let contAvatar = document.querySelector('.avatar-div')
 let editContAvatar = document.querySelector('.content-hidden')
+let avatarsInput = document.getElementById('avatarsInput')
+
+// Получаем элементы: картинку смены аватарки и input для выбора файла
 let avatar = document.querySelector('#avatar')
 let fileInput = document.getElementById('fileInput')
-let avatarsInput = document.getElementById('avatarsInput')
-fileInput.addEventListener('change',()=>{
-    reader.readAsDataURL(fileInput.files[0])
-})
-const reader = new FileReader();
+// Создаем FileReader для чтения выбранного изображения
+const reader = new FileReader()
+// После выбора файла сразу отображаем превью аватарки на всех элементах с классом .avatar
 reader.onload = (loadEvent) => {
     let avatars = document.querySelectorAll('.avatar')
     for (let avatar of avatars){
         avatar.src = loadEvent.target.result
     }
 }
+// При изменении файла (выбор нового изображения) запускаем чтение файла и обновление превью
+fileInput.addEventListener('change',()=>{
+    reader.readAsDataURL(fileInput.files[0])
+})
 avatar.addEventListener('click',()=>{
+    // Если не активен режим редактирования аватарки — включаем его
     if (!avatar.classList.contains('active')){
         avatar.textContent = ''
         avatar.append(editImg2)
@@ -347,38 +308,32 @@ avatar.addEventListener('click',()=>{
         contAvatar.classList.add('hidden')
         editContAvatar.classList.remove('hidden')
     }else{
+        // Если режим редактирования активен — сохраняем изменения и возвращаемся к просмотру
         avatar.textContent = ''
         avatar.append(editImg2)
         avatar.innerHTML += `Редагувати інформацію`
         avatar.classList.remove('active')
         contAvatar.classList.remove('hidden')
         editContAvatar.classList.add('hidden')
-        // 
+        // Если выбран новый файл для аватарки — отправляем его на сервер через AJAX
         if (fileInput.files[0]!=undefined){
-
-        
-        let formData = new FormData()
-        formData.append('profile_icon', fileInput.files[0])
-        // console.log(fileInput.files[0])
-        formData.append('csrfmiddlewaretoken',document.querySelector('input').value)
-        formData.append('type', 'profile')
-        // formData.append('avatars', )
-        // avatarsInput
-        let files = avatarsInput.files
-        console.log(avatarsInput,123122132132312132)
-        for (let i = 0; i < files.length; i++) {
-            formData.append('avatars', files[i]);
-        }
-        $.ajax({
-            type: 'post',
-            url: document.querySelector('#personalUrl').value,
-            data: formData,
-            processData: false,
-            contentType: false,
-            success:function(request){
-
-            
-            }})
+            let formData = new FormData()
+            formData.append('profile_icon', fileInput.files[0])
+            formData.append('csrfmiddlewaretoken',document.querySelector('input').value)
+            formData.append('type', 'profile')
+            let files = avatarsInput.files
+            // Добавляем все дополнительные выбранные изображения (если есть)
+            for (let i = 0; i < files.length; i++) {
+                formData.append('avatars', files[i]);
+            }
+            $.ajax({
+                type: 'post',
+                url: document.querySelector('#personalUrl').value,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success:function(request){}
+            })
         }
     }
 })
@@ -448,22 +403,15 @@ elecButton.addEventListener('click',()=>{
         colors[0].classList.add('hidden')
         colors[1].classList.add('hidden')
         electronicSignature.classList.remove('hidden')
-        // contAvatar.classList.remove('hidden')
-        // editContAvatar.classList.add('hidden')
     }
 })
-// let color = 'black'
 function colorEdit(event){
-    console.log(event.target.style.background)
     draw.strokeStyle = event.target.style.background
-    // color = event.target.style.background
 }
-// let electronicSignature = document.querySelector('#electronicSignature')
 let colors = document.querySelectorAll('.color')
 colors[0].addEventListener('click',colorEdit)
 colors[1].addEventListener('click',colorEdit)
 editElec.addEventListener('click', () =>{
-    // color
     electronicSignature.classList.toggle('hidden')
     canvas.classList.toggle('hidden')
     editElec.classList.toggle('hidden')
@@ -471,18 +419,4 @@ editElec.addEventListener('click', () =>{
     colors[1].classList.toggle('hidden')
 })
 })
-let avatar = document.querySelector('#avatar')
-// const fileInput = document.getElementById('fileInput');
-// fileInput.addEventListener('change', function() {
-//             const file = this.files[0];
-//             if (file) {
-//                 const reader = new FileReader();
-
-//                 reader.addEventListener('load', function() {
-//                     profileImage.setAttribute('src', this.result);
-//                 });
-
-//                 reader.readAsDataURL(file);
-//             }
-//         });
-// edit-avatar
+// let avatar = document.querySelector('#avatar')

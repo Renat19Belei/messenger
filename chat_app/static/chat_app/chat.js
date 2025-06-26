@@ -108,16 +108,11 @@ selectUsers.addEventListener('submit',(event) =>{
 })
 
 btnBack.addEventListener('click', (event) =>{
-    // for (let member of membersDiv){
-        
-        // document.querySelector('.member'+member.id).checked = 'true'
-    // }
     selectUsers.classList.remove('hidden')
     grouupcreation.classList.add('hidden')
     membersDiv.innerHTML =''
 
 })
-// create-group
 fileData = ''
 fileSendInput.addEventListener('change',function (){
     let file = fileSendInput.files[0]
@@ -125,12 +120,10 @@ fileSendInput.addEventListener('change',function (){
         const reader = new FileReader();
 
         reader.onload = function(event){
-            // fileData= 
             imgFromInput.src = event.target.result
         };
         reader.readAsDataURL(file)
     }
-// btn-back
 
 })
 sendPart.addEventListener("submit", (event)=>{
@@ -159,124 +152,80 @@ sendPart.addEventListener("submit", (event)=>{
     }
 })
 
-// <main class="messages">
-    //     <p class="my-message">
-    //         Привіт! <span class="details-message"> <span class="time">10:01</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
-    //     </p>
-    // </main>
-// center-message
-// chatCard
 let socketUrl;
 let socket;
 let groupPk;
 
-// <li class="contact-item" id="user{{contact.pk}}">
-//     {% profile_icon contact.user "contact-avatar" %}
-//         <div class="contact-info">
-//         <span class="contact-name">{{ contact.user.first_name }} {{ contact.user.last_name }}</span>
-//     </div>
-// </li>
 function messageCreate(){
-socketUrl = `ws://${window.location.host}/chat_group/${groupPk}`
-socket = new WebSocket(socketUrl)
-socket.addEventListener("message", function(event){
-    // Перетворюємо повідомлення з json рядка на JS-об'єкт 
-    const messageObject  = JSON.parse(event.data)
-    // Створюємо html елемент, у якому буде зберігатись отримане повідомлення
-    // const messageElem = document.createElement('p')
-    // Створюємо новий об'єкт класу "Date" з даними дати у фоматі iso
-    let dateTime = new Date(messageObject['date_time'])
-    let imageFromUser = document.createElement('img')
-    // if (messageObject['img']){
-    //     imgFromUser.src = `data:image/${messageObject.imgType};base64,${messageObject.img}`;
-    //     imgFromUser.append()
-    // }
-    imageFromUser.src = messageObject['img']
-    imageFromUser.className = 'imgFromUser'
-    // imgFromUser
-    
-    console.log(messageObject['img']==undefined)
-    // messages.append(messageElem)
-    let p = document.createElement('p')
-    let messageContent = document.createElement('span')
-    messageContent.className = 'messageContent'
-    // messageContent
-    let details = document.createElement('span')
-    let time = document.createElement('span')
-    let img = document.createElement('img')
-    p.className = 'my message'
-    details.className = 'details-message'
-    time.className = 'time'
-    
-    img.className = 'check-mark'
-    time.textContent = `${dateTime.getHours()}:${dateTime.getMinutes()}`
-    img.src = checkMark
-    
-    details.append(time)
-
-    details.append(img)
-    messageContent.textContent = messageObject['message']
-    messageContent.append(details)
-    console.log(!messageObject['you'])
-    
-    if (!messageObject['you']){
+    // Формируем URL для WebSocket соединения с группой
+    socketUrl = `ws://${window.location.host}/chat_group/${groupPk}`
+    socket = new WebSocket(socketUrl)
+    // Обработчик получения нового сообщения по WebSocket
+    socket.addEventListener("message", function(event){
+        // Перетворюємо повідомлення з json рядка на JS-об'єкт 
+        const messageObject  = JSON.parse(event.data)
+        // Создаем объект даты из строки времени сообщения
+        let dateTime = new Date(messageObject['date_time'])
+        // Создаем элемент для изображения, если оно есть в сообщении
+        let imageFromUser = document.createElement('img')
+        imageFromUser.src = messageObject['img']
+        imageFromUser.className = 'imgFromUser'
+        // Создаем элементы для отображения сообщения
+        let p = document.createElement('p')
+        let messageContent = document.createElement('span')
+        messageContent.className = 'messageContent'
+        let details = document.createElement('span')
+        let time = document.createElement('span')
         let img = document.createElement('img')
-        if (messageObject['avatar']){
-            img.src = messageObject['avatar']
-        }else{
-            img.src = document.getElementById('avatarLink').value
-        }
-        // <span class="username">
-        //             {{message.author.username}}
-        //         </span>
-        let message_data = document.createElement('span')
-        message_data.className = 'message-data'
-        let username = document.createElement('span')
-        username.className = 'username'
-        username.textContent = messageObject['username']
-        // let messageContent = 
-        message_data.append(username)
-        message_data.append(messageContent)
-        message_data.prepend(imageFromUser)
-        p.append(message_data)
-        img.className= 'avatar'
-        p.prepend(img)
-        p.className = 'message'
-       
-    }else{
-    // 
-    if (messageObject['img']!=undefined){
+        p.className = 'my message'
+        details.className = 'details-message'
+        time.className = 'time'
         
-        p.prepend(imageFromUser)
-    }
-    p.append(messageContent)
-    }
-    // avatarLink
-    messages.prepend(p)
-    // <p class="message">
-    //         {% profile_icon message.author %}
-    //         <!-- <img src="{% static 'main_app/images/Indicator.png' %}" class="avatar" alt="">  -->
-    //         <span class="message-data">
+        img.className = 'check-mark'
+        time.textContent = `${dateTime.getHours()}:${dateTime.getMinutes()}`
+        img.src = checkMark
+        
+        details.append(time)
 
-    //             <span class="username">
-    //                 {{message.author.username}}
-    //             </span>
-    //             <span class="messageContent">
-                    
-    //                 {{message.content}} 
-    //                 <span class="details-message"> 
-    //                     <span class="time">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> 
-    //                     <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> 
-    //                 </span>
-    //             </span>
-    //         </span>
-    //     </p>
-    currectTimes()
-})
+        details.append(img)
+        messageContent.textContent = messageObject['message']
+        messageContent.append(details)
+        
+        if (!messageObject['you']){
+            let img = document.createElement('img')
+            if (messageObject['avatar']){
+                img.src = messageObject['avatar']
+            }else{
+                img.src = document.getElementById('avatarLink').value
+            }
+            let message_data = document.createElement('span')
+            message_data.className = 'message-data'
+            let username = document.createElement('span')
+            username.className = 'username'
+            username.textContent = messageObject['username']
+            message_data.append(username)
+            message_data.append(messageContent)
+            if (messageObject['img']!=undefined){
+                message_data.prepend(imageFromUser)
+            }
+            p.append(message_data)
+            img.className= 'avatar'
+            p.prepend(img)
+            p.className = 'message'
+           
+        }else{
+        
+        if (messageObject['img']!=undefined){
+            p.prepend(imageFromUser)
+        }
+        p.append(messageContent)
+        }
+        messages.prepend(p)
+        currectTimes()
+    })
 }
 let editChat =document.querySelector('.editChat')
 editChat.addEventListener('click',()=>{
-// user-data-group
     console.log(groupPk)
     $.ajax({
         type: 'post',
@@ -290,23 +239,14 @@ editChat.addEventListener('click',()=>{
             grouupcreation.classList.remove('hidden')
             groupH1.textContent = 'Додати учасника'
             h1grouupcreation.textContent = 'Редагування групи'
-            // addUsers.textContent = 
             groupcreationButton.textContent = 'Зберегти зміни'
-            // Редагування групи
-            // Зберегти зміни
             bg.hidden = false
-            console.log(request)
-            // changeGroupAvatar
             if (request.avatar){
-                
                 document.querySelector('#changeGroupAvatar').src = request.avatar
             }
             document.querySelector('#nameGroupInput').value = request.name
             document.querySelector('#groupCreation').value = 'groupEdit'
             document.querySelector('#pkInput').value = groupPk
-            // pkInput
-            // request = JSON.parse(request)
-            // groupCreation
             for (let contact of contacts){
                 if (contact.querySelector('#member').value in request.members){
                     contact.querySelector('input').remove()
@@ -348,21 +288,13 @@ for (let group of groups){
                 messages.innerHTML = request
                 groupPk = messages.querySelector('#pkInput').value
                 let is_admin = document.querySelector('#is_admin').value-0
-                let url = document.querySelector('#leaveGroup').value
-                // leaveGroup
-                console.log(is_admin)
-                console.log(document.querySelector('#adminChat'),
-                    document.querySelector('#userChat'))
                 
                 if (!is_admin){
                     document.querySelector('#adminChat').classList.add('hidden')
                     document.querySelector('#userChat').classList.remove('hidden')
                     document.querySelector('.editChat').classList.add('hidden')
                     document.querySelector('dialog').style.height = '7.3490813648vw'
-                    // editChat
                 }else{
-                    // 7.3490813648
-                    // 9.23884514432
                     document.querySelector('dialog').style.height = '9.23884514432vw'
                     document.querySelector('.editChat').classList.remove('hidden')
                     document.querySelector('#adminChat').classList.remove('hidden')
@@ -376,25 +308,13 @@ for (let group of groups){
                         $.ajax({
                         type: 'get',
                         url: leaveLink,
-                        // data: {
-
-                        //     csrfmiddlewaretoken:document.querySelector('input').value,
-                        //     pk: pk,
-                        //     type:'group'
-                        // },
                         success:function func(){
-                            // groupPk
                             exit()
-                            // group
                             document.querySelector(`#group${groupPk}`).remove()
-                            // for (let object of document.querySelectorAll(`#heh`)){
-                            //     object.classList.add("hidden")
-                            // }
                         }
                     })
                     })
                 }
-                // leaveLink
                 messageCreate()
                 currectTimes()
             }
@@ -414,13 +334,10 @@ for (let ellipsis of ellipsises){
 function userOpen(users){
 for (let user of users){
     user.addEventListener('click',()=>{
-
-        // groupName
         let pk = user.id.split('user').join('')-0
         let icon = user.querySelector('img')
         let name = user.querySelector('.contact-info .contact-name')
         if (!name){
-            // text-group groupName
             name = user.querySelector('.groupName')
         }
         name = name.textContent
@@ -448,8 +365,8 @@ for (let user of users){
         
     })
 }}
-userOpen(users)
 userOpen(document.querySelector('.messages').querySelectorAll('.contact-item'))
+userOpen(users)
 function exit(){
 document.querySelector('.center-message').hidden = false
     document.querySelector('#haederCard').style.display = 'none'

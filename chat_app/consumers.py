@@ -48,8 +48,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             django_file = ContentFile(img, name=f'fileo.{imgType}')
         saved_message = await self.save_message(message = loads_text_data['message'],attached_image=django_file)
         message_pk = saved_message.pk
-        # if imgType:
-        #     imgs['image'] = saved_message.attached_image.url
         # Надсилаємо повідомлення у группу
         await self.channel_layer.group_send(
             # ім'я группи, до якої відправляємо повідомлення
@@ -62,11 +60,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message_pk':message_pk,
                 'userous_pk':self.user.pk,
                 'img':saved_message.attached_image,
-                # 'imgType':imgType,
-                # 'avatar':self.user.pk,
                 "date_time": saved_message.send_at,
-                "username": first_name + ' ' + last_name,
-                # 'avatar': avatar
+                "username": first_name + ' ' + last_name
             }
         )
     
@@ -81,14 +76,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = event["username"]
         if event['img']:
             text_data_dict['img'] = event["img"].url
-        # img
-        # if event["img"]:
-        #     base64.decode(event["img"])
         # задання для text_data_dict ім'я користувача
         text_data_dict['username'] = username
-        # text_data_dict['img'] = event.get('img')
-        # text_data_dict['imgType'] = event.get('imgType')
-        # imgType
         # задання для text_data_dict дату відправки в iso форматі
         text_data_dict["date_time"] = event["date_time"].isoformat()
         # self.group_name
@@ -96,16 +85,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if self.scope["user"].pk!=event['userous_pk']:
             text_data_dict['you'] = 0
             text_data_dict['avatar'] = await self.get_avatar(event['userous_pk'])
-        # attached_image
-            # avatar = Avatar.objects.filter(profile=Profile.objects.filter(user=event["user_pk"]).first(),active=True).first()
-        # свторення об'єкту форми з параметром text_data_dict
-        # form = messageForm(text_data_dict)
-        # # робимо валідацію форми 
-        # if form.is_valid():
-            # відправка текст дати у json форматі клієнтам
+        # відправка текст дати у json форматі клієнтам
         await self.send(json.dumps(text_data_dict))
-        # else:
-        #     print('error')
     @database_sync_to_async
     def get_avatar(self, user_pk):
         profile = Profile.objects.filter(user_id=user_pk).first()

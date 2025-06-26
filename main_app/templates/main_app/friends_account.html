@@ -16,19 +16,27 @@
 {% block content %}
 {% render_header 0 0 1 %}
 <input type="hidden" id="request" value="{% url 'list' %}">
-<input type="hidden" name="type" id="type" value="friends">
+<input type="hidden" name="type" id="type" value="friends{{ user.pk }}">
 <div class="container">
     <aside class="sidebar">
         <div class="profile-card">
             <div class="profile-1">
-            {% profile_icon user "avatar-big" %}
-            <div class="online-dot"></div>
-            <h2>{{user.first_name}}</h2>
-            <p>@{{user.username}}</p>
+                {% if user.is_authenticated and user.profile %}
+                    {% profile_icon user "avatar-big" %}
+                    <div class="online-dot"></div>
+                    <h2>{{ user.first_name }}</h2>
+                    <p>@{{ user.username }}</p>
+                {% else %}
+                    <img class="avatar-big" src="{% static 'main_app/images/default_avatar.png' %}" alt="">
+                    <div class="online-dot"></div>
+                    <h2>Неизвестный</h2>
+                    <p>@guest</p>
+                {% endif %}
             </div>
             {% status user %}
+            <!-- <div class="p -->
         </div>
-        <div class="albums-section"> 
+        <div class="albums-section">
             <div class="section-header">
                 <h3 class="section-title">Альбоми</h3>
                 <a href="#" class="see-all">Дивитись всі</a>
@@ -43,7 +51,9 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p>Альбомів немає.</p>
+                    <div class="mood-item no-albums-placeholder">
+                        <p>Альбомів немає.</p>
+                    </div>
                 {% endif %}
             </div>
         </div>

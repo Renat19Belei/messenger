@@ -2,25 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 # Create your models here.
-# class VerificationCode(models.Model):
-#     username = models.CharField(max_length=150)
-#     code = models.CharField(max_length=)
-    # code = models.IntegerField()
-    # date_of_creation = models.DateTimeField(auto_now=True)
-    # user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='codes')
-    # email = models.EmailField(max_length=255)
-    # password = models.CharField(max_length=255)
-    # username = models.CharField(max_length=255)
-    # def __str__(self):
-    #     return self.code
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE)
     date_of_birth = models.DateField()
     signature = models.ImageField(upload_to="images/signature", blank=True, null=True)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
-#     avatar = models.ImageField(upload_to='images/profiles/avatars')
-#     avatar = models.ImageField(upload_to='images/profiles/avatars')
     def __str__(self):
         return self.user.username
 class Avatar(models.Model):

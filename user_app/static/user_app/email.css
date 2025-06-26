@@ -24,17 +24,16 @@ p{
     padding-right: 1.0498687664vw;
     padding-bottom: 0.5249343832vw;
     padding-left: 2.0997375328vw;
-    border-width: 0.05249343832vw;
-    
-    
+    border-width: 0.05249343832vw;   
 }
+
 .bg{
     background-color: #000000;
     opacity: 0.728;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5;
+    z-index: 100;
     right: 0;
     bottom: 0;
 }
@@ -80,7 +79,7 @@ img{
     top: 50%;
     transform: translate(-50%,-50%);
     border-radius: 1.0498687664vw;
-    z-index: 100;
+    z-index: 111;
     height: 23.3070866141vw;
     width: 25.6167979002vw;
     gap: 1.88976377952vw;

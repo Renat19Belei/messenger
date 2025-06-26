@@ -13,9 +13,7 @@
 <input type="hidden" value="{{ chat_group.pk }}" id="chatGroupPk">
 <input type="hidden" value="{% static 'main_app/images/remove.png' %}" id="removeLink">
 <input type="hidden" value="{% currentTime %}" id="currectTime">
-<!-- leave -->
- <!-- {% static 'main_app/images/remove.png' %} -->
-  <!-- get -->
+
 <input type="hidden" id="checkMark" value="{% static 'main_app/images/check_mark.png' %}">
 <input type="hidden" id="leaveLink" value="{% url 'leave' 0 %}">
 <input type="hidden" id="getLink" value="{% url 'get' %}">
@@ -58,7 +56,6 @@
             <button class="add-button"><img src="{% static 'main_app/images/plus.png' %}" alt="" class='icon'> Додайте фото</button>
             <label for="fileInput"  class="add-button" id="mark"><img src="{% static 'main_app/images/public.png' %}" alt="" class="icon"> Оберіть фото</label>
             <input type="file" id="fileInput" name="group_img" hidden>
-            <!-- <input type="file" id="imageInput" name="images" accept="image/*" multiple> -->
         </div>
     </div>
     <p class="membersP">Учасники</p>
@@ -74,15 +71,6 @@
         <aside class="sidebar">
             <button class="create-group img-conteiner"><img src="{% static 'main_app/images/whitePlus.png' %}" alt="" class="icon"> Створити груповий чат</button>
             <div class="contacts">
-<!-- <<<<<<< HEAD
-                <h3 class="contacts-h3 img-conteiner"><img src="{% static 'main_app/images/people2.png' %}" alt=""  class="icon">Контакти</h3>
-                <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
-                <ul class="contact-list">
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Jane Cooper</li>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Cameron Williamson</li>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""> Leslie Alexander</li>
-                </ul>
-======= -->
                 <h3 class="contact-h3"><img src="{% static 'main_app/images/people2.png' %}" alt="" class="icon">Контакти</h3>
                 <p class="searches"> <img src="{% static 'main_app/images/search.png' %}" alt="" class="searchImg"><input type="text" placeholder="        Пошук" class="search"></p>
             <ul class="contact-list">
@@ -97,7 +85,6 @@
                     {% endfor %}
                 {% endif %}
             </ul>
-<!-- >>>>>>> origin/Renat -->
             </div>
         </aside>
 
@@ -107,7 +94,6 @@
                     <div class="chat-exit">
                         
                         <img src="{% static 'main_app/images/left_arrow.png' %}" alt="" class="icon exit-img">
-                        <!-- left_arrow -->
                         <div class="chat-icon">
                             {% profile_icon request.user "avatar current-group-avatar" %}
                             <div class="chat-data">
@@ -116,7 +102,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- {% static 'main_app/images/leaveGroup.png' %} -->
                     <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
                     <dialog class="dialog hidden" id="heh{{post.pk}}">
                         <button class="ellipsis hidden"  id="heh" type="submit" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
@@ -137,9 +122,6 @@
                     
                     <footer id="chatCard" style="display: none;">
                         <main id="messages">
-                            <!-- <p class="my-message">
-                                Привіт! <span class="details-message"> <span class="time">10:01</span> <img src="{% static 'main_app/images/check_mark.png' %}" class="check-mark"> </span>
-                            </p> -->
                         </main>
                         <div class="sending">
                             <img src="" alt="" id="imgFromInput">
@@ -162,30 +144,15 @@
             <div class="messages">
                 
                 <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" alt=""  class="icon">Повідомлення</div> <a href="">Дивитись всі</a></div>
-                <!-- messagesList -->
                 <ul>
-                {% for message in messagesList %}
-                    <!-- <li> -->
-                        <!-- <img src="{% static 'main_app/images/Indicator.png' %}" alt="">
-                        <div class="text-group">{{message.autor.first_name}} {{message.autor.last_name}}<small>{{message.content}}</small>
-                        </div>
-                        <span class="message-date">{{ message.send_at.hour }}:{{ message.send_at.minute }}</span> -->
-                        {% contact request message.pk %}
-                    <!-- </li> -->
+                    {% for message in messagesList %}
+                        {% contact_tag request message.pk %}
                     {% endfor %}
                 </ul>
-                <!-- <ul>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
-                </ul>
-                <ul>
-                    <li><img src="{% static 'main_app/images/Indicator.png' %}" alt=""><div class="text-group"> Mona Lisa<small>Привіт!</small></div><span class="message-date">09:41</span></li>
-                </ul> -->
                 
             </div>
             <div class="groups">
                 <div class="title"><div class="contact-h3"><img src="{% static 'main_app/images/chat.png' %}" class="icon" alt="">Групові чати</div> <a href="">Дивитись всі</a></div>
-                <!-- chatGroups -->
-
                 <ul id="allGroups">
                     {% for chatGroup in chatGroups %}
                         <li class="group-item" id="group{{chatGroup.pk}}">
@@ -200,12 +167,6 @@
                             <span class="message-date">09:41</span>
                         </li>
                     {% endfor %}
-                <!-- </ul> -->
-                <!-- <ul> -->
-                    <!-- <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div><span class="message-date">09:41</span></li> -->
-                <!-- </ul> -->
-                <!-- <ul> -->
-                    <!-- <li><img src="{% static 'main_app/images/group.png' %}" alt=""><div class="text-group"> New group<small>Чудово!</small></div><span class="message-date">09:41</span></li> -->
                 </ul>
                 
             </div>
