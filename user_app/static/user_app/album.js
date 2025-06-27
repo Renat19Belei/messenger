@@ -119,3 +119,35 @@ $(document).on('click', '.delete-photo-button', function(){
   // function 
 })
 
+let ellipsises =document.querySelectorAll(".ellipsis")
+for (let ellipsis of ellipsises){
+    console.log(ellipsis.id)
+    ellipsis.addEventListener('click', () => {
+      console.log(document.querySelectorAll(`#${ellipsis.id}`))
+        for (let object of document.querySelectorAll(`#${ellipsis.id}`)){
+            object.classList.toggle("hidden")
+        }
+    })
+}
+// remove
+let remove_buttons = document.querySelectorAll(".remove")
+for (let remove_button of remove_buttons){
+    remove_button.addEventListener('click', () => {
+        $.ajax({
+            type: 'post',
+            url: window.location.href,
+            data: {
+                'csrfmiddlewaretoken': document.querySelector('input[name="csrfmiddlewaretoken"]').value,
+                'type': 'remove',
+                'pk': remove_button.id
+            },
+            success: function(response) {
+                // Handle success
+                remove_button.parentElement.parentElement.parentElement.parentElement.remove();
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+            }
+        });
+    })
+}

@@ -26,11 +26,9 @@ def MainPageView(request:WSGIRequest):
         if 'images1' in request.POST:
             form1 = messageForm(request.POST)
             if form1.is_valid():
-                print(request.POST.getlist('tags'),'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
                 files = request.FILES.getlist("images")
                 remove_List = request.POST.get("images1").split(" ")
                 del remove_List[-1]
-                # remove_dict = everyTag
                 remove_List_2 = request.POST.get("images2").split(" ")
                 del remove_List_2[-1]
                 form1.send(
@@ -40,7 +38,8 @@ def MainPageView(request:WSGIRequest):
                     request.POST.get('imgs'),
                     [remove_List,remove_List_2],
                     request.POST.getlist('tags') + request.POST.getlist('everyTag'),
-                    request.POST.getlist('link')
+                    request.POST.getlist('link'),
+                    request.POST.get('theme')
                     )
         else:
             form2 = UserSet(request.POST)

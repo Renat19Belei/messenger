@@ -20,7 +20,7 @@ from .forms import AuthenticationForm2
 import random
 import threading
 import qrcode, io 
-from PIL import Image
+from post_app.models import Image
 from .forms import AuthenticationForm2 
 from django.contrib.auth import login, logout, get_user_model
 from .models import Avatar
@@ -121,31 +121,43 @@ def albums(request:WSGIRequest):
         if form_type == 'album':
             theme=request.POST.get("themeSelect")
             tag=Tag.objects.filter(name=theme).first()
-            tag = None
+            # tag = None
             if not tag:
                 tag = Tag.objects.create(name=theme)
+            # times.isoformat().replace(times.year, request.POST.get("year"))
             album = Album.objects.create(
                 name = request.POST.get("name"),
-                topic= tag
+                topic= tag,
+                author=profile
             )
-        if form_type == 'images':
+            album.created_at = album.created_at.replace(year=int(request.POST.get("year")))
+            album.save()
+            # year
+            # album.created_at.year = request.POST.get("year")
+        elif form_type == 'images':
             album = Album.objects.get(pk=int(request.POST.get("pk")))
+            
             img_list = []
             for img in request.FILES.getlist('images'):
-                album.image.add(Image.objects.create(file=img))
+                album.images.add(Image.objects.create(file=img))
                 album.save()
             album.save()
-    user_albums = Album.objects.all()
-    avatars = Avatar.objects.filter(profile=profile,active=False)
-    return render(request, 'user_app/albums.html', context= {"albums" :user_albums,'avatars':avatars})
+        elif form_type == 'remove':
+            album = Album.objects.get(pk=int(request.POST.get("pk")))
+            # if album.icon:
+            #     album.icon.delete()
+            Album.delete(album)
+    user_albums = Album.objects.filter(author=profile)
+    avatars = Avatar.objects.filter(profile=profile, active=False)
+    return render(request, 'user_app/albums.html', context={"albums": user_albums, 'avatars': avatars})
 
-def remove_album_icon(request:WSGIRequest):
-    if request.method == 'POST':
-        album_id = request.POST.get("album_id")
-        album = Album.objects.get(pk=album_id)
-        album.icon.delete()
-        album.save()
-    return redirect('albums')
+# def remove_album_icon(request:WSGIRequest):
+#     if request.method == 'POST':
+#         album_id = request.POST.get("album_id")
+#         album = Album.objects.get(pk=album_id)
+#         album.icon.delete()
+#         album.save()
+#     return redirect('albums')
 
 @login_required
 def personal(request:WSGIRequest):

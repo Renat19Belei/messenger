@@ -404,7 +404,7 @@ background-color: transparent;
 .hidden{
     display: none;
 }
-#allGroups, .messages, .contact-list{
+#allGroups, .messages, .contact-list, .groups{
     height: 19.527559055vw;
     overflow-y: scroll;
 }

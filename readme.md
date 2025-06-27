@@ -53,7 +53,9 @@
 + Вписуй команду у терміналі: <code onclick="navigator.clipboard.writeText('pip install -r requirements.txt')">pip install -r requirements.txt</code> якщо у вас mac os то pip3 
 + Вписуй наступну команду у терміналі: <code onclick="navigator.clipboard.writeText('python manage.py runserver')">python manage.py runserver</code>
 + Все проєкт запущений `http://127.0.0.1:8000/`
+
 ---
+
 ### Інструкція для запуску на railway
 + Переконайтесь що у вас є github акаунт
 + Зробіть fork на github

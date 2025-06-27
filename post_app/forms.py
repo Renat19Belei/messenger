@@ -26,12 +26,11 @@ class messageForm(forms.Form):
         label='Назва публікації',
         max_length=255
     )
-    # Тема публикации (необязательное поле)
+    # Тема публикации
     theme = forms.CharField(
         widget=forms.TextInput(attrs={"placeholder": "Напишіть тему публікаціїї","class": "FormInput themeInput"}),
         label='Тема публікації',
-        max_length=255,
-        required=False
+        max_length=255
     )
     # Текст публикации
     text = forms.CharField(
@@ -41,7 +40,7 @@ class messageForm(forms.Form):
     )
 
     # Метод для сохранения или редактирования поста
-    def send(self, user, images, type='save', imgs=[], remove_List=[[],[]], tags=[], links=[]):
+    def send(self, user, images, type='save', imgs=[], remove_List=[[],[]], tags=[], links=[],theme=''):
         """
         Метод для создания или редактирования поста.
 
@@ -86,6 +85,7 @@ class messageForm(forms.Form):
                     author = Profile.objects.get(user = user),
                     title = self.cleaned_data.get('name'),
                     content = self.cleaned_data.get('text'),
+                    topic = theme
                 )
                 user_post.images.set(images_list)
                 user_post.tags.set(tags_list)
@@ -97,6 +97,7 @@ class messageForm(forms.Form):
                 )
                 if user_post.author.user == user:
                     user_post.content = text
+                    user_post.content = theme
                     user_post.title = self.cleaned_data.get('name')
                     user_post.images.set(images_list)
                     user_post.tags.set(tags_list)

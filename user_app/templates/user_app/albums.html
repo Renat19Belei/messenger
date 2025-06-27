@@ -57,26 +57,25 @@
                             <h3 class="text-album">{{ album.name }}</h3>
                             <div class="album-options">
                                 <button class="action-icon-btn"><img src="{% static 'main_app/images/WhiteEye.png' %}" alt="Завантажити" class="icon-img"></button>
-                                <button class="ellipsis" type="submit" id="heh{{post.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
-                                <dialog class="dialog hidden" id="heh{{post.pk}}">
-                                    <button class="ellipsis hidden"  id="heh{{post.pk}}" type="submit" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
-                                    <button class="config edit" id="{{post.pk}}"><img src="{% static 'main_app/images/edit.png' %}" alt=""  class="icon">Редагувати допис</button>
+                                <button class="ellipsis" type="button" id="heh{{album.pk}}"><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon" ></button>
+                                <dialog class="dialog hidden" id="heh{{album.pk}}">
+                                    <button class="ellipsis hidden"  id="heh{{album.pk}}" type="submit" ><img src="{% static 'main_app/images/ellipsis.png' %}" alt="error" class="icon"></button>
+                                    <button class="config edit" id="{{album.pk}}"><img src="{% static 'main_app/images/edit.png' %}" alt=""  class="icon">Редагувати альбом</button>
                                     <hr>
-                                    <button class="config remove" id="{{post.pk}}"><img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">Видалити публікацію</button>
+                                    <button class="config remove" id="{{album.pk}}"><img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">Видалити альбом</button>
                                 </dialog>
                             </div>
                         </div>
                         <div class="album-data">
-                            <p class="text-album">{{ album.theme }}</p>
-                            <p class="year text-album">{{ album.year }} рік</p>
+                            <p class="text-album">{{ album.topic }}</p>
+                            <p class="year text-album">{{ album.created_at.year }} рік</p>
                         </div>
                         <p class="text-album">Фотографіїї</p>
                         <div class="img{{ album.pk }} images-div">
                             <!-- image -->
-                            {% if album.image.all %}
+                            {% if album.images.all %}
                                 
-                                <!-- <div class="images"> -->
-                                    {% for image in album.image.all %}
+                                    {% for image in album.images.all %}
                                         
                                         <div class="photo-container">
                                             <img src="{{image.file.url}}" alt="" class="image">
@@ -96,7 +95,7 @@
                     </div>
                 {% endfor %}
              {% endif %}
-            </div>
+        </div>
             
 <!-- =======
 >>>>>>> origin/Renat
@@ -170,17 +169,8 @@
       <label for="yearSelect" >Рік альбому</label>
       
       <select id="yearSelect" name="year">
-        <!-- Оберіть рік -->
         <option value="" disabled selected hidden>Оберіть рік</option>
-        <!-- <option>Природа</option>
-        <option>Подорожі</option>
-        <option>Друзі</option> -->
       </select>
-      
-        <!-- <option value="" disabled selected hidden>Оберіть рік</option> -->
-        <!-- <option>2025</option> -->
-        <!-- <option>2024</option> -->
-    <!-- </input> -->
       <div class="modal-actions">
         <button type="button">Скасувати</button>
         <button type="submit">Зберегти</button>
