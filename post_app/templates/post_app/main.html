@@ -17,6 +17,8 @@
 {% block content %}
 {% render_header 1 %}
 {% csrf_token %}
+<input type="hidden" id="likeUrl" value="{% static 'main_app/images/like.png' %}">
+<input type="hidden" id="likedUrl" value="{% static 'main_app/images/liked.png' %}">
 <input type="hidden" id="request" value="{% url 'list' %}">
 <div id="bg" class="hidden"></div>
 <input type="hidden" name="" id="linkClose" value="{% static 'main_app/images/linkClose.png' %}">

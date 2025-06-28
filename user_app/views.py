@@ -134,10 +134,10 @@ def albums(request:WSGIRequest):
         elif form_type == 'images':
             # Додавання зображень до альбому
             album = Album.objects.get(pk=int(request.POST.get("pk")))
-            img_list = []
             for img in request.FILES.getlist('images'):
-                album.images.add(Image.objects.create(file=img))
-                album.save()
+               album.images.add(Image.objects.create(file=img))
+               if not album.preview_image:
+                   album.preview_image = img
             album.save()
         elif form_type == 'remove':
             # Видалення альбому

@@ -116,6 +116,28 @@ def gets(request:WSGIRequest,pk:int):
     # Если пользователь не автор поста — возвращаем ошибку
     return JsonResponse({'error':'who are you'})
 
+def like_post(request:WSGIRequest, pk:int):
+    """ Функция для обработки запросов на лайк поста.
+    Если запрос POST, то добавляет лайк к посту.
+    Параметры:
+    - request: WSGIRequest — HTTP-запрос от клиента.
+    """
+    if request.method == "POST":
+        post_id = pk
+        Cookie = request.COOKIES.get('user_id')
+        print(Cookie,1111111111111)
+        profile = Profile.objects.get(user=request.user)
+        post = get_object_or_404(Post, pk=post_id)
+        if (profile in post.likes.all()):
+            post.likes.remove(profile)
+            post.save()
+            return JsonResponse({'likes': post.likes.all().count(),'liked': False})
+        else:
+            post.likes.add(profile)
+            post.save()
+            return JsonResponse({'likes': post.likes.all().count(),'liked': True})
+    return JsonResponse({'error': 'onlyPost'})
+
 @login_required(login_url=reverse_lazy('login'))
 def new_posts(request:WSGIRequest):
     """ Функция для обработки запросов на получение новых постов.
@@ -129,13 +151,12 @@ def new_posts(request:WSGIRequest):
     if request.method == "POST":
         list_posts =  [] 
         type = request.POST.get('type')
-        
         profile = Profile.objects.get(user = request.user)
         if type == 'posts':
             all_posts = Post.objects.filter(author = profile)
         elif 'friends' in type:
-            user =  User.objects.get(pk= int("".join(type.split('friends'))))
-            profileFriend = Profile.objects.get(user = user)
+            # user =  User.objects.get(pk= )
+            profileFriend = Profile.objects.get(user_id = int("".join(type.split('friends'))))
             all_posts = Post.objects.filter(author = profileFriend)
         else:
             all_posts = Post.objects.all()
@@ -150,15 +171,14 @@ def new_posts(request:WSGIRequest):
                 
                 list_posts.append(all_posts[len(all_posts)-(int(post)-1)]) 
                 if list_posts[-1].author != profile:
-                    list_posts[-1].views.add( profile)
-                    print(list_posts[-1].views.all())
+                    list_posts[-1].views.add(profile)
                     list_posts[-1].save()
                 links.append(Link.objects.filter(pk=list_posts[-1].pk)) 
             except Exception as error:
                 print(error)
         
-        return render(request, "post_app/new_posts.html", context={'list_posts':list_posts, "type":type})
-    return 'onlyPost'
+        return render(request, "post_app/new_posts.html", context={'list_posts':list_posts, "type":type,'profile':profile})
+    return JsonResponse({'error':'onlyPost'})
 
 class Posts(FormView):
     """ Представление для создания и редактирования постов.

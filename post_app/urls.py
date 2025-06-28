@@ -7,4 +7,5 @@ urlpatterns = [
     path('get/<int:pk>', gets, name='get'),
     path('list_posts/', new_posts, name= 'list'),
     path('posts/', Posts.as_view(), name='posts'),
+    path('like/<int:pk>', like_post, name='like_post'),
 ]

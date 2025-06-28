@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
 
 function load(count){
     let error= NaN
@@ -42,6 +42,34 @@ function load(count){
         },  
         success: function(request){
             $('.poster').append(request)
+            console.log(document.querySelectorAll('.like'))
+            for (let like of document.querySelectorAll('.like')){
+                like.addEventListener('click', () => {
+                    let csrf = $('input')[0].value
+                    let link = like.parentElement.parentElement.querySelector('#likeLink').value
+                    // let postId = like.parentElement.querySelector('input').id.split('post').join('')
+                    $.ajax({
+                        type: 'post',
+                        url: link,
+                        data: {csrfmiddlewaretoken:csrf},
+                        success: function(request){
+                            // Обновляем количество лайков
+                            let likeCount = like.parentElement.querySelector('span')
+                            // let like1 = like.cloneNode(true)
+                            // like.parentElement.innerHTML = request.likes + ' вподобань'
+                            // like.parentElement.prepend(like1)
+                            if (request.liked){
+                                like.src = document.querySelector('#likedUrl').value
+                            }else{
+                                like.src = document.querySelector('#likeUrl').value
+                            }
+                            likeCount.textContent = request.likes
+                            // span
+                            // Обновляем иконку лайка
+                        }
+                    })
+                })
+            }
             current+=count
             let ellipsises =document.querySelectorAll(".ellipsis")
             for (let ellipsis of ellipsises){
@@ -175,7 +203,7 @@ function load(count){
     $('.content')[0].addEventListener('scroll', function() {
         const currentScrollTop = $('.content')[0].scrollTop;
         if (this.scrollHeight - $('.content')[0].clientHeight-100< currentScrollTop){
-            load(1)
+            load(10)
         }
     });
 });
