@@ -1,33 +1,17 @@
-// contact-name
 $(document).ready(function(){
 let users = document.querySelectorAll('.contact-item')
 let groups = document.querySelectorAll('.group-item')
-let time = new Date()
-// let time2 = new Date(time.())
-// imgFromInput
-// console.log(time2.getHours(),time.getHours())
-// group-item
 let currentIcon = document.querySelector('.current-group-avatar')
 let checkMark = document.querySelector('#checkMark').value
-// currectTime
-let currectTime = document.querySelector('#currectTime').value
-let differentTime = time.getHours() - currectTime
-console.log(differentTime)
-// checkMark btn-back groupH1 addUsers
 const groupH1 = document.querySelector(".groupH1")
 const h1grouupcreation = document.querySelector(".h1grouupcreation")
 const groupcreationButton = document.querySelector(".groupcreationButton")
-
-// h1grouupcreation
-// const addUsers = document.querySelector("#addUsers")
 const btnBack = document.querySelector(".btn-back")
 const imgFromInput = document.getElementById('imgFromInput')
-const sendMessage = document.querySelector(".send-button")
 const sendPart = document.querySelector(".send-part")
 const fileSendInput = document.querySelector("#fileSendInput")
 const fileInput = document.querySelector("#fileInput")
 const changeGroupAvatar = document.querySelector("#changeGroupAvatar")
-// /fileInput changeGroupAvatar
 const messageInput =  document.getElementById('messageInput')
 const messages = document.querySelector('#messages')
 const createGroup = document.querySelector('.create-group')
@@ -38,6 +22,8 @@ const membersDiv = document.querySelector('.members')
 const contacts = document.querySelectorAll('.contact')
 const bg = document.querySelector('.bg')
 let selectedContacts = []
+
+// Обработчик выбора аватара группы (отображение превью)
 fileInput.addEventListener('change', (event) =>{
     let file = fileInput.files[0]
     console.log(file)
@@ -50,42 +36,39 @@ fileInput.addEventListener('change', (event) =>{
         reader.readAsDataURL(file)
     }
 })
-// grouupcreation members
+
+// Открытие формы выбора участников для создания группы
 createGroup.addEventListener('click',(event)=>{
-    // if (selectUsers.hidden){
-        selectUsers.classList.remove('hidden')
-        bg.hidden = false
-    // }
+    selectUsers.classList.remove('hidden')
+    bg.hidden = false
 })
+
+// Переключение между выбором участников и созданием группы
 addUsers.addEventListener('click',(event)=>{
     selectUsers.classList.add('hidden')
     grouupcreation.classList.remove('hidden')
 })
+
+// Функция форматирует отображение времени сообщений (часы:минуты або дата)
 function currectTimes(){
     let times = document.querySelectorAll(".time")
-    // messageTimeObject
     for (let time of times){
-        
-        
         let messageTime = new Date(time.textContent)
-        // console.log(messageTime)
         if (messageTime!='Invalid Date'){
-        // console.log()
-        let now = new Date()
-        if (now.getDay()==messageTime.getDay() && now.getFullYear()==messageTime.getFullYear() && now.getMonth()==messageTime.getMonth() || time.classList.contains('messageTime')){
-            // if (messageTime.getHours()<)
-            // time.textContent = `${messageTime.getHours()}:${messageTime.getMinutes()}`
-            let messageTimeList = messageTime.toLocaleTimeString().split(':')
-            messageTimeList.pop()
-            time.textContent = messageTimeList.join(':')
-        }else{
-            time.textContent = messageTime.toLocaleDateString()
-        }}
+            let now = new Date()
+            if (now.getDay()==messageTime.getDay() && now.getFullYear()==messageTime.getFullYear() && now.getMonth()==messageTime.getMonth() || time.classList.contains('messageTime')){
+                let messageTimeList = messageTime.toLocaleTimeString().split(':')
+                messageTimeList.pop()
+                time.textContent = messageTimeList.join(':')
+            }else{
+                time.textContent = messageTime.toLocaleDateString()
+            }
+        }
     }
 }
 currectTimes()
-// addUsers
-// <img src="{% static 'main_app/images/remove.png' %}" alt=""  class="icon">
+
+// Обработка выбора участников для группы
 selectUsers.addEventListener('submit',(event) =>{
     event.preventDefault()
     
@@ -93,8 +76,6 @@ selectUsers.addEventListener('submit',(event) =>{
         if (contact.querySelector('input').checked){
             contact = contact.cloneNode(true)
             contact.querySelector('input').remove()
-            // selectedContacts.push(contact)
-            // removeLink
             let img = document.createElement('img')
             img.src = document.querySelector('#removeLink').value
             img.className = 'removeImg'
@@ -107,13 +88,15 @@ selectUsers.addEventListener('submit',(event) =>{
     }
 })
 
+// Кнопка "Назад" при создании/редактировании группы
 btnBack.addEventListener('click', (event) =>{
     selectUsers.classList.remove('hidden')
     grouupcreation.classList.add('hidden')
     membersDiv.innerHTML =''
 
 })
-fileData = ''
+
+// Обработка выбора файла для отправки в чат (отображение превью)
 fileSendInput.addEventListener('change',function (){
     let file = fileSendInput.files[0]
     if (file){
@@ -126,6 +109,8 @@ fileSendInput.addEventListener('change',function (){
     }
 
 })
+
+// Отправка сообщения (текст/файл) через WebSocket
 sendPart.addEventListener("submit", (event)=>{
     event.preventDefault()
     let message = messageInput.value
@@ -156,11 +141,10 @@ let socketUrl;
 let socket;
 let groupPk;
 
+// Функция для создания WebSocket и отображения новых сообщений в чате
 function messageCreate(){
-    // Формируем URL для WebSocket соединения с группой
     socketUrl = `ws://${window.location.host}/chat_group/${groupPk}`
     socket = new WebSocket(socketUrl)
-    // Обработчик получения нового сообщения по WebSocket
     socket.addEventListener("message", function(event){
         // Перетворюємо повідомлення з json рядка на JS-об'єкт 
         const messageObject  = JSON.parse(event.data)
@@ -212,31 +196,28 @@ function messageCreate(){
             img.className= 'avatar'
             p.prepend(img)
             p.className = 'message'
-           
         }else{
-        
-        if (messageObject['img']!=undefined){
-            p.prepend(imageFromUser)
-        }
-        p.append(messageContent)
+            if (messageObject['img']!=undefined){
+                p.prepend(imageFromUser)
+            }
+            p.append(messageContent)
         }
         messages.prepend(p)
         currectTimes()
     })
 }
+
+// Обробка редагування групи (AJAX-запит на сервер)
 let editChat =document.querySelector('.editChat')
 editChat.addEventListener('click',()=>{
-    console.log(groupPk)
     $.ajax({
         type: 'post',
         url: document.querySelector('#getLink').value,
         data: {
-
             csrfmiddlewaretoken:document.querySelector('input').value,
             pk: groupPk
         },
         success: function(request){
-            grouupcreation.classList.remove('hidden')
             groupH1.textContent = 'Додати учасника'
             h1grouupcreation.textContent = 'Редагування групи'
             groupcreationButton.textContent = 'Зберегти зміни'
@@ -251,7 +232,6 @@ editChat.addEventListener('click',()=>{
                 if (contact.querySelector('#member').value in request.members){
                     contact.querySelector('input').remove()
                     selectedContacts.push(contact)
-                    // removeLink
                     let img = document.createElement('img')
                     img.src = document.querySelector('#removeLink').value
                     img.className = 'removeImg'
@@ -264,6 +244,8 @@ editChat.addEventListener('click',()=>{
             }
         }})
 })
+
+// Обробка кліку по групі для відкриття чату
 for (let group of groups){
     group.addEventListener('click',()=>{
         let pk = group.id.split('group').join('')-0
@@ -279,7 +261,6 @@ for (let group of groups){
             type: 'post',
             url: window.location.href,
             data: {
-
                 csrfmiddlewaretoken:document.querySelector('input').value,
                 pk: pk,
                 type:'group'
@@ -288,7 +269,6 @@ for (let group of groups){
                 messages.innerHTML = request
                 groupPk = messages.querySelector('#pkInput').value
                 let is_admin = document.querySelector('#is_admin').value-0
-                
                 if (!is_admin){
                     document.querySelector('#adminChat').classList.add('hidden')
                     document.querySelector('#userChat').classList.remove('hidden')
@@ -300,7 +280,6 @@ for (let group of groups){
                     document.querySelector('#adminChat').classList.remove('hidden')
                     document.querySelector('#userChat').classList.add('hidden')
                 }
-                
                 let leaveLink = document.querySelector('#leaveLink').value
                 leaveLink = leaveLink.split('0').join(`${groupPk}`)
                 for (let exitElem of document.querySelectorAll('.exitChat')){
@@ -321,6 +300,8 @@ for (let group of groups){
         })
     })
 }
+
+// Обробка кліку по елементу "три крапки" (ellipsis) для показу меню
 let ellipsises =document.querySelectorAll(".ellipsis")
 for (let ellipsis of ellipsises){
     ellipsis.addEventListener('click', () => {
@@ -330,7 +311,8 @@ for (let ellipsis of ellipsises){
         }
     })
 }
-// messages
+
+// Функція для відкриття чату з користувачем або групою
 function userOpen(users){
 for (let user of users){
     user.addEventListener('click',()=>{
@@ -351,7 +333,6 @@ for (let user of users){
             type: 'post',
             url: window.location.href,
             data: {
-
                 csrfmiddlewaretoken:document.querySelector('input').value,
                 pk: pk,
                 type:'personal'},
@@ -367,8 +348,10 @@ for (let user of users){
 }}
 userOpen(document.querySelector('.messages').querySelectorAll('.contact-item'))
 userOpen(users)
+
+// Функція для виходу з чату (ховає чат і показує центр)
 function exit(){
-document.querySelector('.center-message').hidden = false
+    document.querySelector('.center-message').hidden = false
     document.querySelector('#haederCard').style.display = 'none'
     document.querySelector('#chatCard').style.display = 'none'
 }

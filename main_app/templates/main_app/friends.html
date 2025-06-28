@@ -19,7 +19,7 @@
         <aside class="sidebar">
             <div class="menu-section">
                 <ul class="menu-list">
-                    <h3 class="menu-title {% if typek == '123' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '123' %}">Головна</a></h3>
+                    <li class="menu-item {% if typek == '123' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '123' %}">Головна</a></h3>
                     <li class="menu-item {% if typek == '1' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '1' %}">Запити</a></li>
                     <li class="menu-item {% if typek == '2' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '2' %}">Рекомендації</a></li>
                     <li class="menu-item {% if typek == '3' %}active{% endif %}"><a class="list-a" href="{% url 'friends' '3' %}">Всі друзі</a></li>

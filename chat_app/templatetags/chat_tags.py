@@ -4,9 +4,7 @@ from django.utils import timezone
 register  = template.Library()
 from chat_app.models import ChatGroup,ChatMessage
 
-# Включаемый тег для отображения контакта в списке чатов (contact.html)
-@register.inclusion_tag(filename = "chat_app/inclusion_tags/contact_tag.html")
-def contact_tag(request,pk):
+def contact_create(request,pk):
     """Функция для получения данных контакта по его первичному ключу (pk).
     Параметры:
     - request: объект запроса
@@ -32,3 +30,10 @@ def contact_tag(request,pk):
             "avatar": avatar,
             'pk': friend.pk
         }
+    # Включаемый тег для отображения контакта в списке чатов (contact.html)
+@register.inclusion_tag(filename = "chat_app/inclusion_tags/contact_tag.html")
+def contact_tag(request,pk):
+    return contact_create(request,pk)
+@register.inclusion_tag(filename = "chat_app/inclusion_tags/contact_main_tag.html")
+def contact_main_tag(request,pk):
+    return contact_create(request,pk)

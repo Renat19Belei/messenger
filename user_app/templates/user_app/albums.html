@@ -15,8 +15,8 @@
         <aside class="sidebar">
             <div class="menu-section">
                 <ul class="menu-list">
-                    <a href="{% url 'personal' %}" class="menu-item">Особиста інформація</a>
-                    <h3 class="menu-title active">Альбоми</h3>
+                    <a href="{% url 'personal' %}" class="menu-item {% if request.resolver_match.url_name == 'personal' %}active{% endif %}">Особиста інформація</a>
+                    <h3 class="menu-title {% if request.resolver_match.url_name == 'albums' %}active{% endif %}">Альбоми</h3>
                 </ul>
             </div>
         </aside>

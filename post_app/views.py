@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.core.handlers.wsgi import WSGIRequest
 from .forms import messageForm,UserSet, PostForm
 from .models import Post, Profile, Tag, Image, Link
-
+from user_app.models import Profile
+from chat_app.models import ChatGroup, ChatMessage
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 import json
@@ -20,6 +21,7 @@ def MainPageView(request:WSGIRequest):
     Главная страница приложения, где пользователь может создавать посты.
     Если пользователь отправляет форму с изображениями, то создается новый пост.
     """
+    profile = Profile.objects.get(user=request.user)
     form1 = messageForm()
     form2 = UserSet()
     if request.method == 'POST':
@@ -45,11 +47,16 @@ def MainPageView(request:WSGIRequest):
             form2 = UserSet(request.POST)
             if form2.is_valid():
                 form2.save(request.user)
-                
-
+    chatPersonal=ChatGroup.objects.filter(members=profile,is_personal_chat=True)
+    messagesList = []
+    for chat in chatPersonal:
+        messageElem  = ChatMessage.objects.filter(chat_group=chat).order_by('-send_at').first()
+        if messageElem:
+            messagesList.append(messageElem)
     return render(request,'post_app/main.html',context={
         'form1':form1,
-        "form2":form2
+        "form2":form2,
+        "messagesList": messagesList
     })
 
 

@@ -18,7 +18,7 @@ body {
 .sidebar {
     width: 20.5249343831vw;
     padding: 1.0498687664vw;
-    height: 43.7795275589vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.0498687664vw;
@@ -83,8 +83,9 @@ body {
 .contacts {
     background: white;
     padding: 0.83989501312vw;
-    
+    height: calc(100% - calc(0.05249343832vw + 0.73490813648vw));
     border-right: 0.05249343832vw solid #e0dfe9;
+    border-radius: 0.62992125984vw;
 }
 .contact-list li {
     list-style: none;
@@ -114,6 +115,7 @@ body {
     width: 1.99475065616vw;
     height: 0.57742782152vw;
     /* margin-left: auto; */
+    /* margin-left: auto; */
     position: relative;
     /* right: 0;
     bottom:0 ;
@@ -126,7 +128,7 @@ body {
     position: relative;
     gap: 0.5249343832vw;
     display: flex;
-    width: 80%;
+    width: 100%;
     height: min-content;
     align-items: center;
     justify-content: space-between;
@@ -405,7 +407,8 @@ background-color: transparent;
     display: none;
 }
 #allGroups, .messages, .contact-list, .groups{
-    height: 19.527559055vw;
+    /* height: 19.527559055vw; */
+    height: 50%;
     overflow-y: scroll;
 }
 .contact-list{

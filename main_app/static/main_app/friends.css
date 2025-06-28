@@ -295,8 +295,9 @@ body {
     font-weight: normal;
 }
 
-.menu-section .menu-list a::after {
-    content: '';
+.menu-section .menu-list .active a{
+    text-decoration: underline 0.15748031496vw;
+    /* content: '';
     position: absolute; 
     bottom: 2px; 
     height: 2px; 
@@ -305,7 +306,7 @@ body {
  
     width: 70%; 
     left: 20%;
-    transform: translateX(-50%) scaleX(0); 
+    transform: translateX(-50%) scaleX(0);  */
 }
 
 .menu-section .menu-list .menu-title.active a::after,

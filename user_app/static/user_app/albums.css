@@ -93,12 +93,7 @@ body {
 }
              
 .active{
-  font-weight: 700;
-  border-bottom: 0.10498687664vw solid #543C52;
-  width: 3.30708661417vw;
-  font-size: 0.83989501312vw;
-  line-height: 100%;
-  letter-spacing: -0.03em;
+    border-bottom: 2px solid #000;
 }
 .menu-item:hover:not(.active) {
     background-color: #f2f2f2;
@@ -521,7 +516,7 @@ body{
 }
 .images-div {
     display: flex;
-    flex-direction: column; 
+    /* flex-direction: column;  */
     max-height: calc(2 * (10.498687664vw + 0.83989501312vw));
     overflow-y: auto; 
     padding-bottom: 10px; 

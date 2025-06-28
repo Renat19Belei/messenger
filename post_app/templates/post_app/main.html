@@ -2,6 +2,7 @@
 {% load static %}
 {% load tags %}
 {% load post_tags %}
+{% load chat_tags %}
 {% if request.user.is_authenticated %}
 {% endif %}
 {% block link %}
@@ -29,37 +30,26 @@
   <div id="form">
     {% csrf_token %}
     {% for field in form1 %}
-    
-          <p>
-            {{field.label_tag }}
-            {{field}}
-          </p>
-    
-        {% if field.label == 'Тема публікації' %}
-          <div id="tags">
-            <div class="tags-div">{% standard_tags %}<button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button></div>
-          </div>
-        {% elif field.label == '' %}
-        <div class="editableBox"></div>
-        <!-- </div> -->
-          <p class="countOfPlus">
-            <!-- {{field.label_tag }} -->
-             <label for="link_id">Посилання</label>
-            <div class="plus">
-              <input type="text" id="link_id" name="link" placeholder="вставте посилання публікації" class="formInput linkInput" maxlength="255">
-              <!-- {{field}} -->
-        <!-- # link = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "вставте посилання публікації","class": "formInput linkInput"}),label='Посилання',max_length=255, required=False) -->
-
-              <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
-            </div>
-          </p>
-        {% endif %}
-       
+    <p>
+      {{field.label_tag }}
+      {{field}}
+    </p>
+    {% if field.label == 'Тема публікації' %}
+      <div id="tags">
+        <div class="tags-div">{% standard_tags %}<button id="addTags" type="button"><img id="addTagsImg" src="{% static 'main_app/images/Tag.png' %}" alt=""></button></div>
+      </div>
+    {% elif field.label == '' %}
+      <div class="editableBox"></div>
+      <p class="countOfPlus">
+        <label for="link_id">Посилання</label>
+        <div class="plus">
+          <input type="text" id="link_id" name="link" placeholder="вставте посилання публікації" class="formInput linkInput" maxlength="255">
+          <img src="{% static 'main_app/images/Tag.png' %}" class="img-plus" alt="" >
+        </div>
+      </p>
+    {% endif %}
     {% endfor %}
-    
-  <div id="imagesDiv">
-
-  </div>
+    <div id="imagesDiv"></div>
   </div>
   <div id="sendPart">
     <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
@@ -69,7 +59,6 @@
   </div>
 </form>
 {% if request.user.email == '' %}
-
 <div id="bg"></div>
 <form action="" id="userSet" method="post">
   {% csrf_token %}
@@ -81,24 +70,20 @@
   </div>
   <p class="small">Або оберіть: <span class="green">Запропоновані варіанти відповідно до Ім’я та Прізвища</span></p>
   <div class="hoh"><button class="send" id="toRight">Продовжити</button></div>
-  
 </form>
 {% endif %}
 <div class="container">
 <input type="hidden" id="trash" value="{% static 'main_app/images/remove_img.png' %}">
-
 <aside class="sidebar">
   <div class="profile-card">
     <div class="profile-1">
       {% if request.user.is_authenticated %}
       {% profile_icon request.user "avatar-big" %}
-      <!-- <img class="avatar-big" src="{% static 'main_app/images/Indicator.png' %}" alt="Lina Li"> -->
       <div class="online-dot"></div>
       <h2>{{request.user.first_name}}</h2>
       <p>@{{request.user.username}}</p>
       {% endif %}
     </div>
-    <!--  -->
     {% if request.user.is_authenticated %}
     {% status request.user %}
     {% endif %}
@@ -114,63 +99,20 @@
         <div class="name">Yehor Aung</div>
         <div class="meta">4.3k підписників</div>
       </div>
-    </div>
-    <div class="request">
-      <img  class="avatar" src="{% static 'main_app/images/ann.png' %}">
-      <div>
-        <div class="name">Ann Ann</div>
-        <div class="meta">1.6k підписників</div>
-      </div>
-    </div>
-    <div class="request">
-      <img  class="avatar" src="{% static 'main_app/images/Yeugen.png' %}">
-      <div>
-        <div class="name">Yeugen Jenua</div>
-        <div class="meta">10.3k підписників</div>
-      </div>
     </div> -->
   </div>
-
   <div class="card">
     <div class="section-header">
-      <!-- <span>Повідомлення</span> -->
       <span ><img src="{% static 'main_app/images/chat (1).png' %}" alt="" class="icon"><span class="center">Повідомлення</span></span>
       <a href="#">Дивитись всі</a>
     </div>
+    <ul>
 
-    <!-- <div class="message">
-      <img class="avatar" src="{% static 'main_app/images/mona.png' %}">
-      <div class="msg-text" >
-        <div class="msg-just">
-          <div class="name">Mona Lisa</div>
-          <div class="time">09:41</div>
-        </div>
-        
-        <div class="meta">Привіт! Як справи ?</div>
-      </div>
-      
-    </div>
-    <div class="message">
-      <img class="avatar" src="{% static 'main_app/images/ann (1).png' %}">
-      <div class="msg-text">
-        <div class="msg-just">
-        <div class="name">Ann Ti</div>
-        <div class="time">25.04.2025</div>
-        </div>
-        <div class="meta">Привіт!</div>
-      </div>
-    </div>
-    <div class="message">
-      <img  class="avatar" src="{% static 'main_app/images/ness.png' %}">
-      <div class="msg-text">
-        <div class="msg-just">
-          <div class="name">Ness Ty</div>
-          <div class="time">25.04.2025</div>
-        </div>
-        <div class="meta">Привіт!</div>
-      </div>
-    </div> -->
-  
+      {% for message in messagesList %}
+          {% contact_main_tag request message.pk %}
+      {% endfor %}
+    </ul>
+    
   </div>
 </aside>
   </aside>
@@ -178,19 +120,12 @@
     <form class="publiaction" method="post">
       {% csrf_token %}
       <input placeholder="Текст публікації" class="input">
-      
       <div class="right">
-        <!-- <div class="centers"> -->
-          <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
-          <button class="send">Перейти до оформлення</button>
-        <!-- </div> -->
+        <img src="{% static 'main_app/images/em.png' %}" alt="" class="move">
+        <button class="send">Перейти до оформлення</button>
       </div>
     </form>
-    
-    <div class="poster">
-    </div>
-    
+    <div class="poster"></div>
   </main>
 </div>
-
 {% endblock %}

@@ -7,7 +7,7 @@ for (let card of document.querySelectorAll('.friend-card')){
         }
     })  
 }
-
+console.log(document.querySelector('.menu-section .menu-list a.active'))
 // Для каждой кнопки "Подтвердить", "Додати" или "Повідомлення" добавляем обработчик
 let buttons = document.querySelectorAll(".btn-confirm")
 for (let button of buttons){

@@ -34,7 +34,6 @@ def chat_view(request:WSGIRequest):
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         if request.POST.get('type')=='groupCreation' or request.POST.get('type')=='groupEdit':
-            print(request.FILES)
             if request.POST.get('type')=='groupCreation':
                 chatGroup =ChatGroup.objects.create(
                     admin=profile,
@@ -42,7 +41,6 @@ def chat_view(request:WSGIRequest):
                     avatar=request.FILES.get('group_img')
                 )
             else:
-                print(request.POST.get('pk'))
                 chatGroup =ChatGroup.objects.get(pk=int(request.POST.get('pk')))
                 chatGroup.name = request.POST.get('name')
                 chatGroup.avatar=request.FILES.get('group_img')
@@ -70,7 +68,6 @@ def chat_view(request:WSGIRequest):
             chat_group = ChatGroup.objects.filter(pk=int(request.POST.get('pk'))).filter(members=profile).first()
             messages = ChatMessage.objects.filter(chat_group=chat_group).order_by('-send_at')
             is_admin = chat_group.admin == profile
-            print(is_admin)
             messages_list = []
             for message in messages:
                 messages_list.append({

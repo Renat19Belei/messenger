@@ -13,7 +13,6 @@ from .models import Profile
 from .tasks import delete_old_code
 from django.utils import timezone
 from datetime import timedelta
-
 from django.http import HttpResponse
 from django.db.models import Q 
 from .forms import AuthenticationForm2
@@ -115,16 +114,16 @@ def render_email(request:WSGIRequest, code):
     return render(request,'user_app/my_email.html',context={'email':user.username})
 
 def albums(request:WSGIRequest):
+    # Отримуємо профіль поточного користувача
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form_type = request.POST.get("type")
         if form_type == 'album':
+            # Створення нового альбому
             theme=request.POST.get("themeSelect")
             tag=Tag.objects.filter(name=theme).first()
-            # tag = None
             if not tag:
                 tag = Tag.objects.create(name=theme)
-            # times.isoformat().replace(times.year, request.POST.get("year"))
             album = Album.objects.create(
                 name = request.POST.get("name"),
                 topic= tag,
@@ -132,23 +131,22 @@ def albums(request:WSGIRequest):
             )
             album.created_at = album.created_at.replace(year=int(request.POST.get("year")))
             album.save()
-            # year
-            # album.created_at.year = request.POST.get("year")
         elif form_type == 'images':
+            # Додавання зображень до альбому
             album = Album.objects.get(pk=int(request.POST.get("pk")))
-            
             img_list = []
             for img in request.FILES.getlist('images'):
                 album.images.add(Image.objects.create(file=img))
                 album.save()
             album.save()
         elif form_type == 'remove':
+            # Видалення альбому
             album = Album.objects.get(pk=int(request.POST.get("pk")))
-            # if album.icon:
-            #     album.icon.delete()
             Album.delete(album)
+    # Отримуємо всі альбоми користувача та неактивні аватари
     user_albums = Album.objects.filter(author=profile)
     avatars = Avatar.objects.filter(profile=profile, active=False)
+    # Повертаємо сторінку з альбомами та аватарами
     return render(request, 'user_app/albums.html', context={"albums": user_albums, 'avatars': avatars})
 
 # def remove_album_icon(request:WSGIRequest):

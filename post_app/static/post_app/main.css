@@ -261,12 +261,36 @@ position: absolute; /* Position relative to the nearest positioned ancestor (.im
 .comments {
   margin-top: 0.5249343832vw;
 }
-
+.text-group{
+    display: flex;
+    flex-direction: column;
+}
 .comment {
   padding: 0.5249343832vw 0;
   border-top: 0.05249343832vw solid #eee;
 }
-
+.chat-info .groups ul li .text-group {
+    display: flex; 
+    align-items: baseline; 
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.contact-list li {
+    list-style: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.41994750656vw;
+}
+.chat-info .groups ul li .text-group span.name {
+    font-weight: bold;
+    margin-right: 0.2624671916vw;
+    flex-shrink: 0;
+}
 .comment .user {
   font-weight: bold;
   font-size: 0.68241469816vw;
@@ -506,7 +530,8 @@ html, body {
   padding: 0.62992125984vw;
   box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0,0,0,0.08);
   width: 18.4183727034vw;
-  height: 12vw;
+  max-height: 12vw;
+
 }
 .change-img{
   border-radius: 0.83989501312vw;
