@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(vlj5ikz=x4)-5aj=rf=tjj&!ot9&v5!+esmc=viegj$j-2f1b
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTE&_ORIGINS = ["https://messengerdeploy-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://messenger-production-dfca.up.railway.app"]
 
 # Application definition
 
@@ -135,7 +135,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 # STATIC_ROOT = 
 STATICFILES_DIRS = [BASE_DIR / 'messanger' / 'static']
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # AUTH_USER_MODEL = 'main_app.CustomUser' 
 
 MEDIA_URL = '/media/'

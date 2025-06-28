@@ -1,0 +1,207 @@
+
+#bg{
+    height: 100%;
+    width: 100%;
+    opacity: 0.277;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+      z-index: 998;
+}
+#modalForm{
+    position: fixed;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    /* height: 45.5643044619vw; */
+    width: 40.5774278215vw;
+    padding: 1.25984251968vw 2.30971128609vw 2.30971128609vw 2.30971128609vw;
+    border-radius: 1.0498687664vw;
+    z-index: 1000;
+}
+#imageInput{
+    display: none;
+    /* opacity: 1; */
+}
+.imgClose{
+    margin-right: 0.7874015748vw;
+    /* width: 0.83989501312vw;
+    height: 0.83989501312vw; */
+}
+.plus{
+    display: flex;
+    gap: 0.5249343832vw;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: row;
+}
+.image {
+    width: 11.426071207vw;
+    min-width: 11.426071207vw;
+height: 265;
+border-radius: 0.83989501312vw;
+position:static;
+
+}
+label{
+    display: block;
+    font-size: 0.83989501312vw;
+}
+.formInput{
+  width: 18.0052493438vw;
+height: 2.20472440945vw;
+border-radius: 0.5249343832vw;
+padding-top: 0.5249343832vw;
+padding-right: 0.83989501312vw;
+padding-bottom: 0.5249343832vw;
+padding-left: 0.83989501312vw;
+gap: 0.5249343832vw;
+border-width: 0.05249343832vw;
+font-size: 0.83989501312vw;
+
+}
+.BigFormInput {
+    width: 35.9580052492vw;
+    height: 6.61417322832vw;
+    border-radius: 0.5249343832vw;
+    gap: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+    padding: 0.83989501312vw;
+
+}
+
+#form {
+    display: flex;
+    gap: 0.83989501312vw;
+    flex-direction: column;
+    padding: 1.25984251968vw 0;
+}
+#sendPart {
+    width: 35.9580052492vw;
+    gap: 0.5249343832vw;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    height: 2.09973753281vw;
+
+}
+#imagesDiv {
+    width:35.9580052492vw;
+    /* height: ; */
+    max-height: 13.9107611548vw;
+    gap: 0.83989501312vw;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.imagesDiv{
+position: relative;
+width: 11.426071207vw;
+height: 13.9107611548vw;
+}
+.dialog{
+    display: block;
+    position: relative;
+    width: 18.0052493438vw;
+    height: 7.34908136482vw;
+    top: 2.88713910761vw;
+    right: -2.62467191601vw;
+    border-radius: 0.5249343832vw;
+    gap: 0.83989501312vw;
+    padding: 0 0 0.83989501312vw 0.83989501312vw;
+    border: 0;
+    font-size: 0.83989501312vw;
+    background-color: #E9E5EE;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+.ellipsis{
+    display: block;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 1.5748031496vw;
+  height: 1.5748031496vw;
+  position: relative;
+  right: 0;
+  top: 0;
+  
+}
+.ellipsis:hover{
+  background-color: rgba(200, 200, 200, 150);
+  border-radius: 1.5748031496vw;
+}
+.hidden{
+    display: none;
+}.config{
+    
+    font-size: 0.83989501312vw;
+    width: 10vw;
+    height: 1.0498687664vw;
+    gap: 0.5249343832vw;
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    background-color: transparent;
+    border: none;
+}
+.grayTags{
+    color: #543C52;
+    z-index: 10;  
+    /* width: 99999px; */
+    /* height: 9999999px; */
+    display: block;
+    position: absolute;
+}
+.textWithTags{
+    position: relative;
+}
+.tag{
+  border: none;
+  outline: none;
+  background-color: #E9E5EE;
+  border-radius: 0.31496062992vw;
+  height: 1.46981627296vw;
+  /* width: min-content; */
+  box-sizing: border-box;
+  /* width: 3.20209973753vw; */
+  font-size: 0.73490813648vw;
+  text-align: center;
+}
+.tags{
+    display: flex;
+    /* flex-direction: col; */
+}
+.textInput {
+    /* border: 1px ; */
+    width: 35.9580052493vw;
+    font-size: 0.83989501312vw;
+    height: 6.61417322834vw;
+    border-radius: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+    border-color: black;
+    border-style: solid;
+    padding: 0.83989501312vw;
+    /* resize: vertical;    */
+    position: relative;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+#beer{
+    width: 1.0498687664vw;
+}
+#addTags, #addTagsImg, .img-plus, .imgClose{
+    width: 1.46981627296vw;
+    /* height: 1.46981627296vw; */
+}
+.center-icon{
+    display: flex;
+    align-items: center;
+    font-size: 0.73490813648vw;
+    gap: 0.41994750656vw;
+}

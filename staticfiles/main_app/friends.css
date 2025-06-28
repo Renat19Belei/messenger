@@ -1,0 +1,315 @@
+.friends-app {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vw; */
+    background-color: #FAF8FF;
+}
+
+
+
+
+.app-title {
+    font-size: 1.25984251968vw;
+    font-weight: bold;
+    color: #000000;
+} 
+
+.app-container {
+    display: flex;
+    position: relative;
+    /* flex: 1; */
+    height: 90vh;
+}
+
+.sidebar {
+    width: 20.9973753281vw;
+    padding: 1.0498687664vw;
+    padding-left: 3.4vw;
+    padding-right: 9.8vw;
+}
+/* h3 {
+  padding: 0;
+  
+} */
+.menu-title.active{
+  color: #000000;
+}
+.menu-section {
+    /* margin-bottom: 30px; */
+    margin-top: 2vw;
+    padding-left: 1vw;
+    gap: 0.83989501312vw;
+}
+
+.menu-title {
+    color: #65676b;
+    font-size: 0.89238845144vw;
+    margin-bottom: 0.7874015748vw;
+    margin-left: 0.5249343832vw;
+    /* padding-left: 0.5249343832vw; */
+}
+
+.menu-list {
+    list-style: none;
+    
+}
+
+.menu-item {
+    padding: 0.1249343832vw;
+    padding-left: 0.5vw;
+    cursor: pointer;
+    border-radius: 0.41994750656vw;
+    color: #050505;
+    margin-bottom: 0.2624671916vw;
+    font-size: 0.7874015748vw;
+}
+
+.menu-item.active {
+    background-color: #e7f3ff;
+    color: #1877f2;
+    
+}               
+/* .active{
+  font-weight: 700;
+  border-bottom: 0.10498687664vw solid #543C52;
+  width: 3.30708661417vw;
+  font-size: 0.83989501312vw;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+} */
+.menu-item:hover:not(.active) {
+    background-color: #f2f2f2;
+}
+
+.content {
+    /* flex: 1; */
+    padding: 1.0498687664vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.0498687664vw;
+    overflow-y: auto;
+    width: 74.5vw;
+    /* height: 50%; */
+}
+.list-a{
+    color: black;
+    text-decoration: none;
+}
+body {
+  overflow-y: hidden;
+  background-color: #FAF8FF;
+}
+.friends-section {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 1.0498687664vw;
+    flex-wrap: wrap;
+    display: flex;
+    max-height: 28.0314960629vw;
+    /* flex-direction: column; */
+    gap: 0.41994750656vw;
+
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.7874015748vw;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.0498687664vw;
+    color: #050505;
+}
+
+.friend-card {
+    width: 15.1706036745vw;
+    height: 13.8057742782vw;
+    border-radius: 0.5249343832vw;
+    border-width: 0.05249343832vw;
+    padding-top: 0.83989501312vw;
+    padding-bottom: 0.83989501312vw;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.73490813648vw;
+    background: white;
+    border-radius: 0.62992125984vw;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: 0.05249343832vw solid #CDCED2;
+    text-align: center;
+    box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
+
+}
+#friend-section{
+  background-color: white;
+  border: 0.05249343832vw solid #CDCED2;
+  border-radius: 0.5249343832vw;
+  padding: 1.0498687664vw;
+}
+.friend-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.62992125984vw;
+    flex-direction: column;
+    align-items: center;
+    /* font-family: GT Walsheim Pro; */
+    font-weight: 700;
+    font-size: 1.25984251968vw;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+
+}
+
+.friend-avatar {
+    width: 2.62467191601vw;
+    height: 2.62467191601vw;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.10498687664vw solid #f0f2f5;
+    width: 5.03937007873vw;
+    height: 5.03937007873vw;
+    /* overflow: visible; */
+}
+
+.friend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-name {
+    font-size: 0.83989501312vw;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.10498687664vw;
+}
+
+.friend-username {
+    font-size: 0.73490813648vw;
+    color: #65676b;
+}
+
+.friend-actions {
+  display: flex;
+  width: 100%;
+  gap: 0.83989501312vw;
+  /* width: 221; */
+  height: 2.62467191601vw;
+  border-radius: 1234vw;
+  gap: 0.41994750656vw;
+  padding-top: 0.5249343832vw;
+  padding-right: 0.83989501312vw;
+  padding-bottom: 0.5249343832vw;
+  padding-left: 0.83989501312vw;
+  justify-content:space-evenly; 
+}
+
+.btn {
+    padding: 0.41994750656vw 0.83989501312vw;
+    border-radius: 0.31496062992vw;
+    font-weight: 600;
+    font-size: 0.73490813648vw;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    border-radius: 9999vw;
+    padding: 0.5249343832vw 0.83989501312vw;
+    height: 2.09973753281vw;
+    width: 5.82677165354vw;
+    text-align: center;
+}
+
+.btn-confirm, .btn-add, .btn-message {
+    background: #543C52;
+    color: white;
+}
+
+.btn-delete {
+    /* background: #f0f2f5; */
+    background-color: white;
+    color: #543C52;
+    border: 0.05249343832vw solid #543C52 !important;
+}
+
+.btn-delete:hover {
+    color: gray;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.section-title {
+    font-size: 1.0498687664vw;
+    margin-bottom: 0.7874015748vw;
+    color: #333;
+}
+
+.see-all {
+    color: #543C52;
+    text-decoration: none;
+    font-size: 0.73490813648vw;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.friend-cards{
+  display: flex;
+    width: 15.1706036745vw;
+    height: 13.8057742782vw;
+    border-radius: 0.5249343832vw;
+    gap: 52.4934383201vw;
+    border-width: 0.05249343832vw;
+    padding-top: 0.83989501312vw;
+    padding-bottom: 0.83989501312vw;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.73490813648vw;
+    background: white;
+    border-radius: 0.62992125984vw;
+    text-align: center;
+    box-shadow: 0 0.05249343832vw 0.10498687664vw rgba(0, 0, 0, 0.08);
+}
+
+
+.menu-title.active, 
+.menu-item.active { 
+    background-color: transparent; 
+    color: #050505;
+}
+
+.list-a {
+    color: black; 
+    text-decoration: none; 
+    display: block; 
+    padding: 2px 0; 
+    position: relative; 
+    overflow: hidden; 
+    transition: all 0.2s ease-in-out;
+
+    font-weight: normal;
+}
+
+.menu-section .menu-list .active a{
+    text-decoration: underline 0.15748031496vw;
+    /* content: '';
+    position: absolute; 
+    bottom: 2px; 
+    height: 2px; 
+    background-color: black; 
+    
+ 
+    width: 70%; 
+    left: 20%;
+    transform: translateX(-50%) scaleX(0);  */
+}
+
+.menu-section .menu-list .menu-title.active a::after,
+.menu-section .menu-list .menu-item.active a::after {
+    transform: translateX(-50%) scaleX(1); 
+} 
