@@ -1,8 +1,7 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json, base64
 from channels.db import database_sync_to_async
-from .models import ChatGroup, ChatMessage
-from user_app.models import Profile,Avatar
+
 from django.core.files.base import ContentFile
 class ChatConsumer(AsyncWebsocketConsumer):
     '''
@@ -84,6 +83,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.send(json.dumps(text_data_dict))
     @database_sync_to_async
     def get_avatar(self, user_pk):
+        
+        from user_app.models import Profile,Avatar
         profile = Profile.objects.filter(user_id=user_pk).first()
         avatar = Avatar.objects.filter(profile=profile,active=True,shown=True).first()
         if avatar:
@@ -96,7 +97,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         '''
         метод,який потрібен для збереження повідомлення у БД
         '''
-
+        from .models import ChatGroup, ChatMessage
         # задаємо автора 
         author = self.scope['user']
         # задаємо повідомлення 
