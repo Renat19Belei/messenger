@@ -11,11 +11,11 @@ import os
 
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
-from chat_app.routing import websocket_urlpatterns
+
 from channels.auth import AuthMiddlewareStack
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'messanger.settings')
-
+from chat_app.routing import websocket_urlpatterns
 application = ProtocolTypeRouter({
     # Якщо звичайний http запит, тоді звичайна обробка запиту django
     'http': get_asgi_application(),

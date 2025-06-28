@@ -3,7 +3,6 @@ import json, base64
 from channels.db import database_sync_to_async
 from .models import ChatGroup, ChatMessage
 from user_app.models import Profile,Avatar
-from .models import ChatMessage
 from django.core.files.base import ContentFile
 class ChatConsumer(AsyncWebsocketConsumer):
     '''
