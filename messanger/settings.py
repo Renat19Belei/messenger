@@ -73,6 +73,7 @@ TEMPLATES = [
 ]
 
 ASGI_APPLICATION = 'messanger.asgi.application'
+WSGI_APPLICATION = 'messanger.wsgi.application'
 CHANNEL_LAYERS = {
     # Створюємо канал, на якому знаходиться користувач по замовчуванню
     "default":{
