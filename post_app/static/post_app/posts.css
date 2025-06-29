@@ -150,6 +150,9 @@ height: 13.9107611548vw;
     background-color: transparent;
     border: none;
 }
+.everyTag{
+    font-size: 0.83989501312vw;
+}
 .grayTags{
     color: #543C52;
     z-index: 10;  

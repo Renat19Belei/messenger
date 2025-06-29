@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from django.urls import reverse_lazy
 import os
+# from sshtunnel import SSHTunnelForwarder
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,7 +97,25 @@ DATABASES = {
         # 'PORT': '3306',                  # Or your MySQL port
     }
 }
+# ssh_conection = SSHTunnelForwarder(
+#     ("ssh.pythonanywhere.com", 22),
+#     ssh_username="worlditAcademy",
+#     ssh_password="2025_Django",
+#     remote_bind_address=("worlditAcademy.mysql.pythonanywhere-services.com", 3306)
+# )
 
+# ssh_conection.start()
+
+# DATABASE = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'worlditAcademy$default',
+#         'USER': 'worlditAcademy',
+#         'PASSWORD': 'cXA&j:.sE,SZwJa$',
+#         'HOST': '127.0.0.1',
+#         'PORT': str(ssh_conection.local_bind_port)
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

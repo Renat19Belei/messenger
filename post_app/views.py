@@ -95,9 +95,10 @@ def gets(request:WSGIRequest,pk:int):
     # Получаем пост по id
     user_post = Post.objects.get(pk = int(pk))
     # Проверяем, что текущий пользователь — автор поста
-    if user_post.author == Profile.objects.get(user=request.user):
+    if user_post.author.user == request.user:
         # Собираем данные поста для передачи на фронт
         text = user_post.content
+        topic = user_post.topic
         list_of_imgs = []
         list_of_imgs_pk = []
         for image in user_post.images.all():
@@ -111,7 +112,7 @@ def gets(request:WSGIRequest,pk:int):
         for link in Link.objects.filter(post=user_post):
             links.append(link.url)
         # Возвращаем данные поста в формате JSON
-        data = JsonResponse({'text':text,'name':user_post.title,"theme":'',"link":links,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags})
+        data = JsonResponse({'text':user_post.content,'name':user_post.title,"theme":topic,"link":links,"imgs":list_of_imgs,"imgs_pk":list_of_imgs_pk,"tags":tags,'topic':topic})
         return data
     # Если пользователь не автор поста — возвращаем ошибку
     return JsonResponse({'error':'who are you'})

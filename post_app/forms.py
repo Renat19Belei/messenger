@@ -74,7 +74,7 @@ class messageForm(forms.Form):
                 print(error)
             text = self.cleaned_data.get('text')
             for tag in tags:
-                tag = tag[1::]
+                tag =  ''.join(tag.split('#'))
                 if Tag.objects.filter(name = tag):
                     tags_list.append(Tag.objects.filter(name = tag).first())
                 else:

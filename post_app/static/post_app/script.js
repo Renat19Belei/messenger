@@ -123,11 +123,14 @@ function load(count){
                             type: 'get',
                             url: link2,
                             success: function(request){
+                                const standard_tags_list = 'відпочинок натхенення життя природа читання спокій гармонія музика фільми подорожі'.split(' ')
                                 let trashUrl = document.querySelector('#trash').value
                                 // Заполняем поля формы данными поста
+                                console.log(request);
                                 document.querySelector('.textInput').value = request.text
                                 document.querySelector('.linkInput').value = request.link[0]
                                 document.querySelector('.nameInput').value = request.name
+                                document.querySelector('.themeInput').value = request.topic
                                 let count = 0
                                 // Добавляем изображения поста в форму редактирования
                                 for (let img of request.imgs){
@@ -158,27 +161,46 @@ function load(count){
                                 document.querySelector('#imgs').value += JSON.stringify(request.imgs_pk)
                                 // Добавляем теги поста в форму редактирования
                                 for (let tag of request.tags){
-                                    let span =document.createElement("span")
-                                    span.style.zIndex = -999999999999999
-                                    let input = document.createElement("input")
-                                    input.className = "tag"
-                                    input.value = '#' + tag
-                                    input.name = 'tags'
-                                    span.style.left = -13290808213787
-                                    document.body.append(span)
-                                    span.id = 'widthMeasurer'
-                                    span.textContent = input.value
-                                    input.style.width = `${span.scrollWidth}px`
-                                    input.addEventListener('input', () => {
+                                    console.log(tag)
+                                    if (!standard_tags_list.includes(tag)){
+                                        let span =document.createElement("span")
+                                        span.style.zIndex = -999999999999999
+                                        let input = document.createElement("input")
+                                        input.className = "tag"
+                                        input.value = '#' + tag
+                                        input.name = 'tags'
+                                        // grayTags
+                                        span.style.left = -13290808213787
+                                        document.body.append(span)
+                                        span.id = 'widthMeasurer'
                                         span.textContent = input.value
                                         input.style.width = `${span.scrollWidth}px`
-                                        if (input.value.split('')[0] != '#'){
-                                            input.remove()
-                                        }
-                                    })
-                                    document.querySelector(".tags-div").append(input)
+                                        input.addEventListener('input', () => {
+                                            span.textContent = input.value
+                                            input.style.width = `${span.scrollWidth}px`
+                                            if (input.value.split('')[0] != '#'){
+                                                input.remove()
+                                            }
+                                        })
+                                        document.querySelector(".tags-div").append(input)
+                                    }else{
+                                        let input = document.querySelector('.grayTags')
+                                        // Создаем span для отображения тега
+                                        let sp = document.createElement('span')
+                                        // Создаем скрытый input для передачи значения на сервер
+                                        let inp = document.createElement('input')
+                                        inp.type = 'hidden'
+                                        inp.value = tag
+                                        inp.name = 'everyTag'
+                                        sp.className = 'everyTag'
+                                        sp.textContent = '#' + tag + ' '
+                                        // Добавляем тег и скрытый input в контейнер
+                                        input.append(sp)
+                                        input.append(inp)
+                                    }
                                 }
-                            }})
+                            }
+                        })
                     })
                 }
             }
